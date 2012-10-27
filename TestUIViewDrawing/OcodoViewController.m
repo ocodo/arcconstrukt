@@ -132,7 +132,7 @@ float clampf( float v, float min, float max )
     }
 }
 
-- (IBAction)changeRotationMode:(UISegmentedControl *)sender {
+- (IBAction)changeRotateMode:(UISegmentedControl *)sender {
     rotateMode = sender.selectedSegmentIndex;
 }
 

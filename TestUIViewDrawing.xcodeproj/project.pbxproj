@@ -21,7 +21,6 @@
 		96FADBD816394E40004706F9 /* ArcMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADBD716394E40004706F9 /* ArcMachine.m */; };
 		96FADBDF163A5F4D004706F9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBDE163A5F4D004706F9 /* QuartzCore.framework */; };
 		96FADBEF163C0046004706F9 /* BackToolbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBEE163C0046004706F9 /* BackToolbar.png */; };
-		96FADBF1163C04AA004706F9 /* BackToolbarFlip.png in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBF0163C04AA004706F9 /* BackToolbarFlip.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,9 +43,7 @@
 		96FADBD616394E40004706F9 /* ArcMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcMachine.h; sourceTree = "<group>"; };
 		96FADBD716394E40004706F9 /* ArcMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArcMachine.m; sourceTree = "<group>"; };
 		96FADBDE163A5F4D004706F9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		96FADBE0163A6155004706F9 /* TestUIViewDrawing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TestUIViewDrawing.entitlements; sourceTree = "<group>"; };
 		96FADBEE163C0046004706F9 /* BackToolbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackToolbar.png; sourceTree = "<group>"; };
-		96FADBF0163C04AA004706F9 /* BackToolbarFlip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackToolbarFlip.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,15 +92,14 @@
 		96FADBB21639249D004706F9 /* TestUIViewDrawing */ = {
 			isa = PBXGroup;
 			children = (
-				96FADBE0163A6155004706F9 /* TestUIViewDrawing.entitlements */,
+				96FADBC41639249D004706F9 /* MainStoryboard.storyboard */,
 				96FADBBB1639249D004706F9 /* OcodoAppDelegate.h */,
 				96FADBBC1639249D004706F9 /* OcodoAppDelegate.m */,
-				96FADBC41639249D004706F9 /* MainStoryboard.storyboard */,
 				96FADBC71639249D004706F9 /* OcodoViewController.h */,
 				96FADBC81639249D004706F9 /* OcodoViewController.m */,
-				96FADBB31639249D004706F9 /* Supporting Files */,
 				96FADBD616394E40004706F9 /* ArcMachine.h */,
 				96FADBD716394E40004706F9 /* ArcMachine.m */,
+				96FADBB31639249D004706F9 /* Supporting Files */,
 			);
 			path = TestUIViewDrawing;
 			sourceTree = "<group>";
@@ -111,7 +107,6 @@
 		96FADBB31639249D004706F9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				96FADBF0163C04AA004706F9 /* BackToolbarFlip.png */,
 				96FADBEE163C0046004706F9 /* BackToolbar.png */,
 				96FADBB41639249D004706F9 /* TestUIViewDrawing-Info.plist */,
 				96FADBB51639249D004706F9 /* InfoPlist.strings */,
@@ -182,7 +177,6 @@
 				96FADBC31639249D004706F9 /* Default-568h@2x.png in Resources */,
 				96FADBC61639249D004706F9 /* MainStoryboard.storyboard in Resources */,
 				96FADBEF163C0046004706F9 /* BackToolbar.png in Resources */,
-				96FADBF1163C04AA004706F9 /* BackToolbarFlip.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
