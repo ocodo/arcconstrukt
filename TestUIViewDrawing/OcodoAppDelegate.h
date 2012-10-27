@@ -1,5 +1,5 @@
 //
-//  ocodoViewController.h
+//  ocodoAppDelegate.h
 //  TestUIViewDrawing
 //
 //  Created by jason on 25/10/12.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ocodoViewController : UIViewController
+@interface OcodoAppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow *window;
 
 @end

@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 ocodo. All rights reserved.
 //
 
-#import "ocodoAppDelegate.h"
+#import "OcodoAppDelegate.h"
 
-@implementation ocodoAppDelegate
+@implementation OcodoAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

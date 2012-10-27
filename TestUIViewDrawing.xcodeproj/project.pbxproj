@@ -12,12 +12,16 @@
 		96FADBB11639249D004706F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBB01639249D004706F9 /* CoreGraphics.framework */; };
 		96FADBB71639249D004706F9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBB51639249D004706F9 /* InfoPlist.strings */; };
 		96FADBB91639249D004706F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADBB81639249D004706F9 /* main.m */; };
-		96FADBBD1639249D004706F9 /* ocodoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADBBC1639249D004706F9 /* ocodoAppDelegate.m */; };
+		96FADBBD1639249D004706F9 /* OcodoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADBBC1639249D004706F9 /* OcodoAppDelegate.m */; };
 		96FADBBF1639249D004706F9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBBE1639249D004706F9 /* Default.png */; };
 		96FADBC11639249D004706F9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBC01639249D004706F9 /* Default@2x.png */; };
 		96FADBC31639249D004706F9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBC21639249D004706F9 /* Default-568h@2x.png */; };
 		96FADBC61639249D004706F9 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBC41639249D004706F9 /* MainStoryboard.storyboard */; };
-		96FADBC91639249D004706F9 /* ocodoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADBC81639249D004706F9 /* ocodoViewController.m */; };
+		96FADBC91639249D004706F9 /* OcodoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADBC81639249D004706F9 /* OcodoViewController.m */; };
+		96FADBD816394E40004706F9 /* ArcMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADBD716394E40004706F9 /* ArcMachine.m */; };
+		96FADBDF163A5F4D004706F9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBDE163A5F4D004706F9 /* QuartzCore.framework */; };
+		96FADBEF163C0046004706F9 /* BackToolbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBEE163C0046004706F9 /* BackToolbar.png */; };
+		96FADBF1163C04AA004706F9 /* BackToolbarFlip.png in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBF0163C04AA004706F9 /* BackToolbarFlip.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,14 +33,20 @@
 		96FADBB61639249D004706F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		96FADBB81639249D004706F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		96FADBBA1639249D004706F9 /* TestUIViewDrawing-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestUIViewDrawing-Prefix.pch"; sourceTree = "<group>"; };
-		96FADBBB1639249D004706F9 /* ocodoAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ocodoAppDelegate.h; sourceTree = "<group>"; };
-		96FADBBC1639249D004706F9 /* ocodoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ocodoAppDelegate.m; sourceTree = "<group>"; };
+		96FADBBB1639249D004706F9 /* OcodoAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OcodoAppDelegate.h; sourceTree = "<group>"; };
+		96FADBBC1639249D004706F9 /* OcodoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OcodoAppDelegate.m; sourceTree = "<group>"; };
 		96FADBBE1639249D004706F9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		96FADBC01639249D004706F9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		96FADBC21639249D004706F9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		96FADBC51639249D004706F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		96FADBC71639249D004706F9 /* ocodoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ocodoViewController.h; sourceTree = "<group>"; };
-		96FADBC81639249D004706F9 /* ocodoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ocodoViewController.m; sourceTree = "<group>"; };
+		96FADBC71639249D004706F9 /* OcodoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OcodoViewController.h; sourceTree = "<group>"; };
+		96FADBC81639249D004706F9 /* OcodoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OcodoViewController.m; sourceTree = "<group>"; };
+		96FADBD616394E40004706F9 /* ArcMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcMachine.h; sourceTree = "<group>"; };
+		96FADBD716394E40004706F9 /* ArcMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArcMachine.m; sourceTree = "<group>"; };
+		96FADBDE163A5F4D004706F9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		96FADBE0163A6155004706F9 /* TestUIViewDrawing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TestUIViewDrawing.entitlements; sourceTree = "<group>"; };
+		96FADBEE163C0046004706F9 /* BackToolbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackToolbar.png; sourceTree = "<group>"; };
+		96FADBF0163C04AA004706F9 /* BackToolbarFlip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackToolbarFlip.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96FADBDF163A5F4D004706F9 /* QuartzCore.framework in Frameworks */,
 				96FADBAD1639249D004706F9 /* UIKit.framework in Frameworks */,
 				96FADBAF1639249D004706F9 /* Foundation.framework in Frameworks */,
 				96FADBB11639249D004706F9 /* CoreGraphics.framework in Frameworks */,
@@ -56,6 +67,7 @@
 		96FADB9D1639249C004706F9 = {
 			isa = PBXGroup;
 			children = (
+				96FADBDE163A5F4D004706F9 /* QuartzCore.framework */,
 				96FADBB21639249D004706F9 /* TestUIViewDrawing */,
 				96FADBAB1639249C004706F9 /* Frameworks */,
 				96FADBA91639249C004706F9 /* Products */,
@@ -83,12 +95,15 @@
 		96FADBB21639249D004706F9 /* TestUIViewDrawing */ = {
 			isa = PBXGroup;
 			children = (
-				96FADBBB1639249D004706F9 /* ocodoAppDelegate.h */,
-				96FADBBC1639249D004706F9 /* ocodoAppDelegate.m */,
+				96FADBE0163A6155004706F9 /* TestUIViewDrawing.entitlements */,
+				96FADBBB1639249D004706F9 /* OcodoAppDelegate.h */,
+				96FADBBC1639249D004706F9 /* OcodoAppDelegate.m */,
 				96FADBC41639249D004706F9 /* MainStoryboard.storyboard */,
-				96FADBC71639249D004706F9 /* ocodoViewController.h */,
-				96FADBC81639249D004706F9 /* ocodoViewController.m */,
+				96FADBC71639249D004706F9 /* OcodoViewController.h */,
+				96FADBC81639249D004706F9 /* OcodoViewController.m */,
 				96FADBB31639249D004706F9 /* Supporting Files */,
+				96FADBD616394E40004706F9 /* ArcMachine.h */,
+				96FADBD716394E40004706F9 /* ArcMachine.m */,
 			);
 			path = TestUIViewDrawing;
 			sourceTree = "<group>";
@@ -96,6 +111,8 @@
 		96FADBB31639249D004706F9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				96FADBF0163C04AA004706F9 /* BackToolbarFlip.png */,
+				96FADBEE163C0046004706F9 /* BackToolbar.png */,
 				96FADBB41639249D004706F9 /* TestUIViewDrawing-Info.plist */,
 				96FADBB51639249D004706F9 /* InfoPlist.strings */,
 				96FADBB81639249D004706F9 /* main.m */,
@@ -164,6 +181,8 @@
 				96FADBC11639249D004706F9 /* Default@2x.png in Resources */,
 				96FADBC31639249D004706F9 /* Default-568h@2x.png in Resources */,
 				96FADBC61639249D004706F9 /* MainStoryboard.storyboard in Resources */,
+				96FADBEF163C0046004706F9 /* BackToolbar.png in Resources */,
+				96FADBF1163C04AA004706F9 /* BackToolbarFlip.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,8 +194,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				96FADBB91639249D004706F9 /* main.m in Sources */,
-				96FADBBD1639249D004706F9 /* ocodoAppDelegate.m in Sources */,
-				96FADBC91639249D004706F9 /* ocodoViewController.m in Sources */,
+				96FADBBD1639249D004706F9 /* OcodoAppDelegate.m in Sources */,
+				96FADBC91639249D004706F9 /* OcodoViewController.m in Sources */,
+				96FADBD816394E40004706F9 /* ArcMachine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ocodoAppDelegate.h"
+#import "OcodoAppDelegate.h"
 
 int main(int argc, char *argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([ocodoAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([OcodoAppDelegate class]));
     }
 }
