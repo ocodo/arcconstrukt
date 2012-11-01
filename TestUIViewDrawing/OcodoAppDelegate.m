@@ -7,6 +7,7 @@
 //
 
 #import "OcodoAppDelegate.h"
+#import "ArcProperties.h"
 
 @implementation OcodoAppDelegate
 

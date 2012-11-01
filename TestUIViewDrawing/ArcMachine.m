@@ -12,32 +12,29 @@
 
 @implementation ArcMachine
 
-@synthesize startAngle, endAngle, innerRadius, thickness, rotationAngle, arcSizeAngle;
+@synthesize settings;
 
 - (id)initWithFrame:(CGRect)frame
 {   
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
+        settings = [[ArcProperties alloc]init];
     }
     return self;
 }
 - (void)drawRect:(CGRect)rect {
-
-    UIColor *fillColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.800];
-	UIColor *strokeColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.800];
     
     [self
      drawArc:rect
      context:UIGraphicsGetCurrentContext()
      x:0
      y:0
-     startAngle:startAngle
-     endAngle:endAngle
-     radius:innerRadius
-     thickness:thickness
-     fill:fillColor
-     stroke:strokeColor
+     start:settings.start
+     end:settings.end
+     radius:settings.radius
+     thickness:settings.thickness
+     fill:settings.fillColor
+     stroke:settings.strokeColor
      ];
     
 }
@@ -46,12 +43,14 @@
         context:(CGContextRef)_context
               x:(CGFloat)_x
               y:(CGFloat)_y
-     startAngle:(CGFloat)_startAngle
-       endAngle:(CGFloat)_endAngle
+          start:(CGFloat)_start
+            end:(CGFloat)_end
          radius:(CGFloat)_radius
       thickness:(CGFloat)_thickness
            fill:(UIColor*)_fillColor
          stroke:(UIColor*)_strokeColor {
+    
+    NSLog(@"ArcMachine drawing... %@ | %@ | %@", _context, _fillColor, _strokeColor );
     
 	CGContextTranslateCTM(_context, CGRectGetMidX(_rect), CGRectGetMidY(_rect));
     
@@ -62,27 +61,21 @@
     
 	CGContextBeginPath(_context);
     
-    CGFloat iRadius = _radius;
-    CGFloat oRadius = _radius+thickness;
-    
-    CGFloat sAngle = DEGREES_TO_RADIANS(fmodf(_startAngle, 361));
-    CGFloat eAngle = DEGREES_TO_RADIANS(fmodf(_startAngle + _endAngle, 361));
-    
-    CGFloat ax = _x + (oRadius * cos(sAngle));
-    CGFloat ay = _y + (oRadius * sin(sAngle));
-    CGFloat cx = _x + (iRadius * cos(eAngle));
-    CGFloat cy = _y + (iRadius * sin(eAngle));
+    CGFloat _outside = _radius+_thickness;
+        
+    CGFloat ax = _x + (_outside * cos(_start));
+    CGFloat ay = _y + (_outside * sin(_start));
+    CGFloat cx = _x + (_radius * cos(_end));
+    CGFloat cy = _y + (_radius * sin(_end));
     
     CGContextMoveToPoint(_context, ax, ay);
-    CGContextAddArc(_context, _x, _y, oRadius, sAngle, eAngle, 0);
+    CGContextAddArc(_context, _x, _y, _outside, _start, _end, 0);
     CGContextAddLineToPoint(_context, cx, cy);
-    CGContextAddArc(_context, _x, _y, iRadius, eAngle, sAngle, 1);
+    CGContextAddArc(_context, _x, _y, _radius, _end, _start, 1);
     CGContextAddLineToPoint(_context, ax, ay);
 
 	CGContextClosePath(_context);
 	CGContextDrawPath(_context, kCGPathFillStroke);
 }
-
-
 
 @end
