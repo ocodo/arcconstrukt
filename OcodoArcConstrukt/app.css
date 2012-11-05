@@ -1,0 +1,40 @@
+body {
+    font-family: "Helvetica Neue";
+    color: #ffffff;
+    background-color: transparent;
+    margin: 0px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none; }
+
+.notes {
+    font-size:8pt;
+    margin:10px;
+    color: #777;
+}
+
+.icon { width: 32px; padding:6px;}
+.left { float:left; padding-left:3px;}
+.right { float:right; padding-right:3px;}
+.clear { clear:both; }
+
+#content {
+    margin-top: 50px;
+}
+
+a:link { color: #dddddd; }
+
+/* unvisited link */
+a:visited {
+    color: #dddddd; }
+
+/* visited link */
+a:hover {
+    color: #dddddd; }
+
+/* mouse over link */
+a:active {
+    opacity: 0.4;
+    color: #dddddd; }
+
+/* selected link */

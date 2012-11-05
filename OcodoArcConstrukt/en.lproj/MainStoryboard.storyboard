@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4f7-kZ-bTT">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
+    </dependencies>
+    <scenes>
+        <!--Arc Construkt View Controller-->
+        <scene sceneID="FmG-RH-xdq">
+            <objects>
+                <viewController id="88H-xH-dfU" customClass="ArcConstruktViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mni-eg-dg2" userLabel="ArcConstrukt Page">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view opaque="NO" contentMode="center" id="hvM-7U-sii" userLabel="Drawing Container">
+                                <rect key="frame" x="0.0" y="59" width="320" height="320"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <view opaque="NO" contentMode="center" id="Jvq-iZ-W8G" userLabel="ArcConstrukt Drawing">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <gestureRecognizers/>
+                                    </view>
+                                    <view userInteractionEnabled="NO" contentMode="center" id="1jP-6T-ZhH" customClass="ArcConstruktGridView">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="4V8-4k-ATP" customClass="NPTransparencyPicker">
+                                <rect key="frame" x="-320" y="355" width="300" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" id="MJE-ml-pLA">
+                                <rect key="frame" x="0.0" y="392" width="1280" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="add" id="rKj-hO-Kxy">
+                                        <connections>
+                                            <action selector="addButton:" destination="88H-xH-dfU" id="dE2-vX-zvs"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="15" style="plain" systemItem="fixedSpace" id="T6c-qW-GdO"/>
+                                    <barButtonItem width="100" style="plain" id="fNG-td-VHR">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bar" selectedSegmentIndex="0" id="vR3-T7-qIV">
+                                            <rect key="frame" x="55" y="8" width="100" height="31"/>
+                                            <segments>
+                                                <segment title="" image="start.png"/>
+                                                <segment title="" image="end.png"/>
+                                                <segment title="" image="padlock.png"/>
+                                            </segments>
+                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="changeRotateMode:" destination="88H-xH-dfU" eventType="valueChanged" id="Zqm-5s-ae3"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </barButtonItem>
+                                    <barButtonItem width="100" style="plain" id="jR6-UL-QRr">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bar" selectedSegmentIndex="0" id="sox-C3-Yjm">
+                                            <rect key="frame" x="165" y="7" width="100" height="32"/>
+                                            <segments>
+                                                <segment title="" image="radius.png"/>
+                                                <segment title="" image="thickness.png"/>
+                                                <segment title="" image="padlock.png"/>
+                                            </segments>
+                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="changePinchMode:" destination="88H-xH-dfU" eventType="valueChanged" id="SFO-EE-0Db"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </barButtonItem>
+                                    <barButtonItem width="15" style="plain" systemItem="fixedSpace" id="T7A-JD-Xyo"/>
+                                    <barButtonItem style="plain" systemItem="trash" id="VHL-mv-tIn">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="deleteButton:" destination="88H-xH-dfU" id="1BL-Hb-JZe"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="ac6-oC-fc1"/>
+                                    <barButtonItem style="plain" id="6Ru-wK-226">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="cNi-gP-P57">
+                                            <rect key="frame" x="336" y="7" width="70" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="" image="arc_fill.png"/>
+                                                <segment title="" image="arc_stroke.png"/>
+                                            </segments>
+                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </segmentedControl>
+                                    </barButtonItem>
+                                    <barButtonItem image="swatch.png" style="plain" id="tgl-Om-E2e">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="swatchSelect:" destination="88H-xH-dfU" id="Vuh-Un-XPV"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem image="swatch.png" style="plain" id="t7C-Af-1Hd">
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="swatchSelect:" destination="88H-xH-dfU" id="m2k-PQ-f8d"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem image="swatch.png" style="plain" id="Uql-h0-8PV">
+                                        <color key="tintColor" red="0.062745101750000004" green="0.3058823645" blue="0.54509806630000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="swatchSelect:" destination="88H-xH-dfU" id="l0d-EY-lNu"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem image="swatch.png" style="plain" id="JcU-bT-w2S">
+                                        <color key="tintColor" red="0.27450981740000002" green="0.50980395079999996" blue="0.70588237050000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="swatchSelect:" destination="88H-xH-dfU" id="9ZB-bg-oGS"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem image="swatch.png" style="plain" id="whT-kO-cHq">
+                                        <color key="tintColor" red="0.27450981736183167" green="0.50980395078659058" blue="0.70588237047195435" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="swatchSelect:" destination="88H-xH-dfU" id="O1S-Ox-LIh"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem image="alpha_trans_swatch.png" style="plain" id="wk0-7G-0yf">
+                                        <connections>
+                                            <action selector="transparencySelectorToggle:" destination="88H-xH-dfU" id="NoB-aA-wSJ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="30" style="plain" systemItem="fixedSpace" id="hPx-Cp-SsV"/>
+                                    <barButtonItem style="plain" id="DRS-Z2-NjO">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" momentary="YES" id="Uz9-G3-1TO">
+                                            <rect key="frame" x="656" y="8" width="160" height="31"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="" image="send_to_back.png"/>
+                                                <segment title="" image="back_one.png"/>
+                                                <segment title="" image="forward_one.png"/>
+                                                <segment title="" image="bring_to_front.png"/>
+                                            </segments>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="arrangeLayer:" destination="88H-xH-dfU" eventType="valueChanged" id="lQ0-yG-FyH"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </barButtonItem>
+                                    <barButtonItem width="15" style="plain" systemItem="fixedSpace" id="PvD-eq-eCt"/>
+                                </items>
+                            </toolbar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" id="Ome-fv-Oae">
+                                <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" id="y4X-8V-49U">
+                                        <stepper key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" wraps="YES" maximumValue="100" id="9py-Ea-0mf">
+                                            <rect key="frame" x="12" y="9" width="94" height="27"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <connections>
+                                                <action selector="layerStep:" destination="88H-xH-dfU" eventType="valueChanged" id="YJB-UT-gk0"/>
+                                            </connections>
+                                        </stepper>
+                                    </barButtonItem>
+                                    <barButtonItem image="escape.png" style="plain" id="pXl-AQ-oWf">
+                                        <connections>
+                                            <action selector="deselectCurrentArc:" destination="88H-xH-dfU" id="dfw-Az-bY5"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem image="altgrid.png" style="plain" id="rb1-v1-8or">
+                                        <connections>
+                                            <action selector="gridModeStep:" destination="88H-xH-dfU" id="MOm-CZ-0p9"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="R1v-Xk-uRe">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="a8D-Pz-8Pq">
+                                            <rect key="frame" x="186" y="8" width="125" height="31"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="" image="editing.png"/>
+                                                <segment title="" image="dropper.png"/>
+                                                <segment title="" image="layers.png"/>
+                                                <segment title="" image="settings.png"/>
+                                            </segments>
+                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="toolbarModeSelector:" destination="88H-xH-dfU" eventType="valueChanged" id="x2v-DC-Mws"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="eXE-u1-2Ia">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="Reset" id="qr1-8h-ITF">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="clearButton:" destination="88H-xH-dfU" id="vlH-An-Bst"/>
+                            </connections>
+                        </barButtonItem>
+                        <view key="titleView" contentMode="scaleToFill" id="vgQ-t9-2Nz" userLabel="Title Bar">
+                            <rect key="frame" x="90" y="6" width="140" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ArcConstrukt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" id="4jc-Ia-Wu0">
+                                    <rect key="frame" x="0.0" y="2" width="135" height="30"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="22"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                    <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="cKx-QC-Mfe">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="savePNGImagetoPhotoAlbum:" destination="88H-xH-dfU" id="PUD-xP-NAd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackTranslucent" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="arcConstruktView" destination="Jvq-iZ-W8G" id="M3y-Ja-PuX"/>
+                        <outlet property="fillStrokeSelector" destination="cNi-gP-P57" id="Ehj-GV-kg4"/>
+                        <outlet property="gridView" destination="1jP-6T-ZhH" id="2pa-8W-g5g"/>
+                        <outlet property="layerStepper" destination="9py-Ea-0mf" id="m5I-Kf-Ogg"/>
+                        <outlet property="mainToolbar" destination="MJE-ml-pLA" id="RLo-vz-9Gz"/>
+                        <outlet property="titleView" destination="vgQ-t9-2Nz" id="uy6-ev-rVf"/>
+                        <outlet property="transparencyPicker" destination="4V8-4k-ATP" id="6dS-xH-xsf"/>
+                        <outletCollection property="colorSwatchCollection" destination="tgl-Om-E2e" id="reo-0C-r82"/>
+                        <outletCollection property="colorSwatchCollection" destination="t7C-Af-1Hd" id="obJ-Kv-4yB"/>
+                        <outletCollection property="colorSwatchCollection" destination="Uql-h0-8PV" id="NIF-7G-Prw"/>
+                        <outletCollection property="colorSwatchCollection" destination="JcU-bT-w2S" id="xmz-kI-4oi"/>
+                        <outletCollection property="colorSwatchCollection" destination="whT-kO-cHq" id="Fe6-wN-ibl"/>
+                        <segue destination="9o3-pk-eI6" kind="push" identifier="aboutPageSegue" id="SXd-Qd-gTG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g0u-rt-Y5s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="632" y="-165"/>
+        </scene>
+        <!--Arc Construkt Navigation Controller-->
+        <scene sceneID="1tq-14-If6">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="4f7-kZ-bTT" customClass="ODArcConstruktNavigationController" sceneMemberID="viewController">
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NZw-e2-9kp">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="5HH-fh-xf8">
+                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="88H-xH-dfU" kind="relationship" relationship="rootViewController" id="3Fh-ka-sbO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bXC-fW-ZAp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="152" y="-159"/>
+        </scene>
+        <!--Arc Construkt About View Controller - About ArcConstrukt-->
+        <scene sceneID="o7X-RV-9za">
+            <objects>
+                <viewController title="About ArcConstrukt" id="9o3-pk-eI6" customClass="ODArcConstruktAboutViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XoY-dF-lph">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" image="ocodo.large.png" id="vkg-a1-lFA">
+                                <rect key="frame" x="0.0" y="357" width="320" height="123"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </imageView>
+                            <webView opaque="NO" contentMode="scaleAspectFit" scalesPageToFit="YES" id="kS7-nw-SKb">
+                                <rect key="frame" x="0.0" y="22" width="320" height="436"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="HSD-XJ-Y1t">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Hts-58-J0W"/>
+                    </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="webView" destination="kS7-nw-SKb" id="Gqn-am-wuo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bzh-Jh-2dv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1112" y="-165"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="alpha_trans_swatch.png" width="25" height="25"/>
+        <image name="altgrid.png" width="25" height="25"/>
+        <image name="arc_fill.png" width="25" height="25"/>
+        <image name="arc_stroke.png" width="25" height="25"/>
+        <image name="back_one.png" width="25" height="25"/>
+        <image name="bring_to_front.png" width="25" height="25"/>
+        <image name="dropper.png" width="25" height="25"/>
+        <image name="editing.png" width="25" height="25"/>
+        <image name="end.png" width="25" height="25"/>
+        <image name="escape.png" width="25" height="25"/>
+        <image name="forward_one.png" width="25" height="25"/>
+        <image name="layers.png" width="25" height="25"/>
+        <image name="ocodo.large.png" width="559" height="197"/>
+        <image name="padlock.png" width="25" height="25"/>
+        <image name="radius.png" width="25" height="25"/>
+        <image name="send_to_back.png" width="25" height="25"/>
+        <image name="settings.png" width="25" height="25"/>
+        <image name="start.png" width="25" height="25"/>
+        <image name="swatch.png" width="25" height="25"/>
+        <image name="thickness.png" width="25" height="25"/>
+    </resources>
+    <classes>
+        <class className="ArcConstruktGridView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ArcConstruktGridView.h"/>
+        </class>
+        <class className="ArcConstruktViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ArcConstruktViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addButton:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="arrangeLayer:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="changePinchMode:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="changeRotateMode:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="clearButton:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="deleteButton:"/>
+                <relationship kind="action" name="deselectCurrentArc:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="gridModeStep:"/>
+                <relationship kind="action" name="layerStep:" candidateClass="UIStepper"/>
+                <relationship kind="action" name="savePNGImagetoPhotoAlbum:"/>
+                <relationship kind="action" name="swatchSelect:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="toolbarModeSelector:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="transparencySelectorToggle:"/>
+                <relationship kind="outlet" name="arcConstruktView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="fillStrokeSelector" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="gridView" candidateClass="ArcConstruktGridView"/>
+                <relationship kind="outlet" name="layerStepper" candidateClass="UIStepper"/>
+                <relationship kind="outlet" name="mainToolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="titleView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="transparencyPicker" candidateClass="NPTransparencyPicker"/>
+                <relationship kind="outletCollection" name="colorSwatchCollection" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="NPTransparencyPicker" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NPTransparencyPicker.h"/>
+        </class>
+        <class className="ODArcConstruktAboutViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ODArcConstruktAboutViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="ODArcConstruktNavigationController" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ODArcConstruktNavigationController.h"/>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
