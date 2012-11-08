@@ -30,6 +30,16 @@
     [super viewDidLoad];
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"about" ofType:@"html"]isDirectory:NO]]];
     
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeBack:)];
+    
+    [[self webView] addGestureRecognizer:swipe];
+}
+
+- (void)swipeBack:(UISwipeGestureRecognizer*) recognizer {
+    if (recognizer.direction == UISwipeGestureRecognizerDirectionRight)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning

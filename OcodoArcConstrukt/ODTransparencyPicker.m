@@ -8,11 +8,11 @@
 
 static inline double radians (double degrees) { return degrees * M_PI/180; }
 
-#import "NPTransparencyPicker.h"
+#import "ODTransparencyPicker.h"
 #import <QuartzCore/QuartzCore.h>
 #import <Foundation/Foundation.h>
 
-@implementation NPTransparencyPicker
+@implementation ODTransparencyPicker
 
 @synthesize pickerPoint;
 
@@ -47,8 +47,6 @@ static inline double radians (double degrees) { return degrees * M_PI/180; }
 
 - (void)drawRect:(CGRect)rect
 {
-    NSLog(@"Size: %f", rect.size.height);
-        
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGColorRef bgColor = [UIColor grayColor].CGColor;

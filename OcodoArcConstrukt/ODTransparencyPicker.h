@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NPTransparencyPicker : UIView
+@interface ODTransparencyPicker : UIView
 {
     CGPoint pickerPoint;
 }

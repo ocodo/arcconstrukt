@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ArcConstruktGridView : UIView
+@interface ODGridView : UIView
 {
     int gridMode;
 }

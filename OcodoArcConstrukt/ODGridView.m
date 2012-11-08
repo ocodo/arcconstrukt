@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 ocodo. All rights reserved.
 //
 
-#import "ArcConstruktGridView.h"
+#import "ODGridView.h"
 #import <math.h>
 #import "extra_math.h"
 
-@implementation ArcConstruktGridView
+@implementation ODGridView
 
 - (id)initWithFrame:(CGRect)frame
 {

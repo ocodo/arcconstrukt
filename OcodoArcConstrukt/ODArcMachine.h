@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "QuartzCore/QuartzCore.h"
-#import "ArcProperties.h"
 #import "UIView+Hierarchy.h"
 
-@interface ArcMachine : UIView {
+@interface ODArcMachine : UIView {
     CGFloat x;
     CGFloat y;
     CGFloat radius;
@@ -37,5 +36,7 @@
 
 -(void)selectArc;
 -(void)deselectArc;
+-(void) geometryFromDictionary: (NSDictionary *) plist;
+-(NSDictionary *) geometryToDictionary;
 
 @end

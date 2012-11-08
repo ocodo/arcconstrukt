@@ -7,16 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ArcMachine.h"
+#import "ODArcMachine.h"
 
 @interface ODCurrentArcObject : NSObject
 
 {
-    ArcMachine *currentArc;
+    ODArcMachine *currentArc;
 }
 
-@property ArcMachine *currentArc;
+@property ODArcMachine *currentArc;
 
 +(ODCurrentArcObject *)singleton;
 
 @end
+

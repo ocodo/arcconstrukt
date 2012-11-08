@@ -4,16 +4,16 @@
    version = "1.0">
    <FileBreakpoints>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "TestUIViewDrawing/UIViewUtils.m"
-         timestampString = "373443394.86144"
+         filePath = "OcodoArcConstrukt/ODArcConstruktViewController.m"
+         timestampString = "374061501.904587"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "26"
-         endingLineNumber = "26"
-         landmarkName = "+roundedLayer:radius:shadow:"
+         startingLineNumber = "51"
+         endingLineNumber = "51"
+         landmarkName = "-initApplicationClipboard"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

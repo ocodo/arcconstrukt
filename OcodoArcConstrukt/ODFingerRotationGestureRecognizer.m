@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIGestureRecognizerSubclass.h>
-#import "OCFingerRotationGestureRecognizer.h"
+#import "ODFingerRotationGestureRecognizer.h"
 
-@implementation OCFingerRotationGestureRecognizer
+@implementation ODFingerRotationGestureRecognizer
 
 @synthesize rotation = rotation_;
 

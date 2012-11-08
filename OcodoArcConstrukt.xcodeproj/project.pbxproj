@@ -14,7 +14,6 @@
 		9635435B1644CC110002FAB6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9635435A1644CC110002FAB6 /* Default-568h@2x.png */; };
 		9635435F1644CF380002FAB6 /* ArcConstruktIPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9635435D1644CF380002FAB6 /* ArcConstruktIPad.png */; };
 		963543601644CF380002FAB6 /* ArcConstruktIPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9635435E1644CF380002FAB6 /* ArcConstruktIPad@2x.png */; };
-		9635436C16453DC10002FAB6 /* ODArcConstruktColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9635436A16453DC10002FAB6 /* ODArcConstruktColorViewController.m */; };
 		96354370164543110002FAB6 /* ODCurrentArcObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9635436F164543110002FAB6 /* ODCurrentArcObject.m */; };
 		96A4796716474649009ADCF8 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A4796616474648009ADCF8 /* UIView+Hierarchy.m */; };
 		96A4796D1647578C009ADCF8 /* back_one.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A479691647578C009ADCF8 /* back_one.png */; };
@@ -25,7 +24,7 @@
 		96A479761647583F009ADCF8 /* forward_one@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A479721647583F009ADCF8 /* forward_one@2x.png */; };
 		96A479771647583F009ADCF8 /* send_to_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A479731647583F009ADCF8 /* send_to_back.png */; };
 		96A479781647583F009ADCF8 /* send_to_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A479741647583F009ADCF8 /* send_to_back@2x.png */; };
-		96A4797B1647B7D0009ADCF8 /* NPTransparencyPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A4797A1647B7D0009ADCF8 /* NPTransparencyPicker.m */; };
+		96A4797B1647B7D0009ADCF8 /* ODTransparencyPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A4797A1647B7D0009ADCF8 /* ODTransparencyPicker.m */; };
 		96A4797E1647DA5A009ADCF8 /* alpha_trans_swatch.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A4797C1647DA5A009ADCF8 /* alpha_trans_swatch.png */; };
 		96A4797F1647DA5A009ADCF8 /* alpha_trans_swatch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A4797D1647DA5A009ADCF8 /* alpha_trans_swatch@2x.png */; };
 		96B117B016460089004D8605 /* grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 96B117AE16460089004D8605 /* grid.png */; };
@@ -59,6 +58,12 @@
 		96E921D416462E54008BDE9C /* swatch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E921D216462E54008BDE9C /* swatch@2x.png */; };
 		96E921D7164667F0008BDE9C /* escape.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E921D5164667F0008BDE9C /* escape.png */; };
 		96E921D8164667F0008BDE9C /* escape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E921D6164667F0008BDE9C /* escape@2x.png */; };
+		96F64F5916489852003E97AB /* ODSwatchPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F5816489852003E97AB /* ODSwatchPicker.m */; };
+		96F64F671648B80D003E97AB /* CGColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F5E1648B80D003E97AB /* CGColor+Additions.m */; };
+		96F64F681648B80D003E97AB /* NPColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F601648B80D003E97AB /* NPColorPickerView.m */; };
+		96F64F691648B80D003E97AB /* NPConicGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F621648B80D003E97AB /* NPConicGradient.m */; };
+		96F64F6A1648B80D003E97AB /* NPPickerIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F641648B80D003E97AB /* NPPickerIndicator.m */; };
+		96F64F6E1648DE51003E97AB /* ODColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F6D1648DE51003E97AB /* ODColorPalette.m */; };
 		96FADBAD1639249D004706F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBAC1639249C004706F9 /* UIKit.framework */; };
 		96FADBAF1639249D004706F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBAE1639249D004706F9 /* Foundation.framework */; };
 		96FADBB11639249D004706F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBB01639249D004706F9 /* CoreGraphics.framework */; };
@@ -69,11 +74,10 @@
 		96FADBC11639249D004706F9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBC01639249D004706F9 /* Default@2x.png */; };
 		96FADBC31639249D004706F9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBC21639249D004706F9 /* Default-568h@2x.png */; };
 		96FADBC61639249D004706F9 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBC41639249D004706F9 /* MainStoryboard.storyboard */; };
-		96FADBD816394E40004706F9 /* ArcMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADBD716394E40004706F9 /* ArcMachine.m */; };
+		96FADBD816394E40004706F9 /* ODArcMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADBD716394E40004706F9 /* ODArcMachine.m */; };
 		96FADBDF163A5F4D004706F9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBDE163A5F4D004706F9 /* QuartzCore.framework */; };
-		96FADC2A163CB0BE004706F9 /* ArcConstruktViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADC29163CB0BD004706F9 /* ArcConstruktViewController.m */; };
-		96FADC31163CDCAC004706F9 /* ArcProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADC30163CDCAB004706F9 /* ArcProperties.m */; };
-		96FADC3A163CF2CE004706F9 /* OCFingerRotationGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADC39163CF2CC004706F9 /* OCFingerRotationGestureRecognizer.m */; };
+		96FADC2A163CB0BE004706F9 /* ODArcConstruktViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADC29163CB0BD004706F9 /* ODArcConstruktViewController.m */; };
+		96FADC3A163CF2CE004706F9 /* ODFingerRotationGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADC39163CF2CC004706F9 /* ODFingerRotationGestureRecognizer.m */; };
 		96FADC3D163D0684004706F9 /* extra_math.c in Sources */ = {isa = PBXBuildFile; fileRef = 96FADC3C163D0684004706F9 /* extra_math.c */; };
 		96FADC521641F591004706F9 /* DZProgressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADC511641F590004706F9 /* DZProgressController.m */; };
 		96FADC591642065F004706F9 /* padlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 96FADC571642065F004706F9 /* padlock.png */; };
@@ -103,7 +107,7 @@
 		96FADC9216427D21004706F9 /* outlets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96FADC8A16427D20004706F9 /* outlets@2x.png */; };
 		96FADC9316427D21004706F9 /* outlets.png in Resources */ = {isa = PBXBuildFile; fileRef = 96FADC8B16427D20004706F9 /* outlets.png */; };
 		96FADC9516429F1C004706F9 /* linen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96FADC9416429F1C004706F9 /* linen@2x.png */; };
-		96FADC981642C5E8004706F9 /* ArcConstruktGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADC971642C5E5004706F9 /* ArcConstruktGridView.m */; };
+		96FADC981642C5E8004706F9 /* ODGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADC971642C5E5004706F9 /* ODGridView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,8 +118,6 @@
 		9635435A1644CC110002FAB6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9635435D1644CF380002FAB6 /* ArcConstruktIPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArcConstruktIPad.png; sourceTree = "<group>"; };
 		9635435E1644CF380002FAB6 /* ArcConstruktIPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ArcConstruktIPad@2x.png"; sourceTree = "<group>"; };
-		9635436916453DC10002FAB6 /* ODArcConstruktColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODArcConstruktColorViewController.h; sourceTree = "<group>"; };
-		9635436A16453DC10002FAB6 /* ODArcConstruktColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODArcConstruktColorViewController.m; sourceTree = "<group>"; };
 		9635436E164543100002FAB6 /* ODCurrentArcObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODCurrentArcObject.h; sourceTree = "<group>"; };
 		9635436F164543110002FAB6 /* ODCurrentArcObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODCurrentArcObject.m; sourceTree = "<group>"; };
 		96A4796516474648009ADCF8 /* UIView+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Hierarchy.h"; sourceTree = "<group>"; };
@@ -128,8 +130,8 @@
 		96A479721647583F009ADCF8 /* forward_one@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forward_one@2x.png"; sourceTree = "<group>"; };
 		96A479731647583F009ADCF8 /* send_to_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = send_to_back.png; sourceTree = "<group>"; };
 		96A479741647583F009ADCF8 /* send_to_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_to_back@2x.png"; sourceTree = "<group>"; };
-		96A479791647B7CF009ADCF8 /* NPTransparencyPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPTransparencyPicker.h; sourceTree = "<group>"; };
-		96A4797A1647B7D0009ADCF8 /* NPTransparencyPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPTransparencyPicker.m; sourceTree = "<group>"; };
+		96A479791647B7CF009ADCF8 /* ODTransparencyPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODTransparencyPicker.h; sourceTree = "<group>"; };
+		96A4797A1647B7D0009ADCF8 /* ODTransparencyPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODTransparencyPicker.m; sourceTree = "<group>"; };
 		96A4797C1647DA5A009ADCF8 /* alpha_trans_swatch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha_trans_swatch.png; sourceTree = "<group>"; };
 		96A4797D1647DA5A009ADCF8 /* alpha_trans_swatch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alpha_trans_swatch@2x.png"; sourceTree = "<group>"; };
 		96B117AE16460089004D8605 /* grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grid.png; sourceTree = "<group>"; };
@@ -165,6 +167,18 @@
 		96E921D216462E54008BDE9C /* swatch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swatch@2x.png"; sourceTree = "<group>"; };
 		96E921D5164667F0008BDE9C /* escape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = escape.png; sourceTree = "<group>"; };
 		96E921D6164667F0008BDE9C /* escape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "escape@2x.png"; sourceTree = "<group>"; };
+		96F64F5716489852003E97AB /* ODSwatchPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODSwatchPicker.h; sourceTree = "<group>"; };
+		96F64F5816489852003E97AB /* ODSwatchPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODSwatchPicker.m; sourceTree = "<group>"; };
+		96F64F5D1648B80D003E97AB /* CGColor+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGColor+Additions.h"; sourceTree = "<group>"; };
+		96F64F5E1648B80D003E97AB /* CGColor+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGColor+Additions.m"; sourceTree = "<group>"; };
+		96F64F5F1648B80D003E97AB /* NPColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPColorPickerView.h; sourceTree = "<group>"; };
+		96F64F601648B80D003E97AB /* NPColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPColorPickerView.m; sourceTree = "<group>"; };
+		96F64F611648B80D003E97AB /* NPConicGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPConicGradient.h; sourceTree = "<group>"; };
+		96F64F621648B80D003E97AB /* NPConicGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPConicGradient.m; sourceTree = "<group>"; };
+		96F64F631648B80D003E97AB /* NPPickerIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPPickerIndicator.h; sourceTree = "<group>"; };
+		96F64F641648B80D003E97AB /* NPPickerIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPPickerIndicator.m; sourceTree = "<group>"; };
+		96F64F6C1648DE51003E97AB /* ODColorPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODColorPalette.h; sourceTree = "<group>"; };
+		96F64F6D1648DE51003E97AB /* ODColorPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODColorPalette.m; sourceTree = "<group>"; };
 		96FADBA81639249C004706F9 /* ArcConstrukt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArcConstrukt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96FADBAC1639249C004706F9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		96FADBAE1639249D004706F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -179,15 +193,13 @@
 		96FADBC01639249D004706F9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		96FADBC21639249D004706F9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		96FADBC51639249D004706F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		96FADBD616394E40004706F9 /* ArcMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcMachine.h; sourceTree = "<group>"; };
-		96FADBD716394E40004706F9 /* ArcMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArcMachine.m; sourceTree = "<group>"; };
+		96FADBD616394E40004706F9 /* ODArcMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODArcMachine.h; sourceTree = "<group>"; };
+		96FADBD716394E40004706F9 /* ODArcMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODArcMachine.m; sourceTree = "<group>"; };
 		96FADBDE163A5F4D004706F9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		96FADC29163CB0BD004706F9 /* ArcConstruktViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArcConstruktViewController.m; sourceTree = "<group>"; };
-		96FADC2E163CC9C3004706F9 /* ArcConstruktViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcConstruktViewController.h; sourceTree = "<group>"; };
-		96FADC2F163CDCAB004706F9 /* ArcProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcProperties.h; sourceTree = "<group>"; };
-		96FADC30163CDCAB004706F9 /* ArcProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArcProperties.m; sourceTree = "<group>"; };
-		96FADC38163CF2CC004706F9 /* OCFingerRotationGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCFingerRotationGestureRecognizer.h; sourceTree = "<group>"; };
-		96FADC39163CF2CC004706F9 /* OCFingerRotationGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCFingerRotationGestureRecognizer.m; sourceTree = "<group>"; };
+		96FADC29163CB0BD004706F9 /* ODArcConstruktViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODArcConstruktViewController.m; sourceTree = "<group>"; };
+		96FADC2E163CC9C3004706F9 /* ODArcConstruktViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODArcConstruktViewController.h; sourceTree = "<group>"; };
+		96FADC38163CF2CC004706F9 /* ODFingerRotationGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODFingerRotationGestureRecognizer.h; sourceTree = "<group>"; };
+		96FADC39163CF2CC004706F9 /* ODFingerRotationGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODFingerRotationGestureRecognizer.m; sourceTree = "<group>"; };
 		96FADC3B163D0663004706F9 /* extra_math.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = extra_math.h; sourceTree = "<group>"; };
 		96FADC3C163D0684004706F9 /* extra_math.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = extra_math.c; sourceTree = "<group>"; };
 		96FADC501641F58F004706F9 /* DZProgressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZProgressController.h; sourceTree = "<group>"; };
@@ -221,8 +233,8 @@
 		96FADC8A16427D20004706F9 /* outlets@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outlets@2x.png"; sourceTree = "<group>"; };
 		96FADC8B16427D20004706F9 /* outlets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outlets.png; sourceTree = "<group>"; };
 		96FADC9416429F1C004706F9 /* linen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linen@2x.png"; sourceTree = "<group>"; };
-		96FADC961642C5E0004706F9 /* ArcConstruktGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcConstruktGridView.h; sourceTree = "<group>"; };
-		96FADC971642C5E5004706F9 /* ArcConstruktGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArcConstruktGridView.m; sourceTree = "<group>"; };
+		96FADC961642C5E0004706F9 /* ODGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODGridView.h; sourceTree = "<group>"; };
+		96FADC971642C5E5004706F9 /* ODGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODGridView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +259,57 @@
 				96D0EDBA1643E100002F8754 /* app.css */,
 			);
 			name = AboutHTML;
+			sourceTree = "<group>";
+		};
+		96F64F5616489813003E97AB /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				96FADBC41639249D004706F9 /* MainStoryboard.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		96F64F5A164898E7003E97AB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9635436E164543100002FAB6 /* ODCurrentArcObject.h */,
+				9635436F164543110002FAB6 /* ODCurrentArcObject.m */,
+				96F64F6C1648DE51003E97AB /* ODColorPalette.h */,
+				96F64F6D1648DE51003E97AB /* ODColorPalette.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		96F64F5B164898F8003E97AB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				96D0EDB51643D8C8002F8754 /* ODArcConstruktAboutViewController.h */,
+				96D0EDB61643D8C8002F8754 /* ODArcConstruktAboutViewController.m */,
+				96D0EDA81643910A002F8754 /* ODArcConstruktNavigationController.h */,
+				96D0EDA91643910A002F8754 /* ODArcConstruktNavigationController.m */,
+				96FADC2E163CC9C3004706F9 /* ODArcConstruktViewController.h */,
+				96FADC29163CB0BD004706F9 /* ODArcConstruktViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		96F64F5C16489957003E97AB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				96F64F5F1648B80D003E97AB /* NPColorPickerView.h */,
+				96F64F601648B80D003E97AB /* NPColorPickerView.m */,
+				96F64F631648B80D003E97AB /* NPPickerIndicator.h */,
+				96F64F641648B80D003E97AB /* NPPickerIndicator.m */,
+				96FADBD616394E40004706F9 /* ODArcMachine.h */,
+				96FADBD716394E40004706F9 /* ODArcMachine.m */,
+				96FADC961642C5E0004706F9 /* ODGridView.h */,
+				96FADC971642C5E5004706F9 /* ODGridView.m */,
+				96A479791647B7CF009ADCF8 /* ODTransparencyPicker.h */,
+				96A4797A1647B7D0009ADCF8 /* ODTransparencyPicker.m */,
+				96F64F5716489852003E97AB /* ODSwatchPicker.h */,
+				96F64F5816489852003E97AB /* ODSwatchPicker.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		96FADB9D1639249C004706F9 = {
@@ -287,28 +350,13 @@
 		96FADBB21639249D004706F9 /* OcodoArcConstrukt */ = {
 			isa = PBXGroup;
 			children = (
-				96A479791647B7CF009ADCF8 /* NPTransparencyPicker.h */,
-				96A4797A1647B7D0009ADCF8 /* NPTransparencyPicker.m */,
-				96FADBC41639249D004706F9 /* MainStoryboard.storyboard */,
-				96D0EDB51643D8C8002F8754 /* ODArcConstruktAboutViewController.h */,
-				96D0EDB61643D8C8002F8754 /* ODArcConstruktAboutViewController.m */,
-				96D0EDA81643910A002F8754 /* ODArcConstruktNavigationController.h */,
-				96D0EDA91643910A002F8754 /* ODArcConstruktNavigationController.m */,
-				96FADBD616394E40004706F9 /* ArcMachine.h */,
-				96FADBD716394E40004706F9 /* ArcMachine.m */,
-				96FADC961642C5E0004706F9 /* ArcConstruktGridView.h */,
-				96FADC971642C5E5004706F9 /* ArcConstruktGridView.m */,
-				96FADC2F163CDCAB004706F9 /* ArcProperties.h */,
-				96FADC30163CDCAB004706F9 /* ArcProperties.m */,
-				96FADC2E163CC9C3004706F9 /* ArcConstruktViewController.h */,
-				96FADC29163CB0BD004706F9 /* ArcConstruktViewController.m */,
+				96F64F5616489813003E97AB /* Storyboard */,
+				96F64F5A164898E7003E97AB /* Models */,
+				96F64F5C16489957003E97AB /* Views */,
+				96F64F5B164898F8003E97AB /* Controllers */,
 				96FADBBB1639249D004706F9 /* OcodoAppDelegate.h */,
 				96FADBBC1639249D004706F9 /* OcodoAppDelegate.m */,
 				96FADBB31639249D004706F9 /* Supporting Files */,
-				9635436916453DC10002FAB6 /* ODArcConstruktColorViewController.h */,
-				9635436A16453DC10002FAB6 /* ODArcConstruktColorViewController.m */,
-				9635436E164543100002FAB6 /* ODCurrentArcObject.h */,
-				9635436F164543110002FAB6 /* ODCurrentArcObject.m */,
 			);
 			path = OcodoArcConstrukt;
 			sourceTree = "<group>";
@@ -316,10 +364,9 @@
 		96FADBB31639249D004706F9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				96D0EDB81643E025002F8754 /* AboutHTML */,
-				96FADC701642433D004706F9 /* Components */,
-				96FADC6F164242D1004706F9 /* Images */,
 				96FADC7116424351004706F9 /* libs */,
+				96D0EDB81643E025002F8754 /* AboutHTML */,
+				96FADC6F164242D1004706F9 /* Images */,
 				96FADBB51639249D004706F9 /* InfoPlist.strings */,
 				96FADBB81639249D004706F9 /* main.m */,
 				96FADBB41639249D004706F9 /* OcodoArcConstrukt-Info.plist */,
@@ -400,26 +447,23 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		96FADC701642433D004706F9 /* Components */ = {
+		96FADC7116424351004706F9 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				96F64F5D1648B80D003E97AB /* CGColor+Additions.h */,
+				96F64F5E1648B80D003E97AB /* CGColor+Additions.m */,
+				96F64F611648B80D003E97AB /* NPConicGradient.h */,
+				96F64F621648B80D003E97AB /* NPConicGradient.m */,
 				96A4796516474648009ADCF8 /* UIView+Hierarchy.h */,
 				96A4796616474648009ADCF8 /* UIView+Hierarchy.m */,
 				96FADC721642436A004706F9 /* TKAlertCenter.h */,
 				96FADC731642436A004706F9 /* TKAlertCenter.m */,
 				96FADC741642436A004706F9 /* UIView+TKCategory.h */,
 				96FADC751642436A004706F9 /* UIView+TKCategory.m */,
-				96FADC38163CF2CC004706F9 /* OCFingerRotationGestureRecognizer.h */,
-				96FADC39163CF2CC004706F9 /* OCFingerRotationGestureRecognizer.m */,
+				96FADC38163CF2CC004706F9 /* ODFingerRotationGestureRecognizer.h */,
+				96FADC39163CF2CC004706F9 /* ODFingerRotationGestureRecognizer.m */,
 				96FADC501641F58F004706F9 /* DZProgressController.h */,
 				96FADC511641F590004706F9 /* DZProgressController.m */,
-			);
-			name = Components;
-			sourceTree = "<group>";
-		};
-		96FADC7116424351004706F9 /* libs */ = {
-			isa = PBXGroup;
-			children = (
 				96FADC3C163D0684004706F9 /* extra_math.c */,
 				96FADC3B163D0663004706F9 /* extra_math.h */,
 			);
@@ -566,21 +610,25 @@
 			files = (
 				96FADBB91639249D004706F9 /* main.m in Sources */,
 				96FADBBD1639249D004706F9 /* OcodoAppDelegate.m in Sources */,
-				96FADBD816394E40004706F9 /* ArcMachine.m in Sources */,
-				96FADC2A163CB0BE004706F9 /* ArcConstruktViewController.m in Sources */,
-				96FADC31163CDCAC004706F9 /* ArcProperties.m in Sources */,
-				96FADC3A163CF2CE004706F9 /* OCFingerRotationGestureRecognizer.m in Sources */,
+				96FADBD816394E40004706F9 /* ODArcMachine.m in Sources */,
+				96FADC2A163CB0BE004706F9 /* ODArcConstruktViewController.m in Sources */,
+				96FADC3A163CF2CE004706F9 /* ODFingerRotationGestureRecognizer.m in Sources */,
 				96FADC3D163D0684004706F9 /* extra_math.c in Sources */,
 				96FADC521641F591004706F9 /* DZProgressController.m in Sources */,
 				96FADC761642436A004706F9 /* TKAlertCenter.m in Sources */,
 				96FADC771642436A004706F9 /* UIView+TKCategory.m in Sources */,
-				96FADC981642C5E8004706F9 /* ArcConstruktGridView.m in Sources */,
+				96FADC981642C5E8004706F9 /* ODGridView.m in Sources */,
 				96D0EDAA1643910A002F8754 /* ODArcConstruktNavigationController.m in Sources */,
 				96D0EDB71643D8C8002F8754 /* ODArcConstruktAboutViewController.m in Sources */,
-				9635436C16453DC10002FAB6 /* ODArcConstruktColorViewController.m in Sources */,
 				96354370164543110002FAB6 /* ODCurrentArcObject.m in Sources */,
 				96A4796716474649009ADCF8 /* UIView+Hierarchy.m in Sources */,
-				96A4797B1647B7D0009ADCF8 /* NPTransparencyPicker.m in Sources */,
+				96A4797B1647B7D0009ADCF8 /* ODTransparencyPicker.m in Sources */,
+				96F64F5916489852003E97AB /* ODSwatchPicker.m in Sources */,
+				96F64F671648B80D003E97AB /* CGColor+Additions.m in Sources */,
+				96F64F681648B80D003E97AB /* NPColorPickerView.m in Sources */,
+				96F64F691648B80D003E97AB /* NPConicGradient.m in Sources */,
+				96F64F6A1648B80D003E97AB /* NPPickerIndicator.m in Sources */,
+				96F64F6E1648DE51003E97AB /* ODColorPalette.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

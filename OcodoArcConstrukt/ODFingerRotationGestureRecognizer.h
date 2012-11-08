@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OCFingerRotationGestureRecognizer : UIGestureRecognizer
+@interface ODFingerRotationGestureRecognizer : UIGestureRecognizer
 
 /**
  The rotation of the gesture in radians since its last change.

@@ -15,7 +15,7 @@
     static ODCurrentArcObject *shared = nil;
     
     dispatch_once(&pred, ^{
-        shared = [[ODCurrentArcObject alloc] init];
+        shared = [ODCurrentArcObject new];
     });
     return shared;
 }
@@ -23,3 +23,4 @@
 @synthesize currentArc;
 
 @end
+
