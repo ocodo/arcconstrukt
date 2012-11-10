@@ -3,8 +3,12 @@
 
 @interface UIColor(Additions)
 
+
 +(UIColor *)colorWithRGBHexString:(NSString *)string;
++(UIColor *)colorWithRGBADictionary:(NSDictionary *)rgbaDictionary;
 -(NSString *)RGBHexString;
+-(NSDictionary *)RGBADictionary;
+
 
 +(UIColor *)colorBylinearInterpolationFromColor:(UIColor *) startColor toColor:(UIColor *) endColor percentage:(CGFloat)percent;
 +(UIColor *)colorByChromaticInterpollationFromColor:(UIColor *) startColor toColor:(UIColor *) endColor percentage:(CGFloat)percent;

@@ -9,6 +9,7 @@
 #import "ODArcMachine.h"
 #import <tgmath.h>
 #import "QuartzCore/QuartzCore.h"
+#import "CGColor+Additions.h"
 
 @implementation ODArcMachine
 
@@ -84,10 +85,23 @@
     end = [[plist valueForKey:@"end"] floatValue];
     radius = [[plist valueForKey:@"radius"] floatValue];
     thickness = [[plist valueForKey:@"thickness"] floatValue];
-    fill = [plist valueForKey:@"fill"];
-    stroke = [plist valueForKey:@"stroke"];
-    savedFill = [plist valueForKey:@"fill"];
-    savedStroke = [plist valueForKey:@"stroke"];
+    
+    if([[plist valueForKey:@"fill"] isKindOfClass:[NSDictionary class]]) {
+        fill = [UIColor colorWithRGBADictionary:[plist valueForKey:@"fill"]];
+        stroke = [UIColor colorWithRGBADictionary:[plist valueForKey:@"stroke"]];
+        savedFill = [UIColor colorWithRGBADictionary:[plist valueForKey:@"fill"]];
+        savedStroke = [UIColor colorWithRGBADictionary:[plist valueForKey:@"stroke"]];
+    }
+        
+    if([[plist valueForKey:@"fill"] isKindOfClass:[UIColor class]]) {
+        fill = [plist valueForKey:@"fill"];
+        savedFill = [plist valueForKey:@"fill"];
+        stroke = [plist valueForKey:@"stroke"];
+        savedStroke = [plist valueForKey:@"stroke"];
+    }
+        
+    [self setNeedsDisplay];
+    NSLog(@"A:%f; B:%f; r:%f; Thick:%f; fill:%@; stroke:%@; ", start, end, radius, thickness, [fill RGBHexString], [stroke RGBHexString]);    
 }
 
 -(NSDictionary *) geometryToDictionary {
@@ -96,8 +110,8 @@
     @"end" : [NSNumber numberWithFloat: end],
     @"radius" : [NSNumber numberWithFloat: radius],
     @"thickness" : [NSNumber numberWithFloat: thickness],
-    @"fill" : savedFill,
-    @"stroke" : savedStroke };
+    @"fill" : [savedFill RGBADictionary],
+    @"stroke" : [savedStroke RGBADictionary] };
 }
 
 @end

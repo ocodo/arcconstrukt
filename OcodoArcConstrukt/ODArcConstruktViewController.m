@@ -44,6 +44,11 @@
     [self initTransparencyGestures];
     [self initSwatchBarGestures];
     [self initColorPicker];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"selectFileToLoad" object:nil queue:nil usingBlock:^(NSNotification *note) {
+        NSLog(@"Hello NSNotificationCenter : %@", [note object]);
+        [self loadComposition:note.object];
+    }];
 }
 
 - (void)initApplicationClipboard {
@@ -124,7 +129,6 @@
 }
 
 - (void)initColorPicker {
-    
     UISwipeGestureRecognizer * swipeColorPicker =
     [[UISwipeGestureRecognizer alloc]
      initWithTarget:self
@@ -132,11 +136,9 @@
     [colorPicker addGestureRecognizer:swipeColorPicker];
     
     [colorPicker setDelegate:self];
-    
 }
 
 - (void)initSwatchBarGestures {
-    
     UITapGestureRecognizer *colorSwatchTap =
     [[UITapGestureRecognizer alloc]
      initWithTarget:self
@@ -152,8 +154,6 @@
 }
 
 - (void)handleColorSwatchTap:(UITapGestureRecognizer *)recognizer {
-    
-    NSLog(@"Tap color swatch");
     CGPoint a = [recognizer locationInView:recognizer.view];
     int index = [swatchBar colorIndexAtPoint:a];
     [ODColorPalette singleton].selectedIndex = index;
@@ -172,7 +172,6 @@
 }
 
 - (void)handleColorSwatchLongPress:(UILongPressGestureRecognizer *)recognizer {
-    //  CGPoint a = [recognizer locationInView:recognizer.view];
     if(recognizer.state == UIGestureRecognizerStateBegan) {
         if(colorPicker.frame.origin.x != 10)
             [self moveColorPicker:10];
@@ -197,7 +196,6 @@
                                                         colorPicker.frame.size.height);
                      }
                      completion:nil];
-    
 }
 
 - (UIColor*)useCurrentFillColor {
@@ -272,7 +270,6 @@
     a.thickness = MAX(arc4random() % m, 1);
     a.fill = [self useCurrentFillColor];
     a.stroke = [self useCurrentStrokeColor];
-    
     [arcConstruktView addSubview:a];
 }
 
@@ -297,17 +294,13 @@
 }
 
 - (IBAction)deleteButton:(id)sender {
-    
     int index;
     if([ODCurrentArcObject singleton].currentArc) {
         index = [ODCurrentArcObject singleton].currentArc.getSubviewIndex;
         [[ODCurrentArcObject singleton].currentArc removeFromSuperview];
     }
-    
     [layerStepper setMaximumValue:[arcConstruktView subviews].count - 1];
-    
     [layerStepper setValue:MIN(index,[arcConstruktView subviews].count - 1)];
-    
     [self layerSelecting:layerStepper];
 }
 
@@ -316,7 +309,6 @@
     {
         [arc removeFromSuperview];
     }
-    
     [layerStepper setMaximumValue:[arcConstruktView subviews].count - 1];
     [layerStepper setValue:0];
 }
@@ -336,11 +328,9 @@
 }
 
 - (void)layerSelecting:(UIStepper *)sender {
-    
     if ([ODCurrentArcObject singleton].currentArc) {
         [[ODCurrentArcObject singleton].currentArc deselectArc];
     }
-    
     if ([arcConstruktView subviews].count > 0) {
         [ODCurrentArcObject singleton].currentArc = [[arcConstruktView subviews] objectAtIndex:sender.value];
         [[ODCurrentArcObject singleton].currentArc selectArc];
@@ -352,27 +342,19 @@
 }
 
 - (void)handleConstruktLongPress:(UILongPressGestureRecognizer *)recognizer {
-    
     [recognizer.view becomeFirstResponder];
-    
     UIMenuController* mc = [UIMenuController sharedMenuController];
-    
     UIMenuItem* menu_angle_a = [[UIMenuItem alloc] initWithTitle:@"A" action:@selector(angleAMode:)];
     UIMenuItem* menu_angle_b = [[UIMenuItem alloc] initWithTitle:@"B" action:@selector(angleBMode:)];
     UIMenuItem* menu_radius = [[UIMenuItem alloc] initWithTitle:@"R" action:@selector(radiusMode:)];
     UIMenuItem* menu_thickness = [[UIMenuItem alloc] initWithTitle:@"Thick" action:@selector(thicknessMode:)];
-    
     UIMenuItem* menu_copy = [[UIMenuItem alloc] initWithTitle:@"Copy" action:@selector(copyArc:)];
     UIMenuItem* menu_paste = [[UIMenuItem alloc] initWithTitle:@"Paste" action:@selector(pasteArc:)];
     UIMenuItem* menu_delete = [[UIMenuItem alloc] initWithTitle:@"Delete" action:@selector(deleteButton:)];
     UIMenuItem* menu_clear = [[UIMenuItem alloc] initWithTitle:@"Clear All" action:@selector(clearButton:)];
-    
     [[UIMenuController sharedMenuController] setMenuItems:@[menu_angle_a, menu_angle_b, menu_radius, menu_thickness, menu_copy, menu_paste, menu_delete, menu_clear]];
-    
     CGPoint position = [recognizer locationInView:recognizer.view.superview];
-    
     CGRect box = CGRectMake(position.x, position.y, 10, 10);
-    
     [mc setTargetRect: box inView: recognizer.view.superview];
     [mc setMenuVisible: YES animated: YES];
 }
@@ -397,14 +379,17 @@
     [angleSelector setSelectedSegmentIndex:0];
     rotateMode = 0;
 }
+
 - (void)angleBMode: (id)sender {
     [angleSelector setSelectedSegmentIndex:1];
     rotateMode = 1;
 }
+
 - (void)radiusMode: (id)sender {
     [pinchSelector setSelectedSegmentIndex:0];
     pinchMode = 0;
 }
+
 - (void)thicknessMode: (id)sender {
     [pinchSelector setSelectedSegmentIndex:1];
     pinchMode = 1;
@@ -497,24 +482,18 @@
 
 - (IBAction)savePNGImagetoPhotoAlbum:(id)sender {
     if([[arcConstruktView subviews] count] > 0) {
-        
         [self deselect];
         // show progress HUD
         DZProgressController *HUD = [DZProgressController new];
-        HUD.label.text = @"Saving";
+        HUD.label.text = @"Saving to Photo Album";
         [HUD showWhileExecuting:^{
-            
             UIGraphicsBeginImageContextWithOptions(arcConstruktView.bounds.size, NO, 6.0);
             [arcConstruktView.layer renderInContext:UIGraphicsGetCurrentContext()];
-            
             UIImage* pngImage = [UIImage
                                  imageWithData:
                                  UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext())];
-            
             UIGraphicsEndImageContext();
-            
             UIImageWriteToSavedPhotosAlbum(pngImage, self,  @selector(image:didFinishSavingWithError:contextInfo:), NULL);
-            
         }];
     }
     else {
@@ -531,32 +510,23 @@
 }
 
 - (IBAction)arrangeLayer:(UISegmentedControl *)sender {
-    
-    NSLog(@"Arranging Layer %i", sender.selectedSegmentIndex);
-    
     ODArcMachine *arc = [ODCurrentArcObject singleton].currentArc;
-    
     switch (sender.selectedSegmentIndex) {
         case 0:
             [arc sendToBack];
             break;
-            
         case 1:
             [arc sendOneLevelDown];
             break;
-            
         case 2:
             [arc bringOneLevelUp];
             break;
-            
         case 3:
             [arc bringToFront];
             break;
-            
         default:
             break;
     }
-    
 }
 
 - (IBAction)transparencySelectorToggle:(id)sender {
@@ -575,25 +545,28 @@
 }
 
 - (void)handlePanTransparencyIndicator:(UIPanGestureRecognizer *)recognizer {
-    
     [transparencyPicker setPickerPoint:[recognizer locationInView:transparencyPicker]];
     [transparencyPicker setNeedsDisplay];
-    
-    if([ODCurrentArcObject singleton].currentArc == NULL)
+    if([ODCurrentArcObject singleton].currentArc == NULL) {
         return;
-    
+    }
     const CGFloat *f = CGColorGetComponents([ODCurrentArcObject singleton].currentArc.savedFill.CGColor);
     const CGFloat *s = CGColorGetComponents([ODCurrentArcObject singleton].currentArc.savedStroke.CGColor);
-    
     switch (fillStrokeSelector.selectedSegmentIndex) {
         case 0:
-            [self setCurrentFillFromUIColor: [UIColor colorWithRed:f[0] green:f[1] blue:f[2] alpha:[transparencyPicker transparency]]];
+            [self setCurrentFillFromUIColor: [UIColor
+                                              colorWithRed:f[0]
+                                              green:f[1]
+                                              blue:f[2]
+                                              alpha:[transparencyPicker transparency]]];
             break;
-            
         case 1:
-            [self setCurrentStrokeFromUIColor: [UIColor colorWithRed:s[0] green:s[1] blue:s[2] alpha:[transparencyPicker transparency]]];
+            [self setCurrentStrokeFromUIColor: [UIColor
+                                                colorWithRed:s[0]
+                                                green:s[1]
+                                                blue:s[2]
+                                                alpha:[transparencyPicker transparency]]];
             break;
-            
         default:
             break;
     }
@@ -619,62 +592,55 @@
 }
 
 - (IBAction)saveComposition:(id)sender {
-    
-    NSMutableArray *layers = [[NSMutableArray alloc] init];
-    for (ODArcMachine *arcMachine in arcConstruktView.subviews) {
-        NSDictionary *geometry = [arcMachine geometryToDictionary];
-        [layers addObject:geometry];
+    if (arcConstruktView.subviews.count < 1) {
+        NSLog(@"%i", arcConstruktView.subviews.count);
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Make a composition first"];
+        return;
     }
     
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject: layers];
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];//create instance of NSFileManager
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    
-    NSString *now = [NSDate date];
-    
-    NSString *fullPathDat = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.dat",now]];
-    
-    [fileManager createFileAtPath:fullPathDat contents:data attributes:nil];
-    
-    [self listFileAtPath:documentsDirectory];
-    
-    NSLog(@"Document Save complete");
-    [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:@"Saved %@.dat to Documents (accessible in iTunes)", now]];
+    DZProgressController *HUD = [DZProgressController new];
+    HUD.label.text = @"Saving Composition";
+    [HUD showWhileExecuting:^{
+        NSMutableArray *layers = [[NSMutableArray alloc] init];
+        for (ODArcMachine *arcMachine in arcConstruktView.subviews) {
+            NSDictionary *geometry = [arcMachine geometryToDictionary];
+            [layers addObject:geometry];
+        }
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject: layers];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *now = [NSString stringWithFormat:@"%@",[NSDate date]];
+        NSString *filename = [NSString stringWithFormat:@"ArcConstrukt-%@", [now stringByReplacingOccurrencesOfString:@" +0000" withString:@""]];
+        NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", filename]];
+        [fileManager createFileAtPath:fullPath contents:data attributes:nil];
+    }];
 }
 
--(NSArray *)listFileAtPath:(NSString *)path
-{
-    //-----> LIST ALL FILES <-----//
-    NSLog(@"LISTING ALL FILES FOUND");
-    
-    int count;
-    
-    NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
-    for (count = 0; count < (int)[directoryContent count]; count++)
-    {
-        NSLog(@"File %d: %@", (count + 1), [directoryContent objectAtIndex:count]);
+- (void)loadComposition:(NSString*) filename {
+    @try {
+        DZProgressController *HUD = [DZProgressController new];
+        HUD.label.text = [NSString stringWithFormat:@"Loading Composition: %@", filename];
+        [HUD showWhileExecuting:^{
+            [self clearButton:nil];
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", filename]];
+            NSData *archive = [fileManager contentsAtPath:fullPath];
+            NSMutableArray *layers = [[NSMutableArray alloc] initWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:archive]];
+            for (NSDictionary *geometry in layers) {
+                ODArcMachine *arc = [[ODArcMachine alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+                [arc geometryFromDictionary:geometry];
+                [arcConstruktView addSubview:arc];
+            }
+            [self resetStepper];
+        }];
     }
-    return directoryContent;
+    @catch (NSException *exception) {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:@"Failed to load %@", filename]];
+    }
 }
-
-- (IBAction)loadComposition:(id)sender {
-    //
-    //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    //
-    //    NSString *documentsDirectory = [paths objectAtIndex:0];
-    //
-    //    // need to find composition name
-    //
-    //    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.dat", compositionName]];
-    //
-    //    // need to unpack and load composition to clear canvas.
-    //
-}
-
 
 //removing an file
 
@@ -728,7 +694,7 @@
      }];
     
     if(i>0) {
-     [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:@"Imported %i colors from the Clipboard", i]];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:@"Imported %i colors from the Clipboard", i]];
     } else {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Copy some Hex colors into the clipboard, ArcConstrukt will find and use the first 6"];
     }

@@ -22,6 +22,7 @@
 #import "ODSwatchPicker.h"
 #import "ODTransparencyPicker.h"
 #import "CGColor+Additions.h"
+#import "ODLoadTableViewController.h"
 
 #import "extra_math.h"
 
