@@ -10,7 +10,6 @@
 #import "ODArcMachine.h"
 
 @interface ODCurrentArcObject : NSObject
-
 {
     ODArcMachine *currentArc;
 }

@@ -69,7 +69,6 @@
 		96F64F90164E3DDA003E97AB /* ODArcConstruktFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F8F164E3DDA003E97AB /* ODArcConstruktFile.m */; };
 		96F64F93165148A2003E97AB /* filmroll.png in Resources */ = {isa = PBXBuildFile; fileRef = 96F64F91165148A2003E97AB /* filmroll.png */; };
 		96F64F94165148A2003E97AB /* filmroll@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96F64F92165148A2003E97AB /* filmroll@2x.png */; };
-		96F64FA51651BC81003E97AB /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F64FA41651BC81003E97AB /* DropboxSDK.framework */; };
 		96FADBAD1639249D004706F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBAC1639249C004706F9 /* UIKit.framework */; };
 		96FADBAF1639249D004706F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBAE1639249D004706F9 /* Foundation.framework */; };
 		96FADBB11639249D004706F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBB01639249D004706F9 /* CoreGraphics.framework */; };
@@ -193,7 +192,6 @@
 		96F64F8F164E3DDA003E97AB /* ODArcConstruktFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODArcConstruktFile.m; sourceTree = "<group>"; };
 		96F64F91165148A2003E97AB /* filmroll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filmroll.png; sourceTree = "<group>"; };
 		96F64F92165148A2003E97AB /* filmroll@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filmroll@2x.png"; sourceTree = "<group>"; };
-		96F64FA41651BC81003E97AB /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
 		96F64FA61651BF54003E97AB /* ArcConstruktAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcConstruktAppDelegate.h; sourceTree = "<group>"; };
 		96FADBA81639249C004706F9 /* ArcConstrukt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArcConstrukt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96FADBAC1639249C004706F9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -261,7 +259,6 @@
 				96FADBAD1639249D004706F9 /* UIKit.framework in Frameworks */,
 				96FADBAF1639249D004706F9 /* Foundation.framework in Frameworks */,
 				96FADBB11639249D004706F9 /* CoreGraphics.framework in Frameworks */,
-				96F64FA51651BC81003E97AB /* DropboxSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,7 +358,6 @@
 		96FADBAB1639249C004706F9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				96F64FA41651BC81003E97AB /* DropboxSDK.framework */,
 				96FADBDE163A5F4D004706F9 /* QuartzCore.framework */,
 				96FADBAC1639249C004706F9 /* UIKit.framework */,
 				96FADBAE1639249D004706F9 /* Foundation.framework */,
