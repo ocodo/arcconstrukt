@@ -1,6 +1,6 @@
 //
-//  GridView.m
-//  TestUIViewDrawing
+//  ODGridView.m
+//  ArcConstrukt
 //
 //  Created by jason on 2/11/12.
 //  Copyright (c) 2012 ocodo. All rights reserved.

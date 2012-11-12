@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "OcodoArcConstrukt/ODArcConstruktViewController.m"
-         timestampString = "374167691.77395"
+         timestampString = "374427246.592927"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "56"
-         endingLineNumber = "56"
+         startingLineNumber = "75"
+         endingLineNumber = "75"
          landmarkName = "-initApplicationClipboard"
          landmarkType = "5">
       </FileBreakpoint>

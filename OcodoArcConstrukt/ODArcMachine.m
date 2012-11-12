@@ -1,15 +1,13 @@
 //
-//  DrawingCanvas.m
-//  TestUIViewDrawing
+//  ODArcMachine.m
+//  ArcConstrukt
 //
 //  Created by jason on 25/10/12.
 //  Copyright (c) 2012 ocodo. All rights reserved.
 //
 
 #import "ODArcMachine.h"
-#import <tgmath.h>
-#import "QuartzCore/QuartzCore.h"
-#import "CGColor+Additions.h"
+
 
 @implementation ODArcMachine
 
@@ -101,7 +99,6 @@
     }
         
     [self setNeedsDisplay];
-    NSLog(@"A:%f; B:%f; r:%f; Thick:%f; fill:%@; stroke:%@; ", start, end, radius, thickness, [fill RGBHexString], [stroke RGBHexString]);    
 }
 
 -(NSDictionary *) geometryToDictionary {
@@ -112,6 +109,40 @@
     @"thickness" : [NSNumber numberWithFloat: thickness],
     @"fill" : [savedFill RGBADictionary],
     @"stroke" : [savedStroke RGBADictionary] };
+}
+
+- (NSString*) SVGArc {
+    
+    CGFloat _end = (end < start) ? (M_PI*2) + end : end;
+    
+    CGFloat r2 = radius + thickness;
+    CGFloat r1 = radius;
+    CGPoint p1 = CGPointMake(x + r2 * cos(start), y + r2 * sin(start));
+    CGPoint p2 = CGPointMake(x + r2 * cos(_end), y + r2 * sin(_end));
+    CGPoint p3 = CGPointMake(x + r1 * cos(_end), y + r1 * sin(_end));
+    CGPoint p4 = CGPointMake(x + r1 * cos(start), y + r1 * sin(start));
+    
+    CGFloat angleDiff = _end - start;
+    BOOL largeArc = (fmod(angleDiff, (M_PI*2))) > M_PI ? 1 : 0;
+    
+    NSString *path = [NSString
+                      stringWithFormat:
+                      @"M%f %f A%f %f 0 %i 1 %f %f L%f %f A%f %f 0 %i 0 %f %f z",
+                      p1.x, p1.y,
+                      r2, r2, largeArc, p2.x, p2.y,
+                      p3.x, p3.y,
+                      r1, r1, largeArc, p4.x, p4.y];
+    
+    NSString *node = [NSString
+                      stringWithFormat:
+                      @"<path style=\"stroke:#%@; stroke-opacity:%f; fill:#%@; fill-opacity:%f;\" d=\"%@\"></path>\n",
+                      [stroke RGBHexString],
+                      [stroke alphaValue],
+                      [fill RGBHexString],
+                      [fill alphaValue], path];
+    
+    
+    return node;
 }
 
 @end

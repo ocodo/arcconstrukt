@@ -7,6 +7,7 @@
 +(UIColor *)colorWithRGBHexString:(NSString *)string;
 +(UIColor *)colorWithRGBADictionary:(NSDictionary *)rgbaDictionary;
 -(NSString *)RGBHexString;
+-(CGFloat) alphaValue;
 -(NSDictionary *)RGBADictionary;
 
 

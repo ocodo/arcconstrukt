@@ -44,8 +44,7 @@
     CGColorRef bgColor = [UIColor orangeColor].CGColor;
     CGContextSetFillColorWithColor(context, bgColor);
     CGContextFillRect(context, rect);
-    
-    // Abstract this link out.
+
     NSMutableArray *colors = [ODColorPalette singleton].colors;
     
     int i=0;
@@ -59,7 +58,6 @@
 }
 
 - (int)colorIndexAtPoint:(CGPoint)point {
-
     int len = [ODColorPalette singleton].colors.count;
     int i=0;
     float space = self.frame.size.width/len;
@@ -71,9 +69,7 @@
         } else {
             break;
         }
-    }
-    NSLog(@"i:%i",i-1);
-    
+    }    
     return MAX(i-1,0);
 }
 

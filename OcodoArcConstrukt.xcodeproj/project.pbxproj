@@ -64,13 +64,18 @@
 		96F64F691648B80D003E97AB /* NPConicGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F621648B80D003E97AB /* NPConicGradient.m */; };
 		96F64F6A1648B80D003E97AB /* NPPickerIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F641648B80D003E97AB /* NPPickerIndicator.m */; };
 		96F64F6E1648DE51003E97AB /* ODColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F6D1648DE51003E97AB /* ODColorPalette.m */; };
-		96F64F81164D33A4003E97AB /* ODLoadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F80164D33A4003E97AB /* ODLoadTableViewController.m */; };
+		96F64F86164E3B09003E97AB /* ODFilesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F85164E3B08003E97AB /* ODFilesCollectionViewCell.m */; };
+		96F64F89164E3BE4003E97AB /* ODFilesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F88164E3BE4003E97AB /* ODFilesCollectionViewController.m */; };
+		96F64F90164E3DDA003E97AB /* ODArcConstruktFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F8F164E3DDA003E97AB /* ODArcConstruktFile.m */; };
+		96F64F93165148A2003E97AB /* filmroll.png in Resources */ = {isa = PBXBuildFile; fileRef = 96F64F91165148A2003E97AB /* filmroll.png */; };
+		96F64F94165148A2003E97AB /* filmroll@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96F64F92165148A2003E97AB /* filmroll@2x.png */; };
+		96F64FA51651BC81003E97AB /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F64FA41651BC81003E97AB /* DropboxSDK.framework */; };
 		96FADBAD1639249D004706F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBAC1639249C004706F9 /* UIKit.framework */; };
 		96FADBAF1639249D004706F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBAE1639249D004706F9 /* Foundation.framework */; };
 		96FADBB11639249D004706F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBB01639249D004706F9 /* CoreGraphics.framework */; };
 		96FADBB71639249D004706F9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBB51639249D004706F9 /* InfoPlist.strings */; };
 		96FADBB91639249D004706F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADBB81639249D004706F9 /* main.m */; };
-		96FADBBD1639249D004706F9 /* OcodoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADBBC1639249D004706F9 /* OcodoAppDelegate.m */; };
+		96FADBBD1639249D004706F9 /* ArcConstruktAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADBBC1639249D004706F9 /* ArcConstruktAppDelegate.m */; };
 		96FADBBF1639249D004706F9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBBE1639249D004706F9 /* Default.png */; };
 		96FADBC11639249D004706F9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBC01639249D004706F9 /* Default@2x.png */; };
 		96FADBC31639249D004706F9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBC21639249D004706F9 /* Default-568h@2x.png */; };
@@ -180,8 +185,16 @@
 		96F64F641648B80D003E97AB /* NPPickerIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPPickerIndicator.m; sourceTree = "<group>"; };
 		96F64F6C1648DE51003E97AB /* ODColorPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODColorPalette.h; sourceTree = "<group>"; };
 		96F64F6D1648DE51003E97AB /* ODColorPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODColorPalette.m; sourceTree = "<group>"; };
-		96F64F7F164D33A3003E97AB /* ODLoadTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODLoadTableViewController.h; sourceTree = "<group>"; };
-		96F64F80164D33A4003E97AB /* ODLoadTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODLoadTableViewController.m; sourceTree = "<group>"; };
+		96F64F84164E3B07003E97AB /* ODFilesCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODFilesCollectionViewCell.h; sourceTree = "<group>"; };
+		96F64F85164E3B08003E97AB /* ODFilesCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODFilesCollectionViewCell.m; sourceTree = "<group>"; };
+		96F64F87164E3BE4003E97AB /* ODFilesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODFilesCollectionViewController.h; sourceTree = "<group>"; };
+		96F64F88164E3BE4003E97AB /* ODFilesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODFilesCollectionViewController.m; sourceTree = "<group>"; };
+		96F64F8E164E3DD9003E97AB /* ODArcConstruktFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODArcConstruktFile.h; sourceTree = "<group>"; };
+		96F64F8F164E3DDA003E97AB /* ODArcConstruktFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODArcConstruktFile.m; sourceTree = "<group>"; };
+		96F64F91165148A2003E97AB /* filmroll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filmroll.png; sourceTree = "<group>"; };
+		96F64F92165148A2003E97AB /* filmroll@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filmroll@2x.png"; sourceTree = "<group>"; };
+		96F64FA41651BC81003E97AB /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
+		96F64FA61651BF54003E97AB /* ArcConstruktAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcConstruktAppDelegate.h; sourceTree = "<group>"; };
 		96FADBA81639249C004706F9 /* ArcConstrukt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArcConstrukt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96FADBAC1639249C004706F9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		96FADBAE1639249D004706F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -190,8 +203,7 @@
 		96FADBB61639249D004706F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		96FADBB81639249D004706F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		96FADBBA1639249D004706F9 /* OcodoArcConstrukt-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OcodoArcConstrukt-Prefix.pch"; sourceTree = "<group>"; };
-		96FADBBB1639249D004706F9 /* OcodoAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OcodoAppDelegate.h; sourceTree = "<group>"; };
-		96FADBBC1639249D004706F9 /* OcodoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OcodoAppDelegate.m; sourceTree = "<group>"; };
+		96FADBBC1639249D004706F9 /* ArcConstruktAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArcConstruktAppDelegate.m; sourceTree = "<group>"; };
 		96FADBBE1639249D004706F9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		96FADBC01639249D004706F9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		96FADBC21639249D004706F9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -249,6 +261,7 @@
 				96FADBAD1639249D004706F9 /* UIKit.framework in Frameworks */,
 				96FADBAF1639249D004706F9 /* Foundation.framework in Frameworks */,
 				96FADBB11639249D004706F9 /* CoreGraphics.framework in Frameworks */,
+				96F64FA51651BC81003E97AB /* DropboxSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +292,8 @@
 				9635436F164543110002FAB6 /* ODCurrentArcObject.m */,
 				96F64F6C1648DE51003E97AB /* ODColorPalette.h */,
 				96F64F6D1648DE51003E97AB /* ODColorPalette.m */,
+				96F64F8E164E3DD9003E97AB /* ODArcConstruktFile.h */,
+				96F64F8F164E3DDA003E97AB /* ODArcConstruktFile.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -292,8 +307,8 @@
 				96D0EDA91643910A002F8754 /* ODArcConstruktNavigationController.m */,
 				96FADC2E163CC9C3004706F9 /* ODArcConstruktViewController.h */,
 				96FADC29163CB0BD004706F9 /* ODArcConstruktViewController.m */,
-				96F64F7F164D33A3003E97AB /* ODLoadTableViewController.h */,
-				96F64F80164D33A4003E97AB /* ODLoadTableViewController.m */,
+				96F64F87164E3BE4003E97AB /* ODFilesCollectionViewController.h */,
+				96F64F88164E3BE4003E97AB /* ODFilesCollectionViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -313,6 +328,8 @@
 				96A4797A1647B7D0009ADCF8 /* ODTransparencyPicker.m */,
 				96F64F5716489852003E97AB /* ODSwatchPicker.h */,
 				96F64F5816489852003E97AB /* ODSwatchPicker.m */,
+				96F64F84164E3B07003E97AB /* ODFilesCollectionViewCell.h */,
+				96F64F85164E3B08003E97AB /* ODFilesCollectionViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -344,6 +361,7 @@
 		96FADBAB1639249C004706F9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				96F64FA41651BC81003E97AB /* DropboxSDK.framework */,
 				96FADBDE163A5F4D004706F9 /* QuartzCore.framework */,
 				96FADBAC1639249C004706F9 /* UIKit.framework */,
 				96FADBAE1639249D004706F9 /* Foundation.framework */,
@@ -359,8 +377,8 @@
 				96F64F5A164898E7003E97AB /* Models */,
 				96F64F5C16489957003E97AB /* Views */,
 				96F64F5B164898F8003E97AB /* Controllers */,
-				96FADBBB1639249D004706F9 /* OcodoAppDelegate.h */,
-				96FADBBC1639249D004706F9 /* OcodoAppDelegate.m */,
+				96F64FA61651BF54003E97AB /* ArcConstruktAppDelegate.h */,
+				96FADBBC1639249D004706F9 /* ArcConstruktAppDelegate.m */,
 				96FADBB31639249D004706F9 /* Supporting Files */,
 			);
 			path = OcodoArcConstrukt;
@@ -383,6 +401,8 @@
 		96FADC6F164242D1004706F9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				96F64F91165148A2003E97AB /* filmroll.png */,
+				96F64F92165148A2003E97AB /* filmroll@2x.png */,
 				96A4797C1647DA5A009ADCF8 /* alpha_trans_swatch.png */,
 				96A4797D1647DA5A009ADCF8 /* alpha_trans_swatch@2x.png */,
 				96A479711647583F009ADCF8 /* forward_one.png */,
@@ -603,6 +623,8 @@
 				96A479781647583F009ADCF8 /* send_to_back@2x.png in Resources */,
 				96A4797E1647DA5A009ADCF8 /* alpha_trans_swatch.png in Resources */,
 				96A4797F1647DA5A009ADCF8 /* alpha_trans_swatch@2x.png in Resources */,
+				96F64F93165148A2003E97AB /* filmroll.png in Resources */,
+				96F64F94165148A2003E97AB /* filmroll@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,7 +636,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96FADBB91639249D004706F9 /* main.m in Sources */,
-				96FADBBD1639249D004706F9 /* OcodoAppDelegate.m in Sources */,
+				96FADBBD1639249D004706F9 /* ArcConstruktAppDelegate.m in Sources */,
 				96FADBD816394E40004706F9 /* ODArcMachine.m in Sources */,
 				96FADC2A163CB0BE004706F9 /* ODArcConstruktViewController.m in Sources */,
 				96FADC3A163CF2CE004706F9 /* ODFingerRotationGestureRecognizer.m in Sources */,
@@ -634,7 +656,9 @@
 				96F64F691648B80D003E97AB /* NPConicGradient.m in Sources */,
 				96F64F6A1648B80D003E97AB /* NPPickerIndicator.m in Sources */,
 				96F64F6E1648DE51003E97AB /* ODColorPalette.m in Sources */,
-				96F64F81164D33A4003E97AB /* ODLoadTableViewController.m in Sources */,
+				96F64F86164E3B09003E97AB /* ODFilesCollectionViewCell.m in Sources */,
+				96F64F89164E3BE4003E97AB /* ODFilesCollectionViewController.m in Sources */,
+				96F64F90164E3DDA003E97AB /* ODArcConstruktFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -714,6 +738,11 @@
 		96FADBCD1639249D004706F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Dropbox/dropbox-ios-sdk-1.3.2\"",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OcodoArcConstrukt/OcodoArcConstrukt-Prefix.pch";
 				INFOPLIST_FILE = "OcodoArcConstrukt/OcodoArcConstrukt-Info.plist";
@@ -726,6 +755,11 @@
 		96FADBCE1639249D004706F9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Dropbox/dropbox-ios-sdk-1.3.2\"",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OcodoArcConstrukt/OcodoArcConstrukt-Prefix.pch";
 				INFOPLIST_FILE = "OcodoArcConstrukt/OcodoArcConstrukt-Info.plist";

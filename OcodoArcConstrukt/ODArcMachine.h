@@ -1,6 +1,6 @@
 //
-//  ArcMachine.h
-//  TestUIViewDrawing
+//  ODArcMachine.h
+//  ArcConstrukt
 //
 //  Created by jason on 25/10/12.
 //  Copyright (c) 2012 ocodo. All rights reserved.
@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "QuartzCore/QuartzCore.h"
 #import "UIView+Hierarchy.h"
+#import <tgmath.h>
+#import "CGColor+Additions.h"
 
 @interface ODArcMachine : UIView {
     CGFloat x;
@@ -38,5 +40,6 @@
 -(void)deselectArc;
 -(void) geometryFromDictionary: (NSDictionary *) plist;
 -(NSDictionary *) geometryToDictionary;
+-(NSString *) SVGArc;
 
 @end

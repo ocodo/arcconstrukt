@@ -1,6 +1,6 @@
 //
-//  ocodoArcMachineCompositionViewController.h
-//  TestUIViewDrawing
+//  ODArcConstruktViewController.h
+//  ArcConstrukt
 //
 //  Created by jason on 28/10/12.
 //  Copyright (c) 2012 ocodo. All rights reserved.
@@ -22,7 +22,8 @@
 #import "ODSwatchPicker.h"
 #import "ODTransparencyPicker.h"
 #import "CGColor+Additions.h"
-#import "ODLoadTableViewController.h"
+#import "ODFilesCollectionViewController.h"
+#import "ODArcConstruktFile.h"
 
 #import "extra_math.h"
 

@@ -1,6 +1,6 @@
 //
-//  ocodoArcMachineCompositionViewController.m
-//  TestUIViewDrawing
+//  ODArcConstruktViewController.m
+//  ArcConstrukt
 //
 //  Created by jason on 28/10/12.
 //  Copyright (c) 2012 ocodo. All rights reserved.
@@ -45,10 +45,29 @@
     [self initSwatchBarGestures];
     [self initColorPicker];
     
+    
+    NSString *bundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
+    
+    NSString *appFirstStartOfVersionKey = [NSString stringWithFormat:@"first_start_%@", bundleVersion];
+    
+    NSNumber *alreadyStartedOnVersion = [[NSUserDefaults standardUserDefaults] objectForKey:appFirstStartOfVersionKey];
+    if(!alreadyStartedOnVersion || [alreadyStartedOnVersion boolValue] == NO) {
+        [self firstStartCode];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:appFirstStartOfVersionKey];
+    }
+    
     [[NSNotificationCenter defaultCenter] addObserverForName:@"selectFileToLoad" object:nil queue:nil usingBlock:^(NSNotification *note) {
-        NSLog(@"Hello NSNotificationCenter : %@", [note object]);
         [self loadComposition:note.object];
     }];
+}
+
+- (void)firstStartCode {
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Welcome to ArcConstrukt"
+                                                      message:@"Tap the title bar for Help."
+                                                     delegate:nil
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+    [message show];
 }
 
 - (void)initApplicationClipboard {
@@ -176,12 +195,11 @@
         if(colorPicker.frame.origin.x != 10)
             [self moveColorPicker:10];
         else
-            [self moveColorPicker:400];
+            [self moveColorPicker:640];
     }
 }
 
 - (void)handleColorPickerSwipe:(UISwipeGestureRecognizer *)recognizer {
-    NSLog(@"Swiped color picker");
     [self moveColorPicker:640];
 }
 
@@ -347,7 +365,7 @@
     UIMenuItem* menu_angle_a = [[UIMenuItem alloc] initWithTitle:@"A" action:@selector(angleAMode:)];
     UIMenuItem* menu_angle_b = [[UIMenuItem alloc] initWithTitle:@"B" action:@selector(angleBMode:)];
     UIMenuItem* menu_radius = [[UIMenuItem alloc] initWithTitle:@"R" action:@selector(radiusMode:)];
-    UIMenuItem* menu_thickness = [[UIMenuItem alloc] initWithTitle:@"Thick" action:@selector(thicknessMode:)];
+    UIMenuItem* menu_thickness = [[UIMenuItem alloc] initWithTitle:@"T" action:@selector(thicknessMode:)];
     UIMenuItem* menu_copy = [[UIMenuItem alloc] initWithTitle:@"Copy" action:@selector(copyArc:)];
     UIMenuItem* menu_paste = [[UIMenuItem alloc] initWithTitle:@"Paste" action:@selector(pasteArc:)];
     UIMenuItem* menu_delete = [[UIMenuItem alloc] initWithTitle:@"Delete" action:@selector(deleteButton:)];
@@ -366,7 +384,6 @@
     [appPasteboard setData:data forPasteboardType:@"info.ocodo.arcconstrukt"];
 }
 - (void) pasteArc:(id)sender {
-    NSLog(@"Paste?");
     NSData *data = [appPasteboard dataForPasteboardType:@"info.ocodo.arcconstrukt"];
     NSDictionary *plist = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     ODArcMachine *a = [[ODArcMachine alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
@@ -494,6 +511,7 @@
                                  UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext())];
             UIGraphicsEndImageContext();
             UIImageWriteToSavedPhotosAlbum(pngImage, self,  @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+            return;
         }];
     }
     else {
@@ -591,103 +609,136 @@
     [self moveToolbar:sender.selectedSegmentIndex];
 }
 
+- (NSString *)compositionToSVG {
+    NSMutableArray *a = [[NSMutableArray alloc] initWithArray:
+                         @[@"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 320\">",
+                         @"<g transform=\"translate(160,160)\">"]];
+
+    for (ODArcMachine *arcMachine in arcConstruktView.subviews) {
+        [a addObject:[arcMachine SVGArc]];
+    }
+
+    [a addObjectsFromArray:@[@"</g>", @"</svg>"]];
+    return [a componentsJoinedByString:@"\n"];
+}
+
 - (IBAction)saveComposition:(id)sender {
     if (arcConstruktView.subviews.count < 1) {
-        NSLog(@"%i", arcConstruktView.subviews.count);
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Make a composition first"];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Press + to add Arcs"];
         return;
     }
     
+    [self deselect];
     DZProgressController *HUD = [DZProgressController new];
-    HUD.label.text = @"Saving Composition";
+    HUD.label.text = @"Saving ArcConstrukt";
     [HUD showWhileExecuting:^{
-        NSMutableArray *layers = [[NSMutableArray alloc] init];
+        ODArcConstruktFile *file = [ODArcConstruktFile new];
+        file.layers = [[NSMutableArray alloc] init];
         for (ODArcMachine *arcMachine in arcConstruktView.subviews) {
-            NSDictionary *geometry = [arcMachine geometryToDictionary];
-            [layers addObject:geometry];
+            [file.layers addObject:[arcMachine geometryToDictionary]];
         }
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject: layers];
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *now = [NSString stringWithFormat:@"%@",[NSDate date]];
-        NSString *filename = [NSString stringWithFormat:@"ArcConstrukt-%@", [now stringByReplacingOccurrencesOfString:@" +0000" withString:@""]];
-        NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", filename]];
-        [fileManager createFileAtPath:fullPath contents:data attributes:nil];
+        UIGraphicsBeginImageContextWithOptions(arcConstruktView.bounds.size, NO, 0.5);
+        [arcConstruktView.layer renderInContext:UIGraphicsGetCurrentContext()];
+        file.thumbnail = [UIImage imageWithData:
+                             UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext())];
+        int ti = [[NSDate date] timeIntervalSince1970];
+        
+        file.filename = [NSString stringWithFormat:@"ArcConstrukt-%X", ti];
+
+        NSString *fullPath = [[self compositionsDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", file.filename]];
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject: file];
+        [[NSFileManager defaultManager] createFileAtPath:fullPath contents:data attributes:nil];
+                
+        return;
     }];
+}
+
+-(IBAction)saveToSVG:(id)sender {
+    if (arcConstruktView.subviews.count < 1) {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Press + to add Arcs"];
+        return;
+    }
+    [self deselect];
+    [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Exporting to SVG"];
+    int ti = [[NSDate date] timeIntervalSince1970];
+    NSString *filename = [NSString stringWithFormat:@"ArcConstrukt-%X.svg", ti];
+    NSString *fullPath = [[self svgDirectory] stringByAppendingPathComponent:filename];
+    NSString *svg = [self compositionToSVG];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    [fm createFileAtPath:fullPath contents:[svg dataUsingEncoding:NSUTF8StringEncoding] attributes:nil];
+    [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Export complete, access saved SVG with iTunes"];
 }
 
 - (void)loadComposition:(NSString*) filename {
     @try {
-        DZProgressController *HUD = [DZProgressController new];
-        HUD.label.text = [NSString stringWithFormat:@"Loading Composition: %@", filename];
-        [HUD showWhileExecuting:^{
-            [self clearButton:nil];
-            NSFileManager *fileManager = [NSFileManager defaultManager];
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-            NSString *documentsDirectory = [paths objectAtIndex:0];
-            NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", filename]];
-            NSData *archive = [fileManager contentsAtPath:fullPath];
-            NSMutableArray *layers = [[NSMutableArray alloc] initWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:archive]];
-            for (NSDictionary *geometry in layers) {
-                ODArcMachine *arc = [[ODArcMachine alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
-                [arc geometryFromDictionary:geometry];
-                [arcConstruktView addSubview:arc];
-            }
-            [self resetStepper];
-        }];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:@"Loaded %@", filename]];
+        [self clearButton:nil];
+        NSString *fullPath = [[self compositionsDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", filename]];
+        ODArcConstruktFile *file = [NSKeyedUnarchiver unarchiveObjectWithFile:fullPath];
+        for (NSDictionary *geometry in file.layers) {
+            ODArcMachine *arc = [[ODArcMachine alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+            [arc geometryFromDictionary:geometry];
+            [arcConstruktView addSubview:arc];
+        }
+        [self resetStepper];
+        [self deselect];
     }
     @catch (NSException *exception) {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:@"Failed to load %@", filename]];
     }
+    [arcConstruktView setNeedsDisplay];
 }
 
-//removing an file
+-(NSString *) compositionsDirectory {
 
-//- (void)removeFile:(NSString*)fileName {
-//
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
-//
-//    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.dat", fileName]];
-//
-//    [fileManager removeItemAtPath: fullPath error:NULL];
-//
-//    NSLog(@"file removed");
-//
-//}
+    NSString *docs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *compositions = [docs stringByAppendingPathComponent:@"compositions"];
+    
+    NSFileManager *fm = [NSFileManager defaultManager];
 
+    if(![fm fileExistsAtPath:compositions]) {
+        NSError *error;
+        [fm createDirectoryAtPath:compositions withIntermediateDirectories:NO attributes:nil error:&error];
+    }
+
+    return compositions;
+}
+
+-(NSString *) svgDirectory {
+    
+    NSString *docs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *svg = [docs stringByAppendingPathComponent:@"svg"];
+    
+    NSFileManager *fm = [NSFileManager defaultManager];
+    
+    if(![fm fileExistsAtPath:svg]) {
+        NSError *error;
+        [fm createDirectoryAtPath:svg withIntermediateDirectories:NO attributes:nil error:&error];
+    }
+    
+    return svg;
+}
 
 - (IBAction)importColorsFromPasteboard:(id)sender {
-    // [ODColorPalette singleton].colors;
-    // [[UIPasteboard generalPasteboard] string];
-    // #(([a-f]|[A-F]|[0-9]){6})
-    
     NSString *import = [[UIPasteboard generalPasteboard] string];
+
+    if(import.length < 1){
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Copy some Hex colors into the clipboard, ArcConstrukt will find and use the first 6"];
+        return;
+    }
+    
     NSError *error = NULL;
     
     NSRegularExpression *hexColor = [NSRegularExpression
                                      regularExpressionWithPattern:@"#?(([a-f]|[A-F]|[0-9]){6})" options:0 error:&error];
     __block int i=0;
-    [hexColor enumerateMatchesInString:import
-                               options:0
-                                 range:NSMakeRange(0, [import length])
-                            usingBlock:
-     ^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+    [hexColor enumerateMatchesInString:import options:0 range:NSMakeRange(0, [import length])
+                            usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
      {
          NSString *hex = [[import substringWithRange:result.range] stringByReplacingOccurrencesOfString:@"#" withString:@""];
-         
          if (i<6) {
-             
              [ODColorPalette singleton].colors[i] =
              [UIColor colorWithRGBHexString:hex];
-             
-             NSLog(@"Hex Color %@", hex);
-             NSLog(@"Saved [%i]: %@", i, [[ODColorPalette singleton].colors[i] RGBHexString] );
-             
              [swatchBar setNeedsDisplay];
          }
          i++;

@@ -80,6 +80,13 @@
             (int)(blue * 255)];
 }
 
+-(CGFloat) alphaValue {
+    CGFloat red, green, blue, alpha;
+    [self getRed:&red green:&green blue:&blue alpha:&alpha];
+    
+    return alpha;
+}
+
 /**
  Return a NSDictionary with r,g,b,a keys representing
  this UIColor
