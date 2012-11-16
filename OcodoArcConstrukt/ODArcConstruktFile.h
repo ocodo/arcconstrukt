@@ -15,4 +15,9 @@
 @property (strong, nonatomic) UIImage *thumbnail;
 @property (strong, nonatomic) NSString *filename;
 
+-(id)initWithArcMachineSubviews:(NSArray*)subviews;
+-(NSData*)asSVGEncoded;
+-(NSString*)asSVG;
+-(NSArray*)layersToArcMachines;
+
 @end

@@ -10,6 +10,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import <Foundation/Foundation.h>
 #import "ODColorPalette.h"
+#import "ODTransparencyPicker.h"
+#import "ODViewHelpers.h"
 
 @implementation ODSwatchPicker
 
@@ -40,39 +42,24 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGColorRef bgColor = [UIColor orangeColor].CGColor;
-    CGContextSetFillColorWithColor(context, bgColor);
-    CGContextFillRect(context, rect);
+    CGContextSetFillColorWithColor(ctx, bgColor);
+    CGContextFillRect(ctx, rect);
 
     NSMutableArray *colors = [ODColorPalette singleton].colors;
     
     int i=0;
     int len=colors.count;
-    float space=rect.size.width/len;
+    float space=ceilf(rect.size.width/len);
     for (UIColor *color in colors) {
-        CGContextSetFillColorWithColor(context, color.CGColor);
-        CGContextFillRect(context, CGRectMake(space*i, 0, space, rect.size.height));
+        CGContextSetFillColorWithColor(ctx, color.CGColor);
+        CGContextFillRect(ctx, CGRectMake(space*i, 0, space, rect.size.height));
         i++;
     }
 
+    drawInsetChrome(ctx, rect);
 
-}
-
-- (void)drawGradient:(CGFloat*)colors context:(CGContextRef)context rect:(CGRect)rect startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint
-{
-    CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
-    CGGradientRef gradient = CGGradientCreateWithColorComponents(baseSpace, colors, NULL, 2);
-    CGColorSpaceRelease(baseSpace), baseSpace = NULL;
-    
-    CGContextSaveGState(context);
-    CGContextAddRect(context, rect);
-    CGContextClip(context);
-    
-    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
-    CGGradientRelease(gradient), gradient = NULL;
-    CGContextRestoreGState(context);
-    
 }
 
 - (int)colorIndexAtPoint:(CGPoint)point {

@@ -13,7 +13,7 @@
 
 @synthesize x, y, start, end, radius, thickness, fill, stroke, savedFill, savedStroke;
 
-- (id) initWithArcMachine: (ODArcMachine *) arcMachine frame:(CGRect)frame {
+- (id) initWithArcMachine:(ODArcMachine *)arcMachine frame:(CGRect)frame {
     self = [self initWithFrame:frame];
     if(self) {
         self.x = arcMachine.x;
@@ -28,6 +28,22 @@
     return self;
 }
 
+- (id)initRandomWithFrame:(CGRect)frame fillColor:(UIColor*)fillColor strokeColor:(UIColor*)strokeColor
+{
+    self = [self initWithFrame:frame];
+    if (self) {
+        start = arc4random()%360 * M_PI/180;
+        end = MAX(arc4random()%360,10) * M_PI/180;
+        int r = MAX(arc4random()%159, 20);
+        radius = r;
+        int m = MIN(40,160-r);
+        thickness = MAX(arc4random() % m, 1);
+        fill = fillColor;
+        stroke = strokeColor;
+    }
+    return self;
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -37,20 +53,28 @@
     return self;
 }
 
+- (id)initWithDictionary:(NSDictionary *)plist frame:(CGRect)frame {
+    self = [self initWithFrame:frame];
+    if(self) {
+        [self geometryFromDictionary:plist];
+    }
+    return self;
+}
+
 - (void)drawRect:(CGRect)rect {
     [self drawArc:rect context:UIGraphicsGetCurrentContext()];
 }
 
-- (void)drawArc:(CGRect)rect context:(CGContextRef)context {
+- (void)drawArc:(CGRect)rect context:(CGContextRef)ctx {
     
-	CGContextTranslateCTM(context, CGRectGetMidX(rect), CGRectGetMidY(rect));
+	CGContextTranslateCTM(ctx, CGRectGetMidX(rect), CGRectGetMidY(rect));
     
-	CGContextSetLineWidth(context, 0.5f);
-	CGContextSetLineJoin(context, kCGLineJoinRound);
-	CGContextSetStrokeColorWithColor(context, stroke.CGColor);
-	CGContextSetFillColorWithColor(context, fill.CGColor);
+	CGContextSetLineWidth(ctx, 0.5f);
+	CGContextSetLineJoin(ctx, kCGLineJoinRound);
+	CGContextSetStrokeColorWithColor(ctx, stroke.CGColor);
+	CGContextSetFillColorWithColor(ctx, fill.CGColor);
     
-	CGContextBeginPath(context);
+	CGContextBeginPath(ctx);
     
     CGFloat outside = radius+thickness;
     
@@ -59,14 +83,14 @@
     CGFloat cx = x + (radius * cos(end));
     CGFloat cy = y + (radius * sin(end));
     
-    CGContextMoveToPoint(context, ax, ay);
-    CGContextAddArc(context, x, y, outside, start, end, 0);
-    CGContextAddLineToPoint(context, cx, cy);
-    CGContextAddArc(context, x, y, radius, end, start, 1);
-    CGContextAddLineToPoint(context, ax, ay);
+    CGContextMoveToPoint(ctx, ax, ay);
+    CGContextAddArc(ctx, x, y, outside, start, end, 0);
+    CGContextAddLineToPoint(ctx, cx, cy);
+    CGContextAddArc(ctx, x, y, radius, end, start, 1);
+    CGContextAddLineToPoint(ctx, ax, ay);
     
-	CGContextClosePath(context);
-	CGContextDrawPath(context, kCGPathFillStroke);
+	CGContextClosePath(ctx);
+	CGContextDrawPath(ctx, kCGPathFillStroke);
 }
 
 -(void)selectArc {

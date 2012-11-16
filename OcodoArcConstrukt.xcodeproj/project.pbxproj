@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		963543531644CBD90002FAB6 /* ArcConstrukt.png in Resources */ = {isa = PBXBuildFile; fileRef = 963543521644CBD90002FAB6 /* ArcConstrukt.png */; };
 		963543551644CBF00002FAB6 /* ArcConstrukt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 963543541644CBF00002FAB6 /* ArcConstrukt@2x.png */; };
-		963543571644CBFA0002FAB6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 963543561644CBFA0002FAB6 /* Default.png */; };
-		963543591644CC090002FAB6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 963543581644CC090002FAB6 /* Default@2x.png */; };
-		9635435B1644CC110002FAB6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9635435A1644CC110002FAB6 /* Default-568h@2x.png */; };
 		9635435F1644CF380002FAB6 /* ArcConstruktIPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9635435D1644CF380002FAB6 /* ArcConstruktIPad.png */; };
 		963543601644CF380002FAB6 /* ArcConstruktIPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9635435E1644CF380002FAB6 /* ArcConstruktIPad@2x.png */; };
 		96354370164543110002FAB6 /* ODCurrentArcObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9635436F164543110002FAB6 /* ODCurrentArcObject.m */; };
@@ -19,6 +16,9 @@
 		9675BA4F1655DA85006A742D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9675BA4E1655DA85006A742D /* Security.framework */; };
 		9675BA511655DA8B006A742D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9675BA501655DA8B006A742D /* MessageUI.framework */; };
 		9675BA541655E36A006A742D /* DropBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 9675BA531655E36A006A742D /* DropBlocks.m */; };
+		9675BA571655F30A006A742D /* ODFileTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 9675BA561655F30A006A742D /* ODFileTools.m */; };
+		9675BA5A16561012006A742D /* ODTransparencyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9675BA5916561012006A742D /* ODTransparencyButton.m */; };
+		9675BA5F1656252E006A742D /* ODViewHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 9675BA5E1656252D006A742D /* ODViewHelpers.m */; };
 		96A4796716474649009ADCF8 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A4796616474648009ADCF8 /* UIView+Hierarchy.m */; };
 		96A4796D1647578C009ADCF8 /* back_one.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A479691647578C009ADCF8 /* back_one.png */; };
 		96A4796E1647578C009ADCF8 /* back_one@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A4796A1647578C009ADCF8 /* back_one@2x.png */; };
@@ -122,9 +122,6 @@
 /* Begin PBXFileReference section */
 		963543521644CBD90002FAB6 /* ArcConstrukt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArcConstrukt.png; sourceTree = "<group>"; };
 		963543541644CBF00002FAB6 /* ArcConstrukt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ArcConstrukt@2x.png"; sourceTree = "<group>"; };
-		963543561644CBFA0002FAB6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		963543581644CC090002FAB6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		9635435A1644CC110002FAB6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9635435D1644CF380002FAB6 /* ArcConstruktIPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArcConstruktIPad.png; sourceTree = "<group>"; };
 		9635435E1644CF380002FAB6 /* ArcConstruktIPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ArcConstruktIPad@2x.png"; sourceTree = "<group>"; };
 		9635436E164543100002FAB6 /* ODCurrentArcObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODCurrentArcObject.h; sourceTree = "<group>"; };
@@ -134,6 +131,12 @@
 		9675BA501655DA8B006A742D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		9675BA521655E36A006A742D /* DropBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropBlocks.h; sourceTree = "<group>"; };
 		9675BA531655E36A006A742D /* DropBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropBlocks.m; sourceTree = "<group>"; };
+		9675BA551655F30A006A742D /* ODFileTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODFileTools.h; sourceTree = "<group>"; };
+		9675BA561655F30A006A742D /* ODFileTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODFileTools.m; sourceTree = "<group>"; };
+		9675BA5816561012006A742D /* ODTransparencyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODTransparencyButton.h; sourceTree = "<group>"; };
+		9675BA5916561012006A742D /* ODTransparencyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODTransparencyButton.m; sourceTree = "<group>"; };
+		9675BA5D1656252D006A742D /* ODViewHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODViewHelpers.h; sourceTree = "<group>"; };
+		9675BA5E1656252D006A742D /* ODViewHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODViewHelpers.m; sourceTree = "<group>"; };
 		96A4796516474648009ADCF8 /* UIView+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Hierarchy.h"; sourceTree = "<group>"; };
 		96A4796616474648009ADCF8 /* UIView+Hierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Hierarchy.m"; sourceTree = "<group>"; };
 		96A479691647578C009ADCF8 /* back_one.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_one.png; sourceTree = "<group>"; };
@@ -339,6 +342,10 @@
 				96F64F5816489852003E97AB /* ODSwatchPicker.m */,
 				96F64F84164E3B07003E97AB /* ODFilesCollectionViewCell.h */,
 				96F64F85164E3B08003E97AB /* ODFilesCollectionViewCell.m */,
+				9675BA5816561012006A742D /* ODTransparencyButton.h */,
+				9675BA5916561012006A742D /* ODTransparencyButton.m */,
+				9675BA5D1656252D006A742D /* ODViewHelpers.h */,
+				9675BA5E1656252D006A742D /* ODViewHelpers.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -348,9 +355,6 @@
 			children = (
 				9635435D1644CF380002FAB6 /* ArcConstruktIPad.png */,
 				9635435E1644CF380002FAB6 /* ArcConstruktIPad@2x.png */,
-				9635435A1644CC110002FAB6 /* Default-568h@2x.png */,
-				963543581644CC090002FAB6 /* Default@2x.png */,
-				963543561644CBFA0002FAB6 /* Default.png */,
 				963543541644CBF00002FAB6 /* ArcConstrukt@2x.png */,
 				963543521644CBD90002FAB6 /* ArcConstrukt.png */,
 				96FADBB21639249D004706F9 /* OcodoArcConstrukt */,
@@ -504,6 +508,8 @@
 				96FADC511641F590004706F9 /* DZProgressController.m */,
 				96FADC3C163D0684004706F9 /* extra_math.c */,
 				96FADC3B163D0663004706F9 /* extra_math.h */,
+				9675BA551655F30A006A742D /* ODFileTools.h */,
+				9675BA561655F30A006A742D /* ODFileTools.m */,
 			);
 			name = libs;
 			sourceTree = "<group>";
@@ -597,9 +603,6 @@
 				96D0EDBD1643E101002F8754 /* app.css in Resources */,
 				963543531644CBD90002FAB6 /* ArcConstrukt.png in Resources */,
 				963543551644CBF00002FAB6 /* ArcConstrukt@2x.png in Resources */,
-				963543571644CBFA0002FAB6 /* Default.png in Resources */,
-				963543591644CC090002FAB6 /* Default@2x.png in Resources */,
-				9635435B1644CC110002FAB6 /* Default-568h@2x.png in Resources */,
 				9635435F1644CF380002FAB6 /* ArcConstruktIPad.png in Resources */,
 				963543601644CF380002FAB6 /* ArcConstruktIPad@2x.png in Resources */,
 				96B117B016460089004D8605 /* grid.png in Resources */,
@@ -673,6 +676,9 @@
 				96F64F89164E3BE4003E97AB /* ODFilesCollectionViewController.m in Sources */,
 				96F64F90164E3DDA003E97AB /* ODArcConstruktFile.m in Sources */,
 				9675BA541655E36A006A742D /* DropBlocks.m in Sources */,
+				9675BA571655F30A006A742D /* ODFileTools.m in Sources */,
+				9675BA5A16561012006A742D /* ODTransparencyButton.m in Sources */,
+				9675BA5F1656252E006A742D /* ODViewHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

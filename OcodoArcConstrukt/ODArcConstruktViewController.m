@@ -9,6 +9,7 @@
 #define MAXIMUM_LAYERS 150
 
 #import "ODArcConstruktViewController.h"
+#import "ODFileTools.h"
 
 @interface ODArcConstruktViewController ()
 
@@ -16,7 +17,7 @@
 
 @implementation ODArcConstruktViewController
 
-@synthesize arcConstruktView, gridView, layerStepper, titleView, mainToolbar, swatchBar, fillStrokeSelector, transparencyPicker, colorPicker, angleSelector, pinchSelector, layerOrderSelector;
+@synthesize arcConstruktView, gridView, layerStepper, titleView, mainToolbar, swatchBar, fillStrokeSelector, transparencyPicker, transparencyButton, colorPicker, angleSelector, pinchSelector, layerOrderSelector;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -139,12 +140,19 @@
 }
 
 - (void)initTransparencyGestures {
-    UIPanGestureRecognizer * panGesture =
-    [[UIPanGestureRecognizer alloc]
-     initWithTarget:self
-     action:@selector(handlePanTransparencyIndicator:)];
+    
+    // setup transparency picker.
+    UIPanGestureRecognizer * panGesture = [[UIPanGestureRecognizer alloc]
+                                           initWithTarget:self
+                                           action:@selector(handlePanTransparencyIndicator:)];
     [transparencyPicker addGestureRecognizer:panGesture];
-    [transparencyPicker setNeedsDisplay];
+    
+    // setup transparency toggle button.
+    UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc]
+                                          initWithTarget:self
+                                          action:@selector(transparencySelectorToggle:)];
+ 
+    [transparencyButton addGestureRecognizer:tapGesture];
 }
 
 - (void)initColorPicker {
@@ -277,18 +285,10 @@
 }
 
 - (void)addRandomArcLayer{
-    ODArcMachine *a = [[ODArcMachine alloc]
-                       initWithFrame:
-                       CGRectMake(0, 0, 320, 320)];
-    a.start = DEGREES_TO_RADIANS(arc4random()%360);
-    a.end = DEGREES_TO_RADIANS(MAX(arc4random()%360,10));
-    int r = MAX(arc4random()%159, 20);
-    a.radius = r;
-    int m = MIN(60,160-r);
-    a.thickness = MAX(arc4random() % m, 1);
-    a.fill = [self useCurrentFillColor];
-    a.stroke = [self useCurrentStrokeColor];
-    [arcConstruktView addSubview:a];
+    [arcConstruktView addSubview:[[ODArcMachine alloc]
+             initRandomWithFrame:CGRectMake(0, 0, 320, 320)
+                       fillColor:[self useCurrentFillColor]
+                     strokeColor:[self useCurrentStrokeColor]]];
 }
 
 - (IBAction)addButton:(id)sender {
@@ -359,12 +359,22 @@
     [gridView incrementGridMode];
 }
 
+- (IBAction)actionMenu:(id)sender {
+    UIActionSheet *testSheet = [UIActionSheet actionSheetWithTitle:@"Please select one."];
+    [testSheet addButtonWithTitle:@"Zip" handler:^{ NSLog(@"Zip!"); }];
+    [testSheet addButtonWithTitle:@"Zap" handler:^{ NSLog(@"Zap!"); }];
+    [testSheet addButtonWithTitle:@"Zop" handler:^{ NSLog(@"Zop!"); }];
+    [testSheet setDestructiveButtonWithTitle:@"No!" handler:^{ NSLog(@"Fine!"); }];
+    [testSheet setCancelButtonWithTitle:nil handler:^{ NSLog(@"Never mind, then!"); }];
+    [testSheet showInView:self.view];
+}
+
 - (void)handleConstruktLongPress:(UILongPressGestureRecognizer *)recognizer {
     [recognizer.view becomeFirstResponder];
     UIMenuController* mc = [UIMenuController sharedMenuController];
-    UIMenuItem* menu_angle_a = [[UIMenuItem alloc] initWithTitle:@"A" action:@selector(angleAMode:)];
-    UIMenuItem* menu_angle_b = [[UIMenuItem alloc] initWithTitle:@"B" action:@selector(angleBMode:)];
-    UIMenuItem* menu_radius = [[UIMenuItem alloc] initWithTitle:@"R" action:@selector(radiusMode:)];
+    UIMenuItem* menu_angle_a = [[UIMenuItem alloc] initWithTitle:@"A˚" action:@selector(angleAMode:)];
+    UIMenuItem* menu_angle_b = [[UIMenuItem alloc] initWithTitle:@"B˚" action:@selector(angleBMode:)];
+    UIMenuItem* menu_radius = [[UIMenuItem alloc] initWithTitle:@"r" action:@selector(radiusMode:)];
     UIMenuItem* menu_thickness = [[UIMenuItem alloc] initWithTitle:@"T" action:@selector(thicknessMode:)];
     UIMenuItem* menu_copy = [[UIMenuItem alloc] initWithTitle:@"Copy" action:@selector(copyArc:)];
     UIMenuItem* menu_paste = [[UIMenuItem alloc] initWithTitle:@"Paste" action:@selector(pasteArc:)];
@@ -596,7 +606,17 @@
                           delay:0
                         options: UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         self.mainToolbar.frame = CGRectMake(x,
+                         if(x != -320) {
+                             transparencyPicker.frame = CGRectMake(-310,
+                                                                   transparencyPicker.frame.origin.y,
+                                                                   transparencyPicker.frame.size.width,
+                                                                   transparencyPicker.frame.size.height);
+                             colorPicker.frame = CGRectMake(640,
+                                                            colorPicker.frame.origin.y,
+                                                            colorPicker.frame.size.width,
+                                                            colorPicker.frame.size.height);
+                         }
+                         mainToolbar.frame = CGRectMake(x,
                                                              mainToolbar.frame.origin.y,
                                                              mainToolbar.frame.size.width,
                                                              mainToolbar.frame.size.height);
@@ -609,75 +629,40 @@
     [self moveToolbar:sender.selectedSegmentIndex];
 }
 
-- (NSString *)compositionToSVG {
-    NSMutableArray *a = [[NSMutableArray alloc] initWithArray:
-                         @[@"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 320\">",
-                         @"<g transform=\"translate(160,160)\">"]];
-
-    for (ODArcMachine *arcMachine in arcConstruktView.subviews) {
-        [a addObject:[arcMachine SVGArc]];
-    }
-
-    [a addObjectsFromArray:@[@"</g>", @"</svg>"]];
-    return [a componentsJoinedByString:@"\n"];
-}
-
-- (IBAction)saveComposition:(id)sender {
+- (void)saveComposition:(id)sender {
     if (arcConstruktView.subviews.count < 1) {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Press + to add Arcs"];
         return;
     }
     
-    [self deselect];
     DZProgressController *HUD = [DZProgressController new];
     HUD.label.text = @"Saving ArcConstrukt";
     [HUD showWhileExecuting:^{
-        ODArcConstruktFile *file = [ODArcConstruktFile new];
-        file.layers = [[NSMutableArray alloc] init];
-        for (ODArcMachine *arcMachine in arcConstruktView.subviews) {
-            [file.layers addObject:[arcMachine geometryToDictionary]];
-        }
+        ODArcConstruktFile *file = [[ODArcConstruktFile alloc] initWithArcMachineSubviews:arcConstruktView.subviews];
+
         UIGraphicsBeginImageContextWithOptions(arcConstruktView.bounds.size, NO, 0.5);
         [arcConstruktView.layer renderInContext:UIGraphicsGetCurrentContext()];
+
         file.thumbnail = [UIImage imageWithData:
-                             UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext())];
+                          UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext())];
+
         int ti = [[NSDate date] timeIntervalSince1970];
-        
         file.filename = [NSString stringWithFormat:@"ArcConstrukt-%X", ti];
 
-        NSString *fullPath = [[self compositionsDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", file.filename]];
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject: file];
-        [[NSFileManager defaultManager] createFileAtPath:fullPath contents:data attributes:nil];
-                
+        [ODFileTools save:file.filename documentsFolder:@"compositions" data:[NSKeyedArchiver archivedDataWithRootObject: file]];
+        
+        [ODFileTools save:file.filename extension:@".svg" documentsFolder:@"svg" data:[file asSVGEncoded]];
+        
         return;
     }];
-}
-
--(IBAction)saveToSVG:(id)sender {
-    if (arcConstruktView.subviews.count < 1) {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Press + to add Arcs"];
-        return;
-    }
-    [self deselect];
-    [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Exporting to SVG"];
-    int ti = [[NSDate date] timeIntervalSince1970];
-    NSString *filename = [NSString stringWithFormat:@"ArcConstrukt-%X.svg", ti];
-    NSString *fullPath = [[self svgDirectory] stringByAppendingPathComponent:filename];
-    NSString *svg = [self compositionToSVG];
-    NSFileManager *fm = [NSFileManager defaultManager];
-    [fm createFileAtPath:fullPath contents:[svg dataUsingEncoding:NSUTF8StringEncoding] attributes:nil];
-    [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Export complete, access saved SVG with iTunes"];
 }
 
 - (void)loadComposition:(NSString*) filename {
     @try {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:@"Loaded %@", filename]];
         [self clearButton:nil];
-        NSString *fullPath = [[self compositionsDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", filename]];
-        ODArcConstruktFile *file = [NSKeyedUnarchiver unarchiveObjectWithFile:fullPath];
-        for (NSDictionary *geometry in file.layers) {
-            ODArcMachine *arc = [[ODArcMachine alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
-            [arc geometryFromDictionary:geometry];
+        ODArcConstruktFile *file = [ODFileTools load:filename documentsFolder:@"compositions"];
+        for (ODArcMachine *arc in [file layersToArcMachines]) {
             [arcConstruktView addSubview:arc];
         }
         [self resetStepper];
@@ -687,36 +672,6 @@
         [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:@"Failed to load %@", filename]];
     }
     [arcConstruktView setNeedsDisplay];
-}
-
--(NSString *) compositionsDirectory {
-
-    NSString *docs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSString *compositions = [docs stringByAppendingPathComponent:@"compositions"];
-    
-    NSFileManager *fm = [NSFileManager defaultManager];
-
-    if(![fm fileExistsAtPath:compositions]) {
-        NSError *error;
-        [fm createDirectoryAtPath:compositions withIntermediateDirectories:NO attributes:nil error:&error];
-    }
-
-    return compositions;
-}
-
--(NSString *) svgDirectory {
-    
-    NSString *docs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSString *svg = [docs stringByAppendingPathComponent:@"svg"];
-    
-    NSFileManager *fm = [NSFileManager defaultManager];
-    
-    if(![fm fileExistsAtPath:svg]) {
-        NSError *error;
-        [fm createDirectoryAtPath:svg withIntermediateDirectories:NO attributes:nil error:&error];
-    }
-    
-    return svg;
 }
 
 - (IBAction)importColorsFromPasteboard:(id)sender {

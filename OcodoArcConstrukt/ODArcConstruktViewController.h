@@ -21,6 +21,7 @@
 #import "NPColorPickerView.h"
 #import "ODSwatchPicker.h"
 #import "ODTransparencyPicker.h"
+#import "ODTransparencyButton.h"
 #import "CGColor+Additions.h"
 #import "ODFilesCollectionViewController.h"
 #import "ODArcConstruktFile.h"
@@ -47,6 +48,8 @@
 @property (readonly) IBOutlet UIStepper *layerStepper;
 
 @property (readonly) IBOutlet ODTransparencyPicker *transparencyPicker;
+@property (readonly) IBOutlet ODTransparencyButton *transparencyButton;
+
 @property (readonly) IBOutlet ODSwatchPicker *swatchBar;
 @property (readonly) IBOutlet NPColorPickerView *colorPicker;
 

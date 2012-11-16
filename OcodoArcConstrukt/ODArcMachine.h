@@ -36,10 +36,13 @@
 @property (nonatomic, retain) UIColor *savedFill;
 @property (nonatomic, retain) UIColor *savedStroke;
 
--(void)selectArc;
--(void)deselectArc;
--(void) geometryFromDictionary: (NSDictionary *) plist;
--(NSDictionary *) geometryToDictionary;
--(NSString *) SVGArc;
+- (void)selectArc;
+- (void)deselectArc;
+- (void)geometryFromDictionary:(NSDictionary *)plist;
+- (NSDictionary *)geometryToDictionary;
+- (NSString *)SVGArc;
 
+- (id)initWithDictionary:(NSDictionary *)plist frame:(CGRect)frame;
+- (id)initWithArcMachine:(ODArcMachine *)arcMachine frame:(CGRect)frame;
+- (id)initRandomWithFrame:(CGRect)frame fillColor:(UIColor*)fillColor strokeColor:(UIColor*)strokeColor;
 @end

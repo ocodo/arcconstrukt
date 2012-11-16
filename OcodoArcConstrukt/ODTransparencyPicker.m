@@ -9,6 +9,7 @@
 static inline double radians (double degrees) { return degrees * M_PI/180; }
 
 #import "ODTransparencyPicker.h"
+#import "ODViewHelpers.h"
 #import <QuartzCore/QuartzCore.h>
 #import <Foundation/Foundation.h>
 
@@ -47,17 +48,17 @@ static inline double radians (double degrees) { return degrees * M_PI/180; }
 
 - (void)drawRect:(CGRect)rect
 {
-    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
     
     CGColorRef bgColor = [UIColor grayColor].CGColor;
-    CGContextSetFillColorWithColor(context, bgColor);
-    CGContextFillRect(context, rect);
+    CGContextSetFillColorWithColor(ctx, bgColor);
+    CGContextFillRect(ctx, rect);
     
     static const CGPatternCallbacks callbacks = { 0, &drawCheckerBoard, NULL };
     
-    CGContextSaveGState(context);
+    CGContextSaveGState(ctx);
     CGColorSpaceRef patternSpace = CGColorSpaceCreatePattern(NULL);
-    CGContextSetFillColorSpace(context, patternSpace);
+    CGContextSetFillColorSpace(ctx, patternSpace);
     CGColorSpaceRelease(patternSpace);
     
     CGPatternRef pattern = CGPatternCreate(NULL,
@@ -69,50 +70,19 @@ static inline double radians (double degrees) { return degrees * M_PI/180; }
                                            true,
                                            &callbacks);
     CGFloat alpha = 1.0;
-    CGContextSetFillPattern(context, pattern, &alpha);
+    CGContextSetFillPattern(ctx, pattern, &alpha);
     CGPatternRelease(pattern);
-    CGContextFillRect(context, self.bounds);
+    CGContextFillRect(ctx, self.bounds);
     
-    CGFloat darkColors [] = {
-        0.0, 0.0, 0.0, 1.0,
-        0.0, 0.0, 0.0, 0.0
-    };
-    
-    [self drawGradient:darkColors context:context rect:rect];
-
-    CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:0 alpha:0.8].CGColor);
-    CGContextFillRect(context, CGRectMake(pickerPoint.x, 0, 9, rect.size.height));
-}
-
-- (void)drawGradient:(CGFloat*)colors context:(CGContextRef)context rect:(CGRect)rect
-{
-    CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
-    CGGradientRef gradient = CGGradientCreateWithColorComponents(baseSpace, colors, NULL, 2);
-    CGColorSpaceRelease(baseSpace), baseSpace = NULL;
-    
-    CGContextSaveGState(context);
-    CGContextAddRect(context, rect);
-    CGContextClip(context);
+    NSArray *darkColors = @[(id)[UIColor colorWithWhite:0 alpha:1].CGColor, (id)[UIColor colorWithWhite:0 alpha:0].CGColor];
     
     CGPoint startPoint = CGPointMake(CGRectGetMinX(rect), CGRectGetMinY(rect));
     CGPoint endPoint = CGPointMake(CGRectGetMaxX(rect), CGRectGetMinY(rect));
-    
-    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
-    CGGradientRelease(gradient), gradient = NULL;
-    CGContextRestoreGState(context);
-    
-}
 
-void drawCheckerBoard (void *info, CGContextRef context){
+    drawGradient(darkColors, ctx, NULL, startPoint, endPoint, rect);
 
-    CGColorRef lightColor = [UIColor whiteColor].CGColor;
-    
-    CGContextSetFillColorWithColor(context, lightColor);
-    
-    CGContextAddRect(context, CGRectMake(0, 0, 10, 10));
-    CGContextAddRect(context, CGRectMake(10, 10, 10, 10));
-    
-    CGContextFillPath(context);
+    CGContextSetFillColorWithColor(ctx, [UIColor colorWithWhite:0 alpha:0.8].CGColor);
+    CGContextFillRect(ctx, CGRectMake(pickerPoint.x, 0, 9, rect.size.height));
 }
 
 @end

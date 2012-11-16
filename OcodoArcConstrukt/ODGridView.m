@@ -22,30 +22,30 @@
     return self;
 }
 
--(void) drawNumGrid:(int)n rect:(CGRect)rect context:(CGContextRef)context {
-	CGContextSetLineWidth(context, 0.1f);
-	CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
-	CGContextBeginPath(context);
+-(void) drawNumGrid:(int)n rect:(CGRect)rect context:(CGContextRef)ctx {
+	CGContextSetLineWidth(ctx, 0.1f);
+	CGContextSetStrokeColorWithColor(ctx, [UIColor whiteColor].CGColor);
+	CGContextBeginPath(ctx);
 
     for (int i=0; i<=n; i++) {
         float v = i*(rect.size.width/n);
-        CGContextMoveToPoint(context, v, 0);
-        CGContextAddLineToPoint(context, v, rect.size.width);
-        CGContextMoveToPoint(context, 0, v);
-        CGContextAddLineToPoint(context, rect.size.width, v);
+        CGContextMoveToPoint(ctx, v, 0);
+        CGContextAddLineToPoint(ctx, v, rect.size.width);
+        CGContextMoveToPoint(ctx, 0, v);
+        CGContextAddLineToPoint(ctx, rect.size.width, v);
     }
-   	CGContextDrawPath(context, kCGPathStroke);
+   	CGContextDrawPath(ctx, kCGPathStroke);
 }
 
--(void) drawPolarGrid:(float)angle rect:(CGRect)rect context:(CGContextRef)context {
+-(void) drawPolarGrid:(float)angle rect:(CGRect)rect context:(CGContextRef)ctx {
     
-    [self drawNumGrid:1 rect:rect context:context];
+    [self drawNumGrid:1 rect:rect context:ctx];
     
-    CGContextTranslateCTM(context, CGRectGetMidX(rect), CGRectGetMidY(rect));
-    CGContextRotateCTM(context, DEGREES_TO_RADIANS(270));
-    CGContextSetLineWidth(context, 0.1f);
-	CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:1 alpha:0.7].CGColor);
-	CGContextBeginPath(context);
+    CGContextTranslateCTM(ctx, CGRectGetMidX(rect), CGRectGetMidY(rect));
+    CGContextRotateCTM(ctx, DEGREES_TO_RADIANS(270));
+    CGContextSetLineWidth(ctx, 0.1f);
+	CGContextSetStrokeColorWithColor(ctx, [UIColor colorWithWhite:1 alpha:0.7].CGColor);
+	CGContextBeginPath(ctx);
     
     float radius = sqrtf( powf(rect.size.width, 2.0f) + powf(rect.size.height, 2.0f) );
     float spin = 0;
@@ -53,12 +53,12 @@
     while(spin < M_PI*2) {
         CGFloat ax = radius * cos(spin);
         CGFloat ay = radius * sin(spin);
-        CGContextMoveToPoint(context, 0, 0);
-        CGContextAddLineToPoint(context, ax, ay);
+        CGContextMoveToPoint(ctx, 0, 0);
+        CGContextAddLineToPoint(ctx, ax, ay);
         spin += angle;
     }
     
-    CGContextDrawPath(context, kCGPathStroke);
+    CGContextDrawPath(ctx, kCGPathStroke);
 }
 
 //*

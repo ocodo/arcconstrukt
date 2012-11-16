@@ -56,7 +56,7 @@
                                           delegate:self
                                           cancelButtonTitle:@"Cancel"
                                           destructiveButtonTitle:@"Delete"
-                                          otherButtonTitles:nil];
+                                          otherButtonTitles:@"Share to Dropbox", @"Share as Email", nil];
             actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
             
             UICollectionViewCell *itemCell = [self.collectionView cellForItemAtIndexPath:indexPath];
@@ -67,11 +67,27 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSLog(@"Button: %i : %@", buttonIndex, [actionSheet buttonTitleAtIndex:buttonIndex]);
-    if(buttonIndex == 0)
-    {
-        [self delete:currentIndexPath];
+    switch (buttonIndex) {
+        case 0:
+            [self delete:self];
+            break;
+        case 1:
+            [self shareToDropbox];
+            break;
+        case 2:
+            [self shareAsEmail];
+            break;
+        
+    default:
+        break;
     }
 }
+
+#pragma mark - sharing
+
+-(void)shareToDropbox {}
+
+-(void)shareAsEmail {}
 
 #pragma mark - delete
 - (void)delete:(id)sender {
