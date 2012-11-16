@@ -661,7 +661,7 @@
 
         [ODFileTools save:file.filename documentsFolder:@"arcmachines" data:[NSKeyedArchiver archivedDataWithRootObject: file]];
         
-        [ODFileTools save:file.filename extension:@".svg" documentsFolder:@"svg" data:[file asSVGEncoded]];
+        [ODFileTools save:file.filename extension:@"svg" documentsFolder:@"svg" data:[file asSVGEncoded]];
         
         return;
     }];

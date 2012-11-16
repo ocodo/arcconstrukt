@@ -7,6 +7,7 @@
 //
 
 #import "ODColorPalette.h"
+#import "CGColor+Additions.h"
 
 @implementation ODColorPalette
 
@@ -29,12 +30,12 @@
         
         colors = [[NSMutableArray alloc] initWithArray:@[
                   
-                  [UIColor colorWithRed:0.658824 green:0.639216 blue:0.556863 alpha:1.0f],
-                  [UIColor colorWithRed:0.513726 green:0.486275 blue:0.403922 alpha:1.0f],
-                  [UIColor colorWithRed:0.913725 green:0.709804 blue:0.254902 alpha:1.0f],
-                  [UIColor colorWithRed:0.792157 green:0.768627 blue:0.709804 alpha:1.0f],
-                  [UIColor colorWithRed:0.901961 green:0.886275 blue:0.847059 alpha:1.0f],
-                  [UIColor colorWithRed:0.254902 green:0.227451 blue:0.180392 alpha:1.0f]
+                  [UIColor colorWithRGBHexString:@"343838"],
+                  [UIColor colorWithRGBHexString:@"005F6B"],
+                  [UIColor colorWithRGBHexString:@"008C9E"],
+                  [UIColor colorWithRGBHexString:@"00B4CC"],
+                  [UIColor colorWithRGBHexString:@"E4844A"],
+                  [UIColor colorWithRGBHexString:@"EDF6EE"]
                   
                   ]];
     }

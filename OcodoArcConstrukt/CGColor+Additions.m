@@ -29,6 +29,28 @@
             alpha:1.0];
 }
 
++ (UIColor *)colorWithRGBHexString:(NSString *)string alpha:(CGFloat)alpha {
+    
+	unsigned int colorCode = 0;
+    unsigned char redByte, greenByte, blueByte;
+	
+	if (nil != string)
+	{
+		NSScanner *scanner = [NSScanner scannerWithString:string];
+		(void) [scanner scanHexInt:&colorCode];
+	}
+    
+	redByte		= (unsigned char) (colorCode >> 16);
+	greenByte	= (unsigned char) (colorCode >> 8);
+	blueByte	= (unsigned char) (colorCode);
+	
+    return [UIColor
+            colorWithRed:(float)redByte	/ 0xff
+            green:(float)greenByte / 0xff
+            blue:(float)blueByte / 0xff
+            alpha:alpha];
+}
+
 /**
  Read an NSDictionary containing r,g,b,a or red,green,blue,alpha keys.
  

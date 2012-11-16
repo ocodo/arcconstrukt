@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <DropboxSDK/DropboxSDK.h>
+#import <MessageUI/MessageUI.h>
+
 #import "ODFilesCollectionViewCell.h"
 #import "ODArcConstruktFile.h"
 #import "TKAlertCenter.h"
+#import "DropBlocks.h"
+#import "ODFileTools.h"
+#import "DZProgressController.h"
 
-@interface ODFilesCollectionViewController : UICollectionViewController <UIActionSheetDelegate>
+@interface ODFilesCollectionViewController : UICollectionViewController <MFMailComposeViewControllerDelegate>
 
 @property NSIndexPath *currentIndexPath;
 @property NSMutableArray *fileList;

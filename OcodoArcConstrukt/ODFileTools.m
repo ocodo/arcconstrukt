@@ -22,6 +22,10 @@
     return [NSKeyedUnarchiver unarchiveObjectWithFile:[ODFileTools fullPath:filename documentsFolder:folder]];
 }
 
++ (NSData*) loadNSData:(NSString *)filename documentsFolder:(NSString*)folder {
+    return [NSData dataWithContentsOfFile:[ODFileTools fullPath:filename documentsFolder:folder]];
+}
+
 + (id) load:(NSString *)filename extension:(NSString*)extension documentsFolder:(NSString*)folder {
     return [NSKeyedUnarchiver unarchiveObjectWithFile:[ODFileTools fullPath:filename extension:extension documentsFolder:folder]];
 }
@@ -70,7 +74,7 @@
 
 + (NSString*) fullPath:(NSString*)filename extension:(NSString*)extension documentsFolder:(NSString*)folder {
     NSString *docsFolder = [ODFileTools documentsFolder:folder];
-    return [docsFolder stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", filename, extension]];
+    return [[docsFolder stringByAppendingPathComponent:filename] stringByAppendingPathExtension:extension];
 }
 
 @end

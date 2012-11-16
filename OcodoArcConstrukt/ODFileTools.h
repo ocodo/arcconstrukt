@@ -14,6 +14,7 @@
 + (void) save:(NSString *)filename extension:(NSString*)extension documentsFolder:(NSString*)folder data:(NSData*)data;
 + (id) load:(NSString *)filename documentsFolder:(NSString*)folder;
 + (id) load:(NSString *)filename extension:(NSString*)extension documentsFolder:(NSString*)folder;
++ (NSData*) loadNSData:(NSString *)filename documentsFolder:(NSString*)folder;
 + (void) delete:(NSString *)filename documentsFolder:(NSString*)folder;
 + (void) delete:(NSString *)filename extension:(NSString*)extension documentsFolder:(NSString*)folder;
 + (NSString*) documentsFolder:(NSString*)folder;
