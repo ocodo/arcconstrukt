@@ -10,6 +10,7 @@
 
 #import "ODArcConstruktViewController.h"
 #import "ODFileTools.h"
+#import "PSPDFActionSheet.h"
 
 @interface ODArcConstruktViewController ()
 
@@ -360,13 +361,22 @@
 }
 
 - (IBAction)actionMenu:(id)sender {
-    UIActionSheet *testSheet = [UIActionSheet actionSheetWithTitle:@"Please select one."];
-    [testSheet addButtonWithTitle:@"Zip" handler:^{ NSLog(@"Zip!"); }];
-    [testSheet addButtonWithTitle:@"Zap" handler:^{ NSLog(@"Zap!"); }];
-    [testSheet addButtonWithTitle:@"Zop" handler:^{ NSLog(@"Zop!"); }];
-    [testSheet setDestructiveButtonWithTitle:@"No!" handler:^{ NSLog(@"Fine!"); }];
-    [testSheet setCancelButtonWithTitle:nil handler:^{ NSLog(@"Never mind, then!"); }];
-    [testSheet showInView:self.view];
+    PSPDFActionSheet *actionSheet = [[PSPDFActionSheet alloc] initWithTitle:@"Choose an Action"];
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+    [actionSheet setDestructiveButtonWithTitle:@"Save PNG to Camera Roll" block:^{
+        [self savePNGImagetoPhotoAlbum:self];
+    }];
+    [actionSheet addButtonWithTitle:@"Import Colors" block:^{
+        [self importColorsFromPasteboard:self];
+    }];
+    [actionSheet addButtonWithTitle:@"Save ArcMachine" block:^{
+        [self saveComposition:self];
+    }];
+    [actionSheet addButtonWithTitle:@"My ArcMachines" block:^{
+        [self performSegueWithIdentifier:@"filesViewSegue" sender:self];
+    }];
+    [actionSheet setCancelButtonWithTitle:@"Cancel" block:nil];
+    [actionSheet showInView:[self view]];
 }
 
 - (void)handleConstruktLongPress:(UILongPressGestureRecognizer *)recognizer {
