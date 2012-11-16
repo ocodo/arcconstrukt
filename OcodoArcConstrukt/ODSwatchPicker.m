@@ -55,6 +55,24 @@
         CGContextFillRect(context, CGRectMake(space*i, 0, space, rect.size.height));
         i++;
     }
+
+
+}
+
+- (void)drawGradient:(CGFloat*)colors context:(CGContextRef)context rect:(CGRect)rect startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint
+{
+    CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
+    CGGradientRef gradient = CGGradientCreateWithColorComponents(baseSpace, colors, NULL, 2);
+    CGColorSpaceRelease(baseSpace), baseSpace = NULL;
+    
+    CGContextSaveGState(context);
+    CGContextAddRect(context, rect);
+    CGContextClip(context);
+    
+    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
+    CGGradientRelease(gradient), gradient = NULL;
+    CGContextRestoreGState(context);
+    
 }
 
 - (int)colorIndexAtPoint:(CGPoint)point {

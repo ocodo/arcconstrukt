@@ -44,7 +44,7 @@
     CGContextTranslateCTM(context, CGRectGetMidX(rect), CGRectGetMidY(rect));
     CGContextRotateCTM(context, DEGREES_TO_RADIANS(270));
     CGContextSetLineWidth(context, 0.1f);
-	CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
+	CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:1 alpha:0.7].CGColor);
 	CGContextBeginPath(context);
     
     float radius = sqrtf( powf(rect.size.width, 2.0f) + powf(rect.size.height, 2.0f) );
@@ -70,40 +70,30 @@
     
     switch (gridMode) {
         case 1:
-            [self drawNumGrid:2 rect:rect context:ctx];
+            [self drawPolarGrid:DEGREES_TO_RADIANS(10) rect:rect context:ctx];
             break;
         case 2:
-            [self drawNumGrid:4 rect:rect context:ctx];
-            break;
-        case 3:
-            [self drawNumGrid:6 rect:rect context:ctx];
-            break;
-        case 4:
-            [self drawNumGrid:8 rect:rect context:ctx];
-            break;
-        case 5:
-            [self drawNumGrid:10 rect:rect context:ctx];
-            break;
-        case 6:
             [self drawPolarGrid:DEGREES_TO_RADIANS(15) rect:rect context:ctx];
             break;
-        case 7:
+        case 3:
             [self drawPolarGrid:DEGREES_TO_RADIANS(20) rect:rect context:ctx];
             break;
-        case 8:
+        case 4:
             [self drawPolarGrid:DEGREES_TO_RADIANS(30) rect:rect context:ctx];
             break;
-        case 9:
+        case 5:
             [self drawPolarGrid:DEGREES_TO_RADIANS(45) rect:rect context:ctx];
             break;
-        case 10:
+        case 6:
             [self drawPolarGrid:DEGREES_TO_RADIANS(60) rect:rect context:ctx];
             break;
-        case 11:
+        case 7:
             [self drawPolarGrid:DEGREES_TO_RADIANS(120) rect:rect context:ctx];
             break;
             
         default:
+            [self drawNumGrid:1 rect:rect context:ctx];
+
             break;
     }
 }
@@ -111,7 +101,7 @@
 
 - (void) incrementGridMode {
     gridMode++;
-    gridMode = gridMode % 12;
+    gridMode = gridMode % 8;
     [self setNeedsDisplay];
 }
 

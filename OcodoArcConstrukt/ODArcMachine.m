@@ -13,14 +13,19 @@
 
 @synthesize x, y, start, end, radius, thickness, fill, stroke, savedFill, savedStroke;
 
-- (void) setValuesFrom: (ODArcMachine *) arcMachine {
-    start = arcMachine.start;
-    end = arcMachine.end;
-    radius = arcMachine.radius;
-    thickness = arcMachine.thickness;
-    stroke = arcMachine.savedStroke;
-    fill = arcMachine.savedFill;
-    [self setNeedsDisplay];
+- (id) initWithArcMachine: (ODArcMachine *) arcMachine frame:(CGRect)frame {
+    self = [self initWithFrame:frame];
+    if(self) {
+        self.x = arcMachine.x;
+        self.y = arcMachine.y;
+        self.start = arcMachine.start;
+        self.end = arcMachine.end;
+        self.radius = arcMachine.radius;
+        self.thickness = arcMachine.thickness;
+        self.stroke = arcMachine.savedStroke;
+        self.fill = arcMachine.savedFill;
+    }
+    return self;
 }
 
 - (id)initWithFrame:(CGRect)frame

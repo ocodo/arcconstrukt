@@ -15,6 +15,10 @@
 		9635435F1644CF380002FAB6 /* ArcConstruktIPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9635435D1644CF380002FAB6 /* ArcConstruktIPad.png */; };
 		963543601644CF380002FAB6 /* ArcConstruktIPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9635435E1644CF380002FAB6 /* ArcConstruktIPad@2x.png */; };
 		96354370164543110002FAB6 /* ODCurrentArcObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9635436F164543110002FAB6 /* ODCurrentArcObject.m */; };
+		9675BA4C1655DA73006A742D /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9675BA4B1655DA73006A742D /* DropboxSDK.framework */; };
+		9675BA4F1655DA85006A742D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9675BA4E1655DA85006A742D /* Security.framework */; };
+		9675BA511655DA8B006A742D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9675BA501655DA8B006A742D /* MessageUI.framework */; };
+		9675BA541655E36A006A742D /* DropBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 9675BA531655E36A006A742D /* DropBlocks.m */; };
 		96A4796716474649009ADCF8 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A4796616474648009ADCF8 /* UIView+Hierarchy.m */; };
 		96A4796D1647578C009ADCF8 /* back_one.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A479691647578C009ADCF8 /* back_one.png */; };
 		96A4796E1647578C009ADCF8 /* back_one@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A4796A1647578C009ADCF8 /* back_one@2x.png */; };
@@ -125,6 +129,11 @@
 		9635435E1644CF380002FAB6 /* ArcConstruktIPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ArcConstruktIPad@2x.png"; sourceTree = "<group>"; };
 		9635436E164543100002FAB6 /* ODCurrentArcObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODCurrentArcObject.h; sourceTree = "<group>"; };
 		9635436F164543110002FAB6 /* ODCurrentArcObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODCurrentArcObject.m; sourceTree = "<group>"; };
+		9675BA4B1655DA73006A742D /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
+		9675BA4E1655DA85006A742D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		9675BA501655DA8B006A742D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		9675BA521655E36A006A742D /* DropBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropBlocks.h; sourceTree = "<group>"; };
+		9675BA531655E36A006A742D /* DropBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropBlocks.m; sourceTree = "<group>"; };
 		96A4796516474648009ADCF8 /* UIView+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Hierarchy.h"; sourceTree = "<group>"; };
 		96A4796616474648009ADCF8 /* UIView+Hierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Hierarchy.m"; sourceTree = "<group>"; };
 		96A479691647578C009ADCF8 /* back_one.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_one.png; sourceTree = "<group>"; };
@@ -255,10 +264,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9675BA511655DA8B006A742D /* MessageUI.framework in Frameworks */,
+				9675BA4F1655DA85006A742D /* Security.framework in Frameworks */,
 				96FADBDF163A5F4D004706F9 /* QuartzCore.framework in Frameworks */,
 				96FADBAD1639249D004706F9 /* UIKit.framework in Frameworks */,
 				96FADBAF1639249D004706F9 /* Foundation.framework in Frameworks */,
 				96FADBB11639249D004706F9 /* CoreGraphics.framework in Frameworks */,
+				9675BA4C1655DA73006A742D /* DropboxSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +370,9 @@
 		96FADBAB1639249C004706F9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9675BA501655DA8B006A742D /* MessageUI.framework */,
+				9675BA4E1655DA85006A742D /* Security.framework */,
+				9675BA4B1655DA73006A742D /* DropboxSDK.framework */,
 				96FADBDE163A5F4D004706F9 /* QuartzCore.framework */,
 				96FADBAC1639249C004706F9 /* UIKit.framework */,
 				96FADBAE1639249D004706F9 /* Foundation.framework */,
@@ -471,6 +486,8 @@
 		96FADC7116424351004706F9 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				9675BA521655E36A006A742D /* DropBlocks.h */,
+				9675BA531655E36A006A742D /* DropBlocks.m */,
 				96F64F5D1648B80D003E97AB /* CGColor+Additions.h */,
 				96F64F5E1648B80D003E97AB /* CGColor+Additions.m */,
 				96F64F611648B80D003E97AB /* NPConicGradient.h */,
@@ -655,6 +672,7 @@
 				96F64F86164E3B09003E97AB /* ODFilesCollectionViewCell.m in Sources */,
 				96F64F89164E3BE4003E97AB /* ODFilesCollectionViewController.m in Sources */,
 				96F64F90164E3DDA003E97AB /* ODArcConstruktFile.m in Sources */,
+				9675BA541655E36A006A742D /* DropBlocks.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
