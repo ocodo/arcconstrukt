@@ -659,7 +659,7 @@
         int ti = [[NSDate date] timeIntervalSince1970];
         file.filename = [NSString stringWithFormat:@"ArcConstrukt-%X", ti];
 
-        [ODFileTools save:file.filename documentsFolder:@"compositions" data:[NSKeyedArchiver archivedDataWithRootObject: file]];
+        [ODFileTools save:file.filename documentsFolder:@"arcmachines" data:[NSKeyedArchiver archivedDataWithRootObject: file]];
         
         [ODFileTools save:file.filename extension:@".svg" documentsFolder:@"svg" data:[file asSVGEncoded]];
         
@@ -671,7 +671,7 @@
     @try {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:@"Loaded %@", filename]];
         [self clearButton:nil];
-        ODArcConstruktFile *file = [ODFileTools load:filename documentsFolder:@"compositions"];
+        ODArcConstruktFile *file = [ODFileTools load:filename documentsFolder:@"arcmachines"];
         for (ODArcMachine *arc in [file layersToArcMachines]) {
             [arcConstruktView addSubview:arc];
         }

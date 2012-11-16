@@ -7,6 +7,11 @@
 //
 
 #import "ODFilesCollectionViewController.h"
+#import <DropboxSDK/DropboxSDK.h>
+#import "DropBlocks.h"
+#import "ODFileTools.h"
+#import "DZProgressController.h"
+#import <MessageUI/MessageUI.h>
 
 @interface ODFilesCollectionViewController ()
 
@@ -29,7 +34,7 @@
 {
     [super viewDidLoad];
     if([[self listFiles] count] < 1) {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"No ArcConstrukt saved yet"];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"No ArcMachines saved yet"];
         return;
     }
     
@@ -85,9 +90,58 @@
 
 #pragma mark - sharing
 
--(void)shareToDropbox {}
+- (void)shareToDropbox {
+    if (![[DBSession sharedSession] isLinked]) {
+        [[DBSession sharedSession] linkFromController:[self.navigationController.viewControllers objectAtIndex:0]];
+    } else {
+        DZProgressController *HUD = [[DZProgressController alloc] init];
+        [HUD setMode:DZProgressControllerModeDeterminate];
+        [HUD show];
+        [self uploadCompositionToDropbox:HUD];
+    }
+}
 
--(void)shareAsEmail {}
+- (void)uploadCompositionToDropbox:(DZProgressController*)HUD {
+    NSString *filename = [[self listFiles] objectAtIndex:currentIndexPath.item];
+    [DropBlocks uploadFile:filename toPath:@"/"
+             withParentRev:nil fromPath:[ODFileTools fullPath:filename documentsFolder:@"arcmachines"]
+           completionBlock:^(DBMetadata *metadata, NSError *error) {
+               [self uploadSvgToDropbox:HUD];
+           } progressBlock:^(CGFloat progress) {
+               HUD.progress = progress;
+           }];
+}
+
+- (void)uploadSvgToDropbox:(DZProgressController*)HUD {
+    NSString *filename = [[[self listFiles] objectAtIndex:currentIndexPath.item] stringByAppendingPathExtension:@"svg"];
+
+    [DropBlocks uploadFile:filename toPath:@"/"
+             withParentRev:nil fromPath:[ODFileTools fullPath:filename documentsFolder:@"svg"]
+           completionBlock:^(DBMetadata *metadata, NSError *error) {
+               [HUD hide];
+               [[TKAlertCenter defaultCenter] postAlertWithMessage:@"ArcMachine and SVG uploaded to Dropbox"];
+           } progressBlock:^(CGFloat progress) {
+               HUD.progress = progress;
+           }];
+}
+
+- (void)shareAsEmail {
+    if( [MFMailComposeViewController canSendMail] ) {
+        MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc]init];
+        
+        NSString *filename = [[self listFiles] objectAtIndex:currentIndexPath.item];
+        NSString *svgFilename = [[[self listFiles] objectAtIndex:currentIndexPath.item] stringByAppendingPathExtension:@"svg"];
+        [mailer setSubject:@"My Shiny New ArcMachine"];
+        [mailer addAttachmentData:[ODFileTools load:svgFilename documentsFolder:@"svg"] mimeType:@"image/svg+xml" fileName:svgFilename];
+        [mailer addAttachmentData:[ODFileTools load:filename documentsFolder:@"arcmachines"] mimeType:@"application/octet-stream" fileName:filename];
+        
+        [self presentViewController:mailer animated:YES completion:^{
+            [[TKAlertCenter defaultCenter] postAlertWithMessage:@"ArcMachine and SVG Sent as Email"];
+        }];
+    } else {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Cannot Send Email"];
+    }
+}
 
 #pragma mark - delete
 - (void)delete:(id)sender {
@@ -95,7 +149,7 @@
     [self.collectionView performBatchUpdates:^{
         
         NSString *filename = [[self fileList] objectAtIndex:currentIndexPath.item];
-        NSString *fullpath = [[self compositionsDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", filename]];
+        NSString *fullpath = [[ODFileTools documentsFolder:@"arcmachines"] stringByAppendingPathComponent:filename];
         [self deleteFile:fullpath];
         
         [fileList removeObjectAtIndex:currentIndexPath.item];
@@ -158,38 +212,26 @@
     return YES;
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
 
 #pragma mark - utility methods
 
 -(UIImage *)loadThumbnail:(NSString *)filename {
-    NSString *fullPath =  [[self compositionsDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", filename]];
-    ODArcConstruktFile *file = [NSKeyedUnarchiver unarchiveObjectWithFile:fullPath];
-    return file.thumbnail;
-}
-
--(NSArray *)listFiles
-{
-    NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[self compositionsDirectory] error:NULL];
-    return directoryContent;
-}
-
--(NSString *) compositionsDirectory {
-    
-    NSString *docs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSString *compositions = [docs stringByAppendingPathComponent:@"compositions"];
-    
-    NSFileManager *fm = [NSFileManager defaultManager];
-    
-    if(![fm fileExistsAtPath:compositions]) {
-        NSError *error;
-        [fm createDirectoryAtPath:compositions withIntermediateDirectories:NO attributes:nil error:&error];
+    @try {
+        NSString *fullPath =  [[ODFileTools documentsFolder:@"arcmachines"] stringByAppendingPathComponent:filename];
+        ODArcConstruktFile *file = [NSKeyedUnarchiver unarchiveObjectWithFile:fullPath];
+        return file.thumbnail;
     }
-    
-    return compositions;
+    @catch (NSException *exception) {
+        return nil;
+    }
+}
+
+-(NSArray *)listFiles {
+    NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[ODFileTools documentsFolder:@"arcmachines"] error:NULL];
+    return directoryContent;
 }
 
 @end
