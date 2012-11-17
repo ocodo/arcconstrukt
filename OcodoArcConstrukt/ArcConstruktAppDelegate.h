@@ -7,9 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ODColorPalette.h"
+#import "ODArcConstruktViewController.h"
+#import "ODArcConstruktNavigationController.h"
+#import "ODApplicationState.h"
 
 @interface ArcConstruktAppDelegate : UIResponder <UIApplicationDelegate>
+{
+    NSMutableDictionary *_viewControllers;
+}
 
 @property (strong, nonatomic) UIWindow *window;
+
+- (void)registerViewController:(NSString *)name controller:(UIViewController *)controller;
 
 @end

@@ -2,19 +2,26 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>CFBundleURLTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>db-i43jdpeay0il29z</string>
-            </array>
-        </dict>
-    </array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>${PRODUCT_NAME}</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeIconFiles</key>
+			<array>
+				<string>ArcConstrukt.png</string>
+				<string>ArcConstrukt@2x.png</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>ArcMachine</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>info.ocodo.arcmachine</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIcons</key>
@@ -40,6 +47,27 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string>ArcConstrukt@2x</string>
+			<key>CFBundleURLName</key>
+			<string>info.ocodo.arcmachine</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>arcmachine</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>db-i43jdpeay0il29z</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -58,6 +86,26 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeDescription</key>
+			<string>ArcMachine Document</string>
+			<key>UTTypeIdentifier</key>
+			<string>info.ocodo.arcmachine</string>
+			<key>UTTypeSize320IconFile</key>
+			<string>ArcConstrukt@2x</string>
+			<key>UTTypeSize64IconFile</key>
+			<string>ArcConstrukt</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<string>arcmachine</string>
+				<key>public.mime-type</key>
+				<string>application/arcmachine</string>
+			</dict>
+		</dict>
 	</array>
 </dict>
 </plist>

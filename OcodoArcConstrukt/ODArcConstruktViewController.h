@@ -15,7 +15,7 @@
 #import "UIView+Hierarchy.h"
 #import "ODTransparencyPicker.h"
 #import "ODColorPalette.h"
-#import "ODCurrentArcObject.h"
+#import "ODApplicationState.h"
 #import "ODArcMachine.h"
 #import "ODGridView.h"
 #import "NPColorPickerView.h"
@@ -25,6 +25,7 @@
 #import "CGColor+Additions.h"
 #import "ODFilesCollectionViewController.h"
 #import "ODArcConstruktFile.h"
+#import "ODInstructionsOverlay.h"
 
 #import "extra_math.h"
 
@@ -55,5 +56,9 @@
 
 @property (readonly) IBOutlet UIView *arcConstruktView;
 @property (readonly) IBOutlet ODGridView *gridView;
+
+- (void)loadComposition:(NSString*)filename;
+- (void)loadComposition:(NSString*)filename withFolder:(NSString*)folder;
+- (void)importComposition:(NSString*)filename withFolder:(NSString*)folder;
 
 @end

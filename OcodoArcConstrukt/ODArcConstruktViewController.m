@@ -11,6 +11,7 @@
 #import "ODArcConstruktViewController.h"
 #import "ODFileTools.h"
 #import "PSPDFActionSheet.h"
+#import "ArcConstruktAppDelegate.h"
 
 @interface ODArcConstruktViewController ()
 
@@ -29,15 +30,13 @@
 }
 
 - (void)viewDidLoad {
-    NSLog(@"ArcConstrukt start:");
+
+    [(ArcConstruktAppDelegate*)[[UIApplication sharedApplication] delegate] registerViewController:@"construktView" controller:self];
     
     [super viewDidLoad];
-    
-    // set tiled background.
     [self view].backgroundColor = [
                                    UIColor colorWithPatternImage:
                                    [UIImage imageNamed:@"outlets@2x.png"]];
-    
     [self moveToolbar:0];
     [self initApplicationClipboard];
     [self initArcConstruktView];
@@ -46,8 +45,9 @@
     [self initTransparencyGestures];
     [self initSwatchBarGestures];
     [self initColorPicker];
-    
-    
+
+    [self firstStartCode];
+
     NSString *bundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
     
     NSString *appFirstStartOfVersionKey = [NSString stringWithFormat:@"first_start_%@", bundleVersion];
@@ -61,15 +61,20 @@
     [[NSNotificationCenter defaultCenter] addObserverForName:@"selectFileToLoad" object:nil queue:nil usingBlock:^(NSNotification *note) {
         [self loadComposition:note.object];
     }];
+    
 }
 
 - (void)firstStartCode {
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Welcome to ArcConstrukt"
-                                                      message:@"Tap the title bar for Help."
-                                                     delegate:nil
-                                            cancelButtonTitle:@"OK"
-                                            otherButtonTitles:nil];
-    [message show];
+//    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Welcome to ArcConstrukt"
+//                                                      message:@"Tap the title bar for Help."
+//                                                     delegate:nil
+//                                            cancelButtonTitle:@"OK"
+//                                            otherButtonTitles:nil];
+//    [message show];
+    ODInstructionsOverlay *instructions = [[ODInstructionsOverlay alloc] initWithFrame:CGRectMake(0, 0, 320, 640)];
+    [[self view] addSubview:instructions];
+    
+    
 }
 
 - (void)initApplicationClipboard {
@@ -152,7 +157,7 @@
     UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc]
                                           initWithTarget:self
                                           action:@selector(transparencySelectorToggle:)];
- 
+    
     [transparencyButton addGestureRecognizer:tapGesture];
 }
 
@@ -226,16 +231,16 @@
 }
 
 - (UIColor*)useCurrentFillColor {
-    if([ODCurrentArcObject singleton].currentArc.savedFill) {
-        return [ODCurrentArcObject singleton].currentArc.savedFill;
+    if([ODApplicationState sharedinstance].currentArc.savedFill) {
+        return [ODApplicationState sharedinstance].currentArc.savedFill;
     } else {
         return [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
     }
 }
 
 - (UIColor*)useCurrentStrokeColor {
-    if([ODCurrentArcObject singleton].currentArc.savedStroke) {
-        return [ODCurrentArcObject singleton].currentArc.savedStroke;
+    if([ODApplicationState sharedinstance].currentArc.savedStroke) {
+        return [ODApplicationState sharedinstance].currentArc.savedStroke;
     } else {
         return [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
     }
@@ -273,23 +278,23 @@
 
 - (void)setCurrentStrokeFromUIColor:(UIColor*)color {
     colorPicker.color = color;
-    [ODCurrentArcObject singleton].currentArc.stroke = color;
-    [ODCurrentArcObject singleton].currentArc.savedStroke = color;
-    [[ODCurrentArcObject singleton].currentArc setNeedsDisplay];
+    [ODApplicationState sharedinstance].currentArc.stroke = color;
+    [ODApplicationState sharedinstance].currentArc.savedStroke = color;
+    [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
 }
 
 - (void)setCurrentFillFromUIColor:(UIColor*)color {
     colorPicker.color = color;
-    [ODCurrentArcObject singleton].currentArc.fill = color;
-    [ODCurrentArcObject singleton].currentArc.savedFill = color;
-    [[ODCurrentArcObject singleton].currentArc setNeedsDisplay];
+    [ODApplicationState sharedinstance].currentArc.fill = color;
+    [ODApplicationState sharedinstance].currentArc.savedFill = color;
+    [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
 }
 
 - (void)addRandomArcLayer{
     [arcConstruktView addSubview:[[ODArcMachine alloc]
-             initRandomWithFrame:CGRectMake(0, 0, 320, 320)
-                       fillColor:[self useCurrentFillColor]
-                     strokeColor:[self useCurrentStrokeColor]]];
+                                  initRandomWithFrame:CGRectMake(0, 0, 320, 320)
+                                  fillColor:[self useCurrentFillColor]
+                                  strokeColor:[self useCurrentStrokeColor]]];
 }
 
 - (IBAction)addButton:(id)sender {
@@ -314,9 +319,9 @@
 
 - (IBAction)deleteButton:(id)sender {
     int index;
-    if([ODCurrentArcObject singleton].currentArc) {
-        index = [ODCurrentArcObject singleton].currentArc.getSubviewIndex;
-        [[ODCurrentArcObject singleton].currentArc removeFromSuperview];
+    if([ODApplicationState sharedinstance].currentArc) {
+        index = [ODApplicationState sharedinstance].currentArc.getSubviewIndex;
+        [[ODApplicationState sharedinstance].currentArc removeFromSuperview];
     }
     [layerStepper setMaximumValue:[arcConstruktView subviews].count - 1];
     [layerStepper setValue:MIN(index,[arcConstruktView subviews].count - 1)];
@@ -337,7 +342,7 @@
 }
 
 - (void)deselect {
-    [[ODCurrentArcObject singleton].currentArc deselectArc];
+    [[ODApplicationState sharedinstance].currentArc deselectArc];
 }
 
 - (void)resetStepper {
@@ -347,12 +352,12 @@
 }
 
 - (void)layerSelecting:(UIStepper *)sender {
-    if ([ODCurrentArcObject singleton].currentArc) {
-        [[ODCurrentArcObject singleton].currentArc deselectArc];
+    if ([ODApplicationState sharedinstance].currentArc) {
+        [[ODApplicationState sharedinstance].currentArc deselectArc];
     }
     if ([arcConstruktView subviews].count > 0) {
-        [ODCurrentArcObject singleton].currentArc = [[arcConstruktView subviews] objectAtIndex:sender.value];
-        [[ODCurrentArcObject singleton].currentArc selectArc];
+        [ODApplicationState sharedinstance].currentArc = [[arcConstruktView subviews] objectAtIndex:sender.value];
+        [[ODApplicationState sharedinstance].currentArc selectArc];
     }
 }
 
@@ -398,11 +403,12 @@
 }
 
 - (void) copyArc:(id)sender {
-    NSDictionary *plist = [[ODCurrentArcObject singleton]
+    NSDictionary *plist = [[ODApplicationState sharedinstance]
                            .currentArc geometryToDictionary];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject: plist];
     [appPasteboard setData:data forPasteboardType:@"info.ocodo.arcconstrukt"];
 }
+
 - (void) pasteArc:(id)sender {
     NSData *data = [appPasteboard dataForPasteboardType:@"info.ocodo.arcconstrukt"];
     NSDictionary *plist = [NSKeyedUnarchiver unarchiveObjectWithData:data];
@@ -463,15 +469,15 @@
 }
 
 - (void)pinchRadius:(UIPinchGestureRecognizer *)pincher {
-    float radius = clampf([ODCurrentArcObject singleton].currentArc.radius + pincher.scale-1, 1.0f, 160.0f);
-    [ODCurrentArcObject singleton].currentArc.radius = radius;
-    [[ODCurrentArcObject singleton].currentArc setNeedsDisplay];
+    float radius = clampf([ODApplicationState sharedinstance].currentArc.radius + pincher.scale-1, 1.0f, 160.0f);
+    [ODApplicationState sharedinstance].currentArc.radius = radius;
+    [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
 }
 
 - (void)pinchThickness:(UIPinchGestureRecognizer *)pincher {
-    float thick = clampf([ODCurrentArcObject singleton].currentArc.thickness + pincher.scale-1, 1.0f, 160.0f);
-    [ODCurrentArcObject singleton].currentArc.thickness = thick;
-    [[ODCurrentArcObject singleton].currentArc setNeedsDisplay];
+    float thick = clampf([ODApplicationState sharedinstance].currentArc.thickness + pincher.scale-1, 1.0f, 160.0f);
+    [ODApplicationState sharedinstance].currentArc.thickness = thick;
+    [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
 }
 
 - (void)handleConstruktRotate:(ODFingerRotationGestureRecognizer *)rotator {
@@ -488,16 +494,16 @@
 }
 
 - (void)startAngleTouch:(ODFingerRotationGestureRecognizer *)rotator {
-    if([ODCurrentArcObject singleton].currentArc) {
-        [ODCurrentArcObject singleton].currentArc.start += rotator.rotation;
-        [[ODCurrentArcObject singleton].currentArc setNeedsDisplay];
+    if([ODApplicationState sharedinstance].currentArc) {
+        [ODApplicationState sharedinstance].currentArc.start += rotator.rotation;
+        [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
     }
 }
 
 - (void)endAngleTouch:(ODFingerRotationGestureRecognizer *)rotator {
-    if([ODCurrentArcObject singleton].currentArc){
-        [ODCurrentArcObject singleton].currentArc.end += rotator.rotation;
-        [[ODCurrentArcObject singleton].currentArc setNeedsDisplay];
+    if([ODApplicationState sharedinstance].currentArc){
+        [ODApplicationState sharedinstance].currentArc.end += rotator.rotation;
+        [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
     }
 }
 
@@ -548,7 +554,7 @@
 }
 
 - (IBAction)arrangeLayer:(UISegmentedControl *)sender {
-    ODArcMachine *arc = [ODCurrentArcObject singleton].currentArc;
+    ODArcMachine *arc = [ODApplicationState sharedinstance].currentArc;
     switch (sender.selectedSegmentIndex) {
         case 0:
             [arc sendToBack];
@@ -585,11 +591,11 @@
 - (void)handlePanTransparencyIndicator:(UIPanGestureRecognizer *)recognizer {
     [transparencyPicker setPickerPoint:[recognizer locationInView:transparencyPicker]];
     [transparencyPicker setNeedsDisplay];
-    if([ODCurrentArcObject singleton].currentArc == NULL) {
+    if([ODApplicationState sharedinstance].currentArc == NULL) {
         return;
     }
-    const CGFloat *f = CGColorGetComponents([ODCurrentArcObject singleton].currentArc.savedFill.CGColor);
-    const CGFloat *s = CGColorGetComponents([ODCurrentArcObject singleton].currentArc.savedStroke.CGColor);
+    const CGFloat *f = CGColorGetComponents([ODApplicationState sharedinstance].currentArc.savedFill.CGColor);
+    const CGFloat *s = CGColorGetComponents([ODApplicationState sharedinstance].currentArc.savedStroke.CGColor);
     switch (fillStrokeSelector.selectedSegmentIndex) {
         case 0:
             [self setCurrentFillFromUIColor: [UIColor
@@ -627,9 +633,9 @@
                                                             colorPicker.frame.size.height);
                          }
                          mainToolbar.frame = CGRectMake(x,
-                                                             mainToolbar.frame.origin.y,
-                                                             mainToolbar.frame.size.width,
-                                                             mainToolbar.frame.size.height);
+                                                        mainToolbar.frame.origin.y,
+                                                        mainToolbar.frame.size.width,
+                                                        mainToolbar.frame.size.height);
                      }
                      completion:nil
      ];
@@ -649,16 +655,16 @@
     HUD.label.text = @"Saving ArcConstrukt";
     [HUD showWhileExecuting:^{
         ODArcConstruktFile *file = [[ODArcConstruktFile alloc] initWithArcMachineSubviews:arcConstruktView.subviews];
-
+        
         UIGraphicsBeginImageContextWithOptions(arcConstruktView.bounds.size, NO, 0.5);
         [arcConstruktView.layer renderInContext:UIGraphicsGetCurrentContext()];
-
+        
         file.thumbnail = [UIImage imageWithData:
                           UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext())];
-
+        
         int ti = [[NSDate date] timeIntervalSince1970];
-        file.filename = [NSString stringWithFormat:@"ArcConstrukt-%X", ti];
-
+        file.filename = [NSString stringWithFormat:@"ArcConstrukt-%X.arcmachine", ti];
+        
         [ODFileTools save:file.filename documentsFolder:@"arcmachines" data:[NSKeyedArchiver archivedDataWithRootObject: file]];
         
         [ODFileTools save:file.filename extension:@"svg" documentsFolder:@"svg" data:[file asSVGEncoded]];
@@ -667,11 +673,20 @@
     }];
 }
 
-- (void)loadComposition:(NSString*) filename {
+- (void) importComposition:(NSString*)filename withFolder:(NSString *)folder {
+    
+    ODArcConstruktFile *file = [ODFileTools load:filename documentsFolder:folder];
+    
+    [ODFileTools save:filename documentsFolder:@"arcmachines" data:[NSKeyedArchiver archivedDataWithRootObject:file]];
+     
+    [ODFileTools save:file.filename extension:@"svg" documentsFolder:@"svg" data:[file asSVGEncoded]];
+}
+
+- (void)loadComposition:(NSString*) filename withFolder:(NSString *)folder {
     @try {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:@"Loaded %@", filename]];
         [self clearButton:nil];
-        ODArcConstruktFile *file = [ODFileTools load:filename documentsFolder:@"arcmachines"];
+        ODArcConstruktFile *file = [ODFileTools load:filename documentsFolder:folder];
         for (ODArcMachine *arc in [file layersToArcMachines]) {
             [arcConstruktView addSubview:arc];
         }
@@ -684,9 +699,13 @@
     [arcConstruktView setNeedsDisplay];
 }
 
+- (void)loadComposition:(NSString*) filename {
+    [self loadComposition:filename withFolder:@"arcmachines"];
+}
+
 - (IBAction)importColorsFromPasteboard:(id)sender {
     NSString *import = [[UIPasteboard generalPasteboard] string];
-
+    
     if(import.length < 1){
         [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Copy some Hex colors into the clipboard, ArcConstrukt will find and use the first 6"];
         return;
