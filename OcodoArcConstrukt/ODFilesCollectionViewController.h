@@ -17,7 +17,7 @@
 #import "ODFileTools.h"
 #import "DZProgressController.h"
 
-@interface ODFilesCollectionViewController : UICollectionViewController <MFMailComposeViewControllerDelegate>
+@interface ODFilesCollectionViewController : UICollectionViewController <MFMailComposeViewControllerDelegate, UIActionSheetDelegate>
 
 @property NSIndexPath *currentIndexPath;
 @property NSMutableArray *fileList;

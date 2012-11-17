@@ -8,7 +8,6 @@
 
 #import "ODArcMachine.h"
 
-
 @implementation ODArcMachine
 
 @synthesize x, y, start, end, radius, thickness, fill, stroke, savedFill, savedStroke;
@@ -24,6 +23,7 @@
         self.thickness = arcMachine.thickness;
         self.stroke = arcMachine.savedStroke;
         self.fill = arcMachine.savedFill;
+        [self commonInit];
     }
     return self;
 }
@@ -40,6 +40,7 @@
         thickness = MAX(arc4random() % m, 1);
         fill = fillColor;
         stroke = strokeColor;
+        [self commonInit];
     }
     return self;
 }
@@ -49,6 +50,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
+        [self commonInit];
     }
     return self;
 }
@@ -57,43 +59,52 @@
     self = [self initWithFrame:frame];
     if(self) {
         [self geometryFromDictionary:plist];
+        [self commonInit];
     }
     return self;
 }
 
+-(void) commonInit {
+     // [self setupArcLayer];
+}
+
 - (void)drawRect:(CGRect)rect {
-    [self drawArc:rect context:UIGraphicsGetCurrentContext()];
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    drawArc(self.bounds, ctx, x, y, start, end, radius, thickness, fill, stroke);
 }
 
-- (void)drawArc:(CGRect)rect context:(CGContextRef)ctx {
-    
-	CGContextTranslateCTM(ctx, CGRectGetMidX(rect), CGRectGetMidY(rect));
-    
-	CGContextSetLineWidth(ctx, 0.5f);
-	CGContextSetLineJoin(ctx, kCGLineJoinRound);
-	CGContextSetStrokeColorWithColor(ctx, stroke.CGColor);
-	CGContextSetFillColorWithColor(ctx, fill.CGColor);
-    
-	CGContextBeginPath(ctx);
-    
-    CGFloat outside = radius+thickness;
-    
-    CGFloat ax = x + (outside * cos(start));
-    CGFloat ay = y + (outside * sin(start));
-    CGFloat cx = x + (radius * cos(end));
-    CGFloat cy = y + (radius * sin(end));
-    
-    CGContextMoveToPoint(ctx, ax, ay);
-    CGContextAddArc(ctx, x, y, outside, start, end, 0);
-    CGContextAddLineToPoint(ctx, cx, cy);
-    CGContextAddArc(ctx, x, y, radius, end, start, 1);
-    CGContextAddLineToPoint(ctx, ax, ay);
-    
-	CGContextClosePath(ctx);
-	CGContextDrawPath(ctx, kCGPathFillStroke);
+- (void)setupArcLayer {
+    ODArcLayer *arcLayer = [ODArcLayer layer];
+    arcLayer.x = x;
+    arcLayer.y = y;
+    arcLayer.start = start;
+    arcLayer.end = end;
+    arcLayer.radius = radius;
+    arcLayer.thickness = thickness;
+    arcLayer.fill = fill;
+    arcLayer.stroke = stroke;
+    arcLayer.frame = self.frame;
+    [self.layer addSublayer:arcLayer];
 }
 
--(void)selectArc {
+- (void)updateArcLayer {
+    ODArcLayer *arcLayer = [self.layer.sublayers objectAtIndex:0];
+    arcLayer.x = x;
+    arcLayer.y = y;
+    arcLayer.start = start;
+    arcLayer.end = end;
+    arcLayer.radius = radius;
+    arcLayer.thickness = thickness;
+    arcLayer.fill = fill;
+    arcLayer.stroke = stroke;
+}
+
+- (void)setNeedsDisplay {
+    // [self updateArcLayer];
+    [super setNeedsDisplay];
+}
+
+- (void)selectArc {
     savedFill = fill;
     savedStroke = stroke;
     fill = [UIColor redColor];
@@ -126,7 +137,6 @@
         stroke = [plist valueForKey:@"stroke"];
         savedStroke = [plist valueForKey:@"stroke"];
     }
-        
     [self setNeedsDisplay];
 }
 
@@ -172,6 +182,120 @@
     
     
     return node;
+}
+
+@end
+
+#pragma mark - Layer
+
+@implementation ODArcLayer
+
+@dynamic x, y, start, end, radius, thickness;
+
+@synthesize fill, stroke;
+
+-(CABasicAnimation *)makeAnimationForKey:(NSString *)key {
+	CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:key];
+	anim.fromValue = [[self presentationLayer] valueForKey:key];
+	anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+	anim.duration = 0.5;
+	return anim;
+}
+
+- (id<CAAction>)actionForKey:(NSString *)event {
+	if ([event isEqualToString:@"start"] ||
+		[event isEqualToString:@"end"] ||
+		[event isEqualToString:@"radius"] ||
+		[event isEqualToString:@"thickness"] ||
+		[event isEqualToString:@"x"] ||
+		[event isEqualToString:@"y"]) {
+		return [self makeAnimationForKey:event];
+	}
+	return [super actionForKey:event];
+}
+
++ (BOOL)needsDisplayForKey:(NSString *)key {
+	if ([key isEqualToString:@"start"] ||
+        [key isEqualToString:@"end"] ||
+        [key isEqualToString:@"radius"] ||
+        [key isEqualToString:@"thickness"] ||
+        [key isEqualToString:@"x"] ||
+        [key isEqualToString:@"y"] ) {
+		return YES;
+	}
+	return [super needsDisplayForKey:key];
+}
+
+- (id)initWithArcMachine:(ODArcMachine*)arc {
+    if (self = [super init]) {
+        self.x = arc.x;
+        self.y = arc.y;
+        self.start = arc.start;
+        self.end = arc.end;
+        self.radius = arc.radius;
+        self.thickness = arc.thickness;
+        self.fill = arc.fill;
+        self.stroke = arc.stroke;
+        self.frame = arc.frame;
+    }
+    return  self;
+}
+
+- (id)initWithLayer:(id)layer {
+	if (self = [super initWithLayer:layer]) {
+		if ([layer isKindOfClass:[ODArcLayer class]]) {
+			ODArcLayer *other = (ODArcLayer *)layer;
+            self.x = other.x;
+            self.y = other.y;
+			self.start = other.start;
+			self.end = other.end;
+			self.radius = other.radius;
+			self.thickness = other.thickness;
+			self.fill = other.fill;
+			self.stroke = other.stroke;
+		}
+	}
+	return self;
+}
+
+- (void) drawInContext:(CGContextRef)ctx {
+    // NSLog(@"drawing layer : %f, %f / A %f / B %f / r %f / T %f", self.bounds.size.width, self.bounds.size.height, self.start, self.end, self.radius, self.thickness);
+    drawArc(self.bounds, ctx, self.x, self.y, self.start, self.end, self.radius, self.thickness, self.fill, self.stroke);
+    [self display];
+}
+
+@end
+
+@implementation ODArcDrawing
+
+void drawArc(CGRect rect, CGContextRef ctx, CGFloat x, CGFloat y, CGFloat start, CGFloat end, CGFloat radius, CGFloat thickness, UIColor *fill, UIColor *stroke) {
+
+    CGContextClearRect(ctx, rect);
+    
+	CGContextTranslateCTM(ctx, CGRectGetMidX(rect), CGRectGetMidY(rect));
+    
+	CGContextSetLineWidth(ctx, 0.5f);
+	CGContextSetLineJoin(ctx, kCGLineJoinRound);
+	CGContextSetStrokeColorWithColor(ctx, stroke.CGColor);
+	CGContextSetFillColorWithColor(ctx, fill.CGColor);
+    
+	CGContextBeginPath(ctx);
+    
+    CGFloat outside = radius+thickness;
+    
+    CGFloat ax = x + (outside * cos(start));
+    CGFloat ay = y + (outside * sin(start));
+    CGFloat cx = x + (radius * cos(end));
+    CGFloat cy = y + (radius * sin(end));
+    
+    CGContextMoveToPoint(ctx, ax, ay);
+    CGContextAddArc(ctx, x, y, outside, start, end, 0);
+    CGContextAddLineToPoint(ctx, cx, cy);
+    CGContextAddArc(ctx, x, y, radius, end, start, 1);
+    CGContextAddLineToPoint(ctx, ax, ay);
+    
+	CGContextClosePath(ctx);
+	CGContextDrawPath(ctx, kCGPathFillStroke);
 }
 
 @end

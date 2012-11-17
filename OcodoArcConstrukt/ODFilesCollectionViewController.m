@@ -49,12 +49,14 @@
         NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:[gesture locationInView:self.collectionView]];
         if (indexPath != nil) {
             self.currentIndexPath = indexPath;
+            
             UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                           initWithTitle:nil
                                           delegate:self
                                           cancelButtonTitle:@"Cancel"
                                           destructiveButtonTitle:@"Delete"
                                           otherButtonTitles:@"Share to Dropbox", @"Share as Email", nil];
+            
             actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
             UICollectionViewCell *itemCell = [self.collectionView cellForItemAtIndexPath:indexPath];
             [actionSheet showFromRect:CGRectMake(0, 0, itemCell.frame.size.width, itemCell.frame.size.height) inView:itemCell animated:YES];
@@ -118,6 +120,7 @@
 
 - (void)uploadSvgToDropbox:(DZProgressController*)HUD {
     NSString *filename = [[[self listFiles] objectAtIndex:currentIndexPath.item] stringByAppendingPathExtension:@"svg"];
+    HUD.progress = 0;
     [DropBlocks uploadFile:filename toPath:@"/"
              withParentRev:nil fromPath:[ODFileTools fullPath:filename documentsFolder:@"svg"]
            completionBlock:^(DBMetadata *metadata, NSError *error) {
