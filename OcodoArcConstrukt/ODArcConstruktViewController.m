@@ -97,7 +97,7 @@
     [arcConstruktView addGestureRecognizer:rotation];
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self
-                                                                                            action:@selector(handleConstruktLongPress:)];
+                                                                                            action:@selector(quickEditMenu:)];
     
     [arcConstruktView addGestureRecognizer:longPress];
     
@@ -199,7 +199,7 @@
 - (void)handleColorSwatchTap:(UITapGestureRecognizer *)recognizer {
     CGPoint a = [recognizer locationInView:recognizer.view];
     int index = [swatchBar colorIndexAtPoint:a];
-    [ODColorPalette singleton].selectedIndex = index;
+    [ODColorPalette sharedinstance].selectedIndex = index;
     switch (fillStrokeSelector.selectedSegmentIndex) {
         case 0:
             [self setCurrentFillFromPaletteColor:index];
@@ -242,14 +242,14 @@
     }
 }
 
-- (void)handleConstruktLongPress:(UILongPressGestureRecognizer *)recognizer {
+- (void)quickEditMenu:(UILongPressGestureRecognizer *)recognizer {
     [recognizer.view becomeFirstResponder];
     UIMenuController* mc = [UIMenuController sharedMenuController];
     UIMenuItem* menu_angle_a = [[UIMenuItem alloc] initWithTitle:@"A˚" action:@selector(angleAMode:)];
     UIMenuItem* menu_angle_b = [[UIMenuItem alloc] initWithTitle:@"B˚" action:@selector(angleBMode:)];
     UIMenuItem* menu_radius = [[UIMenuItem alloc] initWithTitle:@"r" action:@selector(radiusMode:)];
     UIMenuItem* menu_thickness = [[UIMenuItem alloc] initWithTitle:@"T" action:@selector(thicknessMode:)];
-    UIMenuItem* menu_copy = [[UIMenuItem alloc] initWithTitle:@"Copy" action:@selector(copyArc:)];
+    UIMenuItem* menu_copy = [[UIMenuItem alloc] initWithTitle:@"Clone" action:@selector(copyArc:)];
     UIMenuItem* menu_paste = [[UIMenuItem alloc] initWithTitle:@"Paste" action:@selector(pasteArc:)];
     UIMenuItem* menu_delete = [[UIMenuItem alloc] initWithTitle:@"Delete" action:@selector(deleteButton:)];
     UIMenuItem* menu_clear = [[UIMenuItem alloc] initWithTitle:@"Clear All" action:@selector(clearButton:)];
@@ -267,6 +267,9 @@
             break;
         case 1:
             [self endAngleTouch:rotator];
+            break;
+        case 2:
+            [self lockedAngleTouch:rotator];
             break;
         default:
             break;
@@ -312,8 +315,8 @@
 
 - (void)NPColorPickerView:(NPColorPickerView *)view didSelectColor:(UIColor *)color {
     
-    int i = [ODColorPalette singleton].selectedIndex;
-    [ODColorPalette singleton].colors[i] = color;
+    int i = [ODColorPalette sharedinstance].selectedIndex;
+    [ODColorPalette sharedinstance].colors[i] = color;
     [swatchBar setNeedsDisplay];
     
     switch (fillStrokeSelector.selectedSegmentIndex) {
@@ -331,12 +334,12 @@
 }
 
 - (void)setCurrentStrokeFromPaletteColor:(int)index {
-    UIColor *color = [[ODColorPalette singleton].colors objectAtIndex:index];
+    UIColor *color = [[ODColorPalette sharedinstance].colors objectAtIndex:index];
     [self setCurrentStrokeFromUIColor:color];
 }
 
 - (void)setCurrentFillFromPaletteColor:(int)index {
-    UIColor *color = [[ODColorPalette singleton].colors objectAtIndex:index];
+    UIColor *color = [[ODColorPalette sharedinstance].colors objectAtIndex:index];
     [self setCurrentFillFromUIColor:color];
 }
 
@@ -438,6 +441,9 @@
     [actionSheet addButtonWithTitle:@"Import Colors" block:^{
         [self importColorsFromPasteboard:self];
     }];
+    [actionSheet addButtonWithTitle:@"Export Colors" block:^{
+        [self exportColorPalette:self];
+    }];
     [actionSheet addButtonWithTitle:@"Save ArcMachine" block:^{
         [self saveComposition:self];
     }];
@@ -453,6 +459,10 @@
                            .currentArc geometryToDictionary];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject: plist];
     [appPasteboard setData:data forPasteboardType:@"info.ocodo.arcconstrukt"];
+    [arcConstruktView addSubview:[[ODArcMachine alloc]
+                                  initWithArcMachine:[ODApplicationState sharedinstance].currentArc
+                                  frame:CGRectMake(0, 0, 320, 320)]];
+    [self syncLayerStepper];    
 }
 
 - (void)pasteArc:(id)sender {
@@ -524,6 +534,15 @@
         [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
     }
 }
+
+- (void)lockedAngleTouch:(ODFingerRotationGestureRecognizer *)rotator {
+    if([ODApplicationState sharedinstance].currentArc) {
+        [ODApplicationState sharedinstance].currentArc.start += rotator.rotation;
+        [ODApplicationState sharedinstance].currentArc.end += rotator.rotation;
+        [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
+    }
+}
+
 
 - (IBAction)layerStep:(UIStepper *)sender {
     [self layerSelecting:sender];
@@ -659,7 +678,6 @@
 }
 
 - (void) showInstructionsOnceForToolbarMode:(int)mode {
-
     NSString *bundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
     NSString *seenToolModeInstructionsKey = [NSString stringWithFormat:@"seen_toolmode_%i_instructions_%@", mode, bundleVersion];
     NSNumber *seenModeInstruction = [[NSUserDefaults standardUserDefaults] objectForKey:seenToolModeInstructionsKey];
@@ -667,7 +685,6 @@
         [self editToolsHelpOverlay:mode];
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:seenToolModeInstructionsKey];
     }
-    
 }
 
 - (IBAction)toolbarModeSelector:(UISegmentedControl*)sender {
@@ -726,6 +743,15 @@
     [self loadComposition:filename withFolder:@"arcmachines"];
 }
 
+- (void)exportColorPalette:(id)sender {
+    NSMutableArray * hexColors = [[NSMutableArray alloc] initWithArray:@[@"ArcConstrukt Color Palette:"]];
+    for (UIColor *color in [[ODColorPalette sharedinstance] colors]) {
+        [hexColors addObject:[color RGBHexString]];
+    }
+    [[UIPasteboard generalPasteboard] setString:[hexColors componentsJoinedByString:@"\n"]];
+    [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Color Palette exported to the Clipboard"];
+}
+
 - (IBAction)importColorsFromPasteboard:(id)sender {
     NSString *import = [[UIPasteboard generalPasteboard] string];
     
@@ -744,7 +770,7 @@
      {
          NSString *hex = [[import substringWithRange:result.range] stringByReplacingOccurrencesOfString:@"#" withString:@""];
          if (i<6) {
-             [ODColorPalette singleton].colors[i] =
+             [ODColorPalette sharedinstance].colors[i] =
              [UIColor colorWithRGBHexString:hex];
              [swatchBar setNeedsDisplay];
          }

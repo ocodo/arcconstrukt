@@ -82,9 +82,8 @@
 {
     [[UIColor whiteColor] setFill];
     
-    [self drawText:@"Add Arc" x:19 y:231 + _deviceOffsetY w:48 h:42 size:12 align:NSTextAlignmentLeft];
-    [self drawPointer:CGPointMake(22, 227 + _deviceOffsetY) b:CGPointMake(22, 48)];
-    [self drawPointer:CGPointMake(22, 252 + _deviceOffsetY) b:CGPointMake(22, 398 + _deviceOffsetY)];
+    [self drawText:@"Add Arc" x:19 y:80 + _deviceOffsetY w:48 h:42 size:12 align:NSTextAlignmentLeft];
+    [self drawPointer:CGPointMake(22, 78 + _deviceOffsetY) b:CGPointMake(22, 48)];
     
     [self drawQuickEditNoteOffsetX:0 offsetY:0];
     
@@ -96,27 +95,30 @@
     [self drawText:@"Remove Arc" x:245 y:230 + _deviceOffsetY w:88 h:23 size:12 align:NSTextAlignmentLeft];
     [self drawPointer:CGPointMake(297, 248 + _deviceOffsetY) b:CGPointMake(297, 398 + _deviceOffsetY)];
     
-    [self drawBoldText:@"Finger Rotate" x:45 y:310 + _deviceOffsetY w:130 h:23 size:15 align:NSTextAlignmentLeft];
+    [self drawBoldText:@"Finger Rotate" x:10 y:310 + _deviceOffsetY w:130 h:23 size:15 align:NSTextAlignmentLeft];
     
-    [self drawText:@"A˚" x:45 y:331 + _deviceOffsetY w:23 h:23 size:12 align:NSTextAlignmentLeft];
-    [self drawPointer:CGPointMake(51, 352 + _deviceOffsetY) b:CGPointMake(51, 406+_deviceOffsetY)];
+    [self drawText:@"A˚" x:10 y:331 + _deviceOffsetY w:23 h:23 size:12 align:NSTextAlignmentLeft];
+    [self drawPointer:CGPointMake(15, 352 + _deviceOffsetY) b:CGPointMake(15, 406 + _deviceOffsetY)];
     
-    [self drawText:@"B˚" x:80 y:331 + _deviceOffsetY w:23 h:23 size:12 align:NSTextAlignmentLeft];
-    [self drawPointer:CGPointMake(87, 352 + _deviceOffsetY) b:CGPointMake(87, 406+_deviceOffsetY)];
+    [self drawText:@"B˚" x:50 y:331 + _deviceOffsetY w:23 h:23 size:12 align:NSTextAlignmentLeft];
+    [self drawPointer:CGPointMake(53, 352 + _deviceOffsetY) b:CGPointMake(53, 406 + _deviceOffsetY)];
     
-    [self drawText:@"Lock" x:122 y:331 + _deviceOffsetY w:36 h:23 size:12 align:NSTextAlignmentLeft];
-    [self drawPointer:CGPointMake(125, 352 + _deviceOffsetY) b:CGPointMake(125, 406+_deviceOffsetY)];
+    [self drawText:@"Linked" x:80 y:331 + _deviceOffsetY w:36 h:23 size:12 align:NSTextAlignmentLeft];
+    [self drawPointer:CGPointMake(95, 352 + _deviceOffsetY) b:CGPointMake(95, 406 + _deviceOffsetY)];
+
+    [self drawText:@"Lock" x:128 y:331 + _deviceOffsetY w:36 h:23 size:12 align:NSTextAlignmentLeft];
+    [self drawPointer:CGPointMake(130, 352 + _deviceOffsetY) b:CGPointMake(130, 406 + _deviceOffsetY)];
     
-    [self drawBoldText:@"Pinch" x:168 y:310 + _deviceOffsetY w:88 h:23 size:15 align:NSTextAlignmentLeft];
+    [self drawBoldText:@"Pinch" x:173 y:310 + _deviceOffsetY w:88 h:23 size:15 align:NSTextAlignmentLeft];
     
-    [self drawText:@"Radius" x:168 y:331 + _deviceOffsetY w:47 h:23 size:12 align:NSTextAlignmentLeft];
-    [self drawPointer:CGPointMake(173, 352 + _deviceOffsetY) b:CGPointMake(173, 406+_deviceOffsetY)];
+    [self drawText:@"Radius" x:173 y:331 + _deviceOffsetY w:47 h:23 size:12 align:NSTextAlignmentLeft];
+    [self drawPointer:CGPointMake(177, 352 + _deviceOffsetY) b:CGPointMake(177, 406  +_deviceOffsetY)];
     
-    [self drawText:@"Thickness" x:181 y:348 + _deviceOffsetY w:62 h:23 size:12 align:NSTextAlignmentLeft];
-    [self drawPointer:CGPointMake(208, 369 + _deviceOffsetY) b:CGPointMake(208, 406+_deviceOffsetY)];
+    [self drawText:@"Thickness" x:185 y:348 + _deviceOffsetY w:62 h:23 size:12 align:NSTextAlignmentLeft];
+    [self drawPointer:CGPointMake(214, 369 + _deviceOffsetY) b:CGPointMake(214, 406 + _deviceOffsetY)];
     
-    [self drawText:@"Lock" x:242 y:331 + _deviceOffsetY w:36 h:23 size:12 align:NSTextAlignmentLeft];
-    [self drawPointer:CGPointMake(246, 352 + _deviceOffsetY) b:CGPointMake(246, 406+_deviceOffsetY)];
+    [self drawText:@"Lock" x:243 y:331 + _deviceOffsetY w:36 h:23 size:12 align:NSTextAlignmentLeft];
+    [self drawPointer:CGPointMake(250, 352 + _deviceOffsetY) b:CGPointMake(250, 406 + _deviceOffsetY)];
     
     [self drawStandardLabelsOffsetY:_deviceOffsetY];
     

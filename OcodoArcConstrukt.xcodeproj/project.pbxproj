@@ -83,6 +83,8 @@
 		96F64F90164E3DDA003E97AB /* ODArcConstruktFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F8F164E3DDA003E97AB /* ODArcConstruktFile.m */; };
 		96F64F93165148A2003E97AB /* filmroll.png in Resources */ = {isa = PBXBuildFile; fileRef = 96F64F91165148A2003E97AB /* filmroll.png */; };
 		96F64F94165148A2003E97AB /* filmroll@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96F64F92165148A2003E97AB /* filmroll@2x.png */; };
+		96F6A95F16590715001041F9 /* a_b_link.png in Resources */ = {isa = PBXBuildFile; fileRef = 96F6A95D16590715001041F9 /* a_b_link.png */; };
+		96F6A96016590715001041F9 /* a_b_link@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96F6A95E16590715001041F9 /* a_b_link@2x.png */; };
 		96FADBAD1639249D004706F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBAC1639249C004706F9 /* UIKit.framework */; };
 		96FADBAF1639249D004706F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBAE1639249D004706F9 /* Foundation.framework */; };
 		96FADBB11639249D004706F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBB01639249D004706F9 /* CoreGraphics.framework */; };
@@ -228,6 +230,8 @@
 		96F64F91165148A2003E97AB /* filmroll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filmroll.png; sourceTree = "<group>"; };
 		96F64F92165148A2003E97AB /* filmroll@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filmroll@2x.png"; sourceTree = "<group>"; };
 		96F64FA61651BF54003E97AB /* ArcConstruktAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcConstruktAppDelegate.h; sourceTree = "<group>"; };
+		96F6A95D16590715001041F9 /* a_b_link.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = a_b_link.png; sourceTree = "<group>"; };
+		96F6A95E16590715001041F9 /* a_b_link@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "a_b_link@2x.png"; sourceTree = "<group>"; };
 		96FADBA81639249C004706F9 /* ArcConstrukt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArcConstrukt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96FADBAC1639249C004706F9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		96FADBAE1639249D004706F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -455,6 +459,8 @@
 		96FADC6F164242D1004706F9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				96F6A95D16590715001041F9 /* a_b_link.png */,
+				96F6A95E16590715001041F9 /* a_b_link@2x.png */,
 				96D6D53B16564FC60016A0F5 /* video-screen.png */,
 				96F64F91165148A2003E97AB /* filmroll.png */,
 				96F64F92165148A2003E97AB /* filmroll@2x.png */,
@@ -692,6 +698,8 @@
 				96D6D5581657FCA70016A0F5 /* ArcConstruktHelpOverlayPage2@2x.png in Resources */,
 				96D6D5591657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3.png in Resources */,
 				96D6D55A1657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3@2x.png in Resources */,
+				96F6A95F16590715001041F9 /* a_b_link.png in Resources */,
+				96F6A96016590715001041F9 /* a_b_link@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,7 +828,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OcodoArcConstrukt/OcodoArcConstrukt-Prefix.pch";
 				INFOPLIST_FILE = "OcodoArcConstrukt/OcodoArcConstrukt-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = ArcConstrukt;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -837,7 +847,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OcodoArcConstrukt/OcodoArcConstrukt-Prefix.pch";
 				INFOPLIST_FILE = "OcodoArcConstrukt/OcodoArcConstrukt-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = ArcConstrukt;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "";
 				WRAPPER_EXTENSION = app;
 			};

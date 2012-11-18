@@ -47,7 +47,7 @@
     CGContextSetFillColorWithColor(ctx, bgColor);
     CGContextFillRect(ctx, rect);
 
-    NSMutableArray *colors = [ODColorPalette singleton].colors;
+    NSMutableArray *colors = [ODColorPalette sharedinstance].colors;
     
     int i=0;
     int len=colors.count;
@@ -63,7 +63,7 @@
 }
 
 - (int)colorIndexAtPoint:(CGPoint)point {
-    int len = [ODColorPalette singleton].colors.count;
+    int len = [ODColorPalette sharedinstance].colors.count;
     int i=0;
     float space = self.frame.size.width/len;
     for(;i<len; i++)
@@ -79,7 +79,7 @@
 }
 
 - (UIColor *)paletteColorAtPoint:(CGPoint)point {
-    return [[ODColorPalette singleton].colors objectAtIndex:[self colorIndexAtPoint:point]];
+    return [[ODColorPalette sharedinstance].colors objectAtIndex:[self colorIndexAtPoint:point]];
 }
 
 @end

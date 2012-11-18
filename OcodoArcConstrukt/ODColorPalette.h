@@ -17,6 +17,6 @@
 @property int selectedIndex;
 @property NSMutableArray *colors;
 
-+ (ODColorPalette *)singleton;
++ (ODColorPalette *)sharedinstance;
 
 @end

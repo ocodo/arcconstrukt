@@ -11,7 +11,7 @@
 
 @implementation ODColorPalette
 
-+(ODColorPalette *)singleton {
++(ODColorPalette *)sharedinstance {
     static dispatch_once_t pred;
     static ODColorPalette *shared = nil;
     
