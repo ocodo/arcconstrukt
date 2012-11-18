@@ -232,6 +232,7 @@
 		96F64FA61651BF54003E97AB /* ArcConstruktAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcConstruktAppDelegate.h; sourceTree = "<group>"; };
 		96F6A95D16590715001041F9 /* a_b_link.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = a_b_link.png; sourceTree = "<group>"; };
 		96F6A95E16590715001041F9 /* a_b_link@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "a_b_link@2x.png"; sourceTree = "<group>"; };
+		96F6A965165948BD001041F9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		96FADBA81639249C004706F9 /* ArcConstrukt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArcConstrukt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96FADBAC1639249C004706F9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		96FADBAE1639249D004706F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -395,6 +396,7 @@
 		96FADB9D1639249C004706F9 = {
 			isa = PBXGroup;
 			children = (
+				96F6A965165948BD001041F9 /* libz.dylib */,
 				9635435D1644CF380002FAB6 /* ArcConstruktIPad.png */,
 				9635435E1644CF380002FAB6 /* ArcConstruktIPad@2x.png */,
 				963543541644CBF00002FAB6 /* ArcConstrukt@2x.png */,
@@ -829,6 +831,10 @@
 				GCC_PREFIX_HEADER = "OcodoArcConstrukt/OcodoArcConstrukt-Prefix.pch";
 				INFOPLIST_FILE = "OcodoArcConstrukt/OcodoArcConstrukt-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/OcodoArcConstrukt\"",
+				);
 				PRODUCT_NAME = ArcConstrukt;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "";
@@ -848,6 +854,10 @@
 				GCC_PREFIX_HEADER = "OcodoArcConstrukt/OcodoArcConstrukt-Prefix.pch";
 				INFOPLIST_FILE = "OcodoArcConstrukt/OcodoArcConstrukt-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/OcodoArcConstrukt\"",
+				);
 				PRODUCT_NAME = ArcConstrukt;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "";
