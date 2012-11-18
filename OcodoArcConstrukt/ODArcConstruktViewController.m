@@ -50,7 +50,8 @@
     
     NSNumber *alreadyStartedOnVersion = [[NSUserDefaults standardUserDefaults] objectForKey:appFirstStartOfVersionKey];
     if(!alreadyStartedOnVersion || [alreadyStartedOnVersion boolValue] == NO) {
-        [self editToolsHelpOverlay:kEditToolbarMode];
+
+        // do any first time loaded stuff. (the toolbar overlay is handled by first move.)
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:appFirstStartOfVersionKey];
     }
     
@@ -698,7 +699,7 @@
     }];
 }
 
-- (void) importComposition:(NSString*)filename withFolder:(NSString *)folder {
+- (void)importComposition:(NSString*)filename withFolder:(NSString *)folder {
     ODArcConstruktFile *file = [ODFileTools load:filename documentsFolder:folder];
     [ODFileTools save:filename documentsFolder:@"arcmachines" data:[NSKeyedArchiver archivedDataWithRootObject:file]];
     [ODFileTools save:file.filename extension:@"svg" documentsFolder:@"svg" data:[file asSVGEncoded]];
