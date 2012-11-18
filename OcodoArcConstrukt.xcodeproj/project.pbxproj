@@ -58,6 +58,12 @@
 		96D6D54216565C740016A0F5 /* PSPDFActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6D53F16565C740016A0F5 /* PSPDFActionSheet.m */; };
 		96D6D54316565C740016A0F5 /* PSPDFAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6D54116565C740016A0F5 /* PSPDFAlertView.m */; };
 		96D6D54D1657A9190016A0F5 /* ODInstructionsOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6D54C1657A9190016A0F5 /* ODInstructionsOverlay.m */; };
+		96D6D5551657FCA70016A0F5 /* ArcConstruktHelpOverlayPage1.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6D54F1657FCA70016A0F5 /* ArcConstruktHelpOverlayPage1.png */; };
+		96D6D5561657FCA70016A0F5 /* ArcConstruktHelpOverlayPage1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6D5501657FCA70016A0F5 /* ArcConstruktHelpOverlayPage1@2x.png */; };
+		96D6D5571657FCA70016A0F5 /* ArcConstruktHelpOverlayPage2.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6D5511657FCA70016A0F5 /* ArcConstruktHelpOverlayPage2.png */; };
+		96D6D5581657FCA70016A0F5 /* ArcConstruktHelpOverlayPage2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6D5521657FCA70016A0F5 /* ArcConstruktHelpOverlayPage2@2x.png */; };
+		96D6D5591657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6D5531657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3.png */; };
+		96D6D55A1657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6D5541657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3@2x.png */; };
 		96E921CC16462AEA008BDE9C /* arc_fill.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E921C816462AEA008BDE9C /* arc_fill.png */; };
 		96E921CD16462AEA008BDE9C /* arc_fill@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E921C916462AEA008BDE9C /* arc_fill@2x.png */; };
 		96E921CE16462AEA008BDE9C /* arc_stroke.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E921CA16462AEA008BDE9C /* arc_stroke.png */; };
@@ -187,6 +193,12 @@
 		96D6D54116565C740016A0F5 /* PSPDFAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFAlertView.m; sourceTree = "<group>"; };
 		96D6D54B1657A9190016A0F5 /* ODInstructionsOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODInstructionsOverlay.h; sourceTree = "<group>"; };
 		96D6D54C1657A9190016A0F5 /* ODInstructionsOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODInstructionsOverlay.m; sourceTree = "<group>"; };
+		96D6D54F1657FCA70016A0F5 /* ArcConstruktHelpOverlayPage1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArcConstruktHelpOverlayPage1.png; sourceTree = "<group>"; };
+		96D6D5501657FCA70016A0F5 /* ArcConstruktHelpOverlayPage1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ArcConstruktHelpOverlayPage1@2x.png"; sourceTree = "<group>"; };
+		96D6D5511657FCA70016A0F5 /* ArcConstruktHelpOverlayPage2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArcConstruktHelpOverlayPage2.png; sourceTree = "<group>"; };
+		96D6D5521657FCA70016A0F5 /* ArcConstruktHelpOverlayPage2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ArcConstruktHelpOverlayPage2@2x.png"; sourceTree = "<group>"; };
+		96D6D5531657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArcConstruktHelpOverlayPage3.png; sourceTree = "<group>"; };
+		96D6D5541657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ArcConstruktHelpOverlayPage3@2x.png"; sourceTree = "<group>"; };
 		96E921C816462AEA008BDE9C /* arc_fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arc_fill.png; sourceTree = "<group>"; };
 		96E921C916462AEA008BDE9C /* arc_fill@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arc_fill@2x.png"; sourceTree = "<group>"; };
 		96E921CA16462AEA008BDE9C /* arc_stroke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arc_stroke.png; sourceTree = "<group>"; };
@@ -298,6 +310,19 @@
 				96D0EDBA1643E100002F8754 /* app.css */,
 			);
 			name = AboutHTML;
+			sourceTree = "<group>";
+		};
+		96D6D54E1657FC7B0016A0F5 /* HelpOverlayImages */ = {
+			isa = PBXGroup;
+			children = (
+				96D6D54F1657FCA70016A0F5 /* ArcConstruktHelpOverlayPage1.png */,
+				96D6D5501657FCA70016A0F5 /* ArcConstruktHelpOverlayPage1@2x.png */,
+				96D6D5511657FCA70016A0F5 /* ArcConstruktHelpOverlayPage2.png */,
+				96D6D5521657FCA70016A0F5 /* ArcConstruktHelpOverlayPage2@2x.png */,
+				96D6D5531657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3.png */,
+				96D6D5541657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3@2x.png */,
+			);
+			name = HelpOverlayImages;
 			sourceTree = "<group>";
 		};
 		96F64F5616489813003E97AB /* Storyboard */ = {
@@ -415,6 +440,7 @@
 		96FADBB31639249D004706F9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				96D6D54E1657FC7B0016A0F5 /* HelpOverlayImages */,
 				96FADC7116424351004706F9 /* libs */,
 				96D0EDB81643E025002F8754 /* AboutHTML */,
 				96FADC6F164242D1004706F9 /* Images */,
@@ -660,6 +686,12 @@
 				96F64F93165148A2003E97AB /* filmroll.png in Resources */,
 				96F64F94165148A2003E97AB /* filmroll@2x.png in Resources */,
 				96D6D53C16564FC60016A0F5 /* video-screen.png in Resources */,
+				96D6D5551657FCA70016A0F5 /* ArcConstruktHelpOverlayPage1.png in Resources */,
+				96D6D5561657FCA70016A0F5 /* ArcConstruktHelpOverlayPage1@2x.png in Resources */,
+				96D6D5571657FCA70016A0F5 /* ArcConstruktHelpOverlayPage2.png in Resources */,
+				96D6D5581657FCA70016A0F5 /* ArcConstruktHelpOverlayPage2@2x.png in Resources */,
+				96D6D5591657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3.png in Resources */,
+				96D6D55A1657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

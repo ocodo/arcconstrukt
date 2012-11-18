@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ODInstructionsOverlay : UIView
+{
+    CGFloat _deviceOffsetY;
+}
+
+@property int mode;
 
 @end

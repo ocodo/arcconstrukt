@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 ocodo. All rights reserved.
 //
 
-#define MAXIMUM_LAYERS 150
-
 #import "ODArcConstruktViewController.h"
 #import "ODFileTools.h"
 #import "PSPDFActionSheet.h"
@@ -46,35 +44,37 @@
     [self initSwatchBarGestures];
     [self initColorPicker];
 
-    [self firstStartCode];
-
     NSString *bundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
     
     NSString *appFirstStartOfVersionKey = [NSString stringWithFormat:@"first_start_%@", bundleVersion];
     
     NSNumber *alreadyStartedOnVersion = [[NSUserDefaults standardUserDefaults] objectForKey:appFirstStartOfVersionKey];
     if(!alreadyStartedOnVersion || [alreadyStartedOnVersion boolValue] == NO) {
-        [self firstStartCode];
+        [self editToolsHelpOverlay:kEditToolbarMode];
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:appFirstStartOfVersionKey];
     }
     
     [[NSNotificationCenter defaultCenter] addObserverForName:@"selectFileToLoad" object:nil queue:nil usingBlock:^(NSNotification *note) {
         [self loadComposition:note.object];
     }];
-    
 }
 
-- (void)firstStartCode {
-//    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Welcome to ArcConstrukt"
-//                                                      message:@"Tap the title bar for Help."
-//                                                     delegate:nil
-//                                            cancelButtonTitle:@"OK"
-//                                            otherButtonTitles:nil];
-//    [message show];
-    ODInstructionsOverlay *instructions = [[ODInstructionsOverlay alloc] initWithFrame:CGRectMake(0, 0, 320, 640)];
-    [[self view] addSubview:instructions];
-    
-    
+- (void)editToolsHelpOverlay:(int)mode {
+    BOOL showingInstructions = false;
+    ODInstructionsOverlay *instructions;
+    for (id v in [self view].subviews) {
+        if ([v isKindOfClass:[ODInstructionsOverlay class]]) {
+            instructions = (ODInstructionsOverlay*)v;
+            showingInstructions = true;
+        }
+    }
+    if(!showingInstructions) {
+        ODInstructionsOverlay *instructions = [[ODInstructionsOverlay alloc] initWithFrame:CGRectMake(0, 0, 320, 640)];
+        instructions.mode = _toolbarMode;
+        [[self view] addSubview:instructions];
+    } else {
+        [instructions removeFromSuperview];
+    }
 }
 
 - (void)initApplicationClipboard {
@@ -101,8 +101,8 @@
     [arcConstruktView addGestureRecognizer:longPress];
     
     // set rotate and pinch gesture modes.
-    rotateMode = 0;
-    pinchMode = 0;
+    _rotateMode = 0;
+    _pinchMode = 0;
     
 }
 
@@ -113,6 +113,15 @@
     
     [titleView setUserInteractionEnabled:YES];
     [titleView addGestureRecognizer:titleTap];
+    
+    UISwipeGestureRecognizer *titleSwipe = [[UISwipeGestureRecognizer alloc]
+                                        initWithTarget:self
+                                        action:@selector(handleTitleSwipe:)];
+    
+    titleSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
+    
+    [titleView setUserInteractionEnabled:YES];
+    [titleView addGestureRecognizer:titleSwipe];
 }
 
 - (void)initLayerStepper {
@@ -217,6 +226,60 @@
     [self moveColorPicker:640];
 }
 
+- (void)handleConstruktPinch:(UIPinchGestureRecognizer *)pincher {
+    switch (_pinchMode) {
+        case 0:
+            [self pinchRadius:pincher];
+            break;
+            
+        case 1:
+            [self pinchThickness:pincher];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)handleConstruktLongPress:(UILongPressGestureRecognizer *)recognizer {
+    [recognizer.view becomeFirstResponder];
+    UIMenuController* mc = [UIMenuController sharedMenuController];
+    UIMenuItem* menu_angle_a = [[UIMenuItem alloc] initWithTitle:@"A˚" action:@selector(angleAMode:)];
+    UIMenuItem* menu_angle_b = [[UIMenuItem alloc] initWithTitle:@"B˚" action:@selector(angleBMode:)];
+    UIMenuItem* menu_radius = [[UIMenuItem alloc] initWithTitle:@"r" action:@selector(radiusMode:)];
+    UIMenuItem* menu_thickness = [[UIMenuItem alloc] initWithTitle:@"T" action:@selector(thicknessMode:)];
+    UIMenuItem* menu_copy = [[UIMenuItem alloc] initWithTitle:@"Copy" action:@selector(copyArc:)];
+    UIMenuItem* menu_paste = [[UIMenuItem alloc] initWithTitle:@"Paste" action:@selector(pasteArc:)];
+    UIMenuItem* menu_delete = [[UIMenuItem alloc] initWithTitle:@"Delete" action:@selector(deleteButton:)];
+    UIMenuItem* menu_clear = [[UIMenuItem alloc] initWithTitle:@"Clear All" action:@selector(clearButton:)];
+    [[UIMenuController sharedMenuController] setMenuItems:@[menu_angle_a, menu_angle_b, menu_radius, menu_thickness, menu_copy, menu_paste, menu_delete, menu_clear]];
+    CGPoint position = [recognizer locationInView:recognizer.view.superview];
+    CGRect box = CGRectMake(position.x, position.y, 10, 10);
+    [mc setTargetRect: box inView: recognizer.view.superview];
+    [mc setMenuVisible: YES animated: YES];
+}
+
+- (void)handleConstruktRotate:(ODFingerRotationGestureRecognizer *)rotator {
+    switch (_rotateMode) {
+        case 0:
+            [self startAngleTouch:rotator];
+            break;
+        case 1:
+            [self endAngleTouch:rotator];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)handleTitleTap:(UITapGestureRecognizer *) recognizer {
+    [self editToolsHelpOverlay:_toolbarMode];
+}
+
+- (void)handleTitleSwipe:(UISwipeGestureRecognizer *) recognizer {
+    [self performSegueWithIdentifier:@"aboutPageSegue" sender:self];
+}
+
 - (void)moveColorPicker:(int)move_to_x {
     [UIView animateWithDuration:0.5
                           delay:0
@@ -246,7 +309,7 @@
     }
 }
 
--(void)NPColorPickerView:(NPColorPickerView *)view didSelectColor:(UIColor *)color {
+- (void)NPColorPickerView:(NPColorPickerView *)view didSelectColor:(UIColor *)color {
     
     int i = [ODColorPalette singleton].selectedIndex;
     [ODColorPalette singleton].colors[i] = color;
@@ -299,7 +362,7 @@
 
 - (IBAction)addButton:(id)sender {
     int max_layer = [arcConstruktView subviews].count;
-    if(max_layer < MAXIMUM_LAYERS) {
+    if(max_layer < kMaximumLayers) {
         [self addRandomArcLayer];
         [self syncLayerStepper];
     } else {
@@ -310,7 +373,7 @@
     }
 }
 
-- (void) syncLayerStepper {
+- (void)syncLayerStepper {
     int max_layer = [arcConstruktView subviews].count -1;
     [layerStepper setMaximumValue:max_layer];
     [layerStepper setValue:max_layer];
@@ -384,32 +447,14 @@
     [actionSheet showInView:[self view]];
 }
 
-- (void)handleConstruktLongPress:(UILongPressGestureRecognizer *)recognizer {
-    [recognizer.view becomeFirstResponder];
-    UIMenuController* mc = [UIMenuController sharedMenuController];
-    UIMenuItem* menu_angle_a = [[UIMenuItem alloc] initWithTitle:@"A˚" action:@selector(angleAMode:)];
-    UIMenuItem* menu_angle_b = [[UIMenuItem alloc] initWithTitle:@"B˚" action:@selector(angleBMode:)];
-    UIMenuItem* menu_radius = [[UIMenuItem alloc] initWithTitle:@"r" action:@selector(radiusMode:)];
-    UIMenuItem* menu_thickness = [[UIMenuItem alloc] initWithTitle:@"T" action:@selector(thicknessMode:)];
-    UIMenuItem* menu_copy = [[UIMenuItem alloc] initWithTitle:@"Copy" action:@selector(copyArc:)];
-    UIMenuItem* menu_paste = [[UIMenuItem alloc] initWithTitle:@"Paste" action:@selector(pasteArc:)];
-    UIMenuItem* menu_delete = [[UIMenuItem alloc] initWithTitle:@"Delete" action:@selector(deleteButton:)];
-    UIMenuItem* menu_clear = [[UIMenuItem alloc] initWithTitle:@"Clear All" action:@selector(clearButton:)];
-    [[UIMenuController sharedMenuController] setMenuItems:@[menu_angle_a, menu_angle_b, menu_radius, menu_thickness, menu_copy, menu_paste, menu_delete, menu_clear]];
-    CGPoint position = [recognizer locationInView:recognizer.view.superview];
-    CGRect box = CGRectMake(position.x, position.y, 10, 10);
-    [mc setTargetRect: box inView: recognizer.view.superview];
-    [mc setMenuVisible: YES animated: YES];
-}
-
-- (void) copyArc:(id)sender {
+- (void)copyArc:(id)sender {
     NSDictionary *plist = [[ODApplicationState sharedinstance]
                            .currentArc geometryToDictionary];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject: plist];
     [appPasteboard setData:data forPasteboardType:@"info.ocodo.arcconstrukt"];
 }
 
-- (void) pasteArc:(id)sender {
+- (void)pasteArc:(id)sender {
     NSData *data = [appPasteboard dataForPasteboardType:@"info.ocodo.arcconstrukt"];
     NSDictionary *plist = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     ODArcMachine *a = [[ODArcMachine alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
@@ -420,22 +465,22 @@
 
 - (void)angleAMode: (id)sender {
     [angleSelector setSelectedSegmentIndex:0];
-    rotateMode = 0;
+    _rotateMode = 0;
 }
 
 - (void)angleBMode: (id)sender {
     [angleSelector setSelectedSegmentIndex:1];
-    rotateMode = 1;
+    _rotateMode = 1;
 }
 
 - (void)radiusMode: (id)sender {
     [pinchSelector setSelectedSegmentIndex:0];
-    pinchMode = 0;
+    _pinchMode = 0;
 }
 
 - (void)thicknessMode: (id)sender {
     [pinchSelector setSelectedSegmentIndex:1];
-    pinchMode = 1;
+    _pinchMode = 1;
 }
 
 - (BOOL)canPerformAction: (SEL)action withSender: (id)sender {
@@ -453,21 +498,6 @@
     return YES;
 }
 
-- (void)handleConstruktPinch:(UIPinchGestureRecognizer *)pincher {
-    switch (pinchMode) {
-        case 0:
-            [self pinchRadius:pincher];
-            break;
-            
-        case 1:
-            [self pinchThickness:pincher];
-            break;
-            
-        default:
-            break;
-    }
-}
-
 - (void)pinchRadius:(UIPinchGestureRecognizer *)pincher {
     float radius = clampf([ODApplicationState sharedinstance].currentArc.radius + pincher.scale-1, 1.0f, 160.0f);
     [ODApplicationState sharedinstance].currentArc.radius = radius;
@@ -478,19 +508,6 @@
     float thick = clampf([ODApplicationState sharedinstance].currentArc.thickness + pincher.scale-1, 1.0f, 160.0f);
     [ODApplicationState sharedinstance].currentArc.thickness = thick;
     [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
-}
-
-- (void)handleConstruktRotate:(ODFingerRotationGestureRecognizer *)rotator {
-    switch (rotateMode) {
-        case 0:
-            [self startAngleTouch:rotator];
-            break;
-        case 1:
-            [self endAngleTouch:rotator];
-            break;
-        default:
-            break;
-    }
 }
 
 - (void)startAngleTouch:(ODFingerRotationGestureRecognizer *)rotator {
@@ -512,15 +529,11 @@
 }
 
 - (IBAction)changeRotateMode:(UISegmentedControl *)sender {
-    rotateMode = sender.selectedSegmentIndex;
+    _rotateMode = sender.selectedSegmentIndex;
 }
 
 - (IBAction)changePinchMode:(UISegmentedControl *)sender {
-    pinchMode = sender.selectedSegmentIndex;
-}
-
-- (void)handleTitleTap:(UITapGestureRecognizer *) tap {
-    [self performSegueWithIdentifier:@"aboutPageSegue" sender:self];
+    _pinchMode = sender.selectedSegmentIndex;
 }
 
 - (IBAction)savePNGImagetoPhotoAlbum:(id)sender {
@@ -617,6 +630,7 @@
 }
 
 - (void)moveToolbar:(int)s {
+    _toolbarMode = s;
     int x = s * -320;
     [UIView animateWithDuration:0.5
                           delay:0
@@ -636,9 +650,23 @@
                                                         mainToolbar.frame.origin.y,
                                                         mainToolbar.frame.size.width,
                                                         mainToolbar.frame.size.height);
+                     }completion:^(BOOL finished) {
+                         _toolbarMode = s;
+                         [self showInstructionsOnceForToolbarMode:s];
                      }
-                     completion:nil
      ];
+}
+
+- (void) showInstructionsOnceForToolbarMode:(int)mode {
+
+    NSString *bundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
+    NSString *seenToolModeInstructionsKey = [NSString stringWithFormat:@"seen_toolmode_%i_instructions_%@", mode, bundleVersion];
+    NSNumber *seenModeInstruction = [[NSUserDefaults standardUserDefaults] objectForKey:seenToolModeInstructionsKey];
+    if(!seenModeInstruction || [seenModeInstruction boolValue] == NO) {
+        [self editToolsHelpOverlay:mode];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:seenToolModeInstructionsKey];
+    }
+    
 }
 
 - (IBAction)toolbarModeSelector:(UISegmentedControl*)sender {
@@ -664,21 +692,15 @@
         
         int ti = [[NSDate date] timeIntervalSince1970];
         file.filename = [NSString stringWithFormat:@"ArcConstrukt-%X.arcmachine", ti];
-        
         [ODFileTools save:file.filename documentsFolder:@"arcmachines" data:[NSKeyedArchiver archivedDataWithRootObject: file]];
-        
         [ODFileTools save:file.filename extension:@"svg" documentsFolder:@"svg" data:[file asSVGEncoded]];
-        
         return;
     }];
 }
 
 - (void) importComposition:(NSString*)filename withFolder:(NSString *)folder {
-    
     ODArcConstruktFile *file = [ODFileTools load:filename documentsFolder:folder];
-    
     [ODFileTools save:filename documentsFolder:@"arcmachines" data:[NSKeyedArchiver archivedDataWithRootObject:file]];
-     
     [ODFileTools save:file.filename extension:@"svg" documentsFolder:@"svg" data:[file asSVGEncoded]];
 }
 

@@ -6,6 +6,11 @@
 //  Copyright (c) 2012 ocodo. All rights reserved.
 //
 
+#define kMaximumLayers 150
+#define kEditToolbarMode 0
+#define kColorToolbarMode 1
+#define kOrderToolbarMode 2
+
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -32,8 +37,9 @@
 @interface ODArcConstruktViewController : UIViewController <NPColorPickerViewDelegate>
 {
     UIPasteboard *appPasteboard;
-    int rotateMode;
-    int pinchMode;
+    int _rotateMode;
+    int _pinchMode;
+    int _toolbarMode;
 }
 
 @property (readonly) IBOutlet UIView *titleView;
