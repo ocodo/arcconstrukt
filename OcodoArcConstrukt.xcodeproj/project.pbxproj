@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9624AAEC165A8EF600E418D8 /* ODInstructionsOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 9624AAEB165A8EF600E418D8 /* ODInstructionsOverlay.m */; };
 		963543531644CBD90002FAB6 /* ArcConstrukt.png in Resources */ = {isa = PBXBuildFile; fileRef = 963543521644CBD90002FAB6 /* ArcConstrukt.png */; };
 		963543551644CBF00002FAB6 /* ArcConstrukt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 963543541644CBF00002FAB6 /* ArcConstrukt@2x.png */; };
 		9635435F1644CF380002FAB6 /* ArcConstruktIPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9635435D1644CF380002FAB6 /* ArcConstruktIPad.png */; };
@@ -57,13 +58,6 @@
 		96D6D53C16564FC60016A0F5 /* video-screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6D53B16564FC60016A0F5 /* video-screen.png */; };
 		96D6D54216565C740016A0F5 /* PSPDFActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6D53F16565C740016A0F5 /* PSPDFActionSheet.m */; };
 		96D6D54316565C740016A0F5 /* PSPDFAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6D54116565C740016A0F5 /* PSPDFAlertView.m */; };
-		96D6D54D1657A9190016A0F5 /* ODInstructionsOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6D54C1657A9190016A0F5 /* ODInstructionsOverlay.m */; };
-		96D6D5551657FCA70016A0F5 /* ArcConstruktHelpOverlayPage1.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6D54F1657FCA70016A0F5 /* ArcConstruktHelpOverlayPage1.png */; };
-		96D6D5561657FCA70016A0F5 /* ArcConstruktHelpOverlayPage1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6D5501657FCA70016A0F5 /* ArcConstruktHelpOverlayPage1@2x.png */; };
-		96D6D5571657FCA70016A0F5 /* ArcConstruktHelpOverlayPage2.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6D5511657FCA70016A0F5 /* ArcConstruktHelpOverlayPage2.png */; };
-		96D6D5581657FCA70016A0F5 /* ArcConstruktHelpOverlayPage2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6D5521657FCA70016A0F5 /* ArcConstruktHelpOverlayPage2@2x.png */; };
-		96D6D5591657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6D5531657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3.png */; };
-		96D6D55A1657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6D5541657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3@2x.png */; };
 		96E921CC16462AEA008BDE9C /* arc_fill.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E921C816462AEA008BDE9C /* arc_fill.png */; };
 		96E921CD16462AEA008BDE9C /* arc_fill@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E921C916462AEA008BDE9C /* arc_fill@2x.png */; };
 		96E921CE16462AEA008BDE9C /* arc_stroke.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E921CA16462AEA008BDE9C /* arc_stroke.png */; };
@@ -132,6 +126,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9624AAEB165A8EF600E418D8 /* ODInstructionsOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODInstructionsOverlay.m; sourceTree = "<group>"; };
 		963543521644CBD90002FAB6 /* ArcConstrukt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArcConstrukt.png; sourceTree = "<group>"; };
 		963543541644CBF00002FAB6 /* ArcConstrukt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ArcConstrukt@2x.png"; sourceTree = "<group>"; };
 		9635435D1644CF380002FAB6 /* ArcConstruktIPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArcConstruktIPad.png; sourceTree = "<group>"; };
@@ -194,13 +189,6 @@
 		96D6D54016565C740016A0F5 /* PSPDFAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFAlertView.h; sourceTree = "<group>"; };
 		96D6D54116565C740016A0F5 /* PSPDFAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFAlertView.m; sourceTree = "<group>"; };
 		96D6D54B1657A9190016A0F5 /* ODInstructionsOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODInstructionsOverlay.h; sourceTree = "<group>"; };
-		96D6D54C1657A9190016A0F5 /* ODInstructionsOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODInstructionsOverlay.m; sourceTree = "<group>"; };
-		96D6D54F1657FCA70016A0F5 /* ArcConstruktHelpOverlayPage1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArcConstruktHelpOverlayPage1.png; sourceTree = "<group>"; };
-		96D6D5501657FCA70016A0F5 /* ArcConstruktHelpOverlayPage1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ArcConstruktHelpOverlayPage1@2x.png"; sourceTree = "<group>"; };
-		96D6D5511657FCA70016A0F5 /* ArcConstruktHelpOverlayPage2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArcConstruktHelpOverlayPage2.png; sourceTree = "<group>"; };
-		96D6D5521657FCA70016A0F5 /* ArcConstruktHelpOverlayPage2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ArcConstruktHelpOverlayPage2@2x.png"; sourceTree = "<group>"; };
-		96D6D5531657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArcConstruktHelpOverlayPage3.png; sourceTree = "<group>"; };
-		96D6D5541657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ArcConstruktHelpOverlayPage3@2x.png"; sourceTree = "<group>"; };
 		96E921C816462AEA008BDE9C /* arc_fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arc_fill.png; sourceTree = "<group>"; };
 		96E921C916462AEA008BDE9C /* arc_fill@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arc_fill@2x.png"; sourceTree = "<group>"; };
 		96E921CA16462AEA008BDE9C /* arc_stroke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arc_stroke.png; sourceTree = "<group>"; };
@@ -232,7 +220,6 @@
 		96F64FA61651BF54003E97AB /* ArcConstruktAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcConstruktAppDelegate.h; sourceTree = "<group>"; };
 		96F6A95D16590715001041F9 /* a_b_link.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = a_b_link.png; sourceTree = "<group>"; };
 		96F6A95E16590715001041F9 /* a_b_link@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "a_b_link@2x.png"; sourceTree = "<group>"; };
-		96F6A965165948BD001041F9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		96FADBA81639249C004706F9 /* ArcConstrukt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArcConstrukt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96FADBAC1639249C004706F9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		96FADBAE1639249D004706F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -317,19 +304,6 @@
 			name = AboutHTML;
 			sourceTree = "<group>";
 		};
-		96D6D54E1657FC7B0016A0F5 /* HelpOverlayImages */ = {
-			isa = PBXGroup;
-			children = (
-				96D6D54F1657FCA70016A0F5 /* ArcConstruktHelpOverlayPage1.png */,
-				96D6D5501657FCA70016A0F5 /* ArcConstruktHelpOverlayPage1@2x.png */,
-				96D6D5511657FCA70016A0F5 /* ArcConstruktHelpOverlayPage2.png */,
-				96D6D5521657FCA70016A0F5 /* ArcConstruktHelpOverlayPage2@2x.png */,
-				96D6D5531657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3.png */,
-				96D6D5541657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3@2x.png */,
-			);
-			name = HelpOverlayImages;
-			sourceTree = "<group>";
-		};
 		96F64F5616489813003E97AB /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,7 +362,7 @@
 				9675BA5D1656252D006A742D /* ODViewHelpers.h */,
 				9675BA5E1656252D006A742D /* ODViewHelpers.m */,
 				96D6D54B1657A9190016A0F5 /* ODInstructionsOverlay.h */,
-				96D6D54C1657A9190016A0F5 /* ODInstructionsOverlay.m */,
+				9624AAEB165A8EF600E418D8 /* ODInstructionsOverlay.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -396,7 +370,6 @@
 		96FADB9D1639249C004706F9 = {
 			isa = PBXGroup;
 			children = (
-				96F6A965165948BD001041F9 /* libz.dylib */,
 				9635435D1644CF380002FAB6 /* ArcConstruktIPad.png */,
 				9635435E1644CF380002FAB6 /* ArcConstruktIPad@2x.png */,
 				963543541644CBF00002FAB6 /* ArcConstrukt@2x.png */,
@@ -446,7 +419,6 @@
 		96FADBB31639249D004706F9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				96D6D54E1657FC7B0016A0F5 /* HelpOverlayImages */,
 				96FADC7116424351004706F9 /* libs */,
 				96D0EDB81643E025002F8754 /* AboutHTML */,
 				96FADC6F164242D1004706F9 /* Images */,
@@ -694,12 +666,6 @@
 				96F64F93165148A2003E97AB /* filmroll.png in Resources */,
 				96F64F94165148A2003E97AB /* filmroll@2x.png in Resources */,
 				96D6D53C16564FC60016A0F5 /* video-screen.png in Resources */,
-				96D6D5551657FCA70016A0F5 /* ArcConstruktHelpOverlayPage1.png in Resources */,
-				96D6D5561657FCA70016A0F5 /* ArcConstruktHelpOverlayPage1@2x.png in Resources */,
-				96D6D5571657FCA70016A0F5 /* ArcConstruktHelpOverlayPage2.png in Resources */,
-				96D6D5581657FCA70016A0F5 /* ArcConstruktHelpOverlayPage2@2x.png in Resources */,
-				96D6D5591657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3.png in Resources */,
-				96D6D55A1657FCA70016A0F5 /* ArcConstruktHelpOverlayPage3@2x.png in Resources */,
 				96F6A95F16590715001041F9 /* a_b_link.png in Resources */,
 				96F6A96016590715001041F9 /* a_b_link@2x.png in Resources */,
 			);
@@ -742,7 +708,7 @@
 				9675BA5F1656252E006A742D /* ODViewHelpers.m in Sources */,
 				96D6D54216565C740016A0F5 /* PSPDFActionSheet.m in Sources */,
 				96D6D54316565C740016A0F5 /* PSPDFAlertView.m in Sources */,
-				96D6D54D1657A9190016A0F5 /* ODInstructionsOverlay.m in Sources */,
+				9624AAEC165A8EF600E418D8 /* ODInstructionsOverlay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

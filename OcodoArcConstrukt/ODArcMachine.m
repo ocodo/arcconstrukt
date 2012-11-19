@@ -65,7 +65,7 @@
 }
 
 -(void) commonInit {
-     // [self setupArcLayer];
+//    [self setupArcLayer];
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -73,34 +73,35 @@
     drawArc(self.bounds, ctx, x, y, start, end, radius, thickness, fill, stroke);
 }
 
-- (void)setupArcLayer {
-    ODArcLayer *arcLayer = [ODArcLayer layer];
-    arcLayer.x = x;
-    arcLayer.y = y;
-    arcLayer.start = start;
-    arcLayer.end = end;
-    arcLayer.radius = radius;
-    arcLayer.thickness = thickness;
-    arcLayer.fill = fill;
-    arcLayer.stroke = stroke;
-    arcLayer.frame = self.frame;
-    [self.layer addSublayer:arcLayer];
-}
+//- (void)setupArcLayer {
+//    ODArcLayer *arcLayer = [ODArcLayer layer];
+//    arcLayer.x = x;
+//    arcLayer.y = y;
+//    arcLayer.start = start;
+//    arcLayer.end = end;
+//    arcLayer.radius = radius;
+//    arcLayer.thickness = thickness;
+//    arcLayer.fill = fill;
+//    arcLayer.stroke = stroke;
+//    arcLayer.frame = self.frame;
+//    [self.layer addSublayer:arcLayer];
+//    [arcLayer setNeedsDisplay];
+//}
 
-- (void)updateArcLayer {
-    ODArcLayer *arcLayer = [self.layer.sublayers objectAtIndex:0];
-    arcLayer.x = x;
-    arcLayer.y = y;
-    arcLayer.start = start;
-    arcLayer.end = end;
-    arcLayer.radius = radius;
-    arcLayer.thickness = thickness;
-    arcLayer.fill = fill;
-    arcLayer.stroke = stroke;
-}
+//- (void)updateArcLayer {
+//    ODArcLayer *arcLayer = [self.layer.sublayers objectAtIndex:0];
+//    arcLayer.x = x;
+//    arcLayer.y = y;
+//    arcLayer.start = start;
+//    arcLayer.end = end;
+//    arcLayer.radius = radius;
+//    arcLayer.thickness = thickness;
+//    arcLayer.fill = fill;
+//    arcLayer.stroke = stroke;
+//}
 
 - (void)setNeedsDisplay {
-    // [self updateArcLayer];
+//    [self updateArcLayer];
     [super setNeedsDisplay];
 }
 
@@ -261,7 +262,6 @@
 - (void) drawInContext:(CGContextRef)ctx {
     // NSLog(@"drawing layer : %f, %f / A %f / B %f / r %f / T %f", self.bounds.size.width, self.bounds.size.height, self.start, self.end, self.radius, self.thickness);
     drawArc(self.bounds, ctx, self.x, self.y, self.start, self.end, self.radius, self.thickness, self.fill, self.stroke);
-    [self display];
 }
 
 @end

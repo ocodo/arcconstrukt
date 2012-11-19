@@ -436,7 +436,8 @@
     PSPDFActionSheet *actionSheet = [[PSPDFActionSheet alloc] initWithTitle:@"Choose an Action"];
     actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     [actionSheet setDestructiveButtonWithTitle:@"Save PNG to Camera Roll" block:^{
-        [self savePNGImagetoPhotoAlbum:self];
+        [self deselect];
+        [self savePNGMenu:self];
     }];
     [actionSheet addButtonWithTitle:@"Import Colors" block:^{
         [self importColorsFromPasteboard:self];
@@ -452,6 +453,38 @@
     }];
     [actionSheet setCancelButtonWithTitle:@"Cancel" block:nil];
     [actionSheet showInView:[self view]];
+}
+
+- (IBAction)savePNGMenu:(id)sender {
+    
+    if (arcConstruktView.subviews.count < 1) {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Press + to add Arcs" image:[UIImage imageNamed:@"lightBulb@2x.png"]];
+        return;
+    }
+    
+    PSPDFActionSheet *actionSheet = [[PSPDFActionSheet alloc] initWithTitle:@"Save to Camera Roll\nImage Quality"];
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+    [actionSheet addButtonWithTitle:@"PNG 640x640" block:^{
+        [self savePNGImagetoPhotoAlbum:self scale:2];
+    }];
+    [actionSheet addButtonWithTitle:@"PNG 1280x1280" block:^{
+        [self savePNGImagetoPhotoAlbum:self scale:4];
+    }];
+    [actionSheet addButtonWithTitle:@"PNG 1920x1920" block:^{
+        [self savePNGImagetoPhotoAlbum:self scale:6];
+    }];
+    [actionSheet addButtonWithTitle:@"PNG 2560x2560" block:^{
+        [self savePNGImagetoPhotoAlbum:self scale:8];
+    }];
+    [actionSheet addButtonWithTitle:@"PNG 2880x2880" block:^{
+        [self savePNGImagetoPhotoAlbum:self scale:9];
+    }];
+    [actionSheet addButtonWithTitle:@"PNG 3200x3200" block:^{
+        [self savePNGImagetoPhotoAlbum:self scale:10];
+    }];
+    [actionSheet setCancelButtonWithTitle:@"Cancel" block:nil];
+    [actionSheet showInView:[self view]];
+
 }
 
 - (void)copyArc:(id)sender {
@@ -556,14 +589,13 @@
     _pinchMode = sender.selectedSegmentIndex;
 }
 
-- (IBAction)savePNGImagetoPhotoAlbum:(id)sender {
+- (IBAction)savePNGImagetoPhotoAlbum:(id)sender scale:(NSInteger)s{
     if([[arcConstruktView subviews] count] > 0) {
-        [self deselect];
         // show progress HUD
         DZProgressController *HUD = [DZProgressController new];
         HUD.label.text = @"Saving to Photo Album";
         [HUD showWhileExecuting:^{
-            UIGraphicsBeginImageContextWithOptions(arcConstruktView.bounds.size, NO, 6.0);
+            UIGraphicsBeginImageContextWithOptions(arcConstruktView.bounds.size, NO, s);
             [arcConstruktView.layer renderInContext:UIGraphicsGetCurrentContext()];
             UIImage* pngImage = [UIImage
                                  imageWithData:
@@ -583,6 +615,7 @@
         [[TKAlertCenter defaultCenter] postAlertWithMessage:@"There was a problem saving your image, check photo album privacy settings, and make sure you have enough free memory."];
     } else {
         // saved ok.
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Saved PNG"];
     }
 }
 
@@ -692,11 +725,6 @@
 }
 
 - (void)saveComposition:(id)sender {
-    if (arcConstruktView.subviews.count < 1) {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Press + to add Arcs"];
-        return;
-    }
-    
     DZProgressController *HUD = [DZProgressController new];
     HUD.label.text = @"Saving ArcConstrukt";
     [HUD showWhileExecuting:^{
