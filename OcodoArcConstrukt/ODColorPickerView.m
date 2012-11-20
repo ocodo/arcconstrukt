@@ -15,7 +15,7 @@
 */
 
 
-#import "NPColorPickerView.h"
+#import "ODColorPickerView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "extra_math.h"
 
@@ -92,7 +92,7 @@ NSString * kColorProperty = @"color";
 @end
 
 
-@implementation NPColorPickerView {
+@implementation ODColorPickerView {
    NSMutableArray * hueIndicators_;
    NPPickerIndicator * hueIndicator_;
    NPPickerIndicator * svIndicator_;

@@ -16,17 +16,17 @@
 
 #import <UIKit/UIKit.h>
 
-@class NPColorPickerView;
+@class ODColorPickerView;
 
 @protocol NPColorPickerViewDelegate <NSObject> 
 
--(void)NPColorPickerView:(NPColorPickerView *)view didSelectColor:(UIColor *) color;
+-(void)NPColorPickerView:(ODColorPickerView *)view didSelectColor:(UIColor *) color;
 
 @end
 
 extern NSString * kColorProperty;
 
-@interface NPColorPickerView : UIView
+@interface ODColorPickerView : UIView
 
 @property (nonatomic, readwrite, strong) UIColor * color;
 @property (nonatomic, readwrite, assign) UIEdgeInsets insets;

@@ -71,28 +71,43 @@
     switch (gridMode) {
         case 1:
             [self drawPolarGrid:DEGREES_TO_RADIANS(10) rect:rect context:ctx];
+            [TestFlight passCheckpoint:@"Set Grid: 10deg"];
+
             break;
         case 2:
             [self drawPolarGrid:DEGREES_TO_RADIANS(15) rect:rect context:ctx];
+            [TestFlight passCheckpoint:@"Set Grid: 15deg"];
+            
             break;
         case 3:
             [self drawPolarGrid:DEGREES_TO_RADIANS(20) rect:rect context:ctx];
+            [TestFlight passCheckpoint:@"Set Grid: 20deg"];
+            
             break;
         case 4:
             [self drawPolarGrid:DEGREES_TO_RADIANS(30) rect:rect context:ctx];
+            [TestFlight passCheckpoint:@"Set Grid: 30deg"];
+
             break;
         case 5:
             [self drawPolarGrid:DEGREES_TO_RADIANS(45) rect:rect context:ctx];
+            [TestFlight passCheckpoint:@"Set Grid: 45deg"];
+
             break;
         case 6:
             [self drawPolarGrid:DEGREES_TO_RADIANS(60) rect:rect context:ctx];
+            [TestFlight passCheckpoint:@"Set Grid: 60deg"];
+
             break;
         case 7:
             [self drawPolarGrid:DEGREES_TO_RADIANS(120) rect:rect context:ctx];
+            [TestFlight passCheckpoint:@"Set Grid: 120deg"];
+            
             break;
             
         default:
             [self drawNumGrid:1 rect:rect context:ctx];
+            [TestFlight passCheckpoint:@"Set Grid: None"];
 
             break;
     }

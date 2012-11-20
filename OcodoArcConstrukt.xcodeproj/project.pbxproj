@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		9624AAEC165A8EF600E418D8 /* ODInstructionsOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 9624AAEB165A8EF600E418D8 /* ODInstructionsOverlay.m */; };
+		9624AAF9165AFDA500E418D8 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9624AAF5165AFDA500E418D8 /* libTestFlight.a */; };
+		9624AAFA165AFDA500E418D8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9624AAF6165AFDA500E418D8 /* README.md */; };
+		9624AAFB165AFDA500E418D8 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 9624AAF7165AFDA500E418D8 /* release_notes.md */; };
+		9624AAFD165AFDF500E418D8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9624AAFC165AFDF500E418D8 /* libz.dylib */; };
+		9624AB05165B478B00E418D8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9624AB03165B478B00E418D8 /* Localizable.strings */; };
+		9624AB0D165B47A100E418D8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9624AB07165B47A100E418D8 /* InfoPlist.strings */; };
+		9624AB13165B47CA00E418D8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9624AB11165B47CA00E418D8 /* Localizable.strings */; };
+		9624AB16165B59F700E418D8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9624AB14165B59F700E418D8 /* MainStoryboard.storyboard */; };
+		9624AB19165B5FF600E418D8 /* ODFilesNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9624AB18165B5FF600E418D8 /* ODFilesNavigationItem.m */; };
 		963543531644CBD90002FAB6 /* ArcConstrukt.png in Resources */ = {isa = PBXBuildFile; fileRef = 963543521644CBD90002FAB6 /* ArcConstrukt.png */; };
 		963543551644CBF00002FAB6 /* ArcConstrukt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 963543541644CBF00002FAB6 /* ArcConstrukt@2x.png */; };
 		9635435F1644CF380002FAB6 /* ArcConstruktIPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9635435D1644CF380002FAB6 /* ArcConstruktIPad.png */; };
@@ -68,7 +77,7 @@
 		96E921D8164667F0008BDE9C /* escape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E921D6164667F0008BDE9C /* escape@2x.png */; };
 		96F64F5916489852003E97AB /* ODSwatchPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F5816489852003E97AB /* ODSwatchPicker.m */; };
 		96F64F671648B80D003E97AB /* CGColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F5E1648B80D003E97AB /* CGColor+Additions.m */; };
-		96F64F681648B80D003E97AB /* NPColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F601648B80D003E97AB /* NPColorPickerView.m */; };
+		96F64F681648B80D003E97AB /* ODColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F601648B80D003E97AB /* ODColorPickerView.m */; };
 		96F64F691648B80D003E97AB /* NPConicGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F621648B80D003E97AB /* NPConicGradient.m */; };
 		96F64F6A1648B80D003E97AB /* NPPickerIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F641648B80D003E97AB /* NPPickerIndicator.m */; };
 		96F64F6E1648DE51003E97AB /* ODColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F6D1648DE51003E97AB /* ODColorPalette.m */; };
@@ -88,7 +97,6 @@
 		96FADBBF1639249D004706F9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBBE1639249D004706F9 /* Default.png */; };
 		96FADBC11639249D004706F9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBC01639249D004706F9 /* Default@2x.png */; };
 		96FADBC31639249D004706F9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBC21639249D004706F9 /* Default-568h@2x.png */; };
-		96FADBC61639249D004706F9 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBC41639249D004706F9 /* MainStoryboard.storyboard */; };
 		96FADBD816394E40004706F9 /* ODArcMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADBD716394E40004706F9 /* ODArcMachine.m */; };
 		96FADBDF163A5F4D004706F9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBDE163A5F4D004706F9 /* QuartzCore.framework */; };
 		96FADC2A163CB0BE004706F9 /* ODArcConstruktViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADC29163CB0BD004706F9 /* ODArcConstruktViewController.m */; };
@@ -127,6 +135,18 @@
 
 /* Begin PBXFileReference section */
 		9624AAEB165A8EF600E418D8 /* ODInstructionsOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODInstructionsOverlay.m; sourceTree = "<group>"; };
+		9624AAF5165AFDA500E418D8 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		9624AAF6165AFDA500E418D8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		9624AAF7165AFDA500E418D8 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		9624AAF8165AFDA500E418D8 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		9624AAFC165AFDF500E418D8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		9624AB02165B0FC000E418D8 /* ODColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODColorPickerView.h; sourceTree = "<group>"; };
+		9624AB04165B478B00E418D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = OcodoArcConstrukt/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9624AB08165B47A100E418D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		9624AB12165B47CA00E418D8 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = Localizable.strings; sourceTree = "<group>"; };
+		9624AB15165B59F700E418D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		9624AB17165B5FF600E418D8 /* ODFilesNavigationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODFilesNavigationItem.h; sourceTree = "<group>"; };
+		9624AB18165B5FF600E418D8 /* ODFilesNavigationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODFilesNavigationItem.m; sourceTree = "<group>"; };
 		963543521644CBD90002FAB6 /* ArcConstrukt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArcConstrukt.png; sourceTree = "<group>"; };
 		963543541644CBF00002FAB6 /* ArcConstrukt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ArcConstrukt@2x.png"; sourceTree = "<group>"; };
 		9635435D1644CF380002FAB6 /* ArcConstruktIPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArcConstruktIPad.png; sourceTree = "<group>"; };
@@ -201,8 +221,7 @@
 		96F64F5816489852003E97AB /* ODSwatchPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODSwatchPicker.m; sourceTree = "<group>"; };
 		96F64F5D1648B80D003E97AB /* CGColor+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGColor+Additions.h"; sourceTree = "<group>"; };
 		96F64F5E1648B80D003E97AB /* CGColor+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGColor+Additions.m"; sourceTree = "<group>"; };
-		96F64F5F1648B80D003E97AB /* NPColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPColorPickerView.h; sourceTree = "<group>"; };
-		96F64F601648B80D003E97AB /* NPColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPColorPickerView.m; sourceTree = "<group>"; };
+		96F64F601648B80D003E97AB /* ODColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODColorPickerView.m; sourceTree = "<group>"; };
 		96F64F611648B80D003E97AB /* NPConicGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPConicGradient.h; sourceTree = "<group>"; };
 		96F64F621648B80D003E97AB /* NPConicGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPConicGradient.m; sourceTree = "<group>"; };
 		96F64F631648B80D003E97AB /* NPPickerIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPPickerIndicator.h; sourceTree = "<group>"; };
@@ -232,7 +251,6 @@
 		96FADBBE1639249D004706F9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		96FADBC01639249D004706F9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		96FADBC21639249D004706F9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		96FADBC51639249D004706F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		96FADBD616394E40004706F9 /* ODArcMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODArcMachine.h; sourceTree = "<group>"; };
 		96FADBD716394E40004706F9 /* ODArcMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODArcMachine.m; sourceTree = "<group>"; };
 		96FADBDE163A5F4D004706F9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -282,6 +300,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9624AAFD165AFDF500E418D8 /* libz.dylib in Frameworks */,
 				9675BA511655DA8B006A742D /* MessageUI.framework in Frameworks */,
 				9675BA4F1655DA85006A742D /* Security.framework in Frameworks */,
 				96FADBDF163A5F4D004706F9 /* QuartzCore.framework in Frameworks */,
@@ -289,12 +308,45 @@
 				96FADBAF1639249D004706F9 /* Foundation.framework in Frameworks */,
 				96FADBB11639249D004706F9 /* CoreGraphics.framework in Frameworks */,
 				9675BA4C1655DA73006A742D /* DropboxSDK.framework in Frameworks */,
+				9624AAF9165AFDA500E418D8 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9624AAF4165AFDA500E418D8 /* TestFlightSDK1.1 */ = {
+			isa = PBXGroup;
+			children = (
+				9624AAFC165AFDF500E418D8 /* libz.dylib */,
+				9624AAF5165AFDA500E418D8 /* libTestFlight.a */,
+				9624AAF6165AFDA500E418D8 /* README.md */,
+				9624AAF7165AFDA500E418D8 /* release_notes.md */,
+				9624AAF8165AFDA500E418D8 /* TestFlight.h */,
+			);
+			path = TestFlightSDK1.1;
+			sourceTree = "<group>";
+		};
+		9624AB06165B47A100E418D8 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				9624AB03165B478B00E418D8 /* Localizable.strings */,
+				9624AB14165B59F700E418D8 /* MainStoryboard.storyboard */,
+				9624AB07165B47A100E418D8 /* InfoPlist.strings */,
+			);
+			name = en.lproj;
+			path = OcodoArcConstrukt/en.lproj;
+			sourceTree = "<group>";
+		};
+		9624AB10165B47C900E418D8 /* th.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				9624AB11165B47CA00E418D8 /* Localizable.strings */,
+			);
+			name = th.lproj;
+			path = OcodoArcConstrukt/th.lproj;
+			sourceTree = "<group>";
+		};
 		96D0EDB81643E025002F8754 /* AboutHTML */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,7 +359,6 @@
 		96F64F5616489813003E97AB /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				96FADBC41639249D004706F9 /* MainStoryboard.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -343,8 +394,8 @@
 		96F64F5C16489957003E97AB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				96F64F5F1648B80D003E97AB /* NPColorPickerView.h */,
-				96F64F601648B80D003E97AB /* NPColorPickerView.m */,
+				9624AB02165B0FC000E418D8 /* ODColorPickerView.h */,
+				96F64F601648B80D003E97AB /* ODColorPickerView.m */,
 				96F64F631648B80D003E97AB /* NPPickerIndicator.h */,
 				96F64F641648B80D003E97AB /* NPPickerIndicator.m */,
 				96FADBD616394E40004706F9 /* ODArcMachine.h */,
@@ -363,6 +414,8 @@
 				9675BA5E1656252D006A742D /* ODViewHelpers.m */,
 				96D6D54B1657A9190016A0F5 /* ODInstructionsOverlay.h */,
 				9624AAEB165A8EF600E418D8 /* ODInstructionsOverlay.m */,
+				9624AB17165B5FF600E418D8 /* ODFilesNavigationItem.h */,
+				9624AB18165B5FF600E418D8 /* ODFilesNavigationItem.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -370,6 +423,9 @@
 		96FADB9D1639249C004706F9 = {
 			isa = PBXGroup;
 			children = (
+				9624AB10165B47C900E418D8 /* th.lproj */,
+				9624AB06165B47A100E418D8 /* en.lproj */,
+				9624AAF4165AFDA500E418D8 /* TestFlightSDK1.1 */,
 				9635435D1644CF380002FAB6 /* ArcConstruktIPad.png */,
 				9635435E1644CF380002FAB6 /* ArcConstruktIPad@2x.png */,
 				963543541644CBF00002FAB6 /* ArcConstrukt@2x.png */,
@@ -574,6 +630,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				th,
 			);
 			mainGroup = 96FADB9D1639249C004706F9;
 			productRefGroup = 96FADBA91639249C004706F9 /* Products */;
@@ -594,7 +651,6 @@
 				96FADBBF1639249D004706F9 /* Default.png in Resources */,
 				96FADBC11639249D004706F9 /* Default@2x.png in Resources */,
 				96FADBC31639249D004706F9 /* Default-568h@2x.png in Resources */,
-				96FADBC61639249D004706F9 /* MainStoryboard.storyboard in Resources */,
 				96FADC591642065F004706F9 /* padlock.png in Resources */,
 				96FADC5A1642065F004706F9 /* padlock@2x.png in Resources */,
 				96FADC5D164219EC004706F9 /* escheresque@2x.png in Resources */,
@@ -668,6 +724,12 @@
 				96D6D53C16564FC60016A0F5 /* video-screen.png in Resources */,
 				96F6A95F16590715001041F9 /* a_b_link.png in Resources */,
 				96F6A96016590715001041F9 /* a_b_link@2x.png in Resources */,
+				9624AAFA165AFDA500E418D8 /* README.md in Resources */,
+				9624AAFB165AFDA500E418D8 /* release_notes.md in Resources */,
+				9624AB05165B478B00E418D8 /* Localizable.strings in Resources */,
+				9624AB0D165B47A100E418D8 /* InfoPlist.strings in Resources */,
+				9624AB13165B47CA00E418D8 /* Localizable.strings in Resources */,
+				9624AB16165B59F700E418D8 /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,7 +757,7 @@
 				96A4797B1647B7D0009ADCF8 /* ODTransparencyPicker.m in Sources */,
 				96F64F5916489852003E97AB /* ODSwatchPicker.m in Sources */,
 				96F64F671648B80D003E97AB /* CGColor+Additions.m in Sources */,
-				96F64F681648B80D003E97AB /* NPColorPickerView.m in Sources */,
+				96F64F681648B80D003E97AB /* ODColorPickerView.m in Sources */,
 				96F64F691648B80D003E97AB /* NPConicGradient.m in Sources */,
 				96F64F6A1648B80D003E97AB /* NPPickerIndicator.m in Sources */,
 				96F64F6E1648DE51003E97AB /* ODColorPalette.m in Sources */,
@@ -709,26 +771,52 @@
 				96D6D54216565C740016A0F5 /* PSPDFActionSheet.m in Sources */,
 				96D6D54316565C740016A0F5 /* PSPDFAlertView.m in Sources */,
 				9624AAEC165A8EF600E418D8 /* ODInstructionsOverlay.m in Sources */,
+				9624AB19165B5FF600E418D8 /* ODFilesNavigationItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		9624AB03165B478B00E418D8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9624AB04165B478B00E418D8 /* en */,
+			);
+			name = Localizable.strings;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		9624AB07165B47A100E418D8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9624AB08165B47A100E418D8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		9624AB11165B47CA00E418D8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9624AB12165B47CA00E418D8 /* th */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		9624AB14165B59F700E418D8 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9624AB15165B59F700E418D8 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
 		96FADBB51639249D004706F9 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				96FADBB61639249D004706F9 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		96FADBC41639249D004706F9 /* MainStoryboard.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				96FADBC51639249D004706F9 /* en */,
-			);
-			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -772,7 +860,7 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -796,10 +884,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OcodoArcConstrukt/OcodoArcConstrukt-Prefix.pch";
 				INFOPLIST_FILE = "OcodoArcConstrukt/OcodoArcConstrukt-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/OcodoArcConstrukt\"",
+					"\"$(SRCROOT)/TestFlightSDK1.1\"",
 				);
 				PRODUCT_NAME = ArcConstrukt;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -819,10 +908,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OcodoArcConstrukt/OcodoArcConstrukt-Prefix.pch";
 				INFOPLIST_FILE = "OcodoArcConstrukt/OcodoArcConstrukt-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/OcodoArcConstrukt\"",
+					"\"$(SRCROOT)/TestFlightSDK1.1\"",
 				);
 				PRODUCT_NAME = ArcConstrukt;
 				TARGETED_DEVICE_FAMILY = 1;

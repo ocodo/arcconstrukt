@@ -15,7 +15,7 @@
  */
 
 #import "NPPickerIndicator.h"
-#import "NPColorPickerView.h"
+#import "ODColorPickerView.h"
 #import <QuartzCore/QuartzCore.h>
 @implementation NPPickerIndicator
 

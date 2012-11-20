@@ -28,7 +28,7 @@
 }
 
 - (void)viewDidLoad {
-
+    
     [(ArcConstruktAppDelegate*)[[UIApplication sharedApplication] delegate] registerViewController:@"construktView" controller:self];
     
     [super viewDidLoad];
@@ -43,15 +43,16 @@
     [self initTransparencyGestures];
     [self initSwatchBarGestures];
     [self initColorPicker];
-
+    
     NSString *bundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
     
     NSString *appFirstStartOfVersionKey = [NSString stringWithFormat:@"first_start_%@", bundleVersion];
     
     NSNumber *alreadyStartedOnVersion = [[NSUserDefaults standardUserDefaults] objectForKey:appFirstStartOfVersionKey];
     if(!alreadyStartedOnVersion || [alreadyStartedOnVersion boolValue] == NO) {
-
-        // do any first time loaded stuff. (the toolbar overlay is handled by first move.)
+        
+        // Any additional first time use stuff goes here.
+        
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:appFirstStartOfVersionKey];
     }
     
@@ -116,8 +117,8 @@
     [titleView addGestureRecognizer:titleTap];
     
     UISwipeGestureRecognizer *titleSwipe = [[UISwipeGestureRecognizer alloc]
-                                        initWithTarget:self
-                                        action:@selector(handleTitleSwipe:)];
+                                            initWithTarget:self
+                                            action:@selector(handleTitleSwipe:)];
     
     titleSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
     
@@ -202,10 +203,14 @@
     [ODColorPalette sharedinstance].selectedIndex = index;
     switch (fillStrokeSelector.selectedSegmentIndex) {
         case 0:
+            [TestFlight passCheckpoint:@"Set fill color"];
+            
             [self setCurrentFillFromPaletteColor:index];
             break;
             
         case 1:
+            [TestFlight passCheckpoint:@"Set stroke color "];
+            
             [self setCurrentStrokeFromPaletteColor:index];
             break;
             
@@ -216,14 +221,22 @@
 
 - (void)handleColorSwatchLongPress:(UILongPressGestureRecognizer *)recognizer {
     if(recognizer.state == UIGestureRecognizerStateBegan) {
-        if(colorPicker.frame.origin.x != 10)
+        if(colorPicker.frame.origin.x != 10) {
+            [TestFlight passCheckpoint:@"Viewing Colour Picker"];
+            
             [self moveColorPicker:10];
-        else
+        }
+        else {
+            [TestFlight passCheckpoint:@"Color Picker closed with Palette long-press"];
+            
             [self moveColorPicker:640];
+        }
     }
 }
 
 - (void)handleColorPickerSwipe:(UISwipeGestureRecognizer *)recognizer {
+    [TestFlight passCheckpoint:@"Color Picker closed with swipe"];
+    
     [self moveColorPicker:640];
 }
 
@@ -245,14 +258,14 @@
 - (void)quickEditMenu:(UILongPressGestureRecognizer *)recognizer {
     [recognizer.view becomeFirstResponder];
     UIMenuController* mc = [UIMenuController sharedMenuController];
-    UIMenuItem* menu_angle_a = [[UIMenuItem alloc] initWithTitle:@"A˚" action:@selector(angleAMode:)];
-    UIMenuItem* menu_angle_b = [[UIMenuItem alloc] initWithTitle:@"B˚" action:@selector(angleBMode:)];
-    UIMenuItem* menu_radius = [[UIMenuItem alloc] initWithTitle:@"r" action:@selector(radiusMode:)];
-    UIMenuItem* menu_thickness = [[UIMenuItem alloc] initWithTitle:@"T" action:@selector(thicknessMode:)];
-    UIMenuItem* menu_copy = [[UIMenuItem alloc] initWithTitle:@"Clone" action:@selector(copyArc:)];
-    UIMenuItem* menu_paste = [[UIMenuItem alloc] initWithTitle:@"Paste" action:@selector(pasteArc:)];
-    UIMenuItem* menu_delete = [[UIMenuItem alloc] initWithTitle:@"Delete" action:@selector(deleteButton:)];
-    UIMenuItem* menu_clear = [[UIMenuItem alloc] initWithTitle:@"Clear All" action:@selector(clearButton:)];
+    UIMenuItem* menu_angle_a = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"A˚", nil) action:@selector(angleAMode:)];
+    UIMenuItem* menu_angle_b = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"B˚", nil) action:@selector(angleBMode:)];
+    UIMenuItem* menu_radius = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"r", nil) action:@selector(radiusMode:)];
+    UIMenuItem* menu_thickness = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"T", nil) action:@selector(thicknessMode:)];
+    UIMenuItem* menu_copy = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Clone", nil) action:@selector(cloneArc:)];
+    UIMenuItem* menu_paste = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Paste", nil) action:@selector(pasteArc:)];
+    UIMenuItem* menu_delete = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Delete", nil) action:@selector(deleteButton:)];
+    UIMenuItem* menu_clear = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Clear All", nil) action:@selector(clearButton:)];
     [[UIMenuController sharedMenuController] setMenuItems:@[menu_angle_a, menu_angle_b, menu_radius, menu_thickness, menu_copy, menu_paste, menu_delete, menu_clear]];
     CGPoint position = [recognizer locationInView:recognizer.view.superview];
     CGRect box = CGRectMake(position.x, position.y, 10, 10);
@@ -277,10 +290,14 @@
 }
 
 - (void)handleTitleTap:(UITapGestureRecognizer *) recognizer {
+    [TestFlight passCheckpoint:@"Viewed help overlay manually"];
+    
     [self editToolsHelpOverlay:_toolbarMode];
 }
 
 - (void)handleTitleSwipe:(UISwipeGestureRecognizer *) recognizer {
+    [TestFlight passCheckpoint:@"Visited help page"];
+    
     [self performSegueWithIdentifier:@"aboutPageSegue" sender:self];
 }
 
@@ -313,7 +330,7 @@
     }
 }
 
-- (void)NPColorPickerView:(NPColorPickerView *)view didSelectColor:(UIColor *)color {
+- (void)NPColorPickerView:(ODColorPickerView *)view didSelectColor:(UIColor *)color {
     
     int i = [ODColorPalette sharedinstance].selectedIndex;
     [ODColorPalette sharedinstance].colors[i] = color;
@@ -321,10 +338,14 @@
     
     switch (fillStrokeSelector.selectedSegmentIndex) {
         case 0:
+            [TestFlight passCheckpoint:@"Selected Fill from Color Picker"];
+            
             [self setCurrentFillFromPaletteColor:i];
             break;
             
         case 1:
+            [TestFlight passCheckpoint:@"Selected Stroke from Color Picker"];
+            
             [self setCurrentStrokeFromPaletteColor:i];
             break;
             
@@ -367,9 +388,11 @@
 - (IBAction)addButton:(id)sender {
     int max_layer = [arcConstruktView subviews].count;
     if(max_layer < kMaximumLayers) {
+        [TestFlight passCheckpoint:@"Added arc layer"];
         [self addRandomArcLayer];
         [self syncLayerStepper];
     } else {
+        [TestFlight passCheckpoint:@"Added maximum layers"];
         [[TKAlertCenter defaultCenter]
          postAlertWithMessage:
          [NSString
@@ -389,6 +412,7 @@
     if([ODApplicationState sharedinstance].currentArc) {
         index = [ODApplicationState sharedinstance].currentArc.getSubviewIndex;
         [[ODApplicationState sharedinstance].currentArc removeFromSuperview];
+        [TestFlight passCheckpoint:@"Deleted Selected Arc"];
     }
     [layerStepper setMaximumValue:[arcConstruktView subviews].count - 1];
     [layerStepper setValue:MIN(index,[arcConstruktView subviews].count - 1)];
@@ -402,10 +426,12 @@
     }
     [layerStepper setMaximumValue:[arcConstruktView subviews].count - 1];
     [layerStepper setValue:0];
+    [TestFlight passCheckpoint:@"Cleared all arcs"];
 }
 
 - (IBAction)deselectCurrentArc:(UIBarButtonItem *)sender {
     [self deselect];
+    [TestFlight passCheckpoint:@"Manually Deselected arc"];
 }
 
 - (void)deselect {
@@ -433,61 +459,68 @@
 }
 
 - (IBAction)actionMenu:(id)sender {
-    PSPDFActionSheet *actionSheet = [[PSPDFActionSheet alloc] initWithTitle:@"Choose an Action"];
+    PSPDFActionSheet *actionSheet = [[PSPDFActionSheet alloc] initWithTitle:NSLocalizedString(@"Choose an Action", nil)];
     actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
-    [actionSheet setDestructiveButtonWithTitle:@"Save PNG to Camera Roll" block:^{
+    [actionSheet setDestructiveButtonWithTitle:NSLocalizedString(@"Save PNG to Camera Roll", nil) block:^{
         [self deselect];
         [self savePNGMenu:self];
+        [TestFlight passCheckpoint:@"Save PNG to Camera Roll"];
     }];
-    [actionSheet addButtonWithTitle:@"Import Colors" block:^{
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"Import Colors", nil) block:^{
         [self importColorsFromPasteboard:self];
     }];
-    [actionSheet addButtonWithTitle:@"Export Colors" block:^{
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"Export Colors", nil) block:^{
         [self exportColorPalette:self];
     }];
-    [actionSheet addButtonWithTitle:@"Save ArcMachine" block:^{
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"Save ArcMachine", nil) block:^{
         [self saveComposition:self];
     }];
-    [actionSheet addButtonWithTitle:@"My ArcMachines" block:^{
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"My ArcMachines", nil) block:^{
         [self performSegueWithIdentifier:@"filesViewSegue" sender:self];
     }];
-    [actionSheet setCancelButtonWithTitle:@"Cancel" block:nil];
+    [actionSheet setCancelButtonWithTitle:NSLocalizedString(@"Cancel", nil) block:nil];
     [actionSheet showInView:[self view]];
 }
 
 - (IBAction)savePNGMenu:(id)sender {
     
     if (arcConstruktView.subviews.count < 1) {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Press + to add Arcs" image:[UIImage imageNamed:@"lightBulb@2x.png"]];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Press + to add Arcs", nil) image:[UIImage imageNamed:@"lightBulb@2x.png"]];
         return;
     }
     
-    PSPDFActionSheet *actionSheet = [[PSPDFActionSheet alloc] initWithTitle:@"Save to Camera Roll\nImage Quality"];
+    PSPDFActionSheet *actionSheet = [[PSPDFActionSheet alloc] initWithTitle:NSLocalizedString(@"Save to Camera Roll\nImage Quality", nil)];
     actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
-    [actionSheet addButtonWithTitle:@"PNG 640x640" block:^{
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"PNG 640x640", nil) block:^{
+        [TestFlight passCheckpoint:@"Saved PNG 640x"];
         [self savePNGImagetoPhotoAlbum:self scale:2];
     }];
-    [actionSheet addButtonWithTitle:@"PNG 1280x1280" block:^{
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"PNG 1280x1280", nil) block:^{
+        [TestFlight passCheckpoint:@"Saved PNG 1280x"];
         [self savePNGImagetoPhotoAlbum:self scale:4];
     }];
-    [actionSheet addButtonWithTitle:@"PNG 1920x1920" block:^{
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"PNG 1920x1920", nil) block:^{
+        [TestFlight passCheckpoint:@"Saved PNG 1920x"];
         [self savePNGImagetoPhotoAlbum:self scale:6];
     }];
-    [actionSheet addButtonWithTitle:@"PNG 2560x2560" block:^{
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"PNG 2560x2560", nil) block:^{
+        [TestFlight passCheckpoint:@"Saved PNG 2560x"];
         [self savePNGImagetoPhotoAlbum:self scale:8];
     }];
-    [actionSheet addButtonWithTitle:@"PNG 2880x2880" block:^{
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"PNG 2880x2880", nil) block:^{
+        [TestFlight passCheckpoint:@"Saved PNG 2800x"];
         [self savePNGImagetoPhotoAlbum:self scale:9];
     }];
-    [actionSheet addButtonWithTitle:@"PNG 3200x3200" block:^{
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"PNG 3200x3200", nil) block:^{
+        [TestFlight passCheckpoint:@"Saved PNG 3200x"];
         [self savePNGImagetoPhotoAlbum:self scale:10];
     }];
-    [actionSheet setCancelButtonWithTitle:@"Cancel" block:nil];
+    [actionSheet setCancelButtonWithTitle:NSLocalizedString(@"Cancel", nil) block:nil];
     [actionSheet showInView:[self view]];
-
+    
 }
 
-- (void)copyArc:(id)sender {
+- (void)cloneArc:(id)sender {
     NSDictionary *plist = [[ODApplicationState sharedinstance]
                            .currentArc geometryToDictionary];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject: plist];
@@ -495,7 +528,8 @@
     [arcConstruktView addSubview:[[ODArcMachine alloc]
                                   initWithArcMachine:[ODApplicationState sharedinstance].currentArc
                                   frame:CGRectMake(0, 0, 320, 320)]];
-    [self syncLayerStepper];    
+    [self syncLayerStepper];
+    [TestFlight passCheckpoint:@"Cloned arc"];
 }
 
 - (void)pasteArc:(id)sender {
@@ -505,30 +539,35 @@
     [a geometryFromDictionary: plist];
     [arcConstruktView addSubview:a];
     [self syncLayerStepper];
+    [TestFlight passCheckpoint:@"Pasted arc"];
 }
 
 - (void)angleAMode: (id)sender {
     [angleSelector setSelectedSegmentIndex:0];
     _rotateMode = 0;
+    [TestFlight passCheckpoint:@"Set angle A rotate mode from quick edit menu"];
 }
 
 - (void)angleBMode: (id)sender {
     [angleSelector setSelectedSegmentIndex:1];
     _rotateMode = 1;
+    [TestFlight passCheckpoint:@"Set angle B rotate mode from quick edit menu"];
 }
 
 - (void)radiusMode: (id)sender {
     [pinchSelector setSelectedSegmentIndex:0];
     _pinchMode = 0;
+    [TestFlight passCheckpoint:@"Set radius pinch mode from quick edit menu"];
 }
 
 - (void)thicknessMode: (id)sender {
     [pinchSelector setSelectedSegmentIndex:1];
     _pinchMode = 1;
+    [TestFlight passCheckpoint:@"Set thickness pinch mode from quick edit menu"];
 }
 
 - (BOOL)canPerformAction: (SEL)action withSender: (id)sender {
-    return action == @selector(copyArc: )
+    return action == @selector(cloneArc: )
     || action == @selector(pasteArc: )
     || action == @selector(deleteButton: )
     || action == @selector(clearButton: )
@@ -576,46 +615,51 @@
     }
 }
 
-
 - (IBAction)layerStep:(UIStepper *)sender {
     [self layerSelecting:sender];
 }
 
 - (IBAction)changeRotateMode:(UISegmentedControl *)sender {
     _rotateMode = sender.selectedSegmentIndex;
+    [TestFlight passCheckpoint:[NSString stringWithFormat:@"Rotate mode :%i" , _rotateMode]];
 }
 
 - (IBAction)changePinchMode:(UISegmentedControl *)sender {
     _pinchMode = sender.selectedSegmentIndex;
+    [TestFlight passCheckpoint:[NSString stringWithFormat:@"Pinch mode :%i" , _pinchMode]];
 }
 
 - (IBAction)savePNGImagetoPhotoAlbum:(id)sender scale:(NSInteger)s{
-    if([[arcConstruktView subviews] count] > 0) {
-        // show progress HUD
-        DZProgressController *HUD = [DZProgressController new];
-        HUD.label.text = @"Saving to Photo Album";
-        [HUD showWhileExecuting:^{
-            UIGraphicsBeginImageContextWithOptions(arcConstruktView.bounds.size, NO, s);
-            [arcConstruktView.layer renderInContext:UIGraphicsGetCurrentContext()];
-            UIImage* pngImage = [UIImage
-                                 imageWithData:
-                                 UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext())];
-            UIGraphicsEndImageContext();
-            UIImageWriteToSavedPhotosAlbum(pngImage, self,  @selector(image:didFinishSavingWithError:contextInfo:), NULL);
-            return;
-        }];
+    if([[arcConstruktView subviews] count] < 1) {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Press + to add Arcs", nil) image:[UIImage imageNamed:@"lightBulb@2x.png"]];
+        [TestFlight passCheckpoint:@"No Arcs for Save to PNG"];
+        return;
     }
-    else {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Press + to add Arcs" image:[UIImage imageNamed:@"lightBulb@2x.png"]];
-    }
+    // show progress HUD
+    DZProgressController *HUD = [DZProgressController new];
+    HUD.label.text = NSLocalizedString(@"Save PNG to Camera Roll", nil);
+    [HUD showWhileExecuting:^{
+        UIGraphicsBeginImageContextWithOptions(arcConstruktView.bounds.size, NO, s);
+        [arcConstruktView.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIImage* pngImage = [UIImage
+                             imageWithData:
+                             UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext())];
+        UIGraphicsEndImageContext();
+        UIImageWriteToSavedPhotosAlbum(pngImage, self,  @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+        return;
+    }];
+    
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void*)contextInfo {
     if (error) {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"There was a problem saving your image, check photo album privacy settings, and make sure you have enough free memory."];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"There was a problem saving your image, check photo album privacy settings, and make sure you have enough free memory.", nil)];
+        [TestFlight passCheckpoint:@"Problem Saving PNG"];
+        
     } else {
         // saved ok.
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Saved PNG"];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Saved PNG", nil)];
+        [TestFlight passCheckpoint:@"Saved PNG Success"];
     }
 }
 
@@ -623,15 +667,19 @@
     ODArcMachine *arc = [ODApplicationState sharedinstance].currentArc;
     switch (sender.selectedSegmentIndex) {
         case 0:
+            [TestFlight passCheckpoint:@"Arc send to back"];
             [arc sendToBack];
             break;
         case 1:
+            [TestFlight passCheckpoint:@"Arc back one"];
             [arc sendOneLevelDown];
             break;
         case 2:
+            [TestFlight passCheckpoint:@"Arc forward one"];
             [arc bringOneLevelUp];
             break;
         case 3:
+            [TestFlight passCheckpoint:@"Arc bring to front"];
             [arc bringToFront];
             break;
         default:
@@ -651,7 +699,9 @@
                                                                     transparencyPicker.frame.size.width,
                                                                     transparencyPicker.frame.size.height);
                      }
-                     completion:nil];
+                     completion:^(BOOL finished) {
+                         [TestFlight passCheckpoint:@"Toggle Transparency Picker"];
+                     }];
 }
 
 - (void)handlePanTransparencyIndicator:(UIPanGestureRecognizer *)recognizer {
@@ -669,6 +719,7 @@
                                               green:f[1]
                                               blue:f[2]
                                               alpha:[transparencyPicker transparency]]];
+            [TestFlight passCheckpoint:@"Set fill transparency"];
             break;
         case 1:
             [self setCurrentStrokeFromUIColor: [UIColor
@@ -676,15 +727,16 @@
                                                 green:s[1]
                                                 blue:s[2]
                                                 alpha:[transparencyPicker transparency]]];
+            [TestFlight passCheckpoint:@"Set stroke transparency"];
             break;
         default:
             break;
     }
 }
 
-- (void)moveToolbar:(int)s {
-    _toolbarMode = s;
-    int x = s * -320;
+- (void)moveToolbar:(int)mode {
+    _toolbarMode = mode;
+    int x = mode * -320;
     [UIView animateWithDuration:0.5
                           delay:0
                         options: UIViewAnimationOptionCurveEaseOut
@@ -704,8 +756,9 @@
                                                         mainToolbar.frame.size.width,
                                                         mainToolbar.frame.size.height);
                      }completion:^(BOOL finished) {
-                         _toolbarMode = s;
-                         [self showInstructionsOnceForToolbarMode:s];
+                         _toolbarMode = mode;
+                         [self showInstructionsOnceForToolbarMode:mode];
+                         [TestFlight passCheckpoint:[NSString stringWithFormat:@"Toolbar mode %i selected", mode]];
                      }
      ];
 }
@@ -725,8 +778,15 @@
 }
 
 - (void)saveComposition:(id)sender {
+
+    if([[arcConstruktView subviews] count] < 1) {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Press + to add Arcs", nil) image:[UIImage imageNamed:@"lightBulb@2x.png"]];
+        [TestFlight passCheckpoint:@"No Arcs for Save composition"];
+        return;
+    }
+    
     DZProgressController *HUD = [DZProgressController new];
-    HUD.label.text = @"Saving ArcConstrukt";
+    HUD.label.text = NSLocalizedString(@"Saving ArcMachine", nil);
     [HUD showWhileExecuting:^{
         ODArcConstruktFile *file = [[ODArcConstruktFile alloc] initWithArcMachineSubviews:arcConstruktView.subviews];
         
@@ -740,6 +800,9 @@
         file.filename = [NSString stringWithFormat:@"ArcConstrukt-%X.arcmachine", ti];
         [ODFileTools save:file.filename documentsFolder:@"arcmachines" data:[NSKeyedArchiver archivedDataWithRootObject: file]];
         [ODFileTools save:file.filename extension:@"svg" documentsFolder:@"svg" data:[file asSVGEncoded]];
+        
+        [TestFlight passCheckpoint:@"Saved composition .arcmachine and SVG"];
+        
         return;
     }];
 }
@@ -748,11 +811,13 @@
     ODArcConstruktFile *file = [ODFileTools load:filename documentsFolder:folder];
     [ODFileTools save:filename documentsFolder:@"arcmachines" data:[NSKeyedArchiver archivedDataWithRootObject:file]];
     [ODFileTools save:file.filename extension:@"svg" documentsFolder:@"svg" data:[file asSVGEncoded]];
+    
+    [TestFlight passCheckpoint:@"Import composition"];
 }
 
 - (void)loadComposition:(NSString*) filename withFolder:(NSString *)folder {
     @try {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:@"Loaded %@", filename]];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:@"%@ : %@", NSLocalizedString(@"Loaded",nil), filename]];
         [self clearButton:nil];
         ODArcConstruktFile *file = [ODFileTools load:filename documentsFolder:folder];
         for (ODArcMachine *arc in [file layersToArcMachines]) {
@@ -760,9 +825,11 @@
         }
         [self resetStepper];
         [self deselect];
+        [TestFlight passCheckpoint:@"Loaded composition"];
     }
     @catch (NSException *exception) {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:@"Failed to load %@", filename]];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Failed to load %@", nil), filename]];
+        [TestFlight passCheckpoint:@"Composition load failed"];
     }
     [arcConstruktView setNeedsDisplay];
 }
@@ -776,15 +843,16 @@
     for (UIColor *color in [[ODColorPalette sharedinstance] colors]) {
         [hexColors addObject:[color RGBHexString]];
     }
-    [[UIPasteboard generalPasteboard] setString:[hexColors componentsJoinedByString:@"\n"]];
-    [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Color Palette exported to the Clipboard"];
+    [[UIPasteboard generalPasteboard] setString:[hexColors componentsJoinedByString:@"\n"]];    
+    [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Color Palette exported to the Clipboard", nil)];
+    [TestFlight passCheckpoint:@"Exported Color Palette"];
 }
 
 - (IBAction)importColorsFromPasteboard:(id)sender {
     NSString *import = [[UIPasteboard generalPasteboard] string];
     
     if(import.length < 1){
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Copy some Hex colors into the clipboard, ArcConstrukt will find and use the first 6"];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Copy some Hex colors into the clipboard, ArcConstrukt will find and use the first 6", nil)];
         return;
     }
     
@@ -806,13 +874,20 @@
      }];
     
     if(i>0) {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:@"Imported %i colors from the Clipboard", i]];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Imported %i colors from the Clipboard", nil), i]];
+        [TestFlight passCheckpoint:@"Imported Color Palette (success)"];
+        
     } else {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Copy some Hex colors into the clipboard, ArcConstrukt will find and use the first 6"];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Copy some Hex colors into the clipboard, ArcConstrukt will find and use the first 6", nil)];
+        [TestFlight passCheckpoint:@"Imported Color Palette (no colors)"];
+        
     }
 }
 
 - (void)didReceiveMemoryWarning {
+    [TestFlight passCheckpoint:@"Memory warning"];
+    [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Memory warning: Save your work, just in case!", nil)];
+    
     [super didReceiveMemoryWarning];
 }
 

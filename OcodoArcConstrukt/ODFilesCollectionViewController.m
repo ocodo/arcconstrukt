@@ -28,8 +28,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [TestFlight passCheckpoint:@"Files View"];
+    
     if([[self listFiles] count] < 1) {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"No ArcMachines saved yet"];
+      [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"No ArcMachines saved yet", nil)];
+        [TestFlight passCheckpoint:@"Files View Empty"];
+
         return;
     }
     
@@ -50,12 +55,14 @@
         if (indexPath != nil) {
             self.currentIndexPath = indexPath;
             
+            [TestFlight passCheckpoint:@"File View Action Sheet"];
+            
             UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                           initWithTitle:nil
                                           delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                          destructiveButtonTitle:@"Delete"
-                                          otherButtonTitles:@"Share to Dropbox", @"Share as Email", nil];
+                                           cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                           destructiveButtonTitle:NSLocalizedString(@"Delete", nil)
+                                           otherButtonTitles:NSLocalizedString(@"Share to Dropbox", nil), NSLocalizedString(@"Share as Email", nil), nil];
             
             actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
             UICollectionViewCell *itemCell = [self.collectionView cellForItemAtIndexPath:indexPath];
@@ -84,8 +91,12 @@
 
 - (void)shareToDropbox {
     if (![[DBSession sharedSession] isLinked]) {
+        [TestFlight passCheckpoint:@"Linking to Dropbox"];
+
         [[DBSession sharedSession] linkFromController:[self.navigationController.viewControllers objectAtIndex:0]];
     } else {
+        [TestFlight passCheckpoint:@"Linked to Dropbox & Sharing"];
+
         DZProgressController *hud = [[DZProgressController alloc] init];
         [hud setMode:DZProgressControllerModeDeterminate];
         [hud show];
@@ -108,6 +119,7 @@
                        [self uploadSvgToDropbox:hud];
                    } else {
                        [hud hide];
+                       [TestFlight passCheckpoint:@"Shared as .arcmachine to Dropbox"];
                    }
                } progressBlock:^(CGFloat progress) {
                    hud.progress = progress;
@@ -125,13 +137,17 @@
              withParentRev:nil fromPath:[ODFileTools fullPath:filename documentsFolder:@"svg"]
            completionBlock:^(DBMetadata *metadata, NSError *error) {
                [HUD hide];
-               [[TKAlertCenter defaultCenter] postAlertWithMessage:@"ArcMachine and SVG uploaded to Dropbox"];
+               [TestFlight passCheckpoint:@"ArcMachine and SVG uploaded to Dropbox"];
+               [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"ArcMachine and SVG uploaded to Dropbox", nil)];
            } progressBlock:^(CGFloat progress) {
                HUD.progress = progress;
            }];
 }
 
 - (void)shareAsEmail {
+
+    [TestFlight passCheckpoint:@"Email sharing"];
+    
     if( [MFMailComposeViewController canSendMail] ) {
         MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc]init];
         mailer.mailComposeDelegate = self;
@@ -142,7 +158,7 @@
         BOOL hasArcMachine = [[NSFileManager defaultManager] fileExistsAtPath:[ODFileTools fullPath:filename documentsFolder:@"arcmachines"]];
         BOOL hasSvg = [[NSFileManager defaultManager] fileExistsAtPath:[ODFileTools fullPath:svgFilename documentsFolder:@"svg"]];
 
-        [mailer setSubject:@"My Shiny New ArcMachine"];
+        [mailer setSubject:NSLocalizedString(@"My Shiny New ArcMachine", nil)];
         
         if (hasArcMachine) {
             [mailer addAttachmentData:[ODFileTools
@@ -171,19 +187,29 @@
 	switch (result)
 	{
 		case MFMailComposeResultCancelled:
-			[[TKAlertCenter defaultCenter] postAlertWithMessage:@"Email Cancelled"];
+          [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Email Cancelled", nil)];
+            [TestFlight passCheckpoint:@"Email Cancelled"];
+
 			break;
 		case MFMailComposeResultSaved:
-			[[TKAlertCenter defaultCenter] postAlertWithMessage:@"Email Saved"];
+          [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Email Saved", nil)];
+            [TestFlight passCheckpoint:@"Email Saved"];
+
 			break;
 		case MFMailComposeResultSent:
-			[[TKAlertCenter defaultCenter] postAlertWithMessage:@"Email Sent"];
+          [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Email Sent", nil)];
+            [TestFlight passCheckpoint:@"Email Sent"];
+
 			break;
 		case MFMailComposeResultFailed:
-			[[TKAlertCenter defaultCenter] postAlertWithMessage:@"Email Failed"];
+          [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Email Failed", nil)];
+            [TestFlight passCheckpoint:@"Email Failed"];
+
 			break;
 		default:
-			[[TKAlertCenter defaultCenter] postAlertWithMessage:@"Email Not Sent"];
+          [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Email Not Sent", nil)];
+            [TestFlight passCheckpoint:@"Email Not Sent"];
+            
 			break;
 	}
 	[controller dismissViewControllerAnimated:YES completion:nil];
@@ -200,7 +226,7 @@
         
         [fileList removeObjectAtIndex:currentIndexPath.item];
         [self.collectionView deleteItemsAtIndexPaths:@[currentIndexPath]];
- 
+        
     } completion:nil];
     
 }
@@ -211,9 +237,12 @@
     [[NSFileManager defaultManager] removeItemAtPath:fullpath error:&error];
     if(error)
     {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Failed to delete"];
+      [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Failed to delete", nil)];
+        [TestFlight passCheckpoint:@"Delete fail"];
+
     } else {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Deleted"];
+      [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Deleted", nil)];
+        [TestFlight passCheckpoint:@"Deleted arcmachine"];
     }
 }
 
@@ -246,6 +275,8 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *selectedFilename = [[self fileList] objectAtIndex:indexPath.item];
+    [TestFlight passCheckpoint:@"File view item selected"];
+
     [[NSNotificationCenter defaultCenter] postNotificationName:@"selectFileToLoad" object:selectedFilename];
     [self.navigationController popViewControllerAnimated:YES];
 }

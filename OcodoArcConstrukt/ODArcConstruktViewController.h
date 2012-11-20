@@ -23,7 +23,7 @@
 #import "ODApplicationState.h"
 #import "ODArcMachine.h"
 #import "ODGridView.h"
-#import "NPColorPickerView.h"
+#import "ODColorPickerView.h"
 #import "ODSwatchPicker.h"
 #import "ODTransparencyPicker.h"
 #import "ODTransparencyButton.h"
@@ -58,7 +58,7 @@
 @property (readonly) IBOutlet ODTransparencyButton *transparencyButton;
 
 @property (readonly) IBOutlet ODSwatchPicker *swatchBar;
-@property (readonly) IBOutlet NPColorPickerView *colorPicker;
+@property (readonly) IBOutlet ODColorPickerView *colorPicker;
 
 @property (readonly) IBOutlet UIView *arcConstruktView;
 @property (readonly) IBOutlet ODGridView *gridView;

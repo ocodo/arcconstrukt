@@ -28,7 +28,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.10196078568696976" green="0.10196078568696976" blue="0.10196078568696976" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" id="158-km-SWE" userLabel="ColorPick" customClass="NPColorPickerView">
+                            <view contentMode="scaleToFill" id="158-km-SWE" userLabel="ColorPick" customClass="ODColorPickerView">
                                 <rect key="frame" x="640" y="69" width="300" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -245,13 +245,14 @@
             </objects>
             <point key="canvasLocation" x="120" y="-165"/>
         </scene>
-        <!--Files Collection View Controller - My ArcMachines-->
+        <!--Files Collection View Controller-->
         <scene sceneID="cxD-nB-WMs">
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" id="T2j-gX-TKd" customClass="ODFilesCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="lKz-RV-AB5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="44"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="k0M-1S-aUe">
                             <size key="itemSize" width="80" height="80"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -284,7 +285,7 @@
                             <outlet property="delegate" destination="T2j-gX-TKd" id="FW7-vn-n1a"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="My ArcMachines" prompt="Tap once to Load, Hold to Share or Delete" id="2e6-QW-YKO"/>
+                    <navigationItem key="navigationItem" id="2e6-QW-YKO" customClass="ODFilesNavigationItem"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NRc-Cw-gM6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
