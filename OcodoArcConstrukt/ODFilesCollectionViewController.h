@@ -11,7 +11,7 @@
 #import <MessageUI/MessageUI.h>
 
 #import "ODFilesCollectionViewCell.h"
-#import "ODArcConstruktFile.h"
+#import "ODArcConstruktDocument.h"
 #import "TKAlertCenter.h"
 #import "DropBlocks.h"
 #import "ODFileTools.h"

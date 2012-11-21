@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 ocodo. All rights reserved.
 //
 
-#import "ODArcConstruktFile.h"
+#import "ODArcConstruktDocument.h"
 #import "TKAlertCenter.h"
 #import "DZProgressController.h"
 
-@implementation ODArcConstruktFile 
+@implementation ODArcConstruktDocument 
 
 @synthesize thumbnail, filename, layers;
 
@@ -42,6 +42,27 @@
     }
     return self;
 }
+
+#pragma json
+
+- (NSData*)asJSONEncoded {
+    NSMutableArray *arrayOfDicts = [[NSMutableArray alloc] init];
+    
+    for (ODArcMachine* arc in [self layersToArcMachines]) {
+        [arrayOfDicts addObject:[arc geometryToDictionary]];
+    }
+    NSError *error;
+    NSArray *data = [NSArray arrayWithArray:arrayOfDicts];
+    
+    NSData *jsonData = [NSJSONSerialization
+                        dataWithJSONObject:data
+                        options:NSJSONWritingPrettyPrinted
+                        error:&error];
+    
+    return jsonData;
+}
+
+#pragma svg
 
 - (NSData*)asSVGEncoded {
     return [[self asSVG] dataUsingEncoding:NSUTF8StringEncoding];

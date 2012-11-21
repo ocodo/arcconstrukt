@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		96227D92165C8708009D0AB1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96227D91165C8708009D0AB1 /* SenTestingKit.framework */; };
+		96227D93165C8708009D0AB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBAC1639249C004706F9 /* UIKit.framework */; };
+		96227D94165C8708009D0AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBAE1639249D004706F9 /* Foundation.framework */; };
+		96227D9A165C8709009D0AB1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96227D98165C8709009D0AB1 /* InfoPlist.strings */; };
+		96227D9D165C8709009D0AB1 /* ODArcConstruktTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96227D9C165C8709009D0AB1 /* ODArcConstruktTests.m */; };
 		9624AAEC165A8EF600E418D8 /* ODInstructionsOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 9624AAEB165A8EF600E418D8 /* ODInstructionsOverlay.m */; };
 		9624AAF9165AFDA500E418D8 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9624AAF5165AFDA500E418D8 /* libTestFlight.a */; };
 		9624AAFA165AFDA500E418D8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9624AAF6165AFDA500E418D8 /* README.md */; };
@@ -14,7 +19,6 @@
 		9624AAFD165AFDF500E418D8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9624AAFC165AFDF500E418D8 /* libz.dylib */; };
 		9624AB05165B478B00E418D8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9624AB03165B478B00E418D8 /* Localizable.strings */; };
 		9624AB0D165B47A100E418D8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9624AB07165B47A100E418D8 /* InfoPlist.strings */; };
-		9624AB13165B47CA00E418D8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9624AB11165B47CA00E418D8 /* Localizable.strings */; };
 		9624AB16165B59F700E418D8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9624AB14165B59F700E418D8 /* MainStoryboard.storyboard */; };
 		9624AB19165B5FF600E418D8 /* ODFilesNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9624AB18165B5FF600E418D8 /* ODFilesNavigationItem.m */; };
 		963543531644CBD90002FAB6 /* ArcConstrukt.png in Resources */ = {isa = PBXBuildFile; fileRef = 963543521644CBD90002FAB6 /* ArcConstrukt.png */; };
@@ -83,7 +87,7 @@
 		96F64F6E1648DE51003E97AB /* ODColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F6D1648DE51003E97AB /* ODColorPalette.m */; };
 		96F64F86164E3B09003E97AB /* ODFilesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F85164E3B08003E97AB /* ODFilesCollectionViewCell.m */; };
 		96F64F89164E3BE4003E97AB /* ODFilesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F88164E3BE4003E97AB /* ODFilesCollectionViewController.m */; };
-		96F64F90164E3DDA003E97AB /* ODArcConstruktFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F8F164E3DDA003E97AB /* ODArcConstruktFile.m */; };
+		96F64F90164E3DDA003E97AB /* ODArcConstruktDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F64F8F164E3DDA003E97AB /* ODArcConstruktDocument.m */; };
 		96F64F93165148A2003E97AB /* filmroll.png in Resources */ = {isa = PBXBuildFile; fileRef = 96F64F91165148A2003E97AB /* filmroll.png */; };
 		96F64F94165148A2003E97AB /* filmroll@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96F64F92165148A2003E97AB /* filmroll@2x.png */; };
 		96F6A95F16590715001041F9 /* a_b_link.png in Resources */ = {isa = PBXBuildFile; fileRef = 96F6A95D16590715001041F9 /* a_b_link.png */; };
@@ -134,6 +138,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		96227D90165C8708009D0AB1 /* ODArcConstruktTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ODArcConstruktTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		96227D91165C8708009D0AB1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		96227D97165C8708009D0AB1 /* ODArcConstruktTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ODArcConstruktTests-Info.plist"; sourceTree = "<group>"; };
+		96227D99165C8709009D0AB1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		96227D9B165C8709009D0AB1 /* ODArcConstruktTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ODArcConstruktTests.h; sourceTree = "<group>"; };
+		96227D9C165C8709009D0AB1 /* ODArcConstruktTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ODArcConstruktTests.m; sourceTree = "<group>"; };
+		96227D9E165C8709009D0AB1 /* ODArcConstruktTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ODArcConstruktTests-Prefix.pch"; sourceTree = "<group>"; };
+		96227DA7165C89A2009D0AB1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		96227DA9165C9B39009D0AB1 /* ODArcConstruktDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODArcConstruktDocument.h; sourceTree = "<group>"; };
 		9624AAEB165A8EF600E418D8 /* ODInstructionsOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODInstructionsOverlay.m; sourceTree = "<group>"; };
 		9624AAF5165AFDA500E418D8 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		9624AAF6165AFDA500E418D8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -143,7 +156,6 @@
 		9624AB02165B0FC000E418D8 /* ODColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODColorPickerView.h; sourceTree = "<group>"; };
 		9624AB04165B478B00E418D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = OcodoArcConstrukt/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9624AB08165B47A100E418D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
-		9624AB12165B47CA00E418D8 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = Localizable.strings; sourceTree = "<group>"; };
 		9624AB15165B59F700E418D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		9624AB17165B5FF600E418D8 /* ODFilesNavigationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODFilesNavigationItem.h; sourceTree = "<group>"; };
 		9624AB18165B5FF600E418D8 /* ODFilesNavigationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODFilesNavigationItem.m; sourceTree = "<group>"; };
@@ -153,6 +165,9 @@
 		9635435E1644CF380002FAB6 /* ArcConstruktIPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ArcConstruktIPad@2x.png"; sourceTree = "<group>"; };
 		9635436E164543100002FAB6 /* ODApplicationState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODApplicationState.h; sourceTree = "<group>"; };
 		9635436F164543110002FAB6 /* ODApplicationState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODApplicationState.m; sourceTree = "<group>"; };
+		96427D4E165CFEA00043805A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		96427D4F165CFECF0043805A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		96427D50165CFEDD0043805A /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9675BA4B1655DA73006A742D /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
 		9675BA4E1655DA85006A742D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9675BA501655DA8B006A742D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -232,8 +247,7 @@
 		96F64F85164E3B08003E97AB /* ODFilesCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODFilesCollectionViewCell.m; sourceTree = "<group>"; };
 		96F64F87164E3BE4003E97AB /* ODFilesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODFilesCollectionViewController.h; sourceTree = "<group>"; };
 		96F64F88164E3BE4003E97AB /* ODFilesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODFilesCollectionViewController.m; sourceTree = "<group>"; };
-		96F64F8E164E3DD9003E97AB /* ODArcConstruktFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODArcConstruktFile.h; sourceTree = "<group>"; };
-		96F64F8F164E3DDA003E97AB /* ODArcConstruktFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODArcConstruktFile.m; sourceTree = "<group>"; };
+		96F64F8F164E3DDA003E97AB /* ODArcConstruktDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODArcConstruktDocument.m; sourceTree = "<group>"; };
 		96F64F91165148A2003E97AB /* filmroll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filmroll.png; sourceTree = "<group>"; };
 		96F64F92165148A2003E97AB /* filmroll@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filmroll@2x.png"; sourceTree = "<group>"; };
 		96F64FA61651BF54003E97AB /* ArcConstruktAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcConstruktAppDelegate.h; sourceTree = "<group>"; };
@@ -296,6 +310,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		96227D8C165C8708009D0AB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96227D92165C8708009D0AB1 /* SenTestingKit.framework in Frameworks */,
+				96227D93165C8708009D0AB1 /* UIKit.framework in Frameworks */,
+				96227D94165C8708009D0AB1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96FADBA51639249C004706F9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -315,6 +339,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		96227D95165C8708009D0AB1 /* ODArcConstruktTests */ = {
+			isa = PBXGroup;
+			children = (
+				96227D9B165C8709009D0AB1 /* ODArcConstruktTests.h */,
+				96227D9C165C8709009D0AB1 /* ODArcConstruktTests.m */,
+				96227D96165C8708009D0AB1 /* Supporting Files */,
+			);
+			path = ODArcConstruktTests;
+			sourceTree = "<group>";
+		};
+		96227D96165C8708009D0AB1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				96227D97165C8708009D0AB1 /* ODArcConstruktTests-Info.plist */,
+				96227D98165C8709009D0AB1 /* InfoPlist.strings */,
+				96227D9E165C8709009D0AB1 /* ODArcConstruktTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		9624AAF4165AFDA500E418D8 /* TestFlightSDK1.1 */ = {
 			isa = PBXGroup;
 			children = (
@@ -327,24 +371,15 @@
 			path = TestFlightSDK1.1;
 			sourceTree = "<group>";
 		};
-		9624AB06165B47A100E418D8 /* en.lproj */ = {
+		9624AB06165B47A100E418D8 /* localize */ = {
 			isa = PBXGroup;
 			children = (
 				9624AB03165B478B00E418D8 /* Localizable.strings */,
 				9624AB14165B59F700E418D8 /* MainStoryboard.storyboard */,
 				9624AB07165B47A100E418D8 /* InfoPlist.strings */,
 			);
-			name = en.lproj;
+			name = localize;
 			path = OcodoArcConstrukt/en.lproj;
-			sourceTree = "<group>";
-		};
-		9624AB10165B47C900E418D8 /* th.lproj */ = {
-			isa = PBXGroup;
-			children = (
-				9624AB11165B47CA00E418D8 /* Localizable.strings */,
-			);
-			name = th.lproj;
-			path = OcodoArcConstrukt/th.lproj;
 			sourceTree = "<group>";
 		};
 		96D0EDB81643E025002F8754 /* AboutHTML */ = {
@@ -370,8 +405,8 @@
 				9635436F164543110002FAB6 /* ODApplicationState.m */,
 				96F64F6C1648DE51003E97AB /* ODColorPalette.h */,
 				96F64F6D1648DE51003E97AB /* ODColorPalette.m */,
-				96F64F8E164E3DD9003E97AB /* ODArcConstruktFile.h */,
-				96F64F8F164E3DDA003E97AB /* ODArcConstruktFile.m */,
+				96227DA9165C9B39009D0AB1 /* ODArcConstruktDocument.h */,
+				96F64F8F164E3DDA003E97AB /* ODArcConstruktDocument.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -423,14 +458,15 @@
 		96FADB9D1639249C004706F9 = {
 			isa = PBXGroup;
 			children = (
-				9624AB10165B47C900E418D8 /* th.lproj */,
-				9624AB06165B47A100E418D8 /* en.lproj */,
+				9624AB06165B47A100E418D8 /* localize */,
+				96227DA7165C89A2009D0AB1 /* SenTestingKit.framework */,
 				9624AAF4165AFDA500E418D8 /* TestFlightSDK1.1 */,
 				9635435D1644CF380002FAB6 /* ArcConstruktIPad.png */,
 				9635435E1644CF380002FAB6 /* ArcConstruktIPad@2x.png */,
 				963543541644CBF00002FAB6 /* ArcConstrukt@2x.png */,
 				963543521644CBD90002FAB6 /* ArcConstrukt.png */,
 				96FADBB21639249D004706F9 /* OcodoArcConstrukt */,
+				96227D95165C8708009D0AB1 /* ODArcConstruktTests */,
 				96FADBAB1639249C004706F9 /* Frameworks */,
 				96FADBA91639249C004706F9 /* Products */,
 			);
@@ -440,6 +476,7 @@
 			isa = PBXGroup;
 			children = (
 				96FADBA81639249C004706F9 /* ArcConstrukt.app */,
+				96227D90165C8708009D0AB1 /* ODArcConstruktTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -454,6 +491,7 @@
 				96FADBAC1639249C004706F9 /* UIKit.framework */,
 				96FADBAE1639249D004706F9 /* Foundation.framework */,
 				96FADBB01639249D004706F9 /* CoreGraphics.framework */,
+				96227D91165C8708009D0AB1 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -597,6 +635,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		96227D8F165C8708009D0AB1 /* ODArcConstruktTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96227DA1165C8709009D0AB1 /* Build configuration list for PBXNativeTarget "ODArcConstruktTests" */;
+			buildPhases = (
+				96227D8B165C8708009D0AB1 /* Sources */,
+				96227D8C165C8708009D0AB1 /* Frameworks */,
+				96227D8D165C8708009D0AB1 /* Resources */,
+				96227D8E165C8708009D0AB1 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ODArcConstruktTests;
+			productName = ODArcConstruktTests;
+			productReference = 96227D90165C8708009D0AB1 /* ODArcConstruktTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		96FADBA71639249C004706F9 /* ArcConstrukt */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 96FADBCC1639249D004706F9 /* Build configuration list for PBXNativeTarget "ArcConstrukt" */;
@@ -631,6 +687,8 @@
 			knownRegions = (
 				en,
 				th,
+				fr,
+				de,
 			);
 			mainGroup = 96FADB9D1639249C004706F9;
 			productRefGroup = 96FADBA91639249C004706F9 /* Products */;
@@ -638,11 +696,20 @@
 			projectRoot = "";
 			targets = (
 				96FADBA71639249C004706F9 /* ArcConstrukt */,
+				96227D8F165C8708009D0AB1 /* ODArcConstruktTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		96227D8D165C8708009D0AB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96227D9A165C8709009D0AB1 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96FADBA61639249C004706F9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -728,14 +795,37 @@
 				9624AAFB165AFDA500E418D8 /* release_notes.md in Resources */,
 				9624AB05165B478B00E418D8 /* Localizable.strings in Resources */,
 				9624AB0D165B47A100E418D8 /* InfoPlist.strings in Resources */,
-				9624AB13165B47CA00E418D8 /* Localizable.strings in Resources */,
 				9624AB16165B59F700E418D8 /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		96227D8E165C8708009D0AB1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		96227D8B165C8708009D0AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96227D9D165C8709009D0AB1 /* ODArcConstruktTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96FADBA41639249C004706F9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -763,7 +853,7 @@
 				96F64F6E1648DE51003E97AB /* ODColorPalette.m in Sources */,
 				96F64F86164E3B09003E97AB /* ODFilesCollectionViewCell.m in Sources */,
 				96F64F89164E3BE4003E97AB /* ODFilesCollectionViewController.m in Sources */,
-				96F64F90164E3DDA003E97AB /* ODArcConstruktFile.m in Sources */,
+				96F64F90164E3DDA003E97AB /* ODArcConstruktDocument.m in Sources */,
 				9675BA541655E36A006A742D /* DropBlocks.m in Sources */,
 				9675BA571655F30A006A742D /* ODFileTools.m in Sources */,
 				9675BA5A16561012006A742D /* ODTransparencyButton.m in Sources */,
@@ -778,10 +868,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		96227D98165C8709009D0AB1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96227D99165C8709009D0AB1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		9624AB03165B478B00E418D8 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				9624AB04165B478B00E418D8 /* en */,
+				96427D4E165CFEA00043805A /* fr */,
+				96427D4F165CFECF0043805A /* de */,
+				96427D50165CFEDD0043805A /* th */,
 			);
 			name = Localizable.strings;
 			path = ../..;
@@ -793,14 +894,6 @@
 				9624AB08165B47A100E418D8 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		9624AB11165B47CA00E418D8 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9624AB12165B47CA00E418D8 /* th */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		9624AB14165B59F700E418D8 /* MainStoryboard.storyboard */ = {
@@ -822,6 +915,41 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		96227D9F165C8709009D0AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ArcConstrukt.app/ArcConstrukt";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ODArcConstruktTests/ODArcConstruktTests-Prefix.pch";
+				INFOPLIST_FILE = "ODArcConstruktTests/ODArcConstruktTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		96227DA0165C8709009D0AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ArcConstrukt.app/ArcConstrukt";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ODArcConstruktTests/ODArcConstruktTests-Prefix.pch";
+				INFOPLIST_FILE = "ODArcConstruktTests/ODArcConstruktTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		96FADBCA1639249D004706F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -880,6 +1008,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../Dropbox/dropbox-ios-sdk-1.3.2\"",
 					"\"$(SRCROOT)\"",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OcodoArcConstrukt/OcodoArcConstrukt-Prefix.pch";
@@ -904,6 +1033,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../Dropbox/dropbox-ios-sdk-1.3.2\"",
 					"\"$(SRCROOT)\"",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OcodoArcConstrukt/OcodoArcConstrukt-Prefix.pch";
@@ -924,6 +1054,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		96227DA1165C8709009D0AB1 /* Build configuration list for PBXNativeTarget "ODArcConstruktTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96227D9F165C8709009D0AB1 /* Debug */,
+				96227DA0165C8709009D0AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		96FADBA21639249C004706F9 /* Build configuration list for PBXProject "OcodoArcConstrukt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

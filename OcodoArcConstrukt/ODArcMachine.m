@@ -40,6 +40,8 @@
         thickness = MAX(arc4random() % m, 1);
         fill = fillColor;
         stroke = strokeColor;
+        savedFill = fillColor;
+        savedStroke = strokeColor;
         [self commonInit];
     }
     return self;
@@ -58,14 +60,13 @@
 - (id)initWithDictionary:(NSDictionary *)plist frame:(CGRect)frame {
     self = [self initWithFrame:frame];
     if(self) {
-        [self geometryFromDictionary:plist];
+        [self dictionaryToGeometry:plist];
         [self commonInit];
     }
     return self;
 }
 
 -(void) commonInit {
-//    [self setupArcLayer];
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -73,35 +74,7 @@
     drawArc(self.bounds, ctx, x, y, start, end, radius, thickness, fill, stroke);
 }
 
-//- (void)setupArcLayer {
-//    ODArcLayer *arcLayer = [ODArcLayer layer];
-//    arcLayer.x = x;
-//    arcLayer.y = y;
-//    arcLayer.start = start;
-//    arcLayer.end = end;
-//    arcLayer.radius = radius;
-//    arcLayer.thickness = thickness;
-//    arcLayer.fill = fill;
-//    arcLayer.stroke = stroke;
-//    arcLayer.frame = self.frame;
-//    [self.layer addSublayer:arcLayer];
-//    [arcLayer setNeedsDisplay];
-//}
-
-//- (void)updateArcLayer {
-//    ODArcLayer *arcLayer = [self.layer.sublayers objectAtIndex:0];
-//    arcLayer.x = x;
-//    arcLayer.y = y;
-//    arcLayer.start = start;
-//    arcLayer.end = end;
-//    arcLayer.radius = radius;
-//    arcLayer.thickness = thickness;
-//    arcLayer.fill = fill;
-//    arcLayer.stroke = stroke;
-//}
-
 - (void)setNeedsDisplay {
-//    [self updateArcLayer];
     [super setNeedsDisplay];
 }
 
@@ -119,7 +92,7 @@
     [self setNeedsDisplay];
 }
 
--(void) geometryFromDictionary: (NSDictionary *) plist {
+-(void) dictionaryToGeometry: (NSDictionary *) plist {
     start = [[plist valueForKey:@"start"] floatValue];
     end = [[plist valueForKey:@"end"] floatValue];
     radius = [[plist valueForKey:@"radius"] floatValue];
@@ -142,13 +115,17 @@
 }
 
 -(NSDictionary *) geometryToDictionary {
+    
+    // NSLog(@"%f, %f, %f, %f, %@, %@", start, end, radius, thickness, [savedFill RGBHexString], [savedStroke RGBHexString]);
+    
     return @{
     @"start" : [NSNumber numberWithFloat: start],
     @"end" : [NSNumber numberWithFloat: end],
     @"radius" : [NSNumber numberWithFloat: radius],
     @"thickness" : [NSNumber numberWithFloat: thickness],
     @"fill" : [savedFill RGBADictionary],
-    @"stroke" : [savedStroke RGBADictionary] };
+    @"stroke" : [savedStroke RGBADictionary]
+    };
 }
 
 - (NSString*) SVGArc {
@@ -183,85 +160,6 @@
     
     
     return node;
-}
-
-@end
-
-#pragma mark - Layer
-
-@implementation ODArcLayer
-
-@dynamic x, y, start, end, radius, thickness;
-
-@synthesize fill, stroke;
-
--(CABasicAnimation *)makeAnimationForKey:(NSString *)key {
-	CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:key];
-	anim.fromValue = [[self presentationLayer] valueForKey:key];
-	anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-	anim.duration = 0.5;
-	return anim;
-}
-
-- (id<CAAction>)actionForKey:(NSString *)event {
-	if ([event isEqualToString:@"start"] ||
-		[event isEqualToString:@"end"] ||
-		[event isEqualToString:@"radius"] ||
-		[event isEqualToString:@"thickness"] ||
-		[event isEqualToString:@"x"] ||
-		[event isEqualToString:@"y"]) {
-		return [self makeAnimationForKey:event];
-	}
-	return [super actionForKey:event];
-}
-
-+ (BOOL)needsDisplayForKey:(NSString *)key {
-	if ([key isEqualToString:@"start"] ||
-        [key isEqualToString:@"end"] ||
-        [key isEqualToString:@"radius"] ||
-        [key isEqualToString:@"thickness"] ||
-        [key isEqualToString:@"x"] ||
-        [key isEqualToString:@"y"] ) {
-		return YES;
-	}
-	return [super needsDisplayForKey:key];
-}
-
-- (id)initWithArcMachine:(ODArcMachine*)arc {
-    if (self = [super init]) {
-        self.x = arc.x;
-        self.y = arc.y;
-        self.start = arc.start;
-        self.end = arc.end;
-        self.radius = arc.radius;
-        self.thickness = arc.thickness;
-        self.fill = arc.fill;
-        self.stroke = arc.stroke;
-        self.frame = arc.frame;
-    }
-    return  self;
-}
-
-- (id)initWithLayer:(id)layer {
-	if (self = [super initWithLayer:layer]) {
-		if ([layer isKindOfClass:[ODArcLayer class]]) {
-			ODArcLayer *other = (ODArcLayer *)layer;
-            self.x = other.x;
-            self.y = other.y;
-			self.start = other.start;
-			self.end = other.end;
-			self.radius = other.radius;
-			self.thickness = other.thickness;
-			self.fill = other.fill;
-			self.stroke = other.stroke;
-		}
-	}
-	return self;
-}
-
-- (void) drawInContext:(CGContextRef)ctx {
-    // NSLog(@"drawing layer : %f, %f / A %f / B %f / r %f / T %f", self.bounds.size.width, self.bounds.size.height, self.start, self.end, self.radius, self.thickness);
-    drawArc(self.bounds, ctx, self.x, self.y, self.start, self.end, self.radius, self.thickness, self.fill, self.stroke);
 }
 
 @end

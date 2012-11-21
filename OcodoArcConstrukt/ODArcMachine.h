@@ -38,36 +38,15 @@
 
 - (void)selectArc;
 - (void)deselectArc;
-- (void)geometryFromDictionary:(NSDictionary *)plist;
-- (NSDictionary *)geometryToDictionary;
-- (NSString *)SVGArc;
 
 - (id)initWithDictionary:(NSDictionary *)plist frame:(CGRect)frame;
+- (void)dictionaryToGeometry:(NSDictionary *)plist;
+- (NSDictionary *)geometryToDictionary;
+
+- (NSString *)SVGArc;
+
 - (id)initWithArcMachine:(ODArcMachine *)arcMachine frame:(CGRect)frame;
 - (id)initRandomWithFrame:(CGRect)frame fillColor:(UIColor*)fillColor strokeColor:(UIColor*)strokeColor;
-@end
-
-@interface ODArcLayer : CALayer
-{
-    CGFloat x;
-    CGFloat y;
-    CGFloat start;
-    CGFloat end;
-    CGFloat radius;
-    CGFloat thickness;
-}
-
-@property (nonatomic) CGFloat x;
-@property (nonatomic) CGFloat y;
-@property (nonatomic) CGFloat start;
-@property (nonatomic) CGFloat end;
-@property (nonatomic) CGFloat radius;
-@property (nonatomic) CGFloat thickness;
-
-@property (nonatomic, strong) UIColor *fill;
-@property (nonatomic, strong) UIColor *stroke;
-
-- (id)initWithArcMachine:(ODArcMachine*)arc;
 
 @end
 

@@ -57,7 +57,7 @@
     [self drawText:NSLocalizedString(@"Action Menu", nil) x:244 y:89 w:88 h:23 size:12 align:NSTextAlignmentLeft];
     [self drawPointer:CGPointMake(285, 86) b:CGPointMake(285, 48)];
 
-    [self drawQuickEditNoteOffsetX:0 offsetY:-40];
+    [self drawQuickEditNoteOffsetX:0 offsetY:-30];
     
     [self drawBoldText:NSLocalizedString(@"Layer Ordering", nil) x:20 y:348 + _deviceOffsetY w:130 h:23 size:12 align:NSTextAlignmentLeft];
     
@@ -92,7 +92,7 @@
     [self drawText:NSLocalizedString(@"Action Menu", nil) x:244 y:89 w:88 h:23 size:12 align:NSTextAlignmentLeft];
     [self drawPointer:CGPointMake(285, 86) b:CGPointMake(285, 48)];
     
-    [self drawText:NSLocalizedString(@"Remove Arc", nil) x:245 y:230 + _deviceOffsetY w:88 h:23 size:12 align:NSTextAlignmentLeft];
+    [self drawText:NSLocalizedString(@"Remove Arc", nil) x:150 y:230 + _deviceOffsetY w:165 h:23 size:12 align:NSTextAlignmentRight];
     [self drawPointer:CGPointMake(297, 248 + _deviceOffsetY) b:CGPointMake(297, 398 + _deviceOffsetY)];
     
     [self drawBoldText:NSLocalizedString(@"Finger Rotate", nil) x:10 y:310 + _deviceOffsetY w:130 h:23 size:15 align:NSTextAlignmentLeft];
@@ -103,10 +103,10 @@
     [self drawText:NSLocalizedString(@"B˚", nil) x:50 y:331 + _deviceOffsetY w:23 h:23 size:12 align:NSTextAlignmentLeft];
     [self drawPointer:CGPointMake(53, 352 + _deviceOffsetY) b:CGPointMake(53, 406 + _deviceOffsetY)];
     
-    [self drawText:NSLocalizedString(@"Linked", nil) x:80 y:331 + _deviceOffsetY w:36 h:23 size:12 align:NSTextAlignmentLeft];
+    [self drawText:NSLocalizedString(@"Linked", nil) x:80 y:331 + _deviceOffsetY w:45 h:23 size:12 align:NSTextAlignmentLeft];
     [self drawPointer:CGPointMake(95, 352 + _deviceOffsetY) b:CGPointMake(95, 406 + _deviceOffsetY)];
 
-    [self drawText:NSLocalizedString(@"Lock", nil) x:128 y:331 + _deviceOffsetY w:36 h:23 size:12 align:NSTextAlignmentLeft];
+    [self drawText:NSLocalizedString(@"Lock", nil) x:128 y:331 + _deviceOffsetY w:45 h:23 size:12 align:NSTextAlignmentLeft];
     [self drawPointer:CGPointMake(130, 352 + _deviceOffsetY) b:CGPointMake(130, 406 + _deviceOffsetY)];
     
     [self drawBoldText:NSLocalizedString(@"Pinch", nil) x:173 y:310 + _deviceOffsetY w:88 h:23 size:15 align:NSTextAlignmentLeft];
@@ -117,7 +117,7 @@
     [self drawText:NSLocalizedString(@"Thickness", nil) x:185 y:348 + _deviceOffsetY w:72 h:23 size:12 align:NSTextAlignmentCenter];
     [self drawPointer:CGPointMake(214, 369 + _deviceOffsetY) b:CGPointMake(214, 406 + _deviceOffsetY)];
     
-    [self drawText:NSLocalizedString(@"Lock", nil) x:243 y:331 + _deviceOffsetY w:36 h:23 size:12 align:NSTextAlignmentLeft];
+    [self drawText:NSLocalizedString(@"Lock", nil) x:243 y:331 + _deviceOffsetY w:45 h:23 size:12 align:NSTextAlignmentLeft];
     [self drawPointer:CGPointMake(250, 352 + _deviceOffsetY) b:CGPointMake(250, 406 + _deviceOffsetY)];
     
     [self drawStandardLabelsOffsetY:_deviceOffsetY];
@@ -136,12 +136,12 @@
 }
 
 - (void)drawStandardLabelsOffsetY:(CGFloat)offsety {
-  [self drawText:NSLocalizedString(@"Select Arc", nil) x:28 y:431 + offsety w:85 h:17 size:11 align:NSTextAlignmentLeft];
-  [self drawText:NSLocalizedString(@"Grid", nil) x:153 y:431 + offsety w:36 h:17 size:11 align:NSTextAlignmentLeft];
-  [self drawText:NSLocalizedString(@"Tools Selector", nil) x:209 y:431 + offsety w:85 h:17 size:11 align:NSTextAlignmentLeft];
+  [self drawText:NSLocalizedString(@"Select Arc", nil) x:8 y:431 + offsety w:95 h:17 size:11 align:NSTextAlignmentCenter];
+  [self drawText:NSLocalizedString(@"Grid", nil) x:153 y:431 + offsety w:40 h:17 size:11 align:NSTextAlignmentLeft];
+  [self drawText:NSLocalizedString(@"Tools Selector", nil) x:190 y:431 + offsety w:130 h:17 size:11 align:NSTextAlignmentCenter];
   [self drawText:NSLocalizedString(@"Deselect", nil) x:107 y:467 + offsety w:85 h:17 size:11 align:NSTextAlignmentLeft];
-  [self drawText:NSLocalizedString(@"Edit", nil) x:198 y:467 + offsety w:23 h:17 size:11 align:NSTextAlignmentLeft];
-  [self drawText:NSLocalizedString(@"Color", nil) x:236 y:467 + offsety w:30 h:17 size:11 align:NSTextAlignmentLeft];
+  [self drawText:NSLocalizedString(@"Edit", nil) x:190 y:467 + offsety w:50 h:17 size:11 align:NSTextAlignmentLeft];
+  [self drawText:NSLocalizedString(@"Color", nil) x:234 y:467 + offsety w:45 h:17 size:11 align:NSTextAlignmentLeft];
   [self drawText:NSLocalizedString(@"Order", nil) x:277 y:467 + offsety w:46 h:17 size:11 align:NSTextAlignmentLeft];
 }
 
@@ -154,9 +154,9 @@
     
     NSString* actionMenuNotes = NSLocalizedString(@"Action Menu:\nSave PNG to\nCamera Roll,\nImport Color Palette*,\nSave ArcMachine,\nMy ArcMachines\n(+Email & Dropbox sharing)", nil);
     CGRect actionMenuNotesFrame = CGRectMake(199, 80, 121, 124);
-    CGRect actionMenuNotesRect = CGRectMake(CGRectGetMinX(actionMenuNotesFrame) + 4, CGRectGetMinY(actionMenuNotesFrame) + 4, 121, 124);
+    CGRect actionMenuNotesRect = CGRectMake(CGRectGetMinX(actionMenuNotesFrame) + 4, CGRectGetMinY(actionMenuNotesFrame) + 4, 115, 124);
     
-    [actionMenuNotes drawInRect: actionMenuNotesRect withFont: [UIFont fontWithName: @"Avenir" size: 10] lineBreakMode: NSLineBreakByWordWrapping alignment: NSTextAlignmentCenter];
+    [actionMenuNotes drawInRect: actionMenuNotesRect withFont: [UIFont fontWithName: @"Avenir" size: 10] lineBreakMode: NSLineBreakByWordWrapping alignment: NSTextAlignmentRight];
     
     [self drawPointer:CGPointMake(285, 80) b:CGPointMake(285, 48)];
     
@@ -166,24 +166,24 @@
     
     [self drawPaletteImportToActionMenuConnectorLineOffsetY:_deviceOffsetY];
 
-    CGRect paletteNotesFrame = CGRectMake(60, 276 + _deviceOffsetY, 185, 105);
+    CGRect paletteNotesFrame = CGRectMake(60, 273 + _deviceOffsetY, 185, 105);
     
     CGRect importColorRect = CGRectMake(CGRectGetMinX(paletteNotesFrame) + 1, CGRectGetMinY(paletteNotesFrame), 220, 44);
     
     NSString* importColorNotes = NSLocalizedString(@"* Import Color Palette from the Action Menu, (up to 6 hex colors will be found in text from the Clipboard)", nil);
     [importColorNotes drawInRect: importColorRect withFont: [UIFont fontWithName: @"Avenir" size: 11] lineBreakMode: NSLineBreakByWordWrapping alignment: NSTextAlignmentCenter];
     
-    CGRect palettePickNotesRect = CGRectMake(CGRectGetMinX(paletteNotesFrame) + 57, CGRectGetMinY(paletteNotesFrame) + 58, 105, 48);[[UIColor whiteColor] setFill];
+    CGRect palettePickNotesRect = CGRectMake(CGRectGetMinX(paletteNotesFrame) + 42, CGRectGetMinY(paletteNotesFrame) + 51, 135, 68);[[UIColor whiteColor] setFill];
     
     NSString* palettePickNotes = NSLocalizedString(@"Color Palette: Touch to pick a color, Long touch to edit a color", nil);
     [palettePickNotes drawInRect: palettePickNotesRect withFont: [UIFont fontWithName: @"Avenir" size: 11] lineBreakMode: NSLineBreakByWordWrapping alignment: NSTextAlignmentCenter];
     
-    [self drawPointer:CGPointMake( 166, 382 + _deviceOffsetY) b:CGPointMake(166, 398 + _deviceOffsetY)];
+    [self drawPointer:CGPointMake( 166, 386 + _deviceOffsetY) b:CGPointMake(166, 398 + _deviceOffsetY)];
 
     [self drawPalettePickerBracketOffsetY:_deviceOffsetY];
 
     NSString* fillLabel = NSLocalizedString(@"Fill", nil);
-    CGRect fillRect = CGRectMake(15, 347 + _deviceOffsetY, 18, 17);
+    CGRect fillRect = CGRectMake(3, 347 + _deviceOffsetY, 140, 17);
     
     [fillLabel drawInRect: fillRect withFont: [UIFont fontWithName: @"Avenir" size: 12] lineBreakMode: NSLineBreakByWordWrapping alignment: NSTextAlignmentLeft];
 
@@ -197,11 +197,11 @@
     [self drawPointer:CGPointMake( 62, 363 + _deviceOffsetY) b:CGPointMake(62, 398 + _deviceOffsetY)];
     
     NSString* transparencyLabel = NSLocalizedString(@"Transparency", nil);
-    CGRect transparencyRect = CGRectMake(240, 347 + _deviceOffsetY, 80, 17);
+    CGRect transparencyRect = CGRectMake(220, 347 + _deviceOffsetY, 95, 17);
 
     [self drawPointer:CGPointMake( 300, 363 + _deviceOffsetY) b:CGPointMake(300, 398 + _deviceOffsetY)];
     
-    [transparencyLabel drawInRect: transparencyRect withFont: [UIFont fontWithName: @"Avenir" size: 12] lineBreakMode: NSLineBreakByWordWrapping alignment: NSTextAlignmentLeft];
+    [transparencyLabel drawInRect: transparencyRect withFont: [UIFont fontWithName: @"Avenir" size: 12] lineBreakMode: NSLineBreakByWordWrapping alignment: NSTextAlignmentRight];
     
     [self drawStandardLabelsOffsetY:_deviceOffsetY];
 }

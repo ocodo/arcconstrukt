@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ODArcMachine.h"
 
-@interface ODArcConstruktFile : NSObject <NSCoding>
+@interface ODArcConstruktDocument : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSMutableArray *layers;
 @property (strong, nonatomic) UIImage *thumbnail;
@@ -17,6 +17,7 @@
 
 -(id)initWithArcMachineSubviews:(NSArray*)subviews;
 -(NSData*)asSVGEncoded;
+-(NSData*)asJSONEncoded;
 -(NSString*)asSVG;
 -(NSArray*)layersToArcMachines;
 

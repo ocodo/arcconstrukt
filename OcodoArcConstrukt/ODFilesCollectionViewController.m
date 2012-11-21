@@ -298,7 +298,7 @@
 -(UIImage *)loadThumbnail:(NSString *)filename {
     @try {
         NSString *fullPath =  [[ODFileTools documentsFolder:@"arcmachines"] stringByAppendingPathComponent:filename];
-        ODArcConstruktFile *file = [NSKeyedUnarchiver unarchiveObjectWithFile:fullPath];
+        ODArcConstruktDocument *file = [NSKeyedUnarchiver unarchiveObjectWithFile:fullPath];
         return file.thumbnail;
     }
     @catch (NSException *exception) {

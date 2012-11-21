@@ -536,7 +536,7 @@
     NSData *data = [appPasteboard dataForPasteboardType:@"info.ocodo.arcconstrukt"];
     NSDictionary *plist = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     ODArcMachine *a = [[ODArcMachine alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
-    [a geometryFromDictionary: plist];
+    [a dictionaryToGeometry: plist];
     [arcConstruktView addSubview:a];
     [self syncLayerStepper];
     [TestFlight passCheckpoint:@"Pasted arc"];
@@ -788,7 +788,7 @@
     DZProgressController *HUD = [DZProgressController new];
     HUD.label.text = NSLocalizedString(@"Saving ArcMachine", nil);
     [HUD showWhileExecuting:^{
-        ODArcConstruktFile *file = [[ODArcConstruktFile alloc] initWithArcMachineSubviews:arcConstruktView.subviews];
+        ODArcConstruktDocument *file = [[ODArcConstruktDocument alloc] initWithArcMachineSubviews:arcConstruktView.subviews];
         
         UIGraphicsBeginImageContextWithOptions(arcConstruktView.bounds.size, NO, 0.5);
         [arcConstruktView.layer renderInContext:UIGraphicsGetCurrentContext()];
@@ -808,7 +808,7 @@
 }
 
 - (void)importComposition:(NSString*)filename withFolder:(NSString *)folder {
-    ODArcConstruktFile *file = [ODFileTools load:filename documentsFolder:folder];
+    ODArcConstruktDocument *file = [ODFileTools load:filename documentsFolder:folder];
     [ODFileTools save:filename documentsFolder:@"arcmachines" data:[NSKeyedArchiver archivedDataWithRootObject:file]];
     [ODFileTools save:file.filename extension:@"svg" documentsFolder:@"svg" data:[file asSVGEncoded]];
     
@@ -819,7 +819,7 @@
     @try {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:@"%@ : %@", NSLocalizedString(@"Loaded",nil), filename]];
         [self clearButton:nil];
-        ODArcConstruktFile *file = [ODFileTools load:filename documentsFolder:folder];
+        ODArcConstruktDocument *file = [ODFileTools load:filename documentsFolder:folder];
         for (ODArcMachine *arc in [file layersToArcMachines]) {
             [arcConstruktView addSubview:arc];
         }

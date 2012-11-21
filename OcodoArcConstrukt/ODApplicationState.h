@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ODArcMachine.h"
-#import "ODArcConstruktFile.h"
+#import "ODArcConstruktDocument.h"
 
 @interface ODApplicationState : NSObject
 {

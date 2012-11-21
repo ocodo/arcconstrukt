@@ -4,14 +4,24 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ODArcConstruktTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>OcodoArcConstrukt.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>96227D8F165C8708009D0AB1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>96FADBA71639249C004706F9</key>
 		<dict>
 			<key>primary</key>
