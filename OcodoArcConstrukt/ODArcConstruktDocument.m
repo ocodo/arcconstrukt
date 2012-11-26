@@ -7,10 +7,8 @@
 //
 
 #import "ODArcConstruktDocument.h"
-#import "TKAlertCenter.h"
-#import "DZProgressController.h"
 
-@implementation ODArcConstruktDocument 
+@implementation ODArcConstruktDocument
 
 @synthesize thumbnail, filename, layers;
 
@@ -37,7 +35,7 @@
     if (self) {
         layers = [[NSMutableArray alloc] init];
         for (ODArcMachine *arcMachine in subviews) {
-                [layers addObject:[arcMachine geometryToDictionary]];
+            [layers addObject:[arcMachine geometryToDictionary]];
         }
     }
     return self;
@@ -45,21 +43,78 @@
 
 #pragma json
 
-- (NSData*)asJSONEncoded {
+- (id)initWithJSONData:(NSData *)data {
+    return [self initWithJSON:[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]];
+}
+
+- (id)initWithJSON:(NSString*)json {
+    @try {
+        self = [super init];
+        if (self) {
+            NSError *error;
+            
+            NSDictionary *fileDict = [NSJSONSerialization
+                                      JSONObjectWithData:[json
+                                                          dataUsingEncoding:
+                                                          NSUTF8StringEncoding]
+                                      options:0
+                                      error:&error];
+
+            self.layers = [[NSMutableArray alloc] init];
+            
+            if(error) {
+                NSLog(@"JSON Error loading:%@", error);
+                [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Failed to load %@", nil), @"[JSON 007]"]];
+            }
+            
+            for (id obj in [fileDict valueForKey:@"layers"]) {
+                NSDictionary *plist = (NSDictionary*)obj;
+                [self.layers addObject:plist];
+            }
+            
+            if(error) {
+                NSLog(@"JSON Error creating layers:%@", error);
+                [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Failed to load %@", nil), @"[JSON 008]"]];
+            }
+        }        
+        return self;
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@", exception);
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Failed to load %@", nil), @""]];
+        return nil;
+    }
+    
+}
+
+- (NSString*)layersAsJSON {
     NSMutableArray *arrayOfDicts = [[NSMutableArray alloc] init];
     
     for (ODArcMachine* arc in [self layersToArcMachines]) {
         [arrayOfDicts addObject:[arc geometryToDictionary]];
     }
+    
     NSError *error;
     NSArray *data = [NSArray arrayWithArray:arrayOfDicts];
     
-    NSData *jsonData = [NSJSONSerialization
-                        dataWithJSONObject:data
-                        options:NSJSONWritingPrettyPrinted
-                        error:&error];
+    return [[NSString alloc] initWithData:[NSJSONSerialization
+                                           dataWithJSONObject:data
+                                           options:0
+                                           error:&error] encoding:NSUTF8StringEncoding];
+}
+
+- (NSData*)asJSONEncoded {
     
-    return jsonData;
+    NSDictionary *fileDict = @{
+    @"layers" : layers
+    };
+    
+    NSError *error;
+    
+    return [NSJSONSerialization
+             dataWithJSONObject:fileDict
+             options:0
+             error:&error];
 }
 
 #pragma svg

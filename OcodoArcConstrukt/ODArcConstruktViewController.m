@@ -9,6 +9,7 @@
 #import "ODArcConstruktViewController.h"
 #import "ODFileTools.h"
 #import "PSPDFActionSheet.h"
+#import "PSPDFAlertView.h"
 #import "ArcConstruktAppDelegate.h"
 
 @interface ODArcConstruktViewController ()
@@ -224,7 +225,7 @@
         if(colorPicker.frame.origin.x != 10) {
             [TestFlight passCheckpoint:@"Viewing Colour Picker"];
             
-            [self moveColorPicker:10];
+            [self moveColorPicker:0];
         }
         else {
             [TestFlight passCheckpoint:@"Color Picker closed with Palette long-press"];
@@ -368,6 +369,7 @@
     colorPicker.color = color;
     [ODApplicationState sharedinstance].currentArc.stroke = color;
     [ODApplicationState sharedinstance].currentArc.savedStroke = color;
+    [ODApplicationState sharedinstance].dirty = YES;
     [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
 }
 
@@ -375,6 +377,7 @@
     colorPicker.color = color;
     [ODApplicationState sharedinstance].currentArc.fill = color;
     [ODApplicationState sharedinstance].currentArc.savedFill = color;
+    [ODApplicationState sharedinstance].dirty = YES;
     [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
 }
 
@@ -391,6 +394,7 @@
         [TestFlight passCheckpoint:@"Added arc layer"];
         [self addRandomArcLayer];
         [self syncLayerStepper];
+        [ODApplicationState sharedinstance].dirty = YES;
     } else {
         [TestFlight passCheckpoint:@"Added maximum layers"];
         [[TKAlertCenter defaultCenter]
@@ -417,6 +421,7 @@
     [layerStepper setMaximumValue:[arcConstruktView subviews].count - 1];
     [layerStepper setValue:MIN(index,[arcConstruktView subviews].count - 1)];
     [self layerSelecting:layerStepper];
+    [ODApplicationState sharedinstance].dirty = YES;
 }
 
 - (IBAction)clearButton:(id)sender {
@@ -427,6 +432,8 @@
     [layerStepper setMaximumValue:[arcConstruktView subviews].count - 1];
     [layerStepper setValue:0];
     [TestFlight passCheckpoint:@"Cleared all arcs"];
+    [ODApplicationState sharedinstance].dirty = NO;
+    
 }
 
 - (IBAction)deselectCurrentArc:(UIBarButtonItem *)sender {
@@ -582,21 +589,28 @@
 }
 
 - (void)pinchRadius:(UIPinchGestureRecognizer *)pincher {
-    float radius = clampf([ODApplicationState sharedinstance].currentArc.radius + pincher.scale-1, 1.0f, 160.0f);
-    [ODApplicationState sharedinstance].currentArc.radius = radius;
-    [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
+    if([ODApplicationState sharedinstance].currentArc) {
+        float radius = clampf([ODApplicationState sharedinstance].currentArc.radius + pincher.scale-1, 1.0f, 160.0f);
+        [ODApplicationState sharedinstance].currentArc.radius = radius;
+        [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
+        [ODApplicationState sharedinstance].dirty = YES;
+    }
 }
 
 - (void)pinchThickness:(UIPinchGestureRecognizer *)pincher {
-    float thick = clampf([ODApplicationState sharedinstance].currentArc.thickness + pincher.scale-1, 1.0f, 160.0f);
-    [ODApplicationState sharedinstance].currentArc.thickness = thick;
-    [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
+    if([ODApplicationState sharedinstance].currentArc) {
+        float thick = clampf([ODApplicationState sharedinstance].currentArc.thickness + pincher.scale-1, 1.0f, 160.0f);
+        [ODApplicationState sharedinstance].currentArc.thickness = thick;
+        [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
+        [ODApplicationState sharedinstance].dirty = YES;
+    }
 }
 
 - (void)startAngleTouch:(ODFingerRotationGestureRecognizer *)rotator {
     if([ODApplicationState sharedinstance].currentArc) {
         [ODApplicationState sharedinstance].currentArc.start += rotator.rotation;
         [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
+        [ODApplicationState sharedinstance].dirty = YES;
     }
 }
 
@@ -604,6 +618,7 @@
     if([ODApplicationState sharedinstance].currentArc){
         [ODApplicationState sharedinstance].currentArc.end += rotator.rotation;
         [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
+        [ODApplicationState sharedinstance].dirty = YES;
     }
 }
 
@@ -612,6 +627,7 @@
         [ODApplicationState sharedinstance].currentArc.start += rotator.rotation;
         [ODApplicationState sharedinstance].currentArc.end += rotator.rotation;
         [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
+        [ODApplicationState sharedinstance].dirty = YES;
     }
 }
 
@@ -669,18 +685,22 @@
         case 0:
             [TestFlight passCheckpoint:@"Arc send to back"];
             [arc sendToBack];
+            [ODApplicationState sharedinstance].dirty = YES;
             break;
         case 1:
             [TestFlight passCheckpoint:@"Arc back one"];
             [arc sendOneLevelDown];
+            [ODApplicationState sharedinstance].dirty = YES;
             break;
         case 2:
             [TestFlight passCheckpoint:@"Arc forward one"];
             [arc bringOneLevelUp];
+            [ODApplicationState sharedinstance].dirty = YES;
             break;
         case 3:
             [TestFlight passCheckpoint:@"Arc bring to front"];
             [arc bringToFront];
+            [ODApplicationState sharedinstance].dirty = YES;
             break;
         default:
             break;
@@ -778,7 +798,7 @@
 }
 
 - (void)saveComposition:(id)sender {
-
+    
     if([[arcConstruktView subviews] count] < 1) {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Press + to add Arcs", nil) image:[UIImage imageNamed:@"lightBulb@2x.png"]];
         [TestFlight passCheckpoint:@"No Arcs for Save composition"];
@@ -799,32 +819,34 @@
         int ti = [[NSDate date] timeIntervalSince1970];
         file.filename = [NSString stringWithFormat:@"ArcConstrukt-%X.arcmachine", ti];
         [ODFileTools save:file.filename documentsFolder:@"arcmachines" data:[NSKeyedArchiver archivedDataWithRootObject: file]];
+        
+        [ODApplicationState sharedinstance].dirty = NO;
+        
         [ODFileTools save:file.filename extension:@"svg" documentsFolder:@"svg" data:[file asSVGEncoded]];
-        
+        [ODFileTools save:file.filename documentsFolder:@"json" data:[file asJSONEncoded]];
         [TestFlight passCheckpoint:@"Saved composition .arcmachine and SVG"];
-        
-        return;
     }];
 }
 
 - (void)importComposition:(NSString*)filename withFolder:(NSString *)folder {
-    ODArcConstruktDocument *file = [ODFileTools load:filename documentsFolder:folder];
+    ODArcConstruktDocument *file = [ODFileTools loadArchive:filename documentsFolder:folder];
     [ODFileTools save:filename documentsFolder:@"arcmachines" data:[NSKeyedArchiver archivedDataWithRootObject:file]];
     [ODFileTools save:file.filename extension:@"svg" documentsFolder:@"svg" data:[file asSVGEncoded]];
-    
     [TestFlight passCheckpoint:@"Import composition"];
 }
 
-- (void)loadComposition:(NSString*) filename withFolder:(NSString *)folder {
+- (void)loadJSONComposition:(NSString*)filename withFolder:(NSString*)folder {
     @try {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:@"%@ : %@", NSLocalizedString(@"Loaded",nil), filename]];
         [self clearButton:nil];
-        ODArcConstruktDocument *file = [ODFileTools load:filename documentsFolder:folder];
+        ODArcConstruktDocument *file = [[ODArcConstruktDocument alloc] initWithJSONData:[ODFileTools loadNSData:filename documentsFolder:folder]];
+        file.filename = filename;
+        
         for (ODArcMachine *arc in [file layersToArcMachines]) {
             [arcConstruktView addSubview:arc];
         }
         [self resetStepper];
         [self deselect];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:@"%@ : %@", NSLocalizedString(@"Loaded",nil), filename]];
         [TestFlight passCheckpoint:@"Loaded composition"];
     }
     @catch (NSException *exception) {
@@ -832,6 +854,49 @@
         [TestFlight passCheckpoint:@"Composition load failed"];
     }
     [arcConstruktView setNeedsDisplay];
+}
+
+- (void)loadComposition:(NSString*) filename withFolder:(NSString *)folder {
+    
+    void (^loadBlock)(void);
+    loadBlock = ^(void){
+        @try {
+            [self clearButton:nil];
+            ODArcConstruktDocument *file = [ODFileTools loadArchive:filename documentsFolder:folder];
+            for (ODArcMachine *arc in [file layersToArcMachines]) {
+                [arcConstruktView addSubview:arc];
+            }
+            [self resetStepper];
+            [self deselect];
+            [TestFlight passCheckpoint:@"Loaded composition"];
+            [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:@"%@ : %@", NSLocalizedString(@"Loaded",nil), filename]];
+        }
+        @catch (NSException *exception) {
+            @try {
+                [self loadJSONComposition:filename withFolder:folder];
+            }
+            @catch (NSException *exception) {
+            }
+        }
+        [arcConstruktView setNeedsDisplay];
+    };
+    
+    if(arcConstruktView.subviews > 0 && [ODApplicationState sharedinstance].dirty ) {
+
+        NSString* title = NSLocalizedString(@"Warning", nil);
+        NSString* message = NSLocalizedString(@"Loading will overwrite unsaved work", nil);
+        NSString* cancel = NSLocalizedString(@"Cancel", nil);
+        NSString* load = NSLocalizedString(@"Load", nil);
+        
+        PSPDFAlertView *confirmLoad = [[PSPDFAlertView alloc] initWithTitle:title];
+        [confirmLoad setMessage:message];
+        [confirmLoad addButtonWithTitle:load block:loadBlock];
+        [confirmLoad setCancelButtonWithTitle:cancel block:nil];
+        [confirmLoad show];
+    }
+    else {
+        loadBlock();
+    }
 }
 
 - (void)loadComposition:(NSString*) filename {
@@ -843,7 +908,7 @@
     for (UIColor *color in [[ODColorPalette sharedinstance] colors]) {
         [hexColors addObject:[color RGBHexString]];
     }
-    [[UIPasteboard generalPasteboard] setString:[hexColors componentsJoinedByString:@"\n"]];    
+    [[UIPasteboard generalPasteboard] setString:[hexColors componentsJoinedByString:@"\n"]];
     [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Color Palette exported to the Clipboard", nil)];
     [TestFlight passCheckpoint:@"Exported Color Palette"];
 }
@@ -880,13 +945,12 @@
     } else {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Copy some Hex colors into the clipboard, ArcConstrukt will find and use the first 6", nil)];
         [TestFlight passCheckpoint:@"Imported Color Palette (no colors)"];
-        
     }
 }
 
 - (void)didReceiveMemoryWarning {
     [TestFlight passCheckpoint:@"Memory warning"];
-    [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Memory warning: Save your work, just in case!", nil)];
+    // [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Memory warning: Save your work, just in case!", nil)];
     
     [super didReceiveMemoryWarning];
 }

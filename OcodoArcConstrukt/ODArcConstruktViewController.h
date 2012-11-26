@@ -34,7 +34,7 @@
 
 #import "extra_math.h"
 
-@interface ODArcConstruktViewController : UIViewController <NPColorPickerViewDelegate>
+@interface ODArcConstruktViewController : UIViewController <NPColorPickerViewDelegate, UIAlertViewDelegate>
 {
     UIPasteboard *appPasteboard;
     int _rotateMode;
@@ -65,6 +65,7 @@
 
 - (void)loadComposition:(NSString*)filename;
 - (void)loadComposition:(NSString*)filename withFolder:(NSString*)folder;
+- (void)loadJSONComposition:(NSString*)filename withFolder:(NSString*)folder;
 - (void)importComposition:(NSString*)filename withFolder:(NSString*)folder;
 
 @end

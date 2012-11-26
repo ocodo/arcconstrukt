@@ -16,11 +16,12 @@
     
     dispatch_once(&pred, ^{
         shared = [ODApplicationState new];
+        shared.dirty = false;
     });
     return shared;
 }
 
-@synthesize currentArc, startUrl;
+@synthesize currentArc, startUrl, dirty;
 
 @end
 

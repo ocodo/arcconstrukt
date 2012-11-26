@@ -21,6 +21,19 @@
 				<string>info.ocodo.arcmachine</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeIconFiles</key>
+			<array>
+				<string>ArcConstrukt</string>
+				<string>ArcConstrukt@2x</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>JSONArcMachine</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>info.ocodo.arcmachinej</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
@@ -62,6 +75,20 @@
 			</array>
 		</dict>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string>ArcConstrukt@2x</string>
+			<key>CFBundleURLName</key>
+			<string>info.ocodo.arcmachinej</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>arcmachinej</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>db-i43jdpeay0il29z</string>
@@ -105,6 +132,16 @@
 				<key>public.mime-type</key>
 				<string>application/arcmachine</string>
 			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeDescription</key>
+			<string>ArcMachinee JSON Document</string>
+			<key>UTTypeIdentifier</key>
+			<string>info.ocodo.arcmachinej</string>
+			<key>UTTypeSize320IconFile</key>
+			<string>ArcConstrukt@2x</string>
+			<key>UTTypeSize64IconFile</key>
+			<string>ArcConstrukt</string>
 		</dict>
 	</array>
 </dict>

@@ -14,10 +14,12 @@
 {
     ODArcMachine *currentArc;
     NSURL *startUrl;
+    BOOL dirty;
 }
 
 @property ODArcMachine *currentArc;
 @property NSURL *startUrl;
+@property BOOL dirty;
 
 +(ODApplicationState *)sharedinstance;
 

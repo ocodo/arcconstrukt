@@ -14,6 +14,7 @@
 	
 	if (nil != string)
 	{
+        string = [string stringByReplacingOccurrencesOfString:@"#" withString:@""];
 		NSScanner *scanner = [NSScanner scannerWithString:string];
 		(void) [scanner scanHexInt:&colorCode];
 	}
@@ -34,8 +35,9 @@
 	unsigned int colorCode = 0;
     unsigned char redByte, greenByte, blueByte;
 	
-	if (nil != string)
+	if (string != nil)
 	{
+        string = [string stringByReplacingOccurrencesOfString:@"#" withString:@""];
 		NSScanner *scanner = [NSScanner scannerWithString:string];
 		(void) [scanner scanHexInt:&colorCode];
 	}
@@ -51,13 +53,38 @@
             alpha:alpha];
 }
 
++ (UIColor *)colorWithRGBAHexString:(NSString *)string {
+    
+    unsigned int colorCode = 0;
+    unsigned char redByte, greenByte, blueByte, alphaByte;
+    
+    if (nil != string)
+    {
+        string = [string stringByReplacingOccurrencesOfString:@"#" withString:@""];
+        NSScanner *scanner = [NSScanner scannerWithString:string];
+        (void) [scanner scanHexInt:&colorCode];
+    }
+    
+    redByte		= (unsigned char) (colorCode >> 24);
+    greenByte	= (unsigned char) (colorCode >> 16);
+    blueByte	= (unsigned char) (colorCode >> 8);
+    alphaByte   = (unsigned char) (colorCode);
+    
+    return [UIColor
+            colorWithRed:(float)redByte	/ 0xff
+            green:(float)greenByte / 0xff
+            blue:(float)blueByte / 0xff
+            alpha:(float)alphaByte / 0xff];
+}
+
+
 /**
  Read an NSDictionary containing r,g,b,a or red,green,blue,alpha keys.
  
  Return a UIColor *
-*/
+ */
 + (UIColor *)colorWithRGBADictionary:(NSDictionary*)rgbaDictionary {
-
+    
     NSNumber* r;
     NSNumber* g;
     NSNumber* b;
@@ -68,7 +95,7 @@
         g = [rgbaDictionary valueForKey:@"g"];
         b = [rgbaDictionary valueForKey:@"b"];
         a = [rgbaDictionary valueForKey:@"a"];
-
+        
         return [UIColor colorWithRed:r.floatValue
                                green:g.floatValue
                                 blue:b.floatValue
@@ -90,7 +117,7 @@
 /**
  Return a hex string (6 digits, no leading # or 0x)
  of this UIColor
-*/
+ */
 -(NSString *)RGBHexString {
     
     CGFloat red, green, blue, alpha;
@@ -112,9 +139,9 @@
 /**
  Return a NSDictionary with r,g,b,a keys representing
  this UIColor
-*/
+ */
 -(NSDictionary *)RGBADictionary {
-
+    
     CGFloat r, g, b, a;
     [self getRed:&r green:&g blue:&b alpha:&a];
     

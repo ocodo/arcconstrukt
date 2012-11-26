@@ -9,11 +9,12 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import "ODArcMachine.h"
 #import "ODArcConstruktDocument.h"
+#import "ODFileTools.h"
 #import <UIKit/UIKit.h>
 
 @interface ODArcConstruktTests : SenTestCase
 {
-    ODArcMachine *testMachine;
+    ODArcMachine *testJSONConvertedMachine;
     ODArcConstruktDocument *testDocument;
 }
 

@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "ODArcMachine.h"
+#import "TKAlertCenter.h"
+#import "DZProgressController.h"
+#import "NSData+Base64.h"
 
 @interface ODArcConstruktDocument : NSObject <NSCoding>
 
@@ -15,10 +18,13 @@
 @property (strong, nonatomic) UIImage *thumbnail;
 @property (strong, nonatomic) NSString *filename;
 
--(id)initWithArcMachineSubviews:(NSArray*)subviews;
--(NSData*)asSVGEncoded;
--(NSData*)asJSONEncoded;
--(NSString*)asSVG;
--(NSArray*)layersToArcMachines;
+- (id)initWithArcMachineSubviews:(NSArray*)subviews;
+- (id)initWithJSONData:(NSData*)data;
+- (id)initWithJSON:(NSString*)json;
+
+- (NSData*)asSVGEncoded;
+- (NSData*)asJSONEncoded;
+- (NSString*)asSVG;
+- (NSArray*)layersToArcMachines;
 
 @end

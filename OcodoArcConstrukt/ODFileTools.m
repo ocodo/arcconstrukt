@@ -18,7 +18,7 @@
     [[NSFileManager defaultManager] createFileAtPath:[ODFileTools fullPath:filename extension:extension documentsFolder:folder] contents:data attributes:nil];
 }
 
-+ (id) load:(NSString *)filename documentsFolder:(NSString*)folder {
++ (id) loadArchive:(NSString *)filename documentsFolder:(NSString*)folder {
     return [NSKeyedUnarchiver unarchiveObjectWithFile:[ODFileTools fullPath:filename documentsFolder:folder]];
 }
 
@@ -26,7 +26,7 @@
     return [NSData dataWithContentsOfFile:[ODFileTools fullPath:filename documentsFolder:folder]];
 }
 
-+ (id) load:(NSString *)filename extension:(NSString*)extension documentsFolder:(NSString*)folder {
++ (id) loadArchive:(NSString *)filename extension:(NSString*)extension documentsFolder:(NSString*)folder {
     return [NSKeyedUnarchiver unarchiveObjectWithFile:[ODFileTools fullPath:filename extension:extension documentsFolder:folder]];
 }
 

@@ -29,7 +29,7 @@
                                 <color key="backgroundColor" red="0.10196078568696976" green="0.10196078568696976" blue="0.10196078568696976" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="158-km-SWE" userLabel="ColorPick" customClass="ODColorPickerView">
-                                <rect key="frame" x="640" y="69" width="300" height="300"/>
+                                <rect key="frame" x="0.0" y="59" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -344,6 +344,93 @@
         <image name="start.png" width="25" height="25"/>
         <image name="thickness.png" width="25" height="25"/>
     </resources>
+    <classes>
+        <class className="ODArcConstruktAboutViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ODArcConstruktAboutViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="ODArcConstruktNavigationController" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ODArcConstruktNavigationController.h"/>
+        </class>
+        <class className="ODArcConstruktViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ODArcConstruktViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="actionMenu:"/>
+                <relationship kind="action" name="addButton:"/>
+                <relationship kind="action" name="arrangeLayer:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="changePinchMode:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="changeRotateMode:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="clearButton:"/>
+                <relationship kind="action" name="deleteButton:"/>
+                <relationship kind="action" name="deselectCurrentArc:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="gridModeStep:"/>
+                <relationship kind="action" name="importColorsFromPasteboard:"/>
+                <relationship kind="action" name="layerStep:" candidateClass="UIStepper"/>
+                <relationship kind="action" name="savePNGImagetoPhotoAlbum:scale:"/>
+                <relationship kind="action" name="savePNGMenu:"/>
+                <relationship kind="action" name="toolbarModeSelector:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="transparencySelectorToggle:"/>
+                <relationship kind="outlet" name="angleSelector" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="arcConstruktView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="colorPicker" candidateClass="ODColorPickerView"/>
+                <relationship kind="outlet" name="fillStrokeSelector" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="gridView" candidateClass="ODGridView"/>
+                <relationship kind="outlet" name="layerOrderSelector" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="layerStepper" candidateClass="UIStepper"/>
+                <relationship kind="outlet" name="mainToolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="pinchSelector" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="swatchBar" candidateClass="ODSwatchPicker"/>
+                <relationship kind="outlet" name="titleView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="toolbarModeSelector" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="transparencyButton" candidateClass="ODTransparencyButton"/>
+                <relationship kind="outlet" name="transparencyPicker" candidateClass="ODTransparencyPicker"/>
+            </relationships>
+        </class>
+        <class className="ODColorPickerView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ODColorPickerView.h"/>
+        </class>
+        <class className="ODFilesCollectionViewCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ODFilesCollectionViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="ODFilesCollectionViewController" superclassName="UICollectionViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ODFilesCollectionViewController.h"/>
+        </class>
+        <class className="ODFilesNavigationItem" superclassName="UINavigationItem">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ODFilesNavigationItem.h"/>
+        </class>
+        <class className="ODGridView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ODGridView.h"/>
+        </class>
+        <class className="ODSwatchPicker" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ODSwatchPicker.h"/>
+        </class>
+        <class className="ODTransparencyButton" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ODTransparencyButton.h"/>
+        </class>
+        <class className="ODTransparencyPicker" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ODTransparencyPicker.h"/>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewController.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

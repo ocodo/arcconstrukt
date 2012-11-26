@@ -71,7 +71,7 @@
    self = [super init];
    if (self) {
       positions_ = [[NSMutableArray alloc]initWithCapacity:2];
-      interstices_ = 300;
+      interstices_ = 360;
    }
    return self;
 }

@@ -107,7 +107,7 @@
 - (void)uploadCompositionToDropbox:(DZProgressController*)hud {
     NSString *filename = [[self listFiles] objectAtIndex:currentIndexPath.item];
     NSString *svgFilename = [[[self listFiles] objectAtIndex:currentIndexPath.item] stringByAppendingPathExtension:@"svg"];
-
+    
     BOOL hasArcMachine = [[NSFileManager defaultManager] fileExistsAtPath:[ODFileTools fullPath:filename documentsFolder:@"arcmachines"]];
     BOOL hasSvg = [[NSFileManager defaultManager] fileExistsAtPath:[ODFileTools fullPath:svgFilename documentsFolder:@"svg"]];
     
@@ -138,7 +138,6 @@
            completionBlock:^(DBMetadata *metadata, NSError *error) {
                [HUD hide];
                [TestFlight passCheckpoint:@"ArcMachine and SVG uploaded to Dropbox"];
-               [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"ArcMachine and SVG uploaded to Dropbox", nil)];
            } progressBlock:^(CGFloat progress) {
                HUD.progress = progress;
            }];
@@ -154,27 +153,35 @@
         
         NSString *filename = [[self listFiles] objectAtIndex:currentIndexPath.item];
         NSString *svgFilename = [[[self listFiles] objectAtIndex:currentIndexPath.item] stringByAppendingPathExtension:@"svg"];
-
+        
         BOOL hasArcMachine = [[NSFileManager defaultManager] fileExistsAtPath:[ODFileTools fullPath:filename documentsFolder:@"arcmachines"]];
         BOOL hasSvg = [[NSFileManager defaultManager] fileExistsAtPath:[ODFileTools fullPath:svgFilename documentsFolder:@"svg"]];
-
+        BOOL hasJson = [[NSFileManager defaultManager] fileExistsAtPath:[ODFileTools fullPath:filename documentsFolder:@"json"]];
+        
         [mailer setSubject:NSLocalizedString(@"My Shiny New ArcMachine", nil)];
         
-        if (hasArcMachine) {
+        if (hasSvg) {
             [mailer addAttachmentData:[ODFileTools
                                        loadNSData:svgFilename
                                        documentsFolder:@"svg"]
                              mimeType:@"image/svg+xml"
                              fileName:svgFilename];
         }
-        if (hasSvg) {
+        if (hasJson) {
+            [mailer addAttachmentData:[ODFileTools
+                                       loadNSData:filename
+                                       documentsFolder:@"json"]
+                             mimeType:@"application/octet-stream"
+                             fileName:[@"json-" stringByAppendingString:filename]];
+        }
+        if (hasArcMachine) {
             [mailer addAttachmentData:[ODFileTools
                                        loadNSData:filename
                                        documentsFolder:@"arcmachines"]
                              mimeType:@"application/octet-stream"
                              fileName:filename];
         }
-               
+        
         [self presentViewController:mailer animated:YES completion:^{
         }];
     } else {

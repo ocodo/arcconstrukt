@@ -11,6 +11,7 @@
 #import "UIView+Hierarchy.h"
 #import <tgmath.h>
 #import "CGColor+Additions.h"
+#import "ODArcDrawing.h"
 
 @interface ODArcMachine : UIView {
     CGFloat x;
@@ -47,11 +48,5 @@
 
 - (id)initWithArcMachine:(ODArcMachine *)arcMachine frame:(CGRect)frame;
 - (id)initRandomWithFrame:(CGRect)frame fillColor:(UIColor*)fillColor strokeColor:(UIColor*)strokeColor;
-
-@end
-
-@interface ODArcDrawing
-
-void drawArc(CGRect rect, CGContextRef ctx, CGFloat x, CGFloat y, CGFloat start, CGFloat end, CGFloat radius, CGFloat thickness, UIColor *fill, UIColor *stroke);
 
 @end
