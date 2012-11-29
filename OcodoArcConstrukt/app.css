@@ -1,11 +1,12 @@
 body {
-    font-family: "Helvetica Neue";
+    font-family: Avenir;
     color: #ffffff;
     background-color: transparent;
     margin: 0px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
-    user-select: none; }
+    user-select: none; 
+}
 
 .notes {
     font-size:8pt;
@@ -19,7 +20,7 @@ body {
 .clear { clear:both; }
 
 #content {
-    margin-top: 50px;
+    margin-top: 0px;
 }
 
 a:link { color: #dddddd; }

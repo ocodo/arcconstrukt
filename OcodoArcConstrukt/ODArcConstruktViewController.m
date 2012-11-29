@@ -339,14 +339,12 @@
     
     switch (fillStrokeSelector.selectedSegmentIndex) {
         case 0:
-            [TestFlight passCheckpoint:@"Selected Fill from Color Picker"];
             
             [self setCurrentFillFromPaletteColor:i];
             break;
             
         case 1:
-            [TestFlight passCheckpoint:@"Selected Stroke from Color Picker"];
-            
+          
             [self setCurrentStrokeFromPaletteColor:i];
             break;
             
@@ -437,7 +435,8 @@
 }
 
 - (IBAction)deselectCurrentArc:(UIBarButtonItem *)sender {
-    [self deselect];
+    // [self deselect];
+    [[ODApplicationState sharedinstance].currentArc toggleHighlight];
     [TestFlight passCheckpoint:@"Manually Deselected arc"];
 }
 
@@ -739,7 +738,6 @@
                                               green:f[1]
                                               blue:f[2]
                                               alpha:[transparencyPicker transparency]]];
-            [TestFlight passCheckpoint:@"Set fill transparency"];
             break;
         case 1:
             [self setCurrentStrokeFromUIColor: [UIColor
@@ -747,7 +745,6 @@
                                                 green:s[1]
                                                 blue:s[2]
                                                 alpha:[transparencyPicker transparency]]];
-            [TestFlight passCheckpoint:@"Set stroke transparency"];
             break;
         default:
             break;
@@ -862,10 +859,24 @@
     loadBlock = ^(void){
         @try {
             [self clearButton:nil];
-            ODArcConstruktDocument *file = [ODFileTools loadArchive:filename documentsFolder:folder];
-            for (ODArcMachine *arc in [file layersToArcMachines]) {
-                [arcConstruktView addSubview:arc];
+            id loaded = [ODFileTools loadArchive:filename documentsFolder:folder];
+            
+            ODArcConstruktFile *oldfile;
+            ODArcConstruktDocument *file;
+            
+            // Backwards compatibility hack
+            if( [loaded isKindOfClass:[ODArcConstruktFile class]] ) {
+                oldfile = (ODArcConstruktFile*)loaded;
+                for (ODArcMachine *arc in [oldfile layersToArcMachines]) {
+                    [arcConstruktView addSubview:arc];
+                }
+            } else {
+                file = (ODArcConstruktDocument*)loaded;
+                for (ODArcMachine *arc in [file layersToArcMachines]) {
+                    [arcConstruktView addSubview:arc];
+                }
             }
+            
             [self resetStepper];
             [self deselect];
             [TestFlight passCheckpoint:@"Loaded composition"];
@@ -950,8 +961,6 @@
 
 - (void)didReceiveMemoryWarning {
     [TestFlight passCheckpoint:@"Memory warning"];
-    // [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Memory warning: Save your work, just in case!", nil)];
-    
     [super didReceiveMemoryWarning];
 }
 

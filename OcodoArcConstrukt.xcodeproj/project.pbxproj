@@ -12,6 +12,9 @@
 		96227D94165C8708009D0AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBAE1639249D004706F9 /* Foundation.framework */; };
 		96227D9A165C8709009D0AB1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96227D98165C8709009D0AB1 /* InfoPlist.strings */; };
 		96227D9D165C8709009D0AB1 /* ODArcConstruktTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96227D9C165C8709009D0AB1 /* ODArcConstruktTests.m */; };
+		9623ADC316670AE8002986D2 /* arabesque-tribar.png in Resources */ = {isa = PBXBuildFile; fileRef = 9623ADC116670AE8002986D2 /* arabesque-tribar.png */; };
+		9623ADC416670AE8002986D2 /* arabesque-tribar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9623ADC216670AE8002986D2 /* arabesque-tribar@2x.png */; };
+		9623ADCD16672293002986D2 /* ODArcConstruktFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9623ADCC16672293002986D2 /* ODArcConstruktFile.m */; };
 		9624AAEC165A8EF600E418D8 /* ODInstructionsOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 9624AAEB165A8EF600E418D8 /* ODInstructionsOverlay.m */; };
 		9624AAF9165AFDA500E418D8 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9624AAF5165AFDA500E418D8 /* libTestFlight.a */; };
 		9624AAFA165AFDA500E418D8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9624AAF6165AFDA500E418D8 /* README.md */; };
@@ -149,6 +152,10 @@
 		96227D9E165C8709009D0AB1 /* ODArcConstruktTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ODArcConstruktTests-Prefix.pch"; sourceTree = "<group>"; };
 		96227DA7165C89A2009D0AB1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		96227DA9165C9B39009D0AB1 /* ODArcConstruktDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODArcConstruktDocument.h; sourceTree = "<group>"; };
+		9623ADC116670AE8002986D2 /* arabesque-tribar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arabesque-tribar.png"; sourceTree = "<group>"; };
+		9623ADC216670AE8002986D2 /* arabesque-tribar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arabesque-tribar@2x.png"; sourceTree = "<group>"; };
+		9623ADCB16672293002986D2 /* ODArcConstruktFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODArcConstruktFile.h; sourceTree = "<group>"; };
+		9623ADCC16672293002986D2 /* ODArcConstruktFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODArcConstruktFile.m; sourceTree = "<group>"; };
 		9624AAEB165A8EF600E418D8 /* ODInstructionsOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODInstructionsOverlay.m; sourceTree = "<group>"; };
 		9624AAF5165AFDA500E418D8 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		9624AAF6165AFDA500E418D8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -397,16 +404,11 @@
 			name = AboutHTML;
 			sourceTree = "<group>";
 		};
-		96F64F5616489813003E97AB /* Storyboard */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Storyboard;
-			sourceTree = "<group>";
-		};
 		96F64F5A164898E7003E97AB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9623ADCB16672293002986D2 /* ODArcConstruktFile.h */,
+				9623ADCC16672293002986D2 /* ODArcConstruktFile.m */,
 				9635436E164543100002FAB6 /* ODApplicationState.h */,
 				9635436F164543110002FAB6 /* ODApplicationState.m */,
 				96227DA9165C9B39009D0AB1 /* ODArcConstruktDocument.h */,
@@ -505,7 +507,6 @@
 		96FADBB21639249D004706F9 /* OcodoArcConstrukt */ = {
 			isa = PBXGroup;
 			children = (
-				96F64F5616489813003E97AB /* Storyboard */,
 				96F64F5A164898E7003E97AB /* Models */,
 				96F64F5C16489957003E97AB /* Views */,
 				96F64F5B164898F8003E97AB /* Controllers */,
@@ -533,6 +534,8 @@
 		96FADC6F164242D1004706F9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9623ADC116670AE8002986D2 /* arabesque-tribar.png */,
+				9623ADC216670AE8002986D2 /* arabesque-tribar@2x.png */,
 				96F6A95D16590715001041F9 /* a_b_link.png */,
 				96F6A95E16590715001041F9 /* a_b_link@2x.png */,
 				96D6D53B16564FC60016A0F5 /* video-screen.png */,
@@ -806,6 +809,8 @@
 				9624AB05165B478B00E418D8 /* Localizable.strings in Resources */,
 				9624AB0D165B47A100E418D8 /* InfoPlist.strings in Resources */,
 				9624AB16165B59F700E418D8 /* MainStoryboard.storyboard in Resources */,
+				9623ADC316670AE8002986D2 /* arabesque-tribar.png in Resources */,
+				9623ADC416670AE8002986D2 /* arabesque-tribar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -874,6 +879,7 @@
 				9624AB19165B5FF600E418D8 /* ODFilesNavigationItem.m in Sources */,
 				96427D5D165F2CA60043805A /* NSData+Base64.m in Sources */,
 				96900A9516623050005F0652 /* ODArcDrawing.m in Sources */,
+				9623ADCD16672293002986D2 /* ODArcConstruktFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

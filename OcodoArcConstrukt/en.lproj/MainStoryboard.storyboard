@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4f7-kZ-bTT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4f7-kZ-bTT">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Arc Construkt View Controller-->
@@ -141,7 +141,7 @@
                                     <barButtonItem width="8" style="plain" systemItem="fixedSpace" id="raD-e2-h8u"/>
                                     <barButtonItem image="escape.png" style="plain" id="pXl-AQ-oWf">
                                         <connections>
-                                            <action selector="deselectCurrentArc:" destination="88H-xH-dfU" id="dfw-Az-bY5"/>
+                                            <action selector="deselectCurrentArc:" destination="88H-xH-dfU" id="lLB-pZ-z7P"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem image="altgrid.png" style="plain" id="rb1-v1-8or">
@@ -299,10 +299,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" image="ocodo.large.png" id="vkg-a1-lFA">
-                                <rect key="frame" x="0.0" y="357" width="320" height="123"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </imageView>
                             <webView opaque="NO" contentMode="scaleAspectFit" scalesPageToFit="YES" id="kS7-nw-SKb">
                                 <rect key="frame" x="0.0" y="44" width="320" height="436"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -337,7 +333,6 @@
         <image name="escape.png" width="25" height="25"/>
         <image name="forward_one.png" width="25" height="25"/>
         <image name="layers.png" width="25" height="25"/>
-        <image name="ocodo.large.png" width="559" height="197"/>
         <image name="padlock.png" width="25" height="25"/>
         <image name="radius.png" width="25" height="25"/>
         <image name="send_to_back.png" width="25" height="25"/>
@@ -357,21 +352,6 @@
         <class className="ODArcConstruktViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ODArcConstruktViewController.h"/>
             <relationships>
-                <relationship kind="action" name="actionMenu:"/>
-                <relationship kind="action" name="addButton:"/>
-                <relationship kind="action" name="arrangeLayer:" candidateClass="UISegmentedControl"/>
-                <relationship kind="action" name="changePinchMode:" candidateClass="UISegmentedControl"/>
-                <relationship kind="action" name="changeRotateMode:" candidateClass="UISegmentedControl"/>
-                <relationship kind="action" name="clearButton:"/>
-                <relationship kind="action" name="deleteButton:"/>
-                <relationship kind="action" name="deselectCurrentArc:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="gridModeStep:"/>
-                <relationship kind="action" name="importColorsFromPasteboard:"/>
-                <relationship kind="action" name="layerStep:" candidateClass="UIStepper"/>
-                <relationship kind="action" name="savePNGImagetoPhotoAlbum:scale:"/>
-                <relationship kind="action" name="savePNGMenu:"/>
-                <relationship kind="action" name="toolbarModeSelector:" candidateClass="UISegmentedControl"/>
-                <relationship kind="action" name="transparencySelectorToggle:"/>
                 <relationship kind="outlet" name="angleSelector" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="arcConstruktView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="colorPicker" candidateClass="ODColorPickerView"/>
@@ -426,9 +406,6 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -10,7 +10,7 @@
 
 @implementation ODArcMachine
 
-@synthesize x, y, start, end, radius, thickness, fill, stroke, savedFill, savedStroke;
+@synthesize x, y, start, end, radius, thickness, fill, stroke, savedFill, savedStroke, selected, highlighted;
 
 - (id) initWithArcMachine:(ODArcMachine *)arcMachine frame:(CGRect)frame {
     self = [self initWithFrame:frame];
@@ -79,17 +79,31 @@
 }
 
 - (void)selectArc {
+    selected = YES;
     savedFill = fill;
     savedStroke = stroke;
     fill = [UIColor redColor];
     stroke = [UIColor redColor];
+    highlighted = YES;
     [self setNeedsDisplay];
 }
 
 -(void)deselectArc {
+    selected = NO;
     stroke = savedStroke;
     fill = savedFill;
+    highlighted = NO;
     [self setNeedsDisplay];
+}
+
+-(void)toggleHighlight {
+    if(highlighted) {
+        [self deselectArc];
+        highlighted = NO;
+    } else {
+        [self selectArc];
+        highlighted = YES;
+    }
 }
 
 -(void) dictionaryToGeometry: (NSDictionary *) plist {

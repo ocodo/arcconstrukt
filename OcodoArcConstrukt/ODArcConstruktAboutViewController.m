@@ -33,6 +33,12 @@
     UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeBack:)];
     
     [[self webView] addGestureRecognizer:swipe];
+    
+    // set tiled background.
+    self.webView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:
+                                 [UIImage imageNamed:@"arabesque-tribar@2x.png"]];
+    
 }
 
 - (void)swipeBack:(UISwipeGestureRecognizer*) recognizer {

@@ -61,18 +61,18 @@
     
     [self drawBoldText:NSLocalizedString(@"Layer Ordering", nil) x:20 y:348 + _deviceOffsetY w:130 h:23 size:12 align:NSTextAlignmentLeft];
     
-    CGFloat toBackX = 20;
+    CGFloat toBackX = 10;
     CGFloat backX = 90;
     CGFloat fwdX = 160;
     CGFloat toFrontX = 240;
     
-    [self drawText:NSLocalizedString(@"To Back", nil) x:toBackX y:370 + _deviceOffsetY w:62 h:23 size:12 align:NSTextAlignmentLeft];
+    [self drawText:NSLocalizedString(@"To Back", nil) x:toBackX y:370 + _deviceOffsetY w:72 h:23 size:12 align:NSTextAlignmentLeft];
     [self drawPointer:CGPointMake(toBackX+10, 390 + _deviceOffsetY) b:CGPointMake(toBackX+10, 406+_deviceOffsetY)];
-    [self drawText:NSLocalizedString(@"Back One", nil) x:backX y:370 + _deviceOffsetY w:62 h:23 size:12 align:NSTextAlignmentLeft];
+    [self drawText:NSLocalizedString(@"Back One", nil) x:backX y:370 + _deviceOffsetY w:72 h:23 size:12 align:NSTextAlignmentLeft];
     [self drawPointer:CGPointMake(backX+10, 390 + _deviceOffsetY) b:CGPointMake(backX+10, 406+_deviceOffsetY)];
-    [self drawText:NSLocalizedString(@"Forwards", nil) x:fwdX y:370 + _deviceOffsetY w:62 h:23 size:12 align:NSTextAlignmentLeft];
+    [self drawText:NSLocalizedString(@"Forwards", nil) x:fwdX y:370 + _deviceOffsetY w:72 h:23 size:12 align:NSTextAlignmentLeft];
     [self drawPointer:CGPointMake(fwdX+10, 390 + _deviceOffsetY) b:CGPointMake(fwdX+10, 406+_deviceOffsetY)];
-    [self drawText:NSLocalizedString(@"To Front", nil) x:toFrontX y:370 + _deviceOffsetY w:62 h:23 size:12 align:NSTextAlignmentLeft];
+    [self drawText:NSLocalizedString(@"To Front", nil) x:toFrontX y:370 + _deviceOffsetY w:72 h:23 size:12 align:NSTextAlignmentLeft];
     [self drawPointer:CGPointMake(toFrontX+10, 390 + _deviceOffsetY) b:CGPointMake(toFrontX+10, 406+_deviceOffsetY)];
     
     [self drawStandardLabelsOffsetY:_deviceOffsetY];
@@ -139,7 +139,7 @@
   [self drawText:NSLocalizedString(@"Select Arc", nil) x:8 y:431 + offsety w:95 h:17 size:11 align:NSTextAlignmentCenter];
   [self drawText:NSLocalizedString(@"Grid", nil) x:153 y:431 + offsety w:40 h:17 size:11 align:NSTextAlignmentLeft];
   [self drawText:NSLocalizedString(@"Tools Selector", nil) x:190 y:431 + offsety w:130 h:17 size:11 align:NSTextAlignmentCenter];
-  [self drawText:NSLocalizedString(@"Deselect", nil) x:107 y:467 + offsety w:85 h:17 size:11 align:NSTextAlignmentLeft];
+  [self drawText:NSLocalizedString(@"Toggle Highlight", nil) x:60 y:467 + offsety w:135 h:17 size:11 align:NSTextAlignmentCenter];
   [self drawText:NSLocalizedString(@"Edit", nil) x:190 y:467 + offsety w:50 h:17 size:11 align:NSTextAlignmentLeft];
   [self drawText:NSLocalizedString(@"Color", nil) x:234 y:467 + offsety w:45 h:17 size:11 align:NSTextAlignmentLeft];
   [self drawText:NSLocalizedString(@"Order", nil) x:277 y:467 + offsety w:46 h:17 size:11 align:NSTextAlignmentLeft];

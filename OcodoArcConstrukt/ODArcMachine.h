@@ -32,6 +32,8 @@
 @property CGFloat start;
 @property CGFloat end;
 @property CGFloat thickness;
+@property BOOL selected;
+@property BOOL highlighted;
 @property (nonatomic, retain) UIColor *fill;
 @property (nonatomic, retain) UIColor *stroke;
 @property (nonatomic, retain) UIColor *savedFill;
@@ -39,6 +41,7 @@
 
 - (void)selectArc;
 - (void)deselectArc;
+- (void)toggleHighlight;
 
 - (id)initWithDictionary:(NSDictionary *)plist frame:(CGRect)frame;
 - (void)dictionaryToGeometry:(NSDictionary *)plist;

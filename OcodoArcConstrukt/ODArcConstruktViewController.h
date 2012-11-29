@@ -30,6 +30,7 @@
 #import "CGColor+Additions.h"
 #import "ODFilesCollectionViewController.h"
 #import "ODArcConstruktDocument.h"
+#import "ODArcConstruktFile.h"
 #import "ODInstructionsOverlay.h"
 
 #import "extra_math.h"

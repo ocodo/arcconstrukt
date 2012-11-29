@@ -12,6 +12,7 @@
 
 #import "ODFilesCollectionViewCell.h"
 #import "ODArcConstruktDocument.h"
+#import "ODArcConstruktFile.h"
 #import "TKAlertCenter.h"
 #import "DropBlocks.h"
 #import "ODFileTools.h"

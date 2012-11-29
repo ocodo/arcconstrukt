@@ -75,7 +75,7 @@ Be wary of the text box size, it must be respected.
 
 /* Note for Action menu visible on the Color Instruction overlay */
 
-"Action Menu:\nSave PNG to\nCamera Roll,\nImport Color Palette*,\nSave ArcMachine,\nMy ArcMachines\n(+Email & Dropbox sharing)" = "Actions:\nSauvegarder en PNG sur\nla Pellicule,\nImporter une Palette de Couleurs*,\nSauvegarder l'ArcMachine,\nMes ArcMachines\n(+Partage par Email & Dropbox)";
+"Action Menu:\nSave PNG to\nCamera Roll,\nImport Color Palette*,\nSave ArcMachine,\nMy ArcMachines\n(+Email & Dropbox sharing)" = "Actions:\nPNG sur la Pellicule,\nImporter une Palette de Couleurs*,\nSauvegarder l'ArcMachine,\nMes ArcMachines\n(+Partage par Email & Dropbox)";
 
 /* Note for add Arc, visible on all Instruction overlays. */
 "Add Arc" = "Ajouter un Arc";
@@ -124,9 +124,6 @@ Be wary of the text box size, it must be respected.
 /* No comment provided by engineer. */
 "Deleted" = "Effacé";
 
-/* No comment provided by engineer. */
-"Deselect" = "Désélectionner";
-
 /* Edit - mode selector label Instructions Overlay (all modes, at the bottom) */
 "Edit" = "Éditer";
 
@@ -159,7 +156,7 @@ Be wary of the text box size, it must be respected.
 /* #Arleneyes# I finally stick to Remplir - misunderstanding of the features, sorry */
 
 /* Edit Mode Instructions Overlay Label. */
-"finger Rotate" = "Rotation au doigt";
+"Finger Rotate" = "Rotation au doigt";
 
 /* Order mode Instructions Overlay label for bring layer forwards */
 "Forwards" = "Avancer";
@@ -180,13 +177,13 @@ Be wary of the text box size, it must be respected.
 "Linked" = "Pivoter";
 
 /* Loaded - for loaded file message */
-"Loaded" = "Chargé";
+"Loaded" = "Chargée";
 
 /* Load button label */
-"Load" = "Chargé";
+"Load" = "Charger";
 
 /* Loading will overwrite unsaved work - message */
-"Loading will overwrite unsaved work" = "Chargement en cours va écraser le travail non enregistré";
+"Loading will overwrite unsaved work" = "Ce chargement va écraser le travail non enregistré";
 
 /* Lock label - Edit mode Instructions Overlay. */
 "Lock" = "Verr.";
@@ -293,6 +290,10 @@ Be wary of the text box size, it must be respected.
 
 /* Order mode Instructions Overlay label. */
 "To Front" = "Avant";
+
+/* No comment provided by engineer. */
+"Toggle Highlight" = "Montrer/Cacher";
+/* #Arleneyes# not very good translation */
 
 /* all mode Instructions Overlay label. */
 "Tools Selector" = "Sélecteur d'Outils";
