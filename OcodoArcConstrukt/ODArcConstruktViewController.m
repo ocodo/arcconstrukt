@@ -20,6 +20,9 @@
 
 @synthesize arcConstruktView, gridView, layerStepper, titleView, mainToolbar, swatchBar, fillStrokeSelector, transparencyPicker, transparencyButton, colorPicker, angleSelector, pinchSelector, layerOrderSelector;
 
+#pragma mark -
+#pragma mark Initialize
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -60,24 +63,6 @@
     [[NSNotificationCenter defaultCenter] addObserverForName:@"selectFileToLoad" object:nil queue:nil usingBlock:^(NSNotification *note) {
         [self loadComposition:note.object];
     }];
-}
-
-- (void)editToolsHelpOverlay:(int)mode {
-    BOOL showingInstructions = false;
-    ODInstructionsOverlay *instructions;
-    for (id v in [self view].subviews) {
-        if ([v isKindOfClass:[ODInstructionsOverlay class]]) {
-            instructions = (ODInstructionsOverlay*)v;
-            showingInstructions = true;
-        }
-    }
-    if(!showingInstructions) {
-        ODInstructionsOverlay *instructions = [[ODInstructionsOverlay alloc] initWithFrame:CGRectMake(0, 0, 320, 640)];
-        instructions.mode = _toolbarMode;
-        [[self view] addSubview:instructions];
-    } else {
-        [instructions removeFromSuperview];
-    }
 }
 
 - (void)initApplicationClipboard {
@@ -256,6 +241,56 @@
     }
 }
 
+#pragma mark -
+#pragma mark Help Messages, Overlays and Navigate to Video tour
+
+- (void)toggleHelpOverlay:(int)mode {
+    BOOL showingInstructions = false;
+    ODInstructionsOverlay *instructions;
+    for (id v in [self view].subviews) {
+        if ([v isKindOfClass:[ODInstructionsOverlay class]]) {
+            instructions = (ODInstructionsOverlay*)v;
+            showingInstructions = true;
+        }
+    }
+    if(!showingInstructions) {
+        ODInstructionsOverlay *instructions = [[ODInstructionsOverlay alloc] initWithFrame:CGRectMake(0, 0, 320, 640)];
+        instructions.mode = _toolbarMode;
+        [[self view] addSubview:instructions];
+    } else {
+        [instructions removeFromSuperview];
+    }
+}
+
+- (void)handleTitleTap:(UITapGestureRecognizer *) recognizer {
+    [TestFlight passCheckpoint:@"Viewed help overlay manually"];
+    
+    [self toggleHelpOverlay:_toolbarMode];
+}
+
+- (void)handleTitleSwipe:(UISwipeGestureRecognizer *) recognizer {
+    [TestFlight passCheckpoint:@"Visited help page"];
+    
+    [self performSegueWithIdentifier:@"aboutPageSegue" sender:self];
+}
+
+- (void) showInstructionsOnceForToolbarMode:(int)mode {
+    NSString *bundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
+    NSString *seenToolModeInstructionsKey = [NSString stringWithFormat:@"seen_toolmode_%i_instructions_%@", mode, bundleVersion];
+    NSNumber *seenModeInstruction = [[NSUserDefaults standardUserDefaults] objectForKey:seenToolModeInstructionsKey];
+    if(!seenModeInstruction || [seenModeInstruction boolValue] == NO) {
+        [self toggleHelpOverlay:mode];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:seenToolModeInstructionsKey];
+    }
+}
+
+- (void)showNoArcsMessage {
+    [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Press + to add Arcs", nil) image:[UIImage imageNamed:@"lightBulb@2x.png"]];
+}
+
+#pragma mark -
+#pragma mark Quick Edit menu
+
 - (void)quickEditMenu:(UILongPressGestureRecognizer *)recognizer {
     [recognizer.view becomeFirstResponder];
     UIMenuController* mc = [UIMenuController sharedMenuController];
@@ -274,6 +309,47 @@
     [mc setMenuVisible: YES animated: YES];
 }
 
+- (BOOL)canPerformAction: (SEL)action withSender: (id)sender {
+    return action == @selector(cloneArc: )
+    || action == @selector(pasteArc: )
+    || action == @selector(deleteButton: )
+    || action == @selector(clearButton: )
+    || action == @selector(angleAMode: )
+    || action == @selector(angleBMode: )
+    || action == @selector(radiusMode: )
+    || action == @selector(thicknessMode: );
+}
+
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+
+- (void)cloneArc:(id)sender {
+    NSDictionary *plist = [[ODApplicationState sharedinstance]
+                           .currentArc geometryToDictionary];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject: plist];
+    [appPasteboard setData:data forPasteboardType:@"info.ocodo.arcconstrukt"];
+    [arcConstruktView addSubview:[[ODArcMachine alloc]
+                                  initWithArcMachine:[ODApplicationState sharedinstance].currentArc
+                                  frame:CGRectMake(0, 0, 320, 320)]];
+    [self syncLayerStepper];
+    [TestFlight passCheckpoint:@"Cloned arc"];
+}
+
+- (void)pasteArc:(id)sender {
+    NSData *data = [appPasteboard dataForPasteboardType:@"info.ocodo.arcconstrukt"];
+    NSDictionary *plist = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    ODArcMachine *a = [[ODArcMachine alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+    [a dictionaryToGeometry: plist];
+    [arcConstruktView addSubview:a];
+    [self syncLayerStepper];
+    [TestFlight passCheckpoint:@"Pasted arc"];
+}
+
+#pragma mark -
+#pragma mark Drawing control gesture handlers
+
 - (void)handleConstruktRotate:(ODFingerRotationGestureRecognizer *)rotator {
     switch (_rotateMode) {
         case 0:
@@ -290,17 +366,85 @@
     }
 }
 
-- (void)handleTitleTap:(UITapGestureRecognizer *) recognizer {
-    [TestFlight passCheckpoint:@"Viewed help overlay manually"];
-    
-    [self editToolsHelpOverlay:_toolbarMode];
+- (void)angleAMode: (id)sender {
+    [angleSelector setSelectedSegmentIndex:0];
+    _rotateMode = 0;
+    [TestFlight passCheckpoint:@"Set angle A rotate mode from quick edit menu"];
 }
 
-- (void)handleTitleSwipe:(UISwipeGestureRecognizer *) recognizer {
-    [TestFlight passCheckpoint:@"Visited help page"];
-    
-    [self performSegueWithIdentifier:@"aboutPageSegue" sender:self];
+- (void)angleBMode: (id)sender {
+    [angleSelector setSelectedSegmentIndex:1];
+    _rotateMode = 1;
+    [TestFlight passCheckpoint:@"Set angle B rotate mode from quick edit menu"];
 }
+
+- (IBAction)changeRotateMode:(UISegmentedControl *)sender {
+    _rotateMode = sender.selectedSegmentIndex;
+    [TestFlight passCheckpoint:[NSString stringWithFormat:@"Rotate mode :%i" , _rotateMode]];
+}
+
+- (void)radiusMode: (id)sender {
+    [pinchSelector setSelectedSegmentIndex:0];
+    _pinchMode = 0;
+    [TestFlight passCheckpoint:@"Set radius pinch mode from quick edit menu"];
+}
+
+- (void)thicknessMode: (id)sender {
+    [pinchSelector setSelectedSegmentIndex:1];
+    _pinchMode = 1;
+    [TestFlight passCheckpoint:@"Set thickness pinch mode from quick edit menu"];
+}
+
+- (IBAction)changePinchMode:(UISegmentedControl *)sender {
+    _pinchMode = sender.selectedSegmentIndex;
+    [TestFlight passCheckpoint:[NSString stringWithFormat:@"Pinch mode :%i" , _pinchMode]];
+}
+
+- (void)pinchRadius:(UIPinchGestureRecognizer *)pincher {
+    if([ODApplicationState sharedinstance].currentArc) {
+        float radius = clampf([ODApplicationState sharedinstance].currentArc.radius + pincher.scale-1, 1.0f, 160.0f);
+        [ODApplicationState sharedinstance].currentArc.radius = radius;
+        [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
+        [ODApplicationState sharedinstance].dirty = YES;
+    }
+}
+
+- (void)pinchThickness:(UIPinchGestureRecognizer *)pincher {
+    if([ODApplicationState sharedinstance].currentArc) {
+        float thick = clampf([ODApplicationState sharedinstance].currentArc.thickness + pincher.scale-1, 1.0f, 160.0f);
+        [ODApplicationState sharedinstance].currentArc.thickness = thick;
+        [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
+        [ODApplicationState sharedinstance].dirty = YES;
+    }
+}
+
+- (void)startAngleTouch:(ODFingerRotationGestureRecognizer *)rotator {
+    if([ODApplicationState sharedinstance].currentArc) {
+        [ODApplicationState sharedinstance].currentArc.start += rotator.rotation;
+        [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
+        [ODApplicationState sharedinstance].dirty = YES;
+    }
+}
+
+- (void)endAngleTouch:(ODFingerRotationGestureRecognizer *)rotator {
+    if([ODApplicationState sharedinstance].currentArc){
+        [ODApplicationState sharedinstance].currentArc.end += rotator.rotation;
+        [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
+        [ODApplicationState sharedinstance].dirty = YES;
+    }
+}
+
+- (void)lockedAngleTouch:(ODFingerRotationGestureRecognizer *)rotator {
+    if([ODApplicationState sharedinstance].currentArc) {
+        [ODApplicationState sharedinstance].currentArc.start += rotator.rotation;
+        [ODApplicationState sharedinstance].currentArc.end += rotator.rotation;
+        [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
+        [ODApplicationState sharedinstance].dirty = YES;
+    }
+}
+
+#pragma mark -
+#pragma mark Color picker and palette
 
 - (void)moveColorPicker:(int)move_to_x {
     [UIView animateWithDuration:0.5
@@ -379,6 +523,105 @@
     [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
 }
 
+#pragma mark -
+#pragma mark Color export/import
+
+- (void)exportColorPalette:(id)sender {
+    NSMutableArray * hexColors = [[NSMutableArray alloc] initWithArray:@[@"ArcConstrukt Color Palette:"]];
+    for (UIColor *color in [[ODColorPalette sharedinstance] colors]) {
+        [hexColors addObject:[color RGBHexString]];
+    }
+    [[UIPasteboard generalPasteboard] setString:[hexColors componentsJoinedByString:@"\n"]];
+    [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Color Palette exported to the Clipboard", nil)];
+    [TestFlight passCheckpoint:@"Exported Color Palette"];
+}
+
+- (IBAction)importColorsFromPasteboard:(id)sender {
+    NSString *import = [[UIPasteboard generalPasteboard] string];
+    
+    if(import.length < 1){
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Copy some Hex colors into the clipboard, ArcConstrukt will find and use the first 6", nil)];
+        return;
+    }
+    
+    NSError *error = NULL;
+    
+    NSRegularExpression *hexColor = [NSRegularExpression
+                                     regularExpressionWithPattern:@"#?(([a-f]|[A-F]|[0-9]){6})" options:0 error:&error];
+    __block int i=0;
+    [hexColor enumerateMatchesInString:import options:0 range:NSMakeRange(0, [import length])
+                            usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+     {
+         NSString *hex = [[import substringWithRange:result.range] stringByReplacingOccurrencesOfString:@"#" withString:@""];
+         if (i<6) {
+             [ODColorPalette sharedinstance].colors[i] =
+             [UIColor colorWithRGBHexString:hex];
+             [swatchBar setNeedsDisplay];
+         }
+         i++;
+     }];
+    
+    if(i>0) {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Imported %i colors from the Clipboard", nil), i]];
+        [TestFlight passCheckpoint:@"Imported Color Palette (success)"];
+        
+    } else {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Copy some Hex colors into the clipboard, ArcConstrukt will find and use the first 6", nil)];
+        [TestFlight passCheckpoint:@"Imported Color Palette (no colors)"];
+    }
+}
+
+#pragma mark -
+#pragma mark Transparency
+
+- (IBAction)transparencySelectorToggle:(id)sender {
+    int pos = transparencyPicker.frame.origin.x;
+    int move_to_x = (pos != 10) ? 10 : -310;
+    [UIView animateWithDuration:0.5
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.transparencyPicker.frame = CGRectMake(move_to_x,
+                                                                    transparencyPicker.frame.origin.y,
+                                                                    transparencyPicker.frame.size.width,
+                                                                    transparencyPicker.frame.size.height);
+                     }
+                     completion:^(BOOL finished) {
+                         [TestFlight passCheckpoint:@"Toggle Transparency Picker"];
+                     }];
+}
+
+- (void)handlePanTransparencyIndicator:(UIPanGestureRecognizer *)recognizer {
+    [transparencyPicker setPickerPoint:[recognizer locationInView:transparencyPicker]];
+    [transparencyPicker setNeedsDisplay];
+    if([ODApplicationState sharedinstance].currentArc == NULL) {
+        return;
+    }
+    const CGFloat *f = CGColorGetComponents([ODApplicationState sharedinstance].currentArc.savedFill.CGColor);
+    const CGFloat *s = CGColorGetComponents([ODApplicationState sharedinstance].currentArc.savedStroke.CGColor);
+    switch (fillStrokeSelector.selectedSegmentIndex) {
+        case 0:
+            [self setCurrentFillFromUIColor: [UIColor
+                                              colorWithRed:f[0]
+                                              green:f[1]
+                                              blue:f[2]
+                                              alpha:[transparencyPicker transparency]]];
+            break;
+        case 1:
+            [self setCurrentStrokeFromUIColor: [UIColor
+                                                colorWithRed:s[0]
+                                                green:s[1]
+                                                blue:s[2]
+                                                alpha:[transparencyPicker transparency]]];
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma mark -
+#pragma mark Add arc layer
+
 - (void)addRandomArcLayer{
     [arcConstruktView addSubview:[[ODArcMachine alloc]
                                   initRandomWithFrame:CGRectMake(0, 0, 320, 320)
@@ -402,12 +645,8 @@
     }
 }
 
-- (void)syncLayerStepper {
-    int max_layer = [arcConstruktView subviews].count -1;
-    [layerStepper setMaximumValue:max_layer];
-    [layerStepper setValue:max_layer];
-    [self layerSelecting:layerStepper];
-}
+#pragma mark -
+#pragma mark Delete and Clear
 
 - (IBAction)deleteButton:(id)sender {
     
@@ -475,6 +714,9 @@
     }
 }
 
+#pragma mark -
+#pragma mark Arc select/deselect & highlight
+
 - (IBAction)deselectCurrentArc:(UIBarButtonItem *)sender {
     // [self deselect];
     [[ODApplicationState sharedinstance].currentArc toggleHighlight];
@@ -501,9 +743,26 @@
     }
 }
 
+- (void)syncLayerStepper {
+    int max_layer = [arcConstruktView subviews].count -1;
+    [layerStepper setMaximumValue:max_layer];
+    [layerStepper setValue:max_layer];
+    [self layerSelecting:layerStepper];
+}
+
+- (IBAction)layerStep:(UIStepper *)sender {
+    [self layerSelecting:sender];
+}
+
+#pragma mark -
+#pragma mark Grid
+
 - (IBAction)gridModeStep:(id)sender {
     [gridView incrementGridMode];
 }
+
+#pragma mark -
+#pragma mark Action Menu
 
 - (IBAction)actionMenu:(id)sender {
     PSPDFActionSheet *actionSheet = [[PSPDFActionSheet alloc] initWithTitle:NSLocalizedString(@"Choose an Action", nil)];
@@ -567,124 +826,6 @@
     
 }
 
-- (void)cloneArc:(id)sender {
-    NSDictionary *plist = [[ODApplicationState sharedinstance]
-                           .currentArc geometryToDictionary];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject: plist];
-    [appPasteboard setData:data forPasteboardType:@"info.ocodo.arcconstrukt"];
-    [arcConstruktView addSubview:[[ODArcMachine alloc]
-                                  initWithArcMachine:[ODApplicationState sharedinstance].currentArc
-                                  frame:CGRectMake(0, 0, 320, 320)]];
-    [self syncLayerStepper];
-    [TestFlight passCheckpoint:@"Cloned arc"];
-}
-
-- (void)pasteArc:(id)sender {
-    NSData *data = [appPasteboard dataForPasteboardType:@"info.ocodo.arcconstrukt"];
-    NSDictionary *plist = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    ODArcMachine *a = [[ODArcMachine alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
-    [a dictionaryToGeometry: plist];
-    [arcConstruktView addSubview:a];
-    [self syncLayerStepper];
-    [TestFlight passCheckpoint:@"Pasted arc"];
-}
-
-- (void)angleAMode: (id)sender {
-    [angleSelector setSelectedSegmentIndex:0];
-    _rotateMode = 0;
-    [TestFlight passCheckpoint:@"Set angle A rotate mode from quick edit menu"];
-}
-
-- (void)angleBMode: (id)sender {
-    [angleSelector setSelectedSegmentIndex:1];
-    _rotateMode = 1;
-    [TestFlight passCheckpoint:@"Set angle B rotate mode from quick edit menu"];
-}
-
-- (void)radiusMode: (id)sender {
-    [pinchSelector setSelectedSegmentIndex:0];
-    _pinchMode = 0;
-    [TestFlight passCheckpoint:@"Set radius pinch mode from quick edit menu"];
-}
-
-- (void)thicknessMode: (id)sender {
-    [pinchSelector setSelectedSegmentIndex:1];
-    _pinchMode = 1;
-    [TestFlight passCheckpoint:@"Set thickness pinch mode from quick edit menu"];
-}
-
-- (BOOL)canPerformAction: (SEL)action withSender: (id)sender {
-    return action == @selector(cloneArc: )
-    || action == @selector(pasteArc: )
-    || action == @selector(deleteButton: )
-    || action == @selector(clearButton: )
-    || action == @selector(angleAMode: )
-    || action == @selector(angleBMode: )
-    || action == @selector(radiusMode: )
-    || action == @selector(thicknessMode: );
-}
-
-- (BOOL)canBecomeFirstResponder {
-    return YES;
-}
-
-- (void)pinchRadius:(UIPinchGestureRecognizer *)pincher {
-    if([ODApplicationState sharedinstance].currentArc) {
-        float radius = clampf([ODApplicationState sharedinstance].currentArc.radius + pincher.scale-1, 1.0f, 160.0f);
-        [ODApplicationState sharedinstance].currentArc.radius = radius;
-        [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
-        [ODApplicationState sharedinstance].dirty = YES;
-    }
-}
-
-- (void)pinchThickness:(UIPinchGestureRecognizer *)pincher {
-    if([ODApplicationState sharedinstance].currentArc) {
-        float thick = clampf([ODApplicationState sharedinstance].currentArc.thickness + pincher.scale-1, 1.0f, 160.0f);
-        [ODApplicationState sharedinstance].currentArc.thickness = thick;
-        [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
-        [ODApplicationState sharedinstance].dirty = YES;
-    }
-}
-
-- (void)startAngleTouch:(ODFingerRotationGestureRecognizer *)rotator {
-    if([ODApplicationState sharedinstance].currentArc) {
-        [ODApplicationState sharedinstance].currentArc.start += rotator.rotation;
-        [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
-        [ODApplicationState sharedinstance].dirty = YES;
-    }
-}
-
-- (void)endAngleTouch:(ODFingerRotationGestureRecognizer *)rotator {
-    if([ODApplicationState sharedinstance].currentArc){
-        [ODApplicationState sharedinstance].currentArc.end += rotator.rotation;
-        [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
-        [ODApplicationState sharedinstance].dirty = YES;
-    }
-}
-
-- (void)lockedAngleTouch:(ODFingerRotationGestureRecognizer *)rotator {
-    if([ODApplicationState sharedinstance].currentArc) {
-        [ODApplicationState sharedinstance].currentArc.start += rotator.rotation;
-        [ODApplicationState sharedinstance].currentArc.end += rotator.rotation;
-        [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
-        [ODApplicationState sharedinstance].dirty = YES;
-    }
-}
-
-- (IBAction)layerStep:(UIStepper *)sender {
-    [self layerSelecting:sender];
-}
-
-- (IBAction)changeRotateMode:(UISegmentedControl *)sender {
-    _rotateMode = sender.selectedSegmentIndex;
-    [TestFlight passCheckpoint:[NSString stringWithFormat:@"Rotate mode :%i" , _rotateMode]];
-}
-
-- (IBAction)changePinchMode:(UISegmentedControl *)sender {
-    _pinchMode = sender.selectedSegmentIndex;
-    [TestFlight passCheckpoint:[NSString stringWithFormat:@"Pinch mode :%i" , _pinchMode]];
-}
-
 - (IBAction)savePNGImagetoPhotoAlbum:(id)sender scale:(NSInteger)s{
     if([[arcConstruktView subviews] count] < 1) {
         [self showNoArcsMessage];
@@ -719,6 +860,9 @@
     }
 }
 
+#pragma mark -
+#pragma mark Order Layers
+
 - (IBAction)arrangeLayer:(UISegmentedControl *)sender {
     ODArcMachine *arc = [ODApplicationState sharedinstance].currentArc;
     switch (sender.selectedSegmentIndex) {
@@ -747,50 +891,8 @@
     }
 }
 
-- (IBAction)transparencySelectorToggle:(id)sender {
-    int pos = transparencyPicker.frame.origin.x;
-    int move_to_x = (pos != 10) ? 10 : -310;
-    [UIView animateWithDuration:0.5
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.transparencyPicker.frame = CGRectMake(move_to_x,
-                                                                    transparencyPicker.frame.origin.y,
-                                                                    transparencyPicker.frame.size.width,
-                                                                    transparencyPicker.frame.size.height);
-                     }
-                     completion:^(BOOL finished) {
-                         [TestFlight passCheckpoint:@"Toggle Transparency Picker"];
-                     }];
-}
-
-- (void)handlePanTransparencyIndicator:(UIPanGestureRecognizer *)recognizer {
-    [transparencyPicker setPickerPoint:[recognizer locationInView:transparencyPicker]];
-    [transparencyPicker setNeedsDisplay];
-    if([ODApplicationState sharedinstance].currentArc == NULL) {
-        return;
-    }
-    const CGFloat *f = CGColorGetComponents([ODApplicationState sharedinstance].currentArc.savedFill.CGColor);
-    const CGFloat *s = CGColorGetComponents([ODApplicationState sharedinstance].currentArc.savedStroke.CGColor);
-    switch (fillStrokeSelector.selectedSegmentIndex) {
-        case 0:
-            [self setCurrentFillFromUIColor: [UIColor
-                                              colorWithRed:f[0]
-                                              green:f[1]
-                                              blue:f[2]
-                                              alpha:[transparencyPicker transparency]]];
-            break;
-        case 1:
-            [self setCurrentStrokeFromUIColor: [UIColor
-                                                colorWithRed:s[0]
-                                                green:s[1]
-                                                blue:s[2]
-                                                alpha:[transparencyPicker transparency]]];
-            break;
-        default:
-            break;
-    }
-}
+#pragma mark -
+#pragma Toolbar
 
 - (void)moveToolbar:(int)mode {
     _toolbarMode = mode;
@@ -821,23 +923,12 @@
      ];
 }
 
-- (void) showInstructionsOnceForToolbarMode:(int)mode {
-    NSString *bundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
-    NSString *seenToolModeInstructionsKey = [NSString stringWithFormat:@"seen_toolmode_%i_instructions_%@", mode, bundleVersion];
-    NSNumber *seenModeInstruction = [[NSUserDefaults standardUserDefaults] objectForKey:seenToolModeInstructionsKey];
-    if(!seenModeInstruction || [seenModeInstruction boolValue] == NO) {
-        [self editToolsHelpOverlay:mode];
-        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:seenToolModeInstructionsKey];
-    }
-}
-
 - (IBAction)toolbarModeSelector:(UISegmentedControl*)sender {
     [self moveToolbar:sender.selectedSegmentIndex];
 }
 
-- (void)showNoArcsMessage {
-    [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Press + to add Arcs", nil) image:[UIImage imageNamed:@"lightBulb@2x.png"]];
-}
+#pragma mark -
+#pragma mark Save / Load
 
 - (void)saveComposition:(id)sender {
     
@@ -959,50 +1050,8 @@
     [self loadComposition:filename withFolder:@"arcmachines"];
 }
 
-- (void)exportColorPalette:(id)sender {
-    NSMutableArray * hexColors = [[NSMutableArray alloc] initWithArray:@[@"ArcConstrukt Color Palette:"]];
-    for (UIColor *color in [[ODColorPalette sharedinstance] colors]) {
-        [hexColors addObject:[color RGBHexString]];
-    }
-    [[UIPasteboard generalPasteboard] setString:[hexColors componentsJoinedByString:@"\n"]];
-    [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Color Palette exported to the Clipboard", nil)];
-    [TestFlight passCheckpoint:@"Exported Color Palette"];
-}
-
-- (IBAction)importColorsFromPasteboard:(id)sender {
-    NSString *import = [[UIPasteboard generalPasteboard] string];
-    
-    if(import.length < 1){
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Copy some Hex colors into the clipboard, ArcConstrukt will find and use the first 6", nil)];
-        return;
-    }
-    
-    NSError *error = NULL;
-    
-    NSRegularExpression *hexColor = [NSRegularExpression
-                                     regularExpressionWithPattern:@"#?(([a-f]|[A-F]|[0-9]){6})" options:0 error:&error];
-    __block int i=0;
-    [hexColor enumerateMatchesInString:import options:0 range:NSMakeRange(0, [import length])
-                            usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
-     {
-         NSString *hex = [[import substringWithRange:result.range] stringByReplacingOccurrencesOfString:@"#" withString:@""];
-         if (i<6) {
-             [ODColorPalette sharedinstance].colors[i] =
-             [UIColor colorWithRGBHexString:hex];
-             [swatchBar setNeedsDisplay];
-         }
-         i++;
-     }];
-    
-    if(i>0) {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Imported %i colors from the Clipboard", nil), i]];
-        [TestFlight passCheckpoint:@"Imported Color Palette (success)"];
-        
-    } else {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Copy some Hex colors into the clipboard, ArcConstrukt will find and use the first 6", nil)];
-        [TestFlight passCheckpoint:@"Imported Color Palette (no colors)"];
-    }
-}
+#pragma mark -
+#pragma mark Handle Memory warning
 
 - (void)didReceiveMemoryWarning {
     [TestFlight passCheckpoint:@"Memory warning"];

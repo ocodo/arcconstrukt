@@ -17,6 +17,7 @@
 #import "DropBlocks.h"
 #import "ODFileTools.h"
 #import "DZProgressController.h"
+#import "PSPDFActionSheet.h"
 
 @interface ODFilesCollectionViewController : UICollectionViewController <MFMailComposeViewControllerDelegate, UIActionSheetDelegate>
 

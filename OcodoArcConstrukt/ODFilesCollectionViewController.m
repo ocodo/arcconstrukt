@@ -16,6 +16,11 @@
 
 @synthesize currentIndexPath, fileList;
 
+#pragma mark -
+#pragma mark Initialize
+#pragma mark -
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -24,6 +29,10 @@
     }
     return self;
 }
+
+#pragma mark -
+#pragma mark View Loaded
+#pragma mark -
 
 - (void)viewDidLoad
 {
@@ -45,20 +54,17 @@
     
     fileList = [[NSMutableArray alloc] initWithArray:[self listFiles]];
     
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(fileViewActions:)];
     [self.collectionView addGestureRecognizer:longPress];
     
     [self.collectionView scrollToItemAtIndexPath:[self lastIndexPath] atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
 }
 
-- (NSIndexPath*)lastIndexPath {
-    NSInteger sectionsAmount = [[self collectionView] numberOfSections];
-    NSInteger rowsAmount = [[self collectionView] numberOfItemsInSection:sectionsAmount-1];
-    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:(rowsAmount - 1) inSection:(sectionsAmount - 1)];
-    return lastIndexPath;
-}
+#pragma mark -
+#pragma mark Sharing to Dropbox and Email
+#pragma mark -
 
-- (void)handleLongPress:(UILongPressGestureRecognizer *)gesture {
+- (void)fileViewActions:(UILongPressGestureRecognizer *)gesture {
     if (gesture.state == UIGestureRecognizerStateBegan) {
         NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:[gesture locationInView:self.collectionView]];
         if (indexPath != nil) {
@@ -80,6 +86,10 @@
     }
 }
 
+#pragma mark -
+#pragma mark UIActionSheetDelegate
+#pragma mark -
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
         case 0:
@@ -96,7 +106,9 @@
     }
 }
 
-#pragma mark - sharing
+#pragma mark -
+#pragma mark Dropbox share
+#pragma mark -
 
 - (void)shareToDropbox {
     if (![[DBSession sharedSession] isLinked]) {
@@ -152,6 +164,10 @@
            }];
 }
 
+#pragma mark -
+#pragma mark Email share
+#pragma mark -
+
 - (void)shareAsEmail {
 
     [TestFlight passCheckpoint:@"Email sharing"];
@@ -198,6 +214,10 @@
     }
 }
 
+#pragma mark -
+#pragma mark MFMailComposeViewControllerDelegate
+#pragma mark -
+
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
 	switch (result)
@@ -231,7 +251,10 @@
 	[controller dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - delete
+#pragma mark -
+#pragma mark Delete
+#pragma mark -
+
 - (void)delete:(id)sender {
     
     [self.collectionView performBatchUpdates:^{
@@ -262,12 +285,9 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
-#pragma mark - UICollectionViewDataSource
+#pragma mark -
+#pragma mark UICollectionViewDataSource
+#pragma mark -
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -287,7 +307,10 @@
     return cell;
 }
 
-#pragma mark - collection view delegate
+#pragma mark -
+#pragma mark UICollectionView delegate
+#pragma mark -
+
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *selectedFilename = [[self fileList] objectAtIndex:indexPath.item];
@@ -309,7 +332,9 @@
     return YES;
 }
 
-#pragma mark - utility methods
+#pragma mark -
+#pragma mark Utility methods
+#pragma mark -
 
 -(UIImage *)loadThumbnail:(NSString *)filename {
     @try {
@@ -325,6 +350,22 @@
 -(NSArray *)listFiles {
     NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[ODFileTools documentsFolder:@"arcmachines"] error:NULL];
     return directoryContent;
+}
+
+- (NSIndexPath*)lastIndexPath {
+    NSInteger sectionsAmount = [[self collectionView] numberOfSections];
+    NSInteger rowsAmount = [[self collectionView] numberOfItemsInSection:sectionsAmount-1];
+    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:(rowsAmount - 1) inSection:(sectionsAmount - 1)];
+    return lastIndexPath;
+}
+
+#pragma mark -
+#pragma mark Handle Memory Warning
+#pragma mark -
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
 }
 
 @end
