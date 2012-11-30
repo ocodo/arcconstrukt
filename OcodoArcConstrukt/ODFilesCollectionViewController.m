@@ -47,6 +47,15 @@
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     [self.collectionView addGestureRecognizer:longPress];
+    
+    [self.collectionView scrollToItemAtIndexPath:[self lastIndexPath] atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
+}
+
+- (NSIndexPath*)lastIndexPath {
+    NSInteger sectionsAmount = [[self collectionView] numberOfSections];
+    NSInteger rowsAmount = [[self collectionView] numberOfItemsInSection:sectionsAmount-1];
+    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:(rowsAmount - 1) inSection:(sectionsAmount - 1)];
+    return lastIndexPath;
 }
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)gesture {

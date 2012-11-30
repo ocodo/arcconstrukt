@@ -222,7 +222,7 @@
 
 - (void)handleColorSwatchLongPress:(UILongPressGestureRecognizer *)recognizer {
     if(recognizer.state == UIGestureRecognizerStateBegan) {
-        if(colorPicker.frame.origin.x != 10) {
+        if(colorPicker.frame.origin.x != 0) {
             [TestFlight passCheckpoint:@"Viewing Colour Picker"];
             
             [self moveColorPicker:0];
@@ -410,19 +410,38 @@
 }
 
 - (IBAction)deleteButton:(id)sender {
-    int index;
-    if([ODApplicationState sharedinstance].currentArc) {
-        index = [ODApplicationState sharedinstance].currentArc.getSubviewIndex;
-        [[ODApplicationState sharedinstance].currentArc removeFromSuperview];
-        [TestFlight passCheckpoint:@"Deleted Selected Arc"];
+    
+    void (^deleteBlock)(void);
+    deleteBlock = ^{
+        int index;
+        if([ODApplicationState sharedinstance].currentArc) {
+            index = [ODApplicationState sharedinstance].currentArc.getSubviewIndex;
+            [[ODApplicationState sharedinstance].currentArc removeFromSuperview];
+            [TestFlight passCheckpoint:@"Deleted Selected Arc"];
+        }
+        [layerStepper setMaximumValue:[arcConstruktView subviews].count - 1];
+        [layerStepper setValue:MIN(index,[arcConstruktView subviews].count - 1)];
+        [self layerSelecting:layerStepper];
+        [ODApplicationState sharedinstance].dirty = [arcConstruktView.subviews count] > 0;
+    };
+    
+    if([arcConstruktView subviews].count > 0) {
+        NSString* title = NSLocalizedString(@"Warning", nil);
+        NSString* message = NSLocalizedString(@"Are you sure?", nil);
+        NSString* cancel = NSLocalizedString(@"Cancel", nil);
+        NSString* ok = NSLocalizedString(@"Delete", nil);
+        
+        PSPDFAlertView *confirmDelete = [[PSPDFAlertView alloc] initWithTitle:title];
+        [confirmDelete setMessage:message];
+        [confirmDelete addButtonWithTitle:ok block:deleteBlock];
+        [confirmDelete setCancelButtonWithTitle:cancel block:nil];
+        [confirmDelete show];
+    } else {
+        [self showNoArcsMessage];
     }
-    [layerStepper setMaximumValue:[arcConstruktView subviews].count - 1];
-    [layerStepper setValue:MIN(index,[arcConstruktView subviews].count - 1)];
-    [self layerSelecting:layerStepper];
-    [ODApplicationState sharedinstance].dirty = YES;
 }
 
-- (IBAction)clearButton:(id)sender {
+- (void)clearComposition {
     for(ODArcMachine *arc in arcConstruktView.subviews)
     {
         [arc removeFromSuperview];
@@ -431,7 +450,29 @@
     [layerStepper setValue:0];
     [TestFlight passCheckpoint:@"Cleared all arcs"];
     [ODApplicationState sharedinstance].dirty = NO;
+}
+
+- (IBAction)clearButton:(id)sender {
     
+    void (^clearBlock)(void);
+    clearBlock = ^{
+        [self clearComposition];
+    };
+    
+    if([arcConstruktView subviews].count > 0)  {
+        NSString* title = NSLocalizedString(@"Warning", nil);
+        NSString* message = NSLocalizedString(@"Are you sure?", nil);
+        NSString* cancel = NSLocalizedString(@"Cancel", nil);
+        NSString* ok = NSLocalizedString(@"Clear All", nil);
+        
+        PSPDFAlertView *confirmClearAll = [[PSPDFAlertView alloc] initWithTitle:title];
+        [confirmClearAll setMessage:message];
+        [confirmClearAll addButtonWithTitle:ok block:clearBlock];
+        [confirmClearAll setCancelButtonWithTitle:cancel block:nil];
+        [confirmClearAll show];
+    } else {
+        [self showNoArcsMessage];
+    }
 }
 
 - (IBAction)deselectCurrentArc:(UIBarButtonItem *)sender {
@@ -491,7 +532,7 @@
 - (IBAction)savePNGMenu:(id)sender {
     
     if (arcConstruktView.subviews.count < 1) {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Press + to add Arcs", nil) image:[UIImage imageNamed:@"lightBulb@2x.png"]];
+        [self showNoArcsMessage];
         return;
     }
     
@@ -646,7 +687,7 @@
 
 - (IBAction)savePNGImagetoPhotoAlbum:(id)sender scale:(NSInteger)s{
     if([[arcConstruktView subviews] count] < 1) {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Press + to add Arcs", nil) image:[UIImage imageNamed:@"lightBulb@2x.png"]];
+        [self showNoArcsMessage];
         [TestFlight passCheckpoint:@"No Arcs for Save to PNG"];
         return;
     }
@@ -794,10 +835,14 @@
     [self moveToolbar:sender.selectedSegmentIndex];
 }
 
+- (void)showNoArcsMessage {
+    [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Press + to add Arcs", nil) image:[UIImage imageNamed:@"lightBulb@2x.png"]];
+}
+
 - (void)saveComposition:(id)sender {
     
     if([[arcConstruktView subviews] count] < 1) {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Press + to add Arcs", nil) image:[UIImage imageNamed:@"lightBulb@2x.png"]];
+        [self showNoArcsMessage];
         [TestFlight passCheckpoint:@"No Arcs for Save composition"];
         return;
     }
@@ -834,7 +879,7 @@
 
 - (void)loadJSONComposition:(NSString*)filename withFolder:(NSString*)folder {
     @try {
-        [self clearButton:nil];
+        [self clearComposition];
         ODArcConstruktDocument *file = [[ODArcConstruktDocument alloc] initWithJSONData:[ODFileTools loadNSData:filename documentsFolder:folder]];
         file.filename = filename;
         
@@ -858,7 +903,7 @@
     void (^loadBlock)(void);
     loadBlock = ^(void){
         @try {
-            [self clearButton:nil];
+            [self clearComposition];
             id loaded = [ODFileTools loadArchive:filename documentsFolder:folder];
             
             ODArcConstruktFile *oldfile;

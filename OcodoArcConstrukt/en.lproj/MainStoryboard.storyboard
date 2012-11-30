@@ -245,16 +245,16 @@
             </objects>
             <point key="canvasLocation" x="120" y="-165"/>
         </scene>
-        <!--Files Collection View Controller-->
+        <!--Files Collection View Controller -  -->
         <scene sceneID="cxD-nB-WMs">
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" id="T2j-gX-TKd" customClass="ODFilesCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="lKz-RV-AB5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="44"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="k0M-1S-aUe">
-                            <size key="itemSize" width="80" height="80"/>
+                        <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="74"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="k0M-1S-aUe">
+                            <size key="itemSize" width="79" height="79"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="73" maxX="0.0" maxY="0.0"/>
@@ -285,7 +285,7 @@
                             <outlet property="delegate" destination="T2j-gX-TKd" id="FW7-vn-n1a"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="2e6-QW-YKO" customClass="ODFilesNavigationItem"/>
+                    <navigationItem key="navigationItem" title=" " prompt=" " id="2e6-QW-YKO" customClass="ODFilesNavigationItem"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NRc-Cw-gM6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -352,6 +352,7 @@
         <class className="ODArcConstruktViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ODArcConstruktViewController.h"/>
             <relationships>
+                <relationship kind="action" name="importColorsFromPasteboard:"/>
                 <relationship kind="outlet" name="angleSelector" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="arcConstruktView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="colorPicker" candidateClass="ODColorPickerView"/>
@@ -406,6 +407,9 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

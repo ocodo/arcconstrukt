@@ -84,6 +84,9 @@ Be wary of the text box size, it must be respected.
 
 "ArcMachine and SVG uploaded to Dropbox" = "ArcMachine et SVG chargés sur Dropbox";
 
+/* Confirmation message */
+"Are you sure?" = "Êtes-vous sûr?";
+
 /* Angle A. This should remain English. */
 "A˚" = "A˚";
 
