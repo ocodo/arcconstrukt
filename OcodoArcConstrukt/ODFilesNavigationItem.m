@@ -30,7 +30,6 @@
     [self setPrompt:NSLocalizedString(@"Tap once to Load, Hold to Share or Delete",nil)];
     [self setTitle:NSLocalizedString(@"My ArcMachines",nil)];
     [self setTitleView:[[ODFilesTitleView alloc] initWithFrame:CGRectMake(0, 0, 320, 35) ]];
-    NSLog(@"Title view = %@", [self titleView]);
 }
 
 @end

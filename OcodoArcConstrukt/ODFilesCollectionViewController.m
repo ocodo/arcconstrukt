@@ -64,7 +64,6 @@
 }
 
 - (void)titleTapHandler:(UITapGestureRecognizer*)recognizer {
-    NSLog(@"Tap Title");
     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
 }
 
