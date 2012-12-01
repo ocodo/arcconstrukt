@@ -49,7 +49,7 @@
     // set tiled background.
     self.collectionView.backgroundColor = [
                                    UIColor colorWithPatternImage:
-                                   [UIImage imageNamed:@"outlets@2x.png"]];
+                                 [UIImage imageNamed:@"arabesque-tribar@2x.png"]];
     
     fileList = [[NSMutableArray alloc] initWithArray:[self listFiles]];
     

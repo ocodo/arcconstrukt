@@ -37,6 +37,7 @@
 		9675BA571655F30A006A742D /* ODFileTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 9675BA561655F30A006A742D /* ODFileTools.m */; };
 		9675BA5A16561012006A742D /* ODTransparencyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9675BA5916561012006A742D /* ODTransparencyButton.m */; };
 		9675BA5F1656252E006A742D /* ODViewHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 9675BA5E1656252D006A742D /* ODViewHelpers.m */; };
+		967715E916698DF000E598B0 /* ODFilesTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 967715E816698DF000E598B0 /* ODFilesTitleView.m */; };
 		96900A9516623050005F0652 /* ODArcDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 96900A9416623050005F0652 /* ODArcDrawing.m */; };
 		96A4796716474649009ADCF8 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A4796616474648009ADCF8 /* UIView+Hierarchy.m */; };
 		96A4796D1647578C009ADCF8 /* back_one.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A479691647578C009ADCF8 /* back_one.png */; };
@@ -190,6 +191,8 @@
 		9675BA5916561012006A742D /* ODTransparencyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODTransparencyButton.m; sourceTree = "<group>"; };
 		9675BA5D1656252D006A742D /* ODViewHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODViewHelpers.h; sourceTree = "<group>"; };
 		9675BA5E1656252D006A742D /* ODViewHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODViewHelpers.m; sourceTree = "<group>"; };
+		967715E716698DF000E598B0 /* ODFilesTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODFilesTitleView.h; sourceTree = "<group>"; };
+		967715E816698DF000E598B0 /* ODFilesTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODFilesTitleView.m; sourceTree = "<group>"; };
 		96900A9316623050005F0652 /* ODArcDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODArcDrawing.h; sourceTree = "<group>"; };
 		96900A9416623050005F0652 /* ODArcDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODArcDrawing.m; sourceTree = "<group>"; };
 		96A4796516474648009ADCF8 /* UIView+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Hierarchy.h"; sourceTree = "<group>"; };
@@ -459,6 +462,8 @@
 				96A4797A1647B7D0009ADCF8 /* ODTransparencyPicker.m */,
 				9675BA5D1656252D006A742D /* ODViewHelpers.h */,
 				9675BA5E1656252D006A742D /* ODViewHelpers.m */,
+				967715E716698DF000E598B0 /* ODFilesTitleView.h */,
+				967715E816698DF000E598B0 /* ODFilesTitleView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -880,6 +885,7 @@
 				96427D5D165F2CA60043805A /* NSData+Base64.m in Sources */,
 				96900A9516623050005F0652 /* ODArcDrawing.m in Sources */,
 				9623ADCD16672293002986D2 /* ODArcConstruktFile.m in Sources */,
+				967715E916698DF000E598B0 /* ODFilesTitleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

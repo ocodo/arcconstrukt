@@ -27,16 +27,9 @@
 }
 
 - (void)commonInit {
-    /* I have no choice (?!) but to hard 
-     code the title and prompt, (well, 
-     until I find out why this is sporadic
-     when set from the UIViewController */
-    
     [self setPrompt:NSLocalizedString(@"Tap once to Load, Hold to Share or Delete",nil)];
-
     [self setTitle:NSLocalizedString(@"My ArcMachines",nil)];
-    
-    [self setTitleView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 70) ]];
+    [self setTitleView:[[ODFilesTitleView alloc] initWithFrame:CGRectMake(0, 0, 320, 35) ]];
     NSLog(@"Title view = %@", [self titleView]);
 }
 

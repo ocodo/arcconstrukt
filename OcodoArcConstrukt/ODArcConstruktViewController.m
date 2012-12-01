@@ -36,9 +36,9 @@
     [(ArcConstruktAppDelegate*)[[UIApplication sharedApplication] delegate] registerViewController:@"construktView" controller:self];
     
     [super viewDidLoad];
-    [self view].backgroundColor = [
-                                   UIColor colorWithPatternImage:
-                                   [UIImage imageNamed:@"outlets@2x.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:
+                                 [UIImage imageNamed:@"arabesque-tribar@2x.png"]];
+    
     [self moveToolbar:0];
     [self initApplicationClipboard];
     [self initArcConstruktView];
@@ -402,7 +402,7 @@
 
 - (void)pinchRadius:(UIPinchGestureRecognizer *)pincher {
     if([ODApplicationState sharedinstance].currentArc) {
-        float radius = clampf([ODApplicationState sharedinstance].currentArc.radius + pincher.scale-1, 1.0f, 160.0f);
+        float radius = clampf([ODApplicationState sharedinstance].currentArc.radius + pincher.scale-1, 0.0f, 160.0f);
         [ODApplicationState sharedinstance].currentArc.radius = radius;
         [[ODApplicationState sharedinstance].currentArc setNeedsDisplay];
         [ODApplicationState sharedinstance].dirty = YES;
