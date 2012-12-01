@@ -14,12 +14,11 @@
 
 @implementation ODFilesCollectionViewController
 
-@synthesize currentIndexPath, fileList;
+@synthesize currentIndexPath, fileList, titleNavigationItem;
 
 #pragma mark -
 #pragma mark Initialize
 #pragma mark -
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -58,7 +57,17 @@
     [self.collectionView addGestureRecognizer:longPress];
     
     [self.collectionView scrollToItemAtIndexPath:[self lastIndexPath] atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
+    
+    UITapGestureRecognizer *titleBarTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(titleTapHandler:)];
+    
+    [titleNavigationItem.titleView addGestureRecognizer:titleBarTap];
 }
+
+- (void)titleTapHandler:(UITapGestureRecognizer*)recognizer {
+    NSLog(@"Tap Title");
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
+}
+
 
 #pragma mark -
 #pragma mark Sharing to Dropbox and Email

@@ -13,6 +13,7 @@
 #import "ODFilesCollectionViewCell.h"
 #import "ODArcConstruktDocument.h"
 #import "ODArcConstruktFile.h"
+#import "ODFilesNavigationItem.h"
 #import "TKAlertCenter.h"
 #import "DropBlocks.h"
 #import "ODFileTools.h"
@@ -23,5 +24,6 @@
 
 @property NSIndexPath *currentIndexPath;
 @property NSMutableArray *fileList;
+@property (weak, nonatomic) IBOutlet ODFilesNavigationItem *titleNavigationItem;
 
 @end

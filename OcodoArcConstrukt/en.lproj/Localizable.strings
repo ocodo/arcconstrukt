@@ -72,8 +72,6 @@ Be wary of the text box size, it must be respected.
 /* Title for main Action Menu in all Instruction overlays, see top note for viewing Instructions overlay */
 "Action Menu" = "Action Menu";
 
-
-
 /* Note for Action menu visible on the Color Instruction overlay */
 "Action Menu:\nSave PNG to\nCamera Roll,\nImport Color Palette*,\nSave ArcMachine,\nMy ArcMachines\n(+Email & Dropbox sharing)" = "Action Menu:\nSave PNG to\nCamera Roll,\nImport Color Palette*,\nSave ArcMachine,\nMy ArcMachines\n(+Email & Dropbox sharing)";
 
