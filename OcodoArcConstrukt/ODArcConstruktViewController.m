@@ -166,6 +166,7 @@
     [colorPicker addGestureRecognizer:swipeColorPicker];
     
     [colorPicker setDelegate:self];
+    
 }
 
 - (void)initSwatchBarGestures {

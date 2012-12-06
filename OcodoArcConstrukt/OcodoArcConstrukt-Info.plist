@@ -11,8 +11,8 @@
 		<dict>
 			<key>CFBundleTypeIconFiles</key>
 			<array>
-				<string>ArcConstrukt.png</string>
-				<string>ArcConstrukt@2x.png</string>
+				<string>Icon</string>
+				<string>Icon@2x</string>
 			</array>
 			<key>CFBundleTypeName</key>
 			<string>ArcMachine</string>
@@ -24,14 +24,14 @@
 		<dict>
 			<key>CFBundleTypeIconFiles</key>
 			<array>
-				<string>ArcConstrukt</string>
-				<string>ArcConstrukt@2x</string>
+				<string>Icon</string>
+				<string>Icon@2x</string>
 			</array>
 			<key>CFBundleTypeName</key>
 			<string>JSONArcMachine</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>info.ocodo.arcmachinej</string>
+				<string>info.ocodo.arcmachine</string>
 			</array>
 		</dict>
 	</array>
@@ -43,15 +43,15 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>ArcConstrukt.png</string>
-				<string>ArcConstrukt@2x.png</string>
+				<string>Icon.png</string>
+				<string>Icon@2x.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>ocodo.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>mofo.ocodo.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -68,7 +68,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLIconFile</key>
-			<string>ArcConstrukt@2x</string>
+			<string>Icon@2x</string>
 			<key>CFBundleURLName</key>
 			<string>info.ocodo.arcmachine</string>
 			<key>CFBundleURLSchemes</key>
@@ -80,12 +80,12 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLIconFile</key>
-			<string>ArcConstrukt@2x</string>
+			<string>Icon@2x</string>
 			<key>CFBundleURLName</key>
-			<string>info.ocodo.arcmachinej</string>
+			<string>info.ocodo.arcmachine</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>arcmachinej</string>
+				<string>arcmachine</string>
 			</array>
 		</dict>
 		<dict>
@@ -98,7 +98,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>Beta4.2</string>
+	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIMainStoryboardFile</key>
@@ -116,7 +116,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
@@ -126,7 +125,7 @@
 			<key>UTTypeIdentifier</key>
 			<string>info.ocodo.arcmachine</string>
 			<key>UTTypeSize320IconFile</key>
-			<string>ArcConstrukt@2x</string>
+			<string>Icon@2x</string>
 			<key>UTTypeSize64IconFile</key>
 			<string>ArcConstrukt</string>
 			<key>UTTypeTagSpecification</key>
@@ -141,9 +140,9 @@
 			<key>UTTypeDescription</key>
 			<string>ArcMachinee JSON Document</string>
 			<key>UTTypeIdentifier</key>
-			<string>info.ocodo.arcmachinej</string>
+			<string>info.ocodo.arcmachine</string>
 			<key>UTTypeSize320IconFile</key>
-			<string>ArcConstrukt@2x</string>
+			<string>Icon@2x</string>
 			<key>UTTypeSize64IconFile</key>
 			<string>ArcConstrukt</string>
 		</dict>

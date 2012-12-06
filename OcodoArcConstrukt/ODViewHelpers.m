@@ -12,7 +12,6 @@
 
 @implementation ODViewHelpers
 
-
 void drawGradient(NSArray *colors, CGContextRef ctx, CGFloat* locations, CGPoint startPoint, CGPoint endPoint, CGRect rect)
 {
     CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
@@ -24,6 +23,7 @@ void drawGradient(NSArray *colors, CGContextRef ctx, CGFloat* locations, CGPoint
     CGContextDrawLinearGradient(ctx, gradient, startPoint, endPoint, 0);
     CGGradientRelease(gradient), gradient = NULL;
     CGContextRestoreGState(ctx);
+    colors = nil;
 }
 
 void drawCheckerBoard (void *info, CGContextRef ctx) {
@@ -38,14 +38,12 @@ void drawInsetChrome (CGContextRef ctx, CGRect rect) {
     CGPoint endPoint = CGPointMake(0, rect.size.height);
     CGFloat locations[4] = { 0.0, 0.1, 0.8, 1.0 };
     
-    NSArray *chromeColors = @[
-    (id)[UIColor colorWithWhite:0 alpha:1].CGColor,
-    (id)[UIColor colorWithWhite:0 alpha:0].CGColor,
-    (id)[UIColor colorWithWhite:1 alpha:0.3].CGColor,
-    (id)[UIColor colorWithWhite:0 alpha:0].CGColor
-    ];
-    
-    drawGradient(chromeColors, ctx, locations, startPoint, endPoint, rect);
+    drawGradient(@[
+                 (id)[UIColor colorWithWhite:0 alpha:1].CGColor,
+                 (id)[UIColor colorWithWhite:0 alpha:0].CGColor,
+                 (id)[UIColor colorWithWhite:1 alpha:0.3].CGColor,
+                 (id)[UIColor colorWithWhite:0 alpha:0].CGColor
+                 ], ctx, locations, startPoint, endPoint, rect);
 }
 
 @end
