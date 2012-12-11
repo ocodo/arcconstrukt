@@ -21,7 +21,6 @@
 		9624AAFB165AFDA500E418D8 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 9624AAF7165AFDA500E418D8 /* release_notes.md */; };
 		9624AAFD165AFDF500E418D8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9624AAFC165AFDF500E418D8 /* libz.dylib */; };
 		9624AB05165B478B00E418D8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9624AB03165B478B00E418D8 /* Localizable.strings */; };
-		9624AB0D165B47A100E418D8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9624AB07165B47A100E418D8 /* InfoPlist.strings */; };
 		9624AB16165B59F700E418D8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9624AB14165B59F700E418D8 /* MainStoryboard.storyboard */; };
 		9624AB19165B5FF600E418D8 /* ODFilesNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9624AB18165B5FF600E418D8 /* ODFilesNavigationItem.m */; };
 		96354370164543110002FAB6 /* ODApplicationState.m in Sources */ = {isa = PBXBuildFile; fileRef = 9635436F164543110002FAB6 /* ODApplicationState.m */; };
@@ -86,7 +85,6 @@
 		96FADBAD1639249D004706F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBAC1639249C004706F9 /* UIKit.framework */; };
 		96FADBAF1639249D004706F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBAE1639249D004706F9 /* Foundation.framework */; };
 		96FADBB11639249D004706F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FADBB01639249D004706F9 /* CoreGraphics.framework */; };
-		96FADBB71639249D004706F9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBB51639249D004706F9 /* InfoPlist.strings */; };
 		96FADBB91639249D004706F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADBB81639249D004706F9 /* main.m */; };
 		96FADBBD1639249D004706F9 /* ArcConstruktAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FADBBC1639249D004706F9 /* ArcConstruktAppDelegate.m */; };
 		96FADBBF1639249D004706F9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 96FADBBE1639249D004706F9 /* Default.png */; };
@@ -140,7 +138,6 @@
 		9624AAFC165AFDF500E418D8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		9624AB02165B0FC000E418D8 /* ODColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODColorPickerView.h; sourceTree = "<group>"; };
 		9624AB04165B478B00E418D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = OcodoArcConstrukt/en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		9624AB08165B47A100E418D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		9624AB15165B59F700E418D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		9624AB17165B5FF600E418D8 /* ODFilesNavigationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODFilesNavigationItem.h; sourceTree = "<group>"; };
 		9624AB18165B5FF600E418D8 /* ODFilesNavigationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODFilesNavigationItem.m; sourceTree = "<group>"; };
@@ -188,6 +185,9 @@
 		96B117B916460832004D8605 /* editing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "editing@2x.png"; sourceTree = "<group>"; };
 		96B117BA16460832004D8605 /* layers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = layers.png; sourceTree = "<group>"; };
 		96B117BB16460832004D8605 /* layers@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "layers@2x.png"; sourceTree = "<group>"; };
+		96C668351676F8A6002452D2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		96C668361676F8CC002452D2 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		96C668371676F96B002452D2 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		96C6F882166D9BA900CC21E1 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		96C6F884166D9BB000CC21E1 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		96D0EDA81643910A002F8754 /* ODArcConstruktNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODArcConstruktNavigationController.h; sourceTree = "<group>"; };
@@ -234,7 +234,6 @@
 		96FADBAE1639249D004706F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		96FADBB01639249D004706F9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		96FADBB41639249D004706F9 /* OcodoArcConstrukt-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OcodoArcConstrukt-Info.plist"; sourceTree = "<group>"; };
-		96FADBB61639249D004706F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		96FADBB81639249D004706F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		96FADBBA1639249D004706F9 /* OcodoArcConstrukt-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OcodoArcConstrukt-Prefix.pch"; sourceTree = "<group>"; };
 		96FADBBC1639249D004706F9 /* ArcConstruktAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArcConstruktAppDelegate.m; sourceTree = "<group>"; };
@@ -342,7 +341,6 @@
 			children = (
 				9624AB03165B478B00E418D8 /* Localizable.strings */,
 				9624AB14165B59F700E418D8 /* MainStoryboard.storyboard */,
-				9624AB07165B47A100E418D8 /* InfoPlist.strings */,
 			);
 			name = localize;
 			path = OcodoArcConstrukt/en.lproj;
@@ -476,7 +474,6 @@
 				96FADC7116424351004706F9 /* libs */,
 				96D0EDB81643E025002F8754 /* AboutHTML */,
 				96FADC6F164242D1004706F9 /* Images */,
-				96FADBB51639249D004706F9 /* InfoPlist.strings */,
 				96FADBB81639249D004706F9 /* main.m */,
 				96FADBB41639249D004706F9 /* OcodoArcConstrukt-Info.plist */,
 				96FADBBA1639249D004706F9 /* OcodoArcConstrukt-Prefix.pch */,
@@ -632,6 +629,9 @@
 				th,
 				fr,
 				de,
+				"zh-Hans",
+				"zh-Hant",
+				sv,
 			);
 			mainGroup = 96FADB9D1639249C004706F9;
 			productRefGroup = 96FADBA91639249C004706F9 /* Products */;
@@ -657,7 +657,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96FADBB71639249D004706F9 /* InfoPlist.strings in Resources */,
 				96FADBBF1639249D004706F9 /* Default.png in Resources */,
 				96FADBC11639249D004706F9 /* Default@2x.png in Resources */,
 				96FADBC31639249D004706F9 /* Default-568h@2x.png in Resources */,
@@ -710,7 +709,6 @@
 				9624AAFA165AFDA500E418D8 /* README.md in Resources */,
 				9624AAFB165AFDA500E418D8 /* release_notes.md in Resources */,
 				9624AB05165B478B00E418D8 /* Localizable.strings in Resources */,
-				9624AB0D165B47A100E418D8 /* InfoPlist.strings in Resources */,
 				9624AB16165B59F700E418D8 /* MainStoryboard.storyboard in Resources */,
 				9623ADC316670AE8002986D2 /* arabesque-tribar.png in Resources */,
 				9623ADC416670AE8002986D2 /* arabesque-tribar@2x.png in Resources */,
@@ -807,17 +805,12 @@
 				96427D4E165CFEA00043805A /* fr */,
 				96427D4F165CFECF0043805A /* de */,
 				96427D50165CFEDD0043805A /* th */,
+				96C668351676F8A6002452D2 /* zh-Hans */,
+				96C668361676F8CC002452D2 /* zh-Hant */,
+				96C668371676F96B002452D2 /* sv */,
 			);
 			name = Localizable.strings;
 			path = ../..;
-			sourceTree = "<group>";
-		};
-		9624AB07165B47A100E418D8 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9624AB08165B47A100E418D8 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		9624AB14165B59F700E418D8 /* MainStoryboard.storyboard */ = {
@@ -826,14 +819,6 @@
 				9624AB15165B59F700E418D8 /* en */,
 			);
 			name = MainStoryboard.storyboard;
-			sourceTree = "<group>";
-		};
-		96FADBB51639249D004706F9 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				96FADBB61639249D004706F9 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

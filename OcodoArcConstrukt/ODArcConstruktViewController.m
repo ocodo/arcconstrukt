@@ -286,7 +286,7 @@
 }
 
 - (void)showNoArcsMessage {
-    [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Press + to add Arcs", nil) image:[UIImage imageNamed:@"lightBulb@2x.png"]];
+    [[TKAlertCenter defaultCenter] postAlertWithMessage:NSLocalizedString(@"Tap + to add Arcs", nil) image:[UIImage imageNamed:@"lightBulb@2x.png"]];
 }
 
 #pragma mark -

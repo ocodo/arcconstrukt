@@ -1,4 +1,4 @@
-﻿/***
+/***
 ==========================================================================================
  PLEASE CAREFULLY READ ALL NOTES:
 ------------------------------------------------------------------------------------------
@@ -233,16 +233,11 @@ Be wary of the text box size, it must be respected.
 /* Do not translate. */
 "PNG 640x640" = "PNG 640x640";
 
-/* + refers to the + icon at top left, so it must remain in the translation*/
-"Press + to add Arcs" = "Taper + pour ajouter des Arcs";
-/* #Arleneyes# Why Press and not "Touch" in english ? */
-
 /* Instructions overlay label for Title bar */
 "Press Title for this page, Swipe Title to watch the video tour" = "Taper sur Titre pour cette page, Balayer Titre pour regarder la vidéo de demonstration";
 
 /* Translate to the first letter of translation of Radius. (lower case where applicable) */
 "r" = "r";
-/* #Arleneyes#  radius=rayon, no change */
 
 /* Edit mode Instructions overlay label for Radius pinching. */
 "Radius" = "Rayon";
@@ -276,10 +271,11 @@ Be wary of the text box size, it must be respected.
 
 /* Translate to the first letter for the word Thickness in the target language. e.g. "G" in French, (for Grosseur) For idographic languages, e.g. Japanese, approximate ie. 厚 thick (atsu) */
 "T" = "E";
-/* #Arleneyes# Thickness = Épaisseur */
+
+/* + refers to the + icon at top left, so it must remain in the translation*/
+"Tap + to add Arcs" = "Taper + pour ajouter des Arcs";
 
 /* Help prompt for Files view ("My ArcMachines")*/
-
 "Tap once to Load, Hold to Share or Delete" = "Taper pour charger, Appui Long pour Partager ou Supprimer";
 
 /* Message for photo saving problems. */

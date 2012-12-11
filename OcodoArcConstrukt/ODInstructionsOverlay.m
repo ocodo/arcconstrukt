@@ -54,7 +54,7 @@
 
     [self drawTitleBarNote];
 
-    [self drawText:NSLocalizedString(@"Action Menu", nil) x:244 y:89 w:88 h:23 size:12 align:NSTextAlignmentLeft];
+    [self drawText:NSLocalizedString(@"Action Menu", nil) x:235 y:89 w:85 h:23 size:12 align:NSTextAlignmentRight];
     [self drawPointer:CGPointMake(285, 86) b:CGPointMake(285, 48)];
 
     [self drawQuickEditNoteOffsetX:0 offsetY:-30];
@@ -89,7 +89,7 @@
     
     [self drawTitleBarNote];
     
-    [self drawText:NSLocalizedString(@"Action Menu", nil) x:244 y:89 w:88 h:23 size:12 align:NSTextAlignmentLeft];
+    [self drawText:NSLocalizedString(@"Action Menu", nil) x:235 y:89 w:85 h:20 size:12 align:NSTextAlignmentRight];
     [self drawPointer:CGPointMake(285, 86) b:CGPointMake(285, 48)];
     
     [self drawText:NSLocalizedString(@"Remove Arc", nil) x:150 y:230 + _deviceOffsetY w:165 h:23 size:12 align:NSTextAlignmentRight];
@@ -197,7 +197,7 @@
     [self drawPointer:CGPointMake( 62, 363 + _deviceOffsetY) b:CGPointMake(62, 398 + _deviceOffsetY)];
     
     NSString* transparencyLabel = NSLocalizedString(@"Transparency", nil);
-    CGRect transparencyRect = CGRectMake(220, 347 + _deviceOffsetY, 95, 17);
+    CGRect transparencyRect = CGRectMake(220, 355 + _deviceOffsetY, 95, 17);
 
     [self drawPointer:CGPointMake( 300, 363 + _deviceOffsetY) b:CGPointMake(300, 398 + _deviceOffsetY)];
     
@@ -241,6 +241,13 @@
     box.lineWidth = 1;
     CGFloat pat[] = {3,3,3,3};
     [box setLineDash:pat count:4 phase:0];
+    [box stroke];
+}
+
+- (void) drawBox:(CGRect)rect corner:(CGFloat)corner strokeColor:(UIColor*)strokeColor {
+    UIBezierPath *box = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:corner];
+    box.lineWidth = 1;
+    [strokeColor setStroke];
     [box stroke];
 }
 

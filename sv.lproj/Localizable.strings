@@ -1,0 +1,302 @@
+/***
+ ==========================================================================================
+ PLEASE CAREFULLY READ ALL NOTES:
+ ------------------------------------------------------------------------------------------
+ Contact Jason immediately if you have any questions, via Kik, email, or telephone.
+ 
+ Kik: ocodo
+ email: what.is.ocodo@gmail.com
+ phone: +61(0)409307977
+ 
+ Skype: (message me first on another mode)
+ jasonm23
+ 
+ Googletalk/G+:
+ jasonm23@gmail.com
+ 
+ ------------------------------------------------------------------------------------------
+ ==========================================================================================
+ Notes on the Instruction Overlays:
+ 
+ Press the Title Bar (says: ArcConstrukt ) to view Instructions
+ Overlays Each toolbar mode has a separate overlay, they will be
+ displayed automatically the first time the user selects a toolbar
+ mode.
+ 
+ To select each mode, press the selector at the bottom right, each one
+ is a different tool mode. From left to right:
+ 
+ Edit  |   Color  |   Order
+ 
+ ==========================================================================================
+ 
+ Not all text is for the Instructions overlay, many of these
+ translations are for Buttons and messages spread throughout the
+ Application, if you want to locate an item in the App, for example, to
+ see context, contact Jason if you can't find it.
+ 
+ ------------------------------------------------------------------------------------------
+ Notes on text length / size
+ ------------------------------------------------------------------------------------------
+ All text is expected to remain a similar length, however this may not
+ be possible in some circumstances.
+ 
+ Ideally, figure out all text translations first, and try to maintain
+ same length, if you cannot, please make a note next to the translation
+ like so:
+ 
+ "English original text" = "Texto original en Inglés" //LONG
+ 
+ ^ This translation is longer than the original, so "//LONG" is placed
+ after it, always just use "//LONG". Jason will be in touch if
+ necessary.
+ ==========================================================================================
+ **/
+
+
+// Translations Begin below this line
+// --- 8< --------------------------------------------------------------------------------
+
+/*
+ Info for the Color Instructions overlay
+ Be wary of the text box size, it must be respected.
+ */
+
+// Translations all follow this pattern:
+
+// English Language verson:  ----------------------------------------------------------------------------    =  Svensk språkversion:
+
+
+"* Import Color Palette from the Action Menu, (up to 6 hex colors will be found in text from the Clipboard)" = "* Importera Färgpalett från Händelsemenyn, (upp till sex stycken hex-färger hämtas som text från urklipp)";
+
+/* Title for main Action Menu in all Instruction overlays, see top note for viewing Instructions overlay */
+"Action Menu" = "Händelse Meny";
+
+/* Note for Action menu visible on the Color Instruction overlay */
+"Action Menu:\nSave PNG to\nCamera Roll,\nImport Color Palette*,\nSave ArcMachine,\nMy ArcMachines\n(+Email & Dropbox sharing)" = "Händelse Meny:\nSpara PNG till\nKamerarulle,\nImportera Färgpalett*,\nSpara ArcMachine,\nMina ArcMachines\n(+E-post & Dropbox delning)";
+
+/* Note for add Arc, visible on all Instruction overlays. */
+"Add Arc" = "Lägg till Arc";
+
+/* Message displayed when ArcMachine & SVG are uploaded to Dropbox. */
+"ArcMachine and SVG uploaded to Dropbox" = "ArcMachine och SVG har nu delats till Dropbox";
+
+/* Confirmation Message */
+"Are you sure?" = "Är du säker?";
+
+/* Angle A. This should remain English. */
+"A˚" = "A˚";
+
+/* Angle B. This should remain English. */
+"B˚" = "B˚";
+
+/* Layer Order Instructions Overlay. */
+"Back One" = "Flytta bakåt";
+
+/* Cancel label for all cancel buttons in the App. */
+"Cancel" = "Avbryt";
+
+/* Title for Action Menu. */
+"Choose an Action" = "Välj en händelse";
+
+/* Clear All - Quick Edit menu label. */
+"Clear All" = "Rensa allt";
+
+/* Clone - Quick Edit menu label. */
+"Clone" = "Duplicera";
+
+/* Color - mode selector label Instructions Overlay (all modes, at the bottom) */
+"Color" = "Färg";
+
+/* Message displayed when exporting colors to clipboard */
+"Color Palette exported to the Clipboard" = "Färgpaletten har nu exporterats till urklipp";
+
+/* No comment provided by engineer. */
+"Color Palette: Touch to pick a color, Long touch to edit a color" = "Color Palette: Markera för att välja en färg, Håll in för att ändra en färg";
+
+/* No comment provided by engineer. */
+"Copy some Hex colors into the clipboard, ArcConstrukt will find and use the first 6" = "Du kan kopiera Hex-färger till urklipp, ArcConstrukt hittar de sex senaste";
+
+/* No comment provided by engineer. */
+"Delete" = "Radera";
+
+/* No comment provided by engineer. */
+"Deleted" = "Raderat";
+
+/* Edit - mode selector label Instructions Overlay (all modes, at the bottom) */
+"Edit" = "Ändra";
+
+/* Email cancelled feedback message. */
+"Email Cancelled" = "E-postmeddelandet avbröts";
+
+/* Email failed feedback message. */
+"Email Failed" = "E-postmeddelandet misslyckades";
+
+/* Email not sent feedback message. */
+"Email Not Sent" = "E-postmeddelandet skickades inte";
+
+/* Email saved feedback message. */
+"Email Saved" = "E-postmeddelandet sparades";
+
+/* Email sent feedback message. */
+"Email Sent" = "E-postmeddelandet skickades";
+
+/* Action Menu lable for Export Color Palette. */
+"Export Colors" = "Exportera färger";
+
+/* Message for delete failure. */
+"Failed to delete" = "Raderingen misslyckades";
+
+/* Message for file loading fail. */
+"Failed to load %@" = "Misslyckades att öppna %@";
+
+/* Color Mode Instructions Overlay Label. */
+"Fill" = "Fyll";
+
+/* Edit Mode Instructions Overlay Label. */
+"Finger Rotate" = "Rotera finger";
+
+/* Order mode Instructions Overlay label for bring layer forwards */
+"Forwards" = "Flytta framåt";
+
+/* Instructions Overlay label for Grid. */
+"Grid" = "Rutnät";
+
+/* Action Menu Label for Import Colors. */
+"Import Colors" = "Importera färger";
+
+/* Message displayed when color palette is imported. the %i is a place holder for the number of colors, e.g. "%i Colors Imported" would read "6 Colors Imported" - contact Jason if in doubt.*/
+"Imported %i colors from the Clipboard" = "Importerade %i färger från urklipp";
+
+/* Label title for Order instructions overlay. */
+"Layer Ordering" = "Lager ordning";
+
+/* Linked label - Edit mode Instructions Overlay. Describes that angle A and B are linked when using the Linked rotate mode, could be replaced by Rotate, if the translation would be clearer. */
+"Linked" = "Länkad rotering";
+
+/* Loaded - for loaded file message */
+"Loaded" = "Öppnat";
+
+/* Load button label */
+"Load" = "Öppna";
+
+/* Loading will overwrite unsaved work - message */
+"Loading will overwrite unsaved work" = "Om du öppnar denna så raderas nuvarande arbete som inte sparats"; //LONG;
+
+/* Lock label - Edit mode Instructions Overlay. */
+"Lock" = "Lås";
+
+/* Memory warning alert message. */
+"Memory warning: Save your work, just in case!" = "Varning, för lite minne ledigt!: Spara dit arbete för säkerhets skull!";
+
+/* Action Menu Button title for My ArcMachines. - only translate "My" ArcMachines is a trademark, so it should appear in all lanuguages */
+"My ArcMachines" = "Mina ArcMachines";
+
+/* Share email, subject line. */
+"My Shiny New ArcMachine" = "Min sprillans nya ArcMachine";
+
+/* Default text to be show in "My ArcMachines" when none are saved. */
+"No ArcMachines saved yet" = "Inga ArcMachines har blivit sparade";
+
+/* Order - mode selector label Instructions Overlay (all modes, at the bottom) */
+"Order" = "Ordning";
+
+/* Color Mode Instructions Overlay Label for shape outline. */
+"Outline" = "Kantlinje";
+
+/* quick edit menu label for Paste. */
+"Paste" = "Klistra in";
+
+/* Edit mode instructions overlay label for Pinch. */
+"Pinch" = "Knip";
+
+/* Do not translate. */
+"PNG 1280x1280" = "PNG 1280x1280";
+
+/* Do not translate. */
+"PNG 1920x1920" = "PNG 1920x1920";
+
+/* Do not translate. */
+"PNG 2560x2560" = "PNG 2560x2560";
+
+/* Do not translate. */
+"PNG 2880x2880" = "PNG 2880x2880";
+
+/* Do not translate. */
+"PNG 3200x3200" = "PNG 3200x3200";
+
+/* Do not translate. */
+"PNG 640x640" = "PNG 640x640";
+
+/* Instructions overlay label for Title bar */
+"Press Title for this page, Swipe Title to watch the video tour" = "Tryck på titeln för att visa denna instruktion, Dra titeln åt sidan för att visa instruktionsvideon"; //LONG;
+
+/* Translate to the first letter of translation of Radius. (lower case where applicable) */
+"r" = "r";
+
+/* Edit mode Instructions overlay label for Radius pinching. */
+"Radius" = "Radie";
+
+/* Edit mode Instructions overlay label for Removing/Deleting the selected Arc. */
+"Remove Arc" = "Ta bort Arc";
+
+/* Action Menu Button label for Saving ArcMachine - only translate "Save" ArcMachines should remain in all translations. */
+"Save ArcMachine" = "Spara ArcMachine";
+
+/* Saving ArcMachine message. */
+"Saving ArcMachine" = "Sparar ArcMachine";
+
+/* Action Menu Button label. */
+"Save PNG to Camera Roll" = "Spara PNG till kamerarullen";
+
+/* Title for image size/quality menu - \n means linebreak, please keep it in the translation. */
+"Save to Camera Roll\nImage Quality" = "Spara till kamerarullen\nBildkvalité";
+
+/* Message for successful PNG image save. */
+"Saved PNG" = "PNG sparades";
+
+/* Instructions overlay label for the up down select arc buttons. */
+"Select Arc" = "Välj Arc";
+
+/* Files view Share as Email menu button label. */
+"Share as Email" = "Skicka som e-post";
+
+/* Files view Share to Dropbox menu button label. Dropbox is a trademark, don't translate it, just translate "Share to" ie. "に共有 Dropbox" or "Partager sur Dropbox" etc. */
+"Share to Dropbox" = "Dela till Dropbox";
+
+/* Translate to the first letter for the word Thickness in the target language. e.g. "G" in French, (for Grosseur) For idographic languages, e.g. Japanese, approximate ie. 厚 thick (atsu) */
+"T" = "T";
+
+/* + refers to the + icon at top left, so it must remain in the translation*/
+"Tap + to add Arcs" = "Tryck + för Arc";
+
+/* Help prompt for Files view ("My ArcMachines")*/
+"Tap once to Load, Hold to Share or Delete" = "Tryck för att öppna, Håll för att dela eller radera";
+
+/* Message for photo saving problems. */
+"There was a problem saving your image, check photo album privacy settings, and make sure you have enough free memory." = "Det uppstod ett problem när bilden skulle sparas. Kolla fotoalbumets sekretessinställningar och försäkra dig att du har tillräckligt med minne ledigt."; //LONG;
+
+/* Edit mode Instructions Overlay label for Thickness of arc. */
+"Thickness" = "Tjocklek";
+
+/* Order mode Instructions Overlay label. */
+"To Back" = "Flytta längst bak";
+
+/* Order mode Instructions Overlay label. */
+"To Front" = "Flytta längst fram";
+
+/* Toggle Highlight */
+"Toggle Highlight" = "Växla Markera";
+
+/* all mode Instructions Overlay label. */
+"Tools Selector" = "Verktygsväljaren";
+
+/* all mode Instructions Overlay label. */
+"Touch Hold drawing area for quick edit menu" = "Tryck och håll på ritytan för att få upp snabbmenyn";
+
+/* Color mode Instructions Overlay label. */
+"Transparency" = "Genomskinlighet";
+
+/* Warning */
+"Warning" = "Varning";
+

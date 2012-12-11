@@ -1,88 +1,87 @@
 /***
-==========================================================================================
+ ==========================================================================================
  PLEASE CAREFULLY READ ALL NOTES:
-------------------------------------------------------------------------------------------
+ ------------------------------------------------------------------------------------------
  Contact Jason immediately if you have any questions, via Kik, email, or telephone.
  
  Kik: ocodo
  email: what.is.ocodo@gmail.com
  phone: +61(0)409307977
-
+ 
  Skype: (message me first on another mode)
  jasonm23
-
- Googletalk/G+: 
+ 
+ Googletalk/G+:
  jasonm23@gmail.com
-
-------------------------------------------------------------------------------------------
-==========================================================================================
-Notes on the Instruction Overlays:
-
-Press the Title Bar (says: ArcConstrukt ) to view Instructions
-Overlays Each toolbar mode has a separate overlay, they will be
-displayed automatically the first time the user selects a toolbar
-mode.
-
-To select each mode, press the selector at the bottom right, each one
-is a different tool mode. From left to right:
-
-    Edit  |   Color  |   Order
-
-==========================================================================================
-
-Not all text is for the Instructions overlay, many of these
-translations are for Buttons and messages spread throughout the
-Application, if you want to locate an item in the App, for example, to
-see context, contact Jason if you can't find it.
-
-------------------------------------------------------------------------------------------
-Notes on text length / size
-------------------------------------------------------------------------------------------
-All text is expected to remain a similar length, however this may not
-be possible in some circumstances.
-
-Ideally, figure out all text translations first, and try to maintain
-same length, if you cannot, please make a note next to the translation
-like so:
-
-"English original text" = "Texto original en Inglés" //LONG
-
-^ This translation is longer than the original, so "//LONG" is placed
-after it, always just use "//LONG". Jason will be in touch if
-necessary.
-==========================================================================================
-**/
+ 
+ ------------------------------------------------------------------------------------------
+ ==========================================================================================
+ Notes on the Instruction Overlays:
+ 
+ Press the Title Bar (says: ArcConstrukt ) to view Instructions
+ Overlays Each toolbar mode has a separate overlay, they will be
+ displayed automatically the first time the user selects a toolbar
+ mode.
+ 
+ To select each mode, press the selector at the bottom right, each one
+ is a different tool mode. From left to right:
+ 
+ Edit  |   Color  |   Order
+ 
+ ==========================================================================================
+ 
+ Not all text is for the Instructions overlay, many of these
+ translations are for Buttons and messages spread throughout the
+ Application, if you want to locate an item in the App, for example, to
+ see context, contact Jason if you can't find it.
+ 
+ ------------------------------------------------------------------------------------------
+ Notes on text length / size
+ ------------------------------------------------------------------------------------------
+ All text is expected to remain a similar length, however this may not
+ be possible in some circumstances.
+ 
+ Ideally, figure out all text translations first, and try to maintain
+ same length, if you cannot, please make a note next to the translation
+ like so:
+ 
+ "English original text" = "Texto original en Inglés" //LONG
+ 
+ ^ This translation is longer than the original, so "//LONG" is placed
+ after it, always just use "//LONG". Jason will be in touch if
+ necessary.
+ ==========================================================================================
+ **/
 
 
 // Translations Begin below this line
 // --- 8< --------------------------------------------------------------------------------
 
-/* 
-Info for the Color Instructions overlay
-Be wary of the text box size, it must be respected.
-*/
+/*
+ Info for the Color Instructions overlay
+ Be wary of the text box size, it must be respected.
+ */
 
-// Translations all follow this pattern: 
+// Translations all follow this pattern:
 
 // English Language verson:  ----------------------------------------------------------------------------    =  Your translated version. - Proper nouns can be left in English as appropriate
 
-"* Import Color Palette from the Action Menu, (up to 6 hex colors will be found in text from the Clipboard)" = "* Import Color Palette from the Action Menu, (up to 6 hex colors will be found in text from the Clipboard)";
-
+"* Import Color Palette from the Action Menu, (up to 6 hex colors will be found in text from the Clipboard)" = "* 从指令菜单调入调色板, (up to 6 hex colors will be found in text from the Clipboard)";
 
 /* Title for main Action Menu in all Instruction overlays, see top note for viewing Instructions overlay */
-"Action Menu" = "Action Menu";
+"Action Menu" = "指令菜单";
 
 /* Note for Action menu visible on the Color Instruction overlay */
-"Action Menu:\nSave PNG to\nCamera Roll,\nImport Color Palette*,\nSave ArcMachine,\nMy ArcMachines\n(+Email & Dropbox sharing)" = "Action Menu:\nSave PNG to\nCamera Roll,\nImport Color Palette*,\nSave ArcMachine,\nMy ArcMachines\n(+Email & Dropbox sharing)";
+"Action Menu:\nSave PNG to\nCamera Roll,\nImport Color Palette*,\nSave ArcMachine,\nMy ArcMachines\n(+Email & Dropbox sharing)" = "指令菜单:\n保存PNG为\n相册,\n调入配色方案*,\n保存ArcMachines,\n我的ArcMachines\n(+电子邮件和Dropbox分享)";
 
 /* Note for add Arc, visible on all Instruction overlays. */
-"Add Arc" = "Add Arc";
+"Add Arc" = "添加弧线";
 
 /* Message displayed when ArcMachine & SVG are uploaded to Dropbox. */
-"ArcMachine and SVG uploaded to Dropbox" = "ArcMachine and SVG uploaded to Dropbox";
+"ArcMachine and SVG uploaded to Dropbox" = "ArcMachines及SVG已上传至Dropbox";
 
-/* Confirmation message */
-"Are you sure?" = "Are you sure?";
+/* Are you sure */
+"Are you sure?" = "你确定吗?";
 
 /* Angle A. This should remain English. */
 "A˚" = "A˚";
@@ -91,125 +90,125 @@ Be wary of the text box size, it must be respected.
 "B˚" = "B˚";
 
 /* Layer Order Instructions Overlay. */
-"Back One" = "Back One";
+"Back One" = "退后一层";
 
 /* Cancel label for all cancel buttons in the App. */
-"Cancel" = "Cancel";
+"Cancel" = "取消";
 
 /* Title for Action Menu. */
-"Choose an Action" = "Choose an Action";
+"Choose an Action" = "选择一条指令";
 
 /* Clear All - Quick Edit menu label. */
-"Clear All" = "Clear All";
+"Clear All" = "清除全部";
 
 /* Clone - Quick Edit menu label. */
-"Clone" = "Clone";
+"Clone" = "克隆";
 
 /* Color - mode selector label Instructions Overlay (all modes, at the bottom) */
-"Color" = "Color";
+"Color" = "颜色";
 
 /* Message displayed when exporting colors to clipboard */
-"Color Palette exported to the Clipboard" = "Color Palette exported to the Clipboard";
+"Color Palette exported to the Clipboard" = "配色方案已导出到粘贴板";
 
 /* No comment provided by engineer. */
-"Color Palette: Touch to pick a color, Long touch to edit a color" = "Color Palette: Touch to pick a color, Long touch to edit a color";
+"Color Palette: Touch to pick a color, Long touch to edit a color" = "调色板: 点击选择颜色, 长按编辑颜色";
 
 /* No comment provided by engineer. */
 "Copy some Hex colors into the clipboard, ArcConstrukt will find and use the first 6" = "Copy some Hex colors into the clipboard, ArcConstrukt will find and use the first 6";
 
 /* No comment provided by engineer. */
-"Delete" = "Delete";
+"Delete" = "删除";
 
 /* No comment provided by engineer. */
-"Deleted" = "Deleted";
+"Deleted" = "已删除";
 
 /* Edit - mode selector label Instructions Overlay (all modes, at the bottom) */
-"Edit" = "Edit";
+"Edit" = "编辑";
 
 /* Email cancelled feedback message. */
-"Email Cancelled" = "Email Cancelled";
+"Email Cancelled" = "邮件已取消";
 
 /* Email failed feedback message. */
-"Email Failed" = "Email Failed";
+"Email Failed" = "邮件失败";
 
 /* Email not sent feedback message. */
-"Email Not Sent" = "Email Not Sent";
+"Email Not Sent" = "邮件未发出";
 
 /* Email saved feedback message. */
-"Email Saved" = "Email Saved";
+"Email Saved" = "邮件已保存";
 
 /* Email sent feedback message. */
-"Email Sent" = "Email Sent";
+"Email Sent" = "邮件已发出";
 
 /* Action Menu lable for Export Color Palette. */
-"Export Colors" = "Export Colors";
+"Export Colors" = "导出配色方案";
 
 /* Message for delete failure. */
-"Failed to delete" = "Failed to delete";
+"Failed to delete" = "删除失败";
 
 /* Message for file loading fail. */
-"Failed to load %@" = "Failed to load %@";
+"Failed to load %@" = "载入%@失败";
 
 /* Color Mode Instructions Overlay Label. */
-"Fill" = "Fill";
+"Fill" = "填充";
 
 /* Edit Mode Instructions Overlay Label. */
-"Finger Rotate" = "Finger Rotate";
+"Finger Rotate" = "手指调转";
 
 /* Order mode Instructions Overlay label for bring layer forwards */
-"Forwards" = "Forwards";
+"Forwards" = "前进";
 
 /* Instructions Overlay label for Grid. */
-"Grid" = "Grid";
+"Grid" = "网格";
 
 /* Action Menu Label for Import Colors. */
-"Import Colors" = "Import Colors";
+"Import Colors" = "倒入颜色";
 
 /* Message displayed when color palette is imported. the %i is a place holder for the number of colors, e.g. "%i Colors Imported" would read "6 Colors Imported" - contact Jason if in doubt.*/
-"Imported %i colors from the Clipboard" = "Imported %i colors from the Clipboard";
+"Imported %i colors from the Clipboard" = "已自粘贴板导入%i种颜色";
 
 /* Label title for Order instructions overlay. */
-"Layer Ordering" = "Layer Ordering";
+"Layer Ordering" = "图层排序";
 
 /* Linked label - Edit mode Instructions Overlay. Describes that angle A and B are linked when using the Linked rotate mode, could be replaced by Rotate, if the translation would be clearer. */
-"Linked" = "Linked";
+"Linked" = "已链接";
 
 
 /* Loaded - for loaded file message */
-"Loaded" = "Loaded";
+"Loaded" = "已加载";
 
 /* Load button label */
-"Load" = "Load";
+"Load" = "载入";
 
 /* Loading will overwrite unsaved work - message */
-"Loading will overwrite unsaved work" = "Loading will overwrite unsaved work";
+"Loading will overwrite unsaved work" = "载入会覆盖现在有未保存的工作";
 
 /* Lock label - Edit mode Instructions Overlay. */
-"Lock" = "Lock";
+"Lock" = "锁定";
 
 /* Memory warning alert message. */
-"Memory warning: Save your work, just in case!" = "Memory warning: Save your work, just in case!";
+"Memory warning: Save your work, just in case!" = "内存警告: 保存你的工作, 以防万一!";
 
 /* Action Menu Button title for My ArcMachines. - only translate "My" ArcMachines is a trademark, so it should appear in all lanuguages */
-"My ArcMachines" = "My ArcMachines";
+"My ArcMachines" = "我的ArcMachines";
 
 /* Share email, subject line. */
-"My Shiny New ArcMachine" = "My Shiny New ArcMachine";
+"My Shiny New ArcMachine" = "我闪亮的新ArcMachines";
 
 /* Default text to be show in "My ArcMachines" when none are saved. */
-"No ArcMachines saved yet" = "No ArcMachines saved yet";
+"No ArcMachines saved yet" = "ArcMachines未被保存";
 
 /* Order - mode selector label Instructions Overlay (all modes, at the bottom) */
-"Order" = "Order";
+"Order" = "排序";
 
 /* Color Mode Instructions Overlay Label for shape outline. */
-"Outline" = "Outline";
+"Outline" = "大纲";
 
 /* quick edit menu label for Paste. */
-"Paste" = "Paste";
+"Paste" = "粘贴";
 
 /* Edit mode instructions overlay label for Pinch. */
-"Pinch" = "Pinch";
+"Pinch" = "夹";
 
 /* Do not translate. */
 "PNG 1280x1280" = "PNG 1280x1280";
@@ -230,74 +229,73 @@ Be wary of the text box size, it must be respected.
 "PNG 640x640" = "PNG 640x640";
 
 /* Instructions overlay label for Title bar */
-"Press Title for this page, Swipe Title to watch the video tour" = "Tap Title for this page, Swipe Title to watch the video tour";
+"Press Title for this page, Swipe Title to watch the video tour" = "点击标题进入页面, 滑动标题观看视频介绍";
 
 /* Translate to the first letter of translation of Radius. (lower case where applicable) */
 "r" = "r";
 
 /* Edit mode Instructions overlay label for Radius pinching. */
-"Radius" = "Radius";
+"Radius" = "半径";
 
 /* Edit mode Instructions overlay label for Removing/Deleting the selected Arc. */
-"Remove Arc" = "Remove Arc";
+"Remove Arc" = "删除";
 
 /* Action Menu Button label for Saving ArcMachine - only translate "Save" ArcMachines should remain in all translations. */
-"Save ArcMachine" = "Save ArcMachine";
+"Save ArcMachine" = "保存ArcMachine";
 
 /* Saving ArcMachine message. */
-"Saving ArcMachine" = "Saving ArcMachine";
+"Saving ArcMachine" = "正在保存ArcMachine";
 
 /* Action Menu Button label. */
-"Save PNG to Camera Roll" = "Save PNG to Camera Roll";
+"Save PNG to Camera Roll" = "保存PNG至相册";
 
 /* Title for image size/quality menu - \n means linebreak, please keep it in the translation. */
-"Save to Camera Roll\nImage Quality" = "Save to Camera Roll\nImage Quality";
+"Save to Camera Roll\nImage Quality" = "保存至相册\n图像质量";
 
 /* Message for successful PNG image save. */
-"Saved PNG" = "Saved PNG";
+"Saved PNG" = "已保存至PNG";
 
 /* Instructions overlay label for the up down select arc buttons. */
-"Select Arc" = "Select Arc";
+"Select Arc" = "选择弧线";
 
 /* Files view Share as Email menu button label. */
-"Share as Email" = "Share as Email";
+"Share as Email" = "通过电邮分享";
 
 /* Files view Share to Dropbox menu button label. Dropbox is a trademark, don't translate it, just translate "Share to" ie. "に共有 Dropbox" or "Partager sur Dropbox" etc. */
-"Share to Dropbox" = "Share to Dropbox";
+"Share to Dropbox" = "分享至Dropbox";
 
 /* Translate to the first letter for the word Thickness in the target language. e.g. "G" in French, (for Grosseur) For idographic languages, e.g. Japanese, approximate ie. 厚 thick (atsu) */
-"T" = "T";
+"T" = "厚度";
 
 /* + refers to the + icon at top left, so it must remain in the translation*/
-"Tap + to add Arcs" = "Tap + to add Arcs";
+"Tap + to add Arcs" = "按 + 添加弧线";
 
 /* Help prompt for Files view ("My ArcMachines")*/
-"Tap to Load, Hold to Share or Delete" = "Tap to Load, Hold to Share or Delete";
+"Tap once to Load, Hold to Share or Delete" = "单击加载, 按住分享或删除";
 
 /* Message for photo saving problems. */
-"There was a problem saving your image, check photo album privacy settings, and make sure you have enough free memory." = "There was a problem saving your image, check photo album privacy settings, and make sure you have enough free memory.";
+"There was a problem saving your image, check photo album privacy settings, and make sure you have enough free memory." = "保存文件时发生错误, 情检测相册隐私设置, 并确认你有足够的内存.";
 
 /* Edit mode Instructions Overlay label for Thickness of arc. */
-"Thickness" = "Thickness";
+"Thickness" = "厚度";
 
 /* Order mode Instructions Overlay label. */
-"To Back" = "To Back";
+"To Back" = "向后";
 
 /* Order mode Instructions Overlay label. */
-"To Front" = "To Front";
+"To Front" = "向前";
 
 /* Turn - on/off - RED selection highlight. */
-"Toggle Highlight" = "Toggle Highlight";
+"Toggle Highlight" = "强光开关";
 
 /* all mode Instructions Overlay label. */
-"Tools Selector" = "Tools Selector";
+"Tools Selector" = "工具选择器";
 
 /* all mode Instructions Overlay label. */
-"Touch Hold drawing area for quick edit menu" = "Touch Hold drawing area for quick edit menu";
+"Touch Hold drawing area for quick edit menu" = "按住画笔区域打开编辑菜单";
 
 /* Color mode Instructions Overlay label. */
-"Transparency" = "Transparency";
+"Transparency" = "透明度";
 
 /* Warning */
-"Warning" = "Warning";
-
+"Warning" = "警告";
