@@ -16,7 +16,7 @@ From here we can choose the tools we want (Edit, Color, Layer order),
 when we start up, we already have Edit tools available, we'll look at
 those in just a second.
                     
-Also on the main toolbar is the arc selection tools. You select the
+Also on the main toolbar are the arc selection tools. You select the
 arc you want to work with, by pressing one of the two arrow buttons,
 which will show the selected arc as bright red. Press the button
 labeled "toggle selection highlight" to turn off the bright red
@@ -64,8 +64,10 @@ other edge of the arc is moving.
 
 ## AB Linked
 
-Now select the AB button (third from the left.) and move your finger
-around on the drawing area, you'll see that both edges are moving
+![](images/primary-edit-tools.png)
+
+Now select the AB button (third from the left) and move your finger
+around on the drawing area. You'll see that both edges are moving
 together, and the arc is remaining the same size, at different
 positions around the centre.
 
@@ -111,7 +113,7 @@ of the toolbar you've selected.
 
 There's a couple of tools here that don't appear anywhere else:
 
-* **Clone** which copies the current arc exactly, which comes in pretty handy.
+* **Clone** copies the current arc exactly, which comes in pretty handy.
 
 * **Paste** which creates another copy of the last clone.
 
@@ -164,10 +166,10 @@ you'd like to keep them.
 
 ## A bit more on color palettes
 
-Personally I like to use [Saturation](http://saturation.bitgun.com/),
-it's an App which let's you browse colors from the
-[Adobe Kuler service,](http://kuler.adobe.com) it also allows you to
-share a color palette over email, so before sending the email, just
+Personally I like to use [Saturation](http://saturation.bitgun.com/).
+It's an App which lets you browse colors from the
+[Adobe Kuler service.](http://kuler.adobe.com) It also allows you to
+share a color palette over email, so before sending the email,
 copy the contents of the message and use **Import Colors** in
 ArcConstrukt, and you'll have them ready to use.
 
@@ -197,8 +199,8 @@ you some of the techniques I use in my finished compositions.
 
 ## Saving an editable composition
 
-From the Action Menu, you can choose **Save ArcMachine** this is the
-editable format that ArcConstrukt uses.
+From the Action Menu, you can choose **Save ArcMachine**. This saves to the
+editable format which ArcConstrukt uses.
 
 ## Loading and Sharing ArcMachines
 
@@ -210,18 +212,18 @@ your saved ArcMachines, and you can load one by tapping it.
 
 ## Sharing and Managing ArcMachines
 
-You can also share your ArcMachines via EMail or DropBox, in the **My
+You can also share your ArcMachines via email or DropBox, in the **My
 ArcMachines** screen, press and hold the ArcMachine you want to
 share, a menu will pop-up, and from here you can share to Email,
 Dropbox or Delete the ArcMachine.
 
 ![](images/sharing.png)
 
-## Dropbox and Email 
+## Dropbox and email sharing
 
-When you share to Dropbox and Email, two files will be shared, the
-first, will have the extension **.arcmachine** the other will be an
-**.SVG** file. 
+When you share to Dropbox and email, two files will be shared. One,
+will have the extension **.arcmachine** the other will be an **.SVG**
+file.
 
 ## SVG ArcMachines
 
@@ -328,11 +330,10 @@ Keep an eye on
 [github.com/ocodo/arcconstrukt](https://github.com/ocodo/arcconstruktissues/issues/)
 for up to the minute info, and [follow @ocodo on Twitter](http://twitter.com/ocodo) for major announcements.
 
-
 ## Thank you
 
 ArcConstrukt wouldn't exist without you, I owe a huge debt of thanks
-to everyone who has encouraged me to build this perculiar App.
+to everyone who has encouraged me to build this peculiar App.
 
 Special thanks go to Chris Foster, cheers boss! 
 
