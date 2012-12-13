@@ -263,16 +263,11 @@ not kidding, click this picture from your iPhone:
 [![](images/twitter-loaded.png)](twitter.arcmachine)
 
 Of course you'll need to have ArcConstrukt installed for this to
-work. (by the way, images produced from this file are copyright ©2012
-ocodo, but you can with it and any derivative work is yours, just
-supply my copyright notice if you use it without significant
-modification somewhere.)
+work. Image is copyright ©2012 ocodo.
 
 I've added this web sharing feature so that it'll be possible to
-showcase the best ArcMachines people create, tweet your web shared
-ones to me at @ocodo and tag with #ocodoarcmachines, you can upload
-them to dropbox and share them with everyone from there, if you don't
-like dropbox. I'm sure you'll figure something out.
+showcase the best ArcMachines people create, tweet me at @ocodo and
+tag with #ocodoarcmachines and let me know if you put any online.
 
 ## .arcmachine JSON format
 
