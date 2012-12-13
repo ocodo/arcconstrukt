@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [ -e tutorial.markdown ] && [ -e t.head ] && [ -e t.foot ]; then
+if [ -e tutorial.md ] && [ -e t.head ] && [ -e t.foot ]; then
 #    gem install redcarpet
-    redcarpet --render-with_toc_data tutorial.markdown > tmp
+    redcarpet --render-with_toc_data tutorial.md > tmp
 
     grep toc tmp | 
     tr '<>/="' ' ' | 
@@ -11,7 +11,7 @@ if [ -e tutorial.markdown ] && [ -e t.head ] && [ -e t.foot ]; then
           link=$1; 
           $1=""; 
           title=$0; 
-          printf "<option value=\"#%s\">%s</option>\n", link, title 
+          printf "        <option value=\"#%s\">%s</option>\n", link, title 
     }' |
     sed '$d' > toc
 
