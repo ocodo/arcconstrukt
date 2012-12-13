@@ -1,0 +1,11 @@
+Designing with Arcs isn't easy, using traditional design tools to keep them perfectly centered on their radius is virtually impossible. This is why I created ArcConstrukt.
+
+I'm a bit insane, I've made an App devoted to the single goal of creating images made with just Arcs, but I think once you play with it for a while and see the fantastic images people are creating with it, you'll be hooked too.
+
+I've catered to the serious designer too, you can quickly build an "arcmachine" in ArcConstrukt and then share it to Dropbox or via Email and you'll have an SVG representation, ready to use in Adobe Illustrator, or InkScape.
+
+When you save an image to PNG, it's saved with transparency, at up to 3200px square, so even from your phone you can create spectacularly high resolution composites, with other apps, such as Image Blender or PhotoForge2 (and anything else that supports PNG transparency.)
+
+There are many more features and add-ins planned, so join the new
+revolution and get yourself insane with circles ... or just mess about
+a bit, it's all good either way.
