@@ -1,0 +1,3 @@
+[submodule "web/www"]
+	path = web/www
+	url = ssh://jasonm23@ocodo.info:arcconstrukt.git
