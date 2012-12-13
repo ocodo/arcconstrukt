@@ -4,6 +4,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <title>ArcConstrukt Tutorial</title>
-    <link rel="stylesheet" type="text/css" media="all" href="tutorial.css"  />
+    <link rel="stylesheet" type="text/css" media="all"
+    href="tutorial.css"  />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+
+      $(function (){  
+        $("#jumpMenu").change(function(e) {
+          window.location.href = $(this).val();
+        });
+      });
+      
+    </script>
   </head>
   <body>
+    <div id="jump">
+      <select name="jumpMenu" id="jumpMenu">
+    
